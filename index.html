@@ -1,153 +1,431 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MoneyMaker BD</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script src="https://cdn.tailwindcss.com"></script>
+<title>MoneyMaker BD</title>
 
-  <style>
-    body{
-      background:#f5f7ff;
-      font-family:sans-serif;
-    }
-  </style>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getFirestore,
+doc,
+setDoc,
+getDoc,
+updateDoc,
+increment
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+getAuth,
+signInAnonymously
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+/* ========= FIREBASE CONFIG ========= */
+/* এখানে তোমার Firebase Config বসাবে */
+
+const firebaseConfig = {
+
+apiKey: "PASTE_API_KEY",
+authDomain: "PASTE_AUTH_DOMAIN",
+projectId: "PASTE_PROJECT_ID",
+storageBucket: "PASTE_BUCKET",
+messagingSenderId: "PASTE_SENDER_ID",
+appId: "PASTE_APP_ID"
+
+};
+
+
+/* ========= FIREBASE ========= */
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+const auth = getAuth(app);
+
+await signInAnonymously(auth);
+
+
+/* ========= TELEGRAM USER ========= */
+
+let tg = window.Telegram.WebApp;
+
+tg.expand();
+
+const user = tg.initDataUnsafe.user || {};
+
+const userId = user.id || "123456";
+
+const username = user.username || "MoneyMaker User";
+
+const photo = user.photo_url || "https://i.pravatar.cc/150";
+
+
+/* ========= UI ========= */
+
+document.getElementById("username").innerText = username;
+
+document.getElementById("userid").innerText = userId;
+
+document.getElementById("profile").src = photo;
+
+
+/* ========= FIRESTORE ========= */
+
+const userRef = doc(db, "users", String(userId));
+
+const snap = await getDoc(userRef);
+
+if (!snap.exists()) {
+
+await setDoc(userRef, {
+
+username: username,
+coin: 0,
+referral: 0,
+created: Date.now()
+
+});
+
+}
+
+const userData = (await getDoc(userRef)).data();
+
+document.getElementById("coin").innerText = userData.coin;
+
+document.getElementById("bdt").innerText =
+(userData.coin / 10).toFixed(2);
+
+
+/* ========= WATCH AD ========= */
+
+window.claimCoin = async function(amount){
+
+await updateDoc(userRef,{
+coin: increment(amount)
+});
+
+location.reload();
+
+};
+
+
+/* ========= COPY LINK ========= */
+
+window.copyInvite = function(){
+
+const link =
+`https://t.me/emoneymakebd_bot/app?startapp=${userId}`;
+
+navigator.clipboard.writeText(link);
+
+alert("Invite Link Copied");
+
+};
+
+
+/* ========= TIMER ========= */
+
+function startTimer(){
+
+let h = 23;
+let m = 59;
+let s = 59;
+
+setInterval(()=>{
+
+s--;
+
+if(s < 0){
+s = 59;
+m--;
+}
+
+if(m < 0){
+m = 59;
+h--;
+}
+
+document.getElementById("timer").innerText =
+`${h}:${m}:${s}`;
+
+},1000);
+
+}
+
+startTimer();
+
+</script>
+
+<style>
+
+body{
+background:#f4f7ff;
+font-family:sans-serif;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<div class="max-w-md mx-auto min-h-screen bg-white shadow-lg">
+<div class="max-w-md mx-auto bg-white min-h-screen pb-24">
 
-  <!-- Top Header -->
+<!-- TOP -->
 
-  <div class="bg-blue-600 text-white p-5 rounded-b-3xl">
+<div class="bg-blue-600 text-white p-5 rounded-b-3xl">
 
-    <div class="flex items-center gap-3">
+<div class="flex items-center gap-3">
 
-      <img
-        src="https://i.pravatar.cc/100"
-        class="w-14 h-14 rounded-full border-2 border-white"
-      >
+<img
+id="profile"
+class="w-16 h-16 rounded-full border-2 border-white"
+/>
 
-      <div>
-        <h2 class="font-bold text-lg">
-          MoneyMaker User
-        </h2>
+<div>
 
-        <p class="text-sm">
-          ID: 123456789
-        </p>
-      </div>
+<h2
+id="username"
+class="font-bold text-lg"
+>
+Loading...
+</h2>
 
-    </div>
+<p>
+ID:
+<span id="userid"></span>
+</p>
 
-    <div class="mt-5 bg-white text-black rounded-2xl p-4">
+</div>
 
-      <h3 class="text-gray-500 text-sm">
-        Total Earn
-      </h3>
+</div>
 
-      <h1 class="text-3xl font-bold">
-        5,250 Coin
-      </h1>
+<div class="bg-white text-black p-4 rounded-2xl mt-5">
 
-      <p class="text-green-600 mt-1">
-        ≈ 525 BDT
-      </p>
+<p class="text-gray-500">
+Total Earn
+</p>
 
-    </div>
+<h1 class="text-3xl font-bold">
+<span id="coin">0</span>
+Coin
+</h1>
 
-  </div>
+<p class="text-green-600 mt-1">
+≈
+৳ <span id="bdt">0</span>
+BDT
+</p>
 
-  <!-- Invite Button -->
+</div>
 
-  <div class="p-4">
+</div>
 
-    <button
-      class="w-full bg-green-500 text-white py-3 rounded-2xl font-bold"
-    >
-      Invite & Copy Link
-    </button>
+<!-- INVITE -->
 
-  </div>
+<div class="p-4">
 
-  <!-- Watch & Earn -->
+<button
+onclick="copyInvite()"
+class="w-full bg-green-500 text-white p-4 rounded-2xl font-bold"
+>
 
-  <div class="px-4">
+Invite & Copy Link
 
-    <h2 class="font-bold text-lg mb-3">
-      Watch & Earn Coin
-    </h2>
+</button>
 
-    <div class="space-y-3">
+</div>
 
-      <button class="w-full bg-blue-500 text-white p-4 rounded-2xl">
-        Watch Ad +5 Coin
-      </button>
+<!-- WATCH -->
 
-      <button class="w-full bg-purple-500 text-white p-4 rounded-2xl">
-        Video Ad +10 Coin
-      </button>
+<div class="px-4">
 
-      <button class="w-full bg-orange-500 text-white p-4 rounded-2xl">
-        Premium Ad +20 Coin
-      </button>
+<h2 class="font-bold text-lg mb-3">
 
-    </div>
+Watch & Earn Coin
 
-  </div>
+</h2>
 
-  <!-- Social Tasks -->
+<div class="space-y-3">
 
-  <div class="p-4">
+<button
+onclick="claimCoin(5)"
+class="w-full bg-blue-500 text-white p-4 rounded-2xl"
+>
 
-    <h2 class="font-bold text-lg mb-3">
-      Social Tasks
-    </h2>
+Watch Ad +5 Coin
 
-    <div class="space-y-3">
+</button>
 
-      <div class="bg-gray-100 p-4 rounded-2xl flex justify-between">
-        <span>Facebook Follow</span>
-        <span>+25</span>
-      </div>
+<button
+onclick="claimCoin(10)"
+class="w-full bg-purple-500 text-white p-4 rounded-2xl"
+>
 
-      <div class="bg-gray-100 p-4 rounded-2xl flex justify-between">
-        <span>YouTube Subscribe</span>
-        <span>+25</span>
-      </div>
+Video Ad +10 Coin
 
-      <div class="bg-gray-100 p-4 rounded-2xl flex justify-between">
-        <span>Instagram Follow</span>
-        <span>+25</span>
-      </div>
+</button>
 
-    </div>
+<button
+onclick="claimCoin(20)"
+class="w-full bg-orange-500 text-white p-4 rounded-2xl"
+>
 
-  </div>
+Premium Ad +20 Coin
 
-  <!-- Bottom Navigation -->
+</button>
 
-  <div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t flex justify-around p-3">
+</div>
 
-    <button class="font-bold text-blue-600">
-      Home
-    </button>
+</div>
 
-    <button>
-      Leaderboard
-    </button>
+<!-- SOCIAL TASK -->
 
-    <button>
-      Withdraw
-    </button>
+<div class="p-4">
 
-    <button>
-      Support
-    </button>
+<h2 class="font-bold text-lg mb-3">
 
-  </div>
+Social Tasks
+
+</h2>
+
+<div class="space-y-3">
+
+<div class="bg-gray-100 p-4 rounded-2xl flex justify-between">
+
+<span>Facebook Follow</span>
+
+<span>+25</span>
+
+</div>
+
+<div class="bg-gray-100 p-4 rounded-2xl flex justify-between">
+
+<span>YouTube Subscribe</span>
+
+<span>+25</span>
+
+</div>
+
+<div class="bg-gray-100 p-4 rounded-2xl flex justify-between">
+
+<span>Instagram Follow</span>
+
+<span>+25</span>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- DAILY TASK -->
+
+<div class="p-4">
+
+<h2 class="font-bold text-lg mb-3">
+
+Daily YouTube Task
+
+</h2>
+
+<div class="grid grid-cols-5 gap-2">
+
+<button
+onclick="claimCoin(10)"
+class="bg-red-500 text-white p-3 rounded-xl"
+>
+
++10
+
+</button>
+
+<button
+onclick="claimCoin(10)"
+class="bg-red-500 text-white p-3 rounded-xl"
+>
+
++10
+
+</button>
+
+<button
+onclick="claimCoin(10)"
+class="bg-red-500 text-white p-3 rounded-xl"
+>
+
++10
+
+</button>
+
+<button
+onclick="claimCoin(10)"
+class="bg-red-500 text-white p-3 rounded-xl"
+>
+
++10
+
+</button>
+
+<button
+onclick="claimCoin(10)"
+class="bg-red-500 text-white p-3 rounded-xl"
+>
+
++10
+
+</button>
+
+</div>
+
+<div class="bg-gray-100 p-4 rounded-2xl mt-4 text-center">
+
+Come Back After
+
+<div
+id="timer"
+class="text-2xl font-bold text-blue-600 mt-2"
+>
+
+23:59:59
+
+</div>
+
+</div>
+
+</div>
+
+<!-- BOTTOM -->
+
+<div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t flex justify-around p-3">
+
+<button class="text-blue-600 font-bold">
+Home
+</button>
+
+<button>
+Leaderboard
+</button>
+
+<button>
+Withdraw
+</button>
+
+<button>
+Support
+</button>
+
+</div>
 
 </div>
 

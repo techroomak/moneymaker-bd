@@ -359,6 +359,8 @@ timerEl.style.display =
 /* WITHDRAW */
 /* ========================= */
 
+let dailyWithdrawCount = 0;
+
 window.changeWithdrawInfo = ()=>{
 
 document.getElementById("withdrawAmount").value = "";
@@ -389,6 +391,9 @@ document.getElementById("coinConvert");
 const info =
 document.getElementById("withdrawInfo");
 
+const limit =
+document.getElementById("withdrawLimit");
+
 // EMPTY
 
 if(!amount){
@@ -396,6 +401,24 @@ if(!amount){
 convert.style.display = "none";
 
 info.style.display = "none";
+
+limit.style.display = "none";
+
+return;
+
+}
+
+// DAILY LIMIT
+
+if(dailyWithdrawCount >= 3){
+
+limit.style.display = "block";
+
+limit.innerText =
+"Daily Withdraw Limit Reached";
+
+limit.style.color =
+"#ef4444";
 
 return;
 
@@ -456,3 +479,4 @@ info.style.display = "none";
 }
 
 };
+

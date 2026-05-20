@@ -99,11 +99,13 @@ display:none;
 /* COIN */
 
 .coin-card{
-margin-top:18px;
-background:rgba(255,255,255,.12);
+display:flex;
+justify-content:space-between;
+align-items:center;
 padding:14px;
-border-radius:20px;
+gap:10px;
 }
+
 
 .coin-left{
 display:flex;
@@ -509,8 +511,8 @@ cursor:pointer;
 }
 
 .gift-icon{
-width:42px;
-height:42px;
+width:48px;
+height:48px;
 }
 
 .invite-top{
@@ -540,14 +542,15 @@ align-items:center;
 background:rgba(255,255,255,.12);
 padding:8px 10px;
 border-radius:12px;
+width:100%;
 }
 
 .invite-link-text{
-font-size:11px;
+font-size:10px;
 overflow:hidden;
 white-space:nowrap;
 text-overflow:ellipsis;
-max-width:220px;
+flex:1;
 }
 
 /* ========================= */
@@ -666,4 +669,149 @@ border:none;
 padding:10px 14px;
 border-radius:12px;
 font-weight:700;
+}
+
+/* ========================= */
+/* UPDATED UI */
+/* ========================= */
+
+.mini-coin-icon{
+width:14px;
+height:14px;
+}
+
+.ad-top{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.ad-icon{
+width:24px;
+height:24px;
+}
+
+.ad-description{
+display:flex;
+align-items:center;
+gap:4px;
+font-size:12px;
+margin-top:8px;
+}
+
+.ad-lock-timer{
+margin-top:10px;
+font-size:12px;
+font-weight:700;
+text-align:center;
+color:#ef4444;
+display:none;
+}
+
+.task-title-row{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.task-coin{
+display:flex;
+align-items:center;
+gap:4px;
+font-size:13px;
+font-weight:700;
+color:#22c55e;
+}
+
+.task-title{
+font-size:15px;
+margin:0;
+}
+
+.task-description{
+font-size:11px;
+margin-top:4px;
+}
+
+.social-complete-button{
+background:#22c55e;
+color:white;
+border:none;
+padding:10px 14px;
+border-radius:12px;
+font-weight:700;
+}
+
+.invite-link-text{
+font-size:10px;
+overflow:hidden;
+white-space:nowrap;
+text-overflow:ellipsis;
+flex:1;
+}
+
+.gift-icon{
+width:48px;
+height:48px;
+}
+
+.money-bag-icon{
+width:58px;
+height:58px;
+}
+
+.stats-card{
+padding:10px 6px;
+}
+
+.stats-title{
+font-size:10px;
+margin-top:6px;
+}
+
+.stats-number{
+font-size:16px;
+margin-top:2px;
+}
+
+/*===========new======*/
+
+.stats-card{
+padding:10px 6px;
+}
+
+.stats-title{
+font-size:10px;
+margin-top:6px;
+}
+
+.stats-number{
+font-size:16px;
+margin-top:2px;
+}
+
+.task-item{
+padding:14px;
+}
+
+.social-item{
+padding:14px;
+}
+
+.ad-card{
+padding:14px;
+}
+/*=====ad lock time*/
+.ad-lock-timer{
+margin-top:10px;
+font-size:12px;
+font-weight:700;
+text-align:center;
+color:#ef4444;
+display:none;
+}
+
+.money-bag-icon{
+width:58px;
+height:58px;
 }

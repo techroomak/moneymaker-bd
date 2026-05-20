@@ -490,3 +490,180 @@ font-weight:700;
 color:#22c55e;
 margin-bottom:8px;
 }
+/* ========================= */
+/* MINI ICON */
+/* ========================= */
+
+.mini-coin-icon{
+width:14px;
+height:14px;
+}
+
+/* ========================= */
+/* INVITE */
+/* ========================= */
+
+.invite-card{
+padding:14px;
+cursor:pointer;
+}
+
+.gift-icon{
+width:42px;
+height:42px;
+}
+
+.invite-top{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.invite-title{
+font-size:18px;
+margin:0;
+}
+
+.invite-reward{
+margin-top:3px;
+display:flex;
+align-items:center;
+gap:4px;
+font-size:13px;
+}
+
+.invite-link-box{
+margin-top:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(255,255,255,.12);
+padding:8px 10px;
+border-radius:12px;
+}
+
+.invite-link-text{
+font-size:11px;
+overflow:hidden;
+white-space:nowrap;
+text-overflow:ellipsis;
+max-width:220px;
+}
+
+/* ========================= */
+/* COIN CARD */
+/* ========================= */
+
+.coin-card{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:14px;
+}
+
+.coin-title{
+font-size:22px;
+margin:0;
+}
+
+.coin-bdt{
+margin-top:3px;
+font-size:11px;
+}
+
+.money-bag-icon{
+width:52px;
+height:52px;
+}
+
+/* ========================= */
+/* ADS */
+/* ========================= */
+
+.ad-top{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.ad-icon{
+width:26px;
+height:26px;
+}
+
+.ad-title{
+font-size:16px;
+}
+
+.ad-description{
+display:flex;
+align-items:center;
+gap:4px;
+font-size:13px;
+margin-top:8px;
+}
+
+.claim-button{
+margin-top:10px;
+}
+
+.ad-lock-timer{
+margin-top:10px;
+font-size:12px;
+font-weight:700;
+text-align:center;
+color:#ef4444;
+display:none;
+}
+
+/* ========================= */
+/* TASK */
+/* ========================= */
+
+.task-title-row{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.task-coin{
+display:flex;
+align-items:center;
+gap:4px;
+font-size:13px;
+font-weight:700;
+color:#22c55e;
+}
+
+.task-title{
+font-size:16px;
+margin:0;
+}
+
+.task-description{
+font-size:11px;
+margin-top:4px;
+}
+
+/* ========================= */
+/* SOCIAL */
+/* ========================= */
+
+.social-reward{
+display:flex;
+align-items:center;
+gap:4px;
+font-size:13px;
+font-weight:700;
+color:#22c55e;
+margin-bottom:8px;
+}
+
+.social-complete-button{
+background:#22c55e;
+color:white;
+border:none;
+padding:10px 14px;
+border-radius:12px;
+font-weight:700;
+}

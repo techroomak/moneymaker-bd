@@ -68,7 +68,9 @@ const userId = user.id || "123456";
 
 const username = user.username || "MoneyMaker User";
 
-const photo = user.photo_url || "https://i.pravatar.cc/150";
+const photo = user.photo_url
+? user.photo_url
+: "https://telegram.org/img/t_logo.png";
 
 
 /* ========= UI ========= */

@@ -99,13 +99,16 @@ display:none;
 /* COIN */
 
 .coin-card{
+margin-top:18px;
+background:linear-gradient(to right,#6d28d9,#2563eb);
+padding:14px;
+border-radius:22px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:14px;
 gap:10px;
+box-shadow:0 6px 18px rgba(0,0,0,.12);
 }
-
 
 .coin-left{
 display:flex;

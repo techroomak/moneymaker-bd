@@ -1,331 +1,470 @@
 <!-- ========================= -->
-<!-- APP CONTAINER -->
+<!-- INVITE SECTION -->
 <!-- ========================= -->
 
-<div class="app-container">
+<section class="invite-section">
 
+<div class="invite-card">
 
+<div class="invite-content">
 
-  <!-- ========================= -->
-  <!-- HEADER SECTION -->
-  <!-- ========================= -->
+<h2 class="invite-title">
+Invite & Earn
+</h2>
 
-  <header class="header-section">
+<p class="invite-bonus">
+Invite Bonus: 25 Coin
+</p>
 
-    <div class="top-bar">
+<div class="invite-link-box">
 
-      <!-- PROFILE AREA -->
+<span
+id="inviteLink"
+class="invite-link-text"
+>
+Loading...
+</span>
 
-      <div class="profile-area">
+<button
+class="copy-link-button"
+onclick="copyInvite()"
+>
 
-        <img class="profile-image"/>
+<img
+class="copy-link-icon"
+src="https://cdn-icons-png.flaticon.com/512/1621/1621635.png"
+/>
 
-        <div class="profile-info">
-
-          <div class="name-row">
-
-            <h2 class="profile-name"></h2>
-
-            <img class="verify-badge"/>
-
-          </div>
-
-          <p class="user-id-text"></p>
-
-          <div class="earn-box">
-
-            <img class="coin-logo"/>
-
-            <div class="earn-info">
-
-              <h3 class="coin-text"></h3>
-
-              <p class="bdt-text"></p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- HEADER ICONS -->
-
-      <div class="header-icons">
-
-        <div class="header-icon-box notification-box">
-
-          <div class="notification-dot"></div>
-
-          <img class="header-icon"/>
-
-        </div>
-
-        <div class="header-icon-box support-box">
-
-          <img class="header-icon"/>
-
-        </div>
-
-        <div class="header-icon-box invite-box">
-
-          <img class="header-icon"/>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </header>
-
-
-
-  <!-- ========================= -->
-  <!-- STATS SECTION -->
-  <!-- ========================= -->
-
-  <section class="stats-section">
-
-    <div class="stats-card total-refer-card">
-
-      <div class="stats-icon purple-bg">
-
-        <img class="stats-icon-image"/>
-
-      </div>
-
-      <p class="stats-title"></p>
-
-      <h2 class="stats-number"></h2>
-
-    </div>
-
-
-
-    <div class="stats-card daily-earn-card">
-
-      <div class="stats-icon green-bg">
-
-        <img class="stats-icon-image"/>
-
-      </div>
-
-      <p class="stats-title"></p>
-
-      <h2 class="stats-number"></h2>
-
-    </div>
-
-
-
-    <div class="stats-card refer-earn-card">
-
-      <div class="stats-icon orange-bg">
-
-        <img class="stats-icon-image"/>
-
-      </div>
-
-      <p class="stats-title"></p>
-
-      <h2 class="stats-number"></h2>
-
-    </div>
-
-
-
-    <div class="stats-card withdraw-card">
-
-      <div class="stats-icon blue-bg">
-
-        <img class="stats-icon-image"/>
-
-      </div>
-
-      <p class="stats-title"></p>
-
-      <h2 class="stats-number"></h2>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ========================= -->
-  <!-- INVITE SECTION -->
-  <!-- ========================= -->
-
-  <section class="invite-section">
-
-    <div class="invite-card">
-
-      <div class="invite-left">
-
-        <h2 class="invite-title"></h2>
-
-        <p class="invite-bonus"></p>
-
-        <div class="invite-link-box">
-
-          <span class="invite-link-text"></span>
-
-        </div>
-
-      </div>
-
-      <button class="copy-button"></button>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ========================= -->
-  <!-- ADS SECTION -->
-  <!-- ========================= -->
-
-  <section class="ads-section">
-
-    <h2 class="section-title"></h2>
-
-    <div class="ads-grid">
-
-
-
-      <div class="ad-card">
-
-        <div class="ad-info">
-
-          <h3 class="ad-title"></h3>
-
-          <p class="ad-description"></p>
-
-        </div>
-
-        <button class="claim-button">
-
-          <img class="claim-coin-icon"/>
-
-        </button>
-
-      </div>
-
-
-
-      <div class="ad-card"></div>
-
-      <div class="ad-card"></div>
-
-      <div class="ad-card"></div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ========================= -->
-  <!-- DAILY TASK SECTION -->
-  <!-- ========================= -->
-
-  <section class="daily-task-section">
-
-    <h2 class="section-title"></h2>
-
-    <div class="task-card">
-
-      <div class="task-info">
-
-        <h3 class="task-title"></h3>
-
-        <p class="task-description"></p>
-
-      </div>
-
-      <button class="task-button"></button>
-
-      <div class="task-timer"></div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ========================= -->
-  <!-- SOCIAL TASK SECTION -->
-  <!-- ========================= -->
-
-  <section class="social-task-section">
-
-    <h2 class="section-title"></h2>
-
-    <div class="social-list">
-
-
-
-      <a class="social-item">
-
-        <div class="social-left">
-
-          <img class="social-icon"/>
-
-          <span class="social-name"></span>
-
-        </div>
-
-        <button class="social-button"></button>
-
-      </a>
-
-
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ========================= -->
-  <!-- BOTTOM NAVIGATION -->
-  <!-- ========================= -->
-
-  <nav class="bottom-nav">
-
-    <button class="nav-button home-button">
-
-      <img class="nav-icon"/>
-
-      <span class="nav-text"></span>
-
-    </button>
-
-
-
-    <button class="nav-button leaderboard-button">
-
-      <img class="nav-icon"/>
-
-      <span class="nav-text"></span>
-
-    </button>
-
-
-
-    <button class="nav-button withdraw-button">
-
-      <img class="nav-icon"/>
-
-      <span class="nav-text"></span>
-
-    </button>
-
-  </nav>
-
-
+</button>
 
 </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- DAILY TASK SECTION -->
+<!-- ========================= -->
+
+<section class="daily-task-section">
+
+<h2 class="section-title">
+Daily Tasks
+</h2>
+
+<div class="daily-task-list">
+
+<!-- TASK ITEM -->
+
+<div class="daily-task-item">
+
+<div class="daily-task-left">
+
+<img
+class="daily-task-icon"
+src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+/>
+
+<div>
+
+<h3 class="daily-task-title">
+Watch 5 Videos
+</h3>
+
+<p class="daily-task-description">
+Watch 5 videos on YouTube
+</p>
+
+</div>
+
+</div>
+
+<div class="daily-task-right">
+
+<div class="daily-task-count">
+0 / 5
+</div>
+
+<button class="daily-task-button red-btn">
+Start
+</button>
+
+</div>
+
+</div>
+
+<!-- TASK ITEM -->
+
+<div class="daily-task-item">
+
+<div class="daily-task-left">
+
+<img
+class="daily-task-icon"
+src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png"
+/>
+
+<div>
+
+<h3 class="daily-task-title">
+Visit Website
+</h3>
+
+<p class="daily-task-description">
+Visit website for 30 sec
+</p>
+
+</div>
+
+</div>
+
+<div class="daily-task-right">
+
+<div class="daily-task-count">
+0 / 1
+</div>
+
+<button class="daily-task-button blue-btn">
+Go
+</button>
+
+</div>
+
+</div>
+
+<!-- TASK ITEM -->
+
+<div class="daily-task-item">
+
+<div class="daily-task-left">
+
+<img
+class="daily-task-icon"
+src="https://cdn-icons-png.flaticon.com/512/892/892692.png"
+/>
+
+<div>
+
+<h3 class="daily-task-title">
+Visit Shortlink
+</h3>
+
+<p class="daily-task-description">
+Complete shortlink visit
+</p>
+
+</div>
+
+</div>
+
+<div class="daily-task-right">
+
+<div class="daily-task-count">
+0 / 1
+</div>
+
+<button class="daily-task-button orange-btn">
+Go
+</button>
+
+</div>
+
+</div>
+
+<!-- TASK ITEM -->
+
+<div class="daily-task-item">
+
+<div class="daily-task-left">
+
+<img
+class="daily-task-icon"
+src="https://cdn-icons-png.flaticon.com/512/4213/4213958.png"
+/>
+
+<div>
+
+<h3 class="daily-task-title">
+Daily Bonus
+</h3>
+
+<p class="daily-task-description">
+Claim daily bonus
+</p>
+
+</div>
+
+</div>
+
+<div class="daily-task-right">
+
+<div class="daily-task-count">
+0 / 1
+</div>
+
+<button class="daily-task-button green-btn">
+Claim
+</button>
+
+</div>
+
+</div>
+
+<!-- TIMER -->
+
+<div class="daily-reset-timer">
+
+Tasks will reset in:
+<span id="dailyTimer">
+23:59:59
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- SOCIAL TASK SECTION -->
+<!-- ========================= -->
+
+<section class="social-task-section">
+
+<h2 class="section-title">
+One-Time Social Tasks
+</h2>
+
+<div class="social-list">
+
+<!-- FACEBOOK PAGE -->
+
+<a
+href="https://facebook.com/techroomak"
+target="_blank"
+class="social-item"
+>
+
+<div class="social-left">
+
+<img
+class="social-icon"
+src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
+/>
+
+<div>
+
+<h3 class="social-title">
+Facebook Page
+</h3>
+
+<p class="social-description">
+Like our Facebook page
+</p>
+
+</div>
+
+</div>
+
+<div class="social-right">
+
+<div class="social-reward">
++25
+</div>
+
+<button class="social-button">
+Go
+</button>
+
+</div>
+
+</a>
+
+<!-- FACEBOOK GROUP -->
+
+<a
+href="https://facebook.com/groups/1322765347784563"
+target="_blank"
+class="social-item"
+>
+
+<div class="social-left">
+
+<img
+class="social-icon"
+src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
+/>
+
+<div>
+
+<h3 class="social-title">
+Facebook Group
+</h3>
+
+<p class="social-description">
+Join Facebook group
+</p>
+
+</div>
+
+</div>
+
+<div class="social-right">
+
+<div class="social-reward">
++25
+</div>
+
+<button class="social-button">
+Go
+</button>
+
+</div>
+
+</a>
+
+<!-- INSTAGRAM -->
+
+<a
+href="https://instagram.com/techroomak"
+target="_blank"
+class="social-item"
+>
+
+<div class="social-left">
+
+<img
+class="social-icon"
+src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
+/>
+
+<div>
+
+<h3 class="social-title">
+Instagram Follow
+</h3>
+
+<p class="social-description">
+Follow on Instagram
+</p>
+
+</div>
+
+</div>
+
+<div class="social-right">
+
+<div class="social-reward">
++25
+</div>
+
+<button class="social-button">
+Go
+</button>
+
+</div>
+
+</a>
+
+<!-- YOUTUBE -->
+
+<a
+href="https://youtube.com/techroomak"
+target="_blank"
+class="social-item"
+>
+
+<div class="social-left">
+
+<img
+class="social-icon"
+src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+/>
+
+<div>
+
+<h3 class="social-title">
+YouTube Subscribe
+</h3>
+
+<p class="social-description">
+Subscribe YouTube channel
+</p>
+
+</div>
+
+</div>
+
+<div class="social-right">
+
+<div class="social-reward">
++25
+</div>
+
+<button class="social-button">
+Go
+</button>
+
+</div>
+
+</a>
+
+</div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- BOTTOM NAV -->
+<!-- ========================= -->
+
+<nav class="bottom-nav">
+
+<button class="nav-button active-nav">
+
+<img
+class="nav-icon"
+src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png"
+/>
+
+<span class="nav-text">
+Home
+</span>
+
+</button>
+
+<button class="nav-button">
+
+<img
+class="nav-icon"
+src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png"
+/>
+
+<span class="nav-text">
+Leaderboard
+</span>
+
+</button>
+
+<button class="nav-button">
+
+<img
+class="nav-icon"
+src="https://cdn-icons-png.flaticon.com/512/2489/2489756.png"
+/>
+
+<span class="nav-text">
+Withdraw
+</span>
+
+</button>
+
+</nav>

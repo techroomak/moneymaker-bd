@@ -10,7 +10,6 @@ increment
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-
 /* ========================= */
 /* TELEGRAM */
 /* ========================= */
@@ -25,21 +24,12 @@ tg.expand();
 const user =
 tg.initDataUnsafe?.user;
 
-
 /* ========================= */
 /* USER INFO */
 /* ========================= */
 
 const userId =
 user?.id || "123456789";
-
-
-const referralLink =
-`https://t.me/emoneymakebd_bot/app?startapp=${userId}`;
-
-document.getElementById("inviteLink")
-.innerText = referralLink;
-
 
 const username =
 user?.first_name ||
@@ -49,7 +39,6 @@ user?.username ||
 const photo =
 user?.photo_url ||
 "https://telegram.org/img/t_logo.png";
-
 
 /* ========================= */
 /* UI UPDATE */
@@ -64,6 +53,15 @@ document.getElementById("userid")
 document.getElementById("profile")
 .src = photo;
 
+/* ========================= */
+/* REFERRAL LINK */
+/* ========================= */
+
+const referralLink =
+`https://t.me/emoneymakebd_bot/app?startapp=${userId}`;
+
+document.getElementById("inviteLink")
+.innerText = referralLink;
 
 /* ========================= */
 /* DATABASE */
@@ -94,7 +92,6 @@ created: Date.now()
 const userData =
 (await getDoc(userRef)).data();
 
-
 /* ========================= */
 /* UI DATA */
 /* ========================= */
@@ -123,7 +120,6 @@ document.getElementById("totalWithdraw")
 .innerText =
 userData.withdraw;
 
-
 /* ========================= */
 /* CLAIM COIN */
 /* ========================= */
@@ -140,7 +136,6 @@ location.reload();
 
 };
 
-
 /* ========================= */
 /* COPY INVITE */
 /* ========================= */
@@ -152,3 +147,37 @@ navigator.clipboard.writeText(referralLink);
 alert("Referral Link Copied");
 
 };
+
+/* ========================= */
+/* DAILY TIMER */
+/* ========================= */
+
+function startTimer(){
+
+let h=23;
+let m=59;
+let s=59;
+
+setInterval(()=>{
+
+s--;
+
+if(s<0){
+s=59;
+m--;
+}
+
+if(m<0){
+m=59;
+h--;
+}
+
+document.getElementById("dailyTimer")
+.innerText =
+`${h}:${m}:${s}`;
+
+},1000);
+
+}
+
+startTimer();

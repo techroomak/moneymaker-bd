@@ -773,3 +773,80 @@ font-size:13px;
 font-weight:700;
 color:#22c55e;
 }
+/* ========================= */
+/* WITHDRAW EXTRA */
+/* ========================= */
+
+.withdraw-alert{
+font-size:11px;
+margin-top:8px;
+color:#ef4444;
+font-weight:700;
+}
+
+.coin-convert{
+font-size:12px;
+margin-top:6px;
+font-weight:700;
+color:#22c55e;
+}
+
+.withdraw-limit{
+font-size:11px;
+margin-top:5px;
+color:#6b7280;
+font-weight:600;
+}
+
+/* ========================= */
+/* HISTORY UPDATE */
+/* ========================= */
+
+.history-left{
+display:flex;
+flex-direction:column;
+}
+
+.history-right{
+display:flex;
+flex-direction:column;
+align-items:flex-end;
+gap:6px;
+}
+
+.history-method{
+display:flex;
+align-items:center;
+gap:6px;
+font-size:12px;
+font-weight:700;
+margin-bottom:5px;
+}
+
+.history-method-icon{
+width:18px;
+height:18px;
+object-fit:contain;
+}
+
+.history-status{
+padding:5px 10px;
+border-radius:999px;
+font-size:11px;
+font-weight:700;
+}
+
+.pending-status{
+background:#fef3c7;
+color:#d97706;
+}
+
+.success-status{
+background:#dcfce7;
+color:#16a34a;
+}
+
+.failed-status{
+background:#fee2e2;
+color:#dc2626;
+}

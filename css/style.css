@@ -15,7 +15,9 @@ margin:auto;
 padding-bottom:100px;
 }
 
+/* ========================= */
 /* HEADER */
+/* ========================= */
 
 .header-section{
 background:linear-gradient(to right,#2563eb,#7c3aed);
@@ -40,6 +42,7 @@ width:62px;
 height:62px;
 border-radius:50%;
 border:2px solid white;
+object-fit:cover;
 }
 
 .profile-name-row{
@@ -49,7 +52,7 @@ gap:5px;
 }
 
 .profile-name{
-font-size:24px;
+font-size:23px;
 font-weight:700;
 margin:0;
 }
@@ -60,8 +63,9 @@ height:18px;
 }
 
 .profile-id{
-font-size:13px;
-margin-top:4px;
+font-size:12px;
+margin-top:3px;
+opacity:.9;
 }
 
 .header-icons{
@@ -72,16 +76,18 @@ gap:10px;
 .header-icon-box{
 width:42px;
 height:42px;
-background:rgba(255,255,255,.15);
+background:rgba(255,255,255,.14);
 border-radius:14px;
 display:flex;
 justify-content:center;
 align-items:center;
 position:relative;
+backdrop-filter:blur(8px);
 }
 
 .header-icon{
 width:22px;
+height:22px;
 filter:brightness(0) invert(1);
 }
 
@@ -94,64 +100,70 @@ position:absolute;
 top:5px;
 right:5px;
 display:none;
+border:2px solid white;
 }
 
-/* COIN */
+/* ========================= */
+/* TOTAL EARN */
+/* ========================= */
 
 .coin-card{
-margin-top:18px;
+margin-top:16px;
+padding:12px 14px;
 background:linear-gradient(to right,#6d28d9,#2563eb);
-padding:14px;
 border-radius:22px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-gap:10px;
 box-shadow:0 6px 18px rgba(0,0,0,.12);
 }
 
 .coin-left{
 display:flex;
 align-items:center;
-gap:12px;
-}
-
-.coin-icon{
-width:32px;
+gap:10px;
 }
 
 .coin-title{
-font-size:22px;
+font-size:24px;
 font-weight:700;
 margin:0;
 }
 
 .coin-bdt{
-font-size:12px;
-margin-top:4px;
+margin-top:3px;
+font-size:11px;
+opacity:.9;
 }
 
+.money-bag-icon{
+width:64px;
+height:64px;
+}
+
+/* ========================= */
 /* STATS */
+/* ========================= */
 
 .stats-section{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:10px;
+gap:8px;
 padding:15px;
-margin-top:-20px;
+margin-top:-18px;
 }
 
 .stats-card{
 background:white;
-padding:12px;
+padding:10px 5px;
 border-radius:18px;
 text-align:center;
 box-shadow:0 4px 12px rgba(0,0,0,.05);
 }
 
 .stats-icon{
-width:45px;
-height:45px;
+width:40px;
+height:40px;
 border-radius:50%;
 margin:auto;
 display:flex;
@@ -160,7 +172,7 @@ align-items:center;
 }
 
 .stats-icon img{
-width:22px;
+width:18px;
 }
 
 .purple-bg{
@@ -179,19 +191,21 @@ background:#ffedd5;
 background:#dbeafe;
 }
 
-.stats-card h3{
-font-size:11px;
-margin-top:8px;
+.stats-title{
+font-size:9px;
+margin-top:6px;
 color:#666;
 }
 
-.stats-card p{
-font-size:18px;
+.stats-number{
+font-size:15px;
 font-weight:700;
-margin-top:4px;
+margin-top:2px;
 }
 
+/* ========================= */
 /* INVITE */
+/* ========================= */
 
 .invite-section{
 padding:0 15px;
@@ -199,40 +213,80 @@ padding:0 15px;
 
 .invite-card{
 background:linear-gradient(to right,#7c3aed,#2563eb);
-padding:16px;
+padding:12px;
 border-radius:22px;
-display:flex;
-justify-content:space-between;
-align-items:center;
 color:white;
+cursor:pointer;
 }
 
-.copy-button{
-width:42px;
-height:42px;
-border:none;
-border-radius:12px;
-background:white;
+.invite-top{
 display:flex;
-justify-content:center;
 align-items:center;
+gap:8px;
 }
 
-.copy-button img{
+.gift-icon{
+width:58px;
+height:58px;
+}
+
+.invite-title{
+font-size:17px;
+font-weight:700;
+margin:0;
+}
+
+.invite-reward{
+margin-top:2px;
+display:flex;
+align-items:center;
+gap:4px;
+font-size:12px;
+}
+
+.invite-link-box{
+margin-top:8px;
+padding:7px 10px;
+background:rgba(255,255,255,.12);
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:8px;
+width:100%;
+}
+
+.invite-link-text{
+font-size:9px;
+flex:1;
+overflow:hidden;
+white-space:nowrap;
+text-overflow:ellipsis;
+text-align:right;
+padding-right:6px;
+}
+
+.copy-link-icon{
 width:18px;
+height:18px;
+filter:brightness(0) invert(1);
 }
 
-/* SECTION */
+/* ========================= */
+/* SECTION TITLE */
+/* ========================= */
 
 .section-title{
 padding:0 15px;
-margin-top:25px;
+margin-top:24px;
 margin-bottom:12px;
-font-size:24px;
+font-size:20px;
 font-weight:700;
 }
 
+/* ========================= */
 /* ADS */
+/* ========================= */
 
 .ads-grid{
 display:grid;
@@ -243,34 +297,79 @@ padding:0 15px;
 
 .ad-card{
 background:white;
-padding:16px;
+padding:13px;
 border-radius:20px;
 box-shadow:0 4px 12px rgba(0,0,0,.05);
 }
 
-.ad-card h3{
-font-size:18px;
+.ad-top{
+display:flex;
+align-items:center;
+gap:6px;
+}
+
+.ad-icon{
+width:22px;
+height:22px;
+}
+
+.ad-title{
+font-size:15px;
+font-weight:700;
 margin:0;
 }
 
-.ad-card p{
-font-size:13px;
-margin-top:5px;
-color:#555;
+.ad-description{
+display:flex;
+align-items:center;
+gap:4px;
+font-size:11px;
+margin-top:6px;
+color:#666;
 }
 
-.ad-card button{
-margin-top:12px;
+.claim-button{
+margin-top:10px;
 width:100%;
-padding:10px;
+padding:9px;
 border:none;
 border-radius:12px;
-background:#2563eb;
+background:linear-gradient(to right,#2563eb,#7c3aed);
 color:white;
+font-size:13px;
 font-weight:700;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:5px;
 }
 
-/* TASK */
+.claim-icon{
+width:15px;
+height:15px;
+}
+
+.ad-lock-timer{
+margin-top:8px;
+font-size:11px;
+font-weight:700;
+text-align:center;
+color:#ef4444;
+display:none;
+}
+
+/* ========================= */
+/* MINI ICON */
+/* ========================= */
+
+.mini-coin-icon{
+width:14px;
+height:14px;
+}
+
+/* ========================= */
+/* DAILY TASK */
+/* ========================= */
 
 .task-list{
 padding:0 15px;
@@ -281,7 +380,7 @@ gap:12px;
 
 .task-item{
 background:white;
-padding:16px;
+padding:13px;
 border-radius:20px;
 display:flex;
 justify-content:space-between;
@@ -292,11 +391,56 @@ box-shadow:0 4px 12px rgba(0,0,0,.05);
 .task-left{
 display:flex;
 align-items:center;
-gap:12px;
+gap:10px;
 }
 
-.task-left img{
-width:42px;
+.task-icon{
+width:38px;
+height:38px;
+}
+
+.task-title-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:6px;
+}
+
+.task-title{
+font-size:14px;
+font-weight:700;
+margin:0;
+}
+
+.task-description{
+font-size:11px;
+margin-top:2px;
+color:#777;
+}
+
+.task-limit{
+font-size:10px;
+margin-top:3px;
+color:#999;
+}
+
+.task-coin{
+display:flex;
+align-items:center;
+gap:3px;
+font-size:12px;
+font-weight:700;
+color:#22c55e;
+white-space:nowrap;
+}
+
+.task-button{
+border:none;
+padding:10px 14px;
+border-radius:12px;
+color:white;
+font-weight:700;
+font-size:12px;
 }
 
 .red-btn{
@@ -307,24 +451,13 @@ background:#ef4444;
 background:#2563eb;
 }
 
-.task-item button{
-border:none;
-padding:10px 14px;
-border-radius:12px;
-color:white;
-font-weight:700;
+.orange-btn{
+background:#f97316;
 }
 
-.task-timer-box{
-margin:15px;
-background:white;
-padding:14px;
-border-radius:18px;
-text-align:center;
-font-weight:700;
-}
-
-/* SOCIAL */
+/* ========================= */
+/* SOCIAL TASK */
+/* ========================= */
 
 .social-list{
 padding:0 15px;
@@ -335,7 +468,7 @@ gap:12px;
 
 .social-item{
 background:white;
-padding:16px;
+padding:13px;
 border-radius:20px;
 display:flex;
 justify-content:space-between;
@@ -346,23 +479,64 @@ box-shadow:0 4px 12px rgba(0,0,0,.05);
 .social-left{
 display:flex;
 align-items:center;
-gap:12px;
+gap:10px;
 }
 
-.social-left img{
-width:42px;
+.social-icon{
+width:38px;
+height:38px;
 }
 
-.social-item button{
+.social-title{
+font-size:15px;
+margin:0;
+}
+
+.social-description{
+font-size:11px;
+margin-top:1px;
+color:#777;
+}
+
+.social-right{
+display:flex;
+flex-direction:column;
+align-items:flex-end;
+gap:5px;
+}
+
+.social-reward{
+display:flex;
+align-items:center;
+gap:4px;
+font-size:12px;
+font-weight:700;
+color:#22c55e;
+}
+
+.social-button{
 background:#2563eb;
 color:white;
 border:none;
-padding:10px 14px;
+padding:9px 14px;
 border-radius:12px;
+font-size:12px;
 font-weight:700;
 }
 
-/* NAV */
+.social-complete-button{
+background:#22c55e;
+color:white;
+border:none;
+padding:9px 14px;
+border-radius:12px;
+font-size:12px;
+font-weight:700;
+}
+
+/* ========================= */
+/* NAVIGATION */
+/* ========================= */
 
 .bottom-nav{
 position:fixed;
@@ -390,431 +564,15 @@ gap:4px;
 
 .nav-item img{
 width:24px;
-}
-
-.nav-item span{
-font-size:12px;
-font-weight:600;
-}
-
-.active-nav span{
-color:#2563eb;
-}
-/* ========================= */
-/* MONEY BAG */
-/* ========================= */
-
-.money-bag-icon{
-width:42px;
-height:42px;
-}
-
-/* ========================= */
-/* INVITE */
-/* ========================= */
-
-.invite-top{
-display:flex;
-align-items:center;
-gap:10px;
-margin-bottom:10px;
-}
-
-.gift-icon{
-width:30px;
-height:30px;
-}
-
-.invite-title{
-font-size:20px;
-font-weight:700;
-margin:0;
-}
-
-.invite-link-box{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:10px;
-background:rgba(255,255,255,.12);
-padding:10px;
-border-radius:14px;
-}
-
-.copy-link-button{
-width:40px;
-height:40px;
-border:none;
-border-radius:12px;
-background:white;
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
-.copy-link-icon{
-width:18px;
-height:18px;
-}
-
-/* ========================= */
-/* CLAIM */
-/* ========================= */
-
-.claim-button{
-margin-top:14px;
-background:linear-gradient(to right,#2563eb,#7c3aed);
-color:white;
-border:none;
-padding:10px;
-width:100%;
-border-radius:14px;
-display:flex;
-justify-content:center;
-align-items:center;
-gap:6px;
-font-weight:700;
-}
-
-.claim-icon{
-width:18px;
-height:18px;
-}
-
-/* ========================= */
-/* SOCIAL */
-/* ========================= */
-
-.social-right{
-text-align:right;
-}
-
-.social-reward{
-font-size:14px;
-font-weight:700;
-color:#22c55e;
-margin-bottom:8px;
-}
-/* ========================= */
-/* MINI ICON */
-/* ========================= */
-
-.mini-coin-icon{
-width:14px;
-height:14px;
-}
-
-/* ========================= */
-/* INVITE */
-/* ========================= */
-
-.invite-card{
-padding:14px;
-cursor:pointer;
-}
-
-.gift-icon{
-width:48px;
-height:48px;
-}
-
-.invite-top{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.invite-title{
-font-size:18px;
-margin:0;
-}
-
-.invite-reward{
-margin-top:3px;
-display:flex;
-align-items:center;
-gap:4px;
-font-size:13px;
-}
-
-.invite-link-box{
-margin-top:10px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:rgba(255,255,255,.12);
-padding:8px 10px;
-border-radius:12px;
-width:100%;
-}
-
-.invite-link-text{
-font-size:10px;
-overflow:hidden;
-white-space:nowrap;
-text-overflow:ellipsis;
-flex:1;
-}
-
-/* ========================= */
-/* COIN CARD */
-/* ========================= */
-
-.coin-card{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:14px;
-}
-
-.coin-title{
-font-size:22px;
-margin:0;
-}
-
-.coin-bdt{
-margin-top:3px;
-font-size:11px;
-}
-
-.money-bag-icon{
-width:52px;
-height:52px;
-}
-
-/* ========================= */
-/* ADS */
-/* ========================= */
-
-.ad-top{
-display:flex;
-align-items:center;
-gap:8px;
-}
-
-.ad-icon{
-width:26px;
-height:26px;
-}
-
-.ad-title{
-font-size:16px;
-}
-
-.ad-description{
-display:flex;
-align-items:center;
-gap:4px;
-font-size:13px;
-margin-top:8px;
-}
-
-.claim-button{
-margin-top:10px;
-}
-
-.ad-lock-timer{
-margin-top:10px;
-font-size:12px;
-font-weight:700;
-text-align:center;
-color:#ef4444;
-display:none;
-}
-
-/* ========================= */
-/* TASK */
-/* ========================= */
-
-.task-title-row{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.task-coin{
-display:flex;
-align-items:center;
-gap:4px;
-font-size:13px;
-font-weight:700;
-color:#22c55e;
-}
-
-.task-title{
-font-size:16px;
-margin:0;
-}
-
-.task-description{
-font-size:11px;
-margin-top:4px;
-}
-
-/* ========================= */
-/* SOCIAL */
-/* ========================= */
-
-.social-reward{
-display:flex;
-align-items:center;
-gap:4px;
-font-size:13px;
-font-weight:700;
-color:#22c55e;
-margin-bottom:8px;
-}
-
-.social-complete-button{
-background:#22c55e;
-color:white;
-border:none;
-padding:10px 14px;
-border-radius:12px;
-font-weight:700;
-}
-
-/* ========================= */
-/* UPDATED UI */
-/* ========================= */
-
-.mini-coin-icon{
-width:14px;
-height:14px;
-}
-
-.ad-top{
-display:flex;
-align-items:center;
-gap:8px;
-}
-
-.ad-icon{
-width:24px;
 height:24px;
 }
 
-.ad-description{
-display:flex;
-align-items:center;
-gap:4px;
-font-size:12px;
-margin-top:8px;
-}
-
-.ad-lock-timer{
-margin-top:10px;
-font-size:12px;
-font-weight:700;
-text-align:center;
-color:#ef4444;
-display:none;
-}
-
-.task-title-row{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.task-coin{
-display:flex;
-align-items:center;
-gap:4px;
-font-size:13px;
-font-weight:700;
-color:#22c55e;
-}
-
-.task-title{
-font-size:15px;
-margin:0;
-}
-
-.task-description{
+.nav-item span{
 font-size:11px;
-margin-top:4px;
-}
-
-.social-complete-button{
-background:#22c55e;
-color:white;
-border:none;
-padding:10px 14px;
-border-radius:12px;
 font-weight:700;
+color:#666;
 }
 
-.invite-link-text{
-font-size:10px;
-overflow:hidden;
-white-space:nowrap;
-text-overflow:ellipsis;
-flex:1;
-}
-
-.gift-icon{
-width:48px;
-height:48px;
-}
-
-.money-bag-icon{
-width:58px;
-height:58px;
-}
-
-.stats-card{
-padding:10px 6px;
-}
-
-.stats-title{
-font-size:10px;
-margin-top:6px;
-}
-
-.stats-number{
-font-size:16px;
-margin-top:2px;
-}
-
-/*===========new======*/
-
-.stats-card{
-padding:10px 6px;
-}
-
-.stats-title{
-font-size:10px;
-margin-top:6px;
-}
-
-.stats-number{
-font-size:16px;
-margin-top:2px;
-}
-
-.task-item{
-padding:14px;
-}
-
-.social-item{
-padding:14px;
-}
-
-.ad-card{
-padding:14px;
-}
-/*=====ad lock time*/
-.ad-lock-timer{
-margin-top:10px;
-font-size:12px;
-font-weight:700;
-text-align:center;
-color:#ef4444;
-display:none;
-}
-
-.money-bag-icon{
-width:58px;
-height:58px;
+.active-nav span{
+color:#7c3aed;
 }

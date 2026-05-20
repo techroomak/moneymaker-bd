@@ -1,4 +1,3 @@
-
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
@@ -13,12 +12,10 @@ signInAnonymously
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-
 /* ========================= */
 /* FIREBASE CONFIG */
 /* ========================= */
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDmHbCk23LRldjf-wi6xpw98MCE8VoupRc",
   authDomain: "moneymaker-bd.firebaseapp.com",
@@ -30,9 +27,8 @@ const firebaseConfig = {
   measurementId: "G-ZWVPWP1ME9"
 };
 
-
 /* ========================= */
-/* FIREBASE INIT */
+/* INIT */
 /* ========================= */
 
 const app =

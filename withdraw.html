@@ -1,1 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Withdraw</title>
+
+<link rel="stylesheet" href="css/style.css"/>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+</head>
+
+<body>
+
+<div class="app-container">
+
+<!-- ========================= -->
+<!-- HEADER -->
+<!-- ========================= -->
+
+<header class="header-section">
+
+<div class="header-top">
+
+<h2 class="profile-name">
+💳 Withdraw
+</h2>
+
+</div>
+
+</header>
+
+<!-- ========================= -->
+<!-- WITHDRAW FORM -->
+<!-- ========================= -->
+
+<section class="withdraw-section">
+
+<div class="withdraw-card">
+
+<label class="withdraw-label">
+Payment Method
+</label>
+
+<select class="withdraw-input">
+
+<option>bKash</option>
+
+<option>Nagad</option>
+
+<option>Recharge</option>
+
+</select>
+
+<label class="withdraw-label">
+Account Number
+</label>
+
+<input
+class="withdraw-input"
+type="number"
+placeholder="01XXXXXXXXX"
+/>
+
+<label class="withdraw-label">
+Amount
+</label>
+
+<input
+class="withdraw-input"
+type="number"
+placeholder="100"
+/>
+
+<button class="withdraw-button">
+Request Withdraw
+</button>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- HISTORY -->
+<!-- ========================= -->
+
+<section class="withdraw-history-section">
+
+<h2 class="section-title">
+Transaction History
+</h2>
+
+<div class="history-list">
+
+<div class="history-item">
+
+<div>
+
+<h3 class="history-title">
+Withdraw Request
+</h3>
+
+<p class="history-date">
+Pending
+</p>
+
+</div>
+
+<div class="history-amount">
+1000 Coin
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- BOTTOM NAV -->
+<!-- ========================= -->
+
+<nav class="bottom-nav">
+
+<button
+class="nav-item"
+onclick="window.location.href='index.html'"
+>
+
+<img
+class="nav-icon"
+src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png"
+/>
+
+<span class="nav-text">
+Home
+</span>
+
+</button>
+
+<button
+class="nav-item"
+onclick="window.location.href='leaderboard.html'"
+>
+
+<img
+class="nav-icon"
+src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png"
+/>
+
+<span class="nav-text">
+Leaderboard
+</span>
+
+</button>
+
+<button
+class="nav-item active-nav"
+onclick="window.location.href='withdraw.html'"
+>
+
+<img
+class="nav-icon"
+src="https://cdn-icons-png.flaticon.com/512/2489/2489756.png"
+/>
+
+<span class="nav-text">
+Withdraw
+</span>
+
+</button>
+
+</nav>
+
+</div>
+
+</body>
+</html>

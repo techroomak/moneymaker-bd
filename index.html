@@ -3,262 +3,332 @@
 
 <head>
 
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>Money Maker BD</title>
 
+<!-- TAILWIND -->
+
 <script src="https://cdn.tailwindcss.com"></script>
+
+<!-- TELEGRAM WEB APP -->
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-<style>
+<!-- CUSTOM CSS -->
 
-body{
-background:#f5f7ff;
-font-family:sans-serif;
-}
-
-.hide-scroll::-webkit-scrollbar{
-display:none;
-}
-
-</style>
+<link rel="stylesheet" href="css/style.css"/>
 
 </head>
 
 <body>
 
-<div class="max-w-md mx-auto min-h-screen pb-28">
+<!-- ========================= -->
+<!-- APP START -->
+<!-- ========================= -->
 
-<!-- HEADER -->
+<div class="app-container">
 
-<div class="bg-gradient-to-r from-blue-700 to-purple-700 rounded-b-[40px] p-5 text-white">
+<!-- ========================= -->
+<!-- HEADER SECTION START -->
+<!-- ========================= -->
 
-<div class="flex items-start justify-between">
+<header class="header-section">
 
-<div class="flex items-center gap-3">
+<!-- TOP BAR -->
+
+<div class="top-bar">
+
+<!-- PROFILE AREA -->
+
+<div class="profile-area">
+
+<!-- PROFILE IMAGE -->
 
 <img
 id="profile"
+class="profile-image"
 src="https://telegram.org/img/t_logo.png"
-class="w-16 h-16 rounded-full border-2 border-white"
 />
 
-<div>
+<!-- PROFILE INFO -->
 
-<div class="flex items-center gap-2">
+<div class="profile-info">
+
+<!-- NAME ROW -->
+
+<div class="name-row">
 
 <h2
 id="username"
-class="text-2xl font-bold"
+class="profile-name"
 >
+
 Money Maker BD
+
 </h2>
 
 <img
+class="verify-badge"
 src="https://cdn-icons-png.flaticon.com/512/7641/7641727.png"
-class="w-5"
 />
 
 </div>
 
-<p class="text-sm">
+<!-- USER ID -->
+
+<p class="user-id-text">
+
 ID:
 <span id="userid">
 123456789
 </span>
+
 </p>
 
-</div>
+<!-- TOTAL EARN BOX -->
 
-</div>
-
-<div class="flex gap-4 text-center">
-
-<div>
+<div class="earn-box">
 
 <img
-src="https://cdn-icons-png.flaticon.com/512/455/455705.png"
-class="w-7 mx-auto"
-/>
-
-<p class="text-xs mt-1">
-Support
-</p>
-
-</div>
-
-<div>
-
-<img
-src="https://cdn-icons-png.flaticon.com/512/3602/3602145.png"
-class="w-7 mx-auto"
-/>
-
-<p class="text-xs mt-1">
-Notice
-</p>
-
-</div>
-
-<div>
-
-<img
-src="https://cdn-icons-png.flaticon.com/512/2950/2950650.png"
-class="w-7 mx-auto"
-/>
-
-<p class="text-xs mt-1">
-Invite
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="bg-white/10 border border-white/20 mt-4 rounded-full px-4 py-2 w-fit ml-auto flex items-center gap-2">
-
-<img
+class="coin-logo"
 src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png"
-class="w-5"
 />
 
-<span
-id="coin"
-class="font-bold"
->
+<div class="earn-info">
+
+<h3 class="coin-text">
+
+<span id="coin">
 0
 </span>
 
+Coin
+
+</h3>
+
+<p class="bdt-text">
+
+≈ ৳
+<span id="bdt">
+0
+</span>
+
+BDT
+
+</p>
+
+</div>
+
 </div>
 
 </div>
 
-<!-- STATS -->
+</div>
 
-<div class="bg-white rounded-[30px] shadow-lg p-4 mx-4 -mt-8">
+<!-- RIGHT ICONS -->
 
-<div class="grid grid-cols-4 gap-2 text-center">
+<div class="header-icons">
 
-<div>
+<!-- NOTIFICATION -->
 
-<div class="bg-purple-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto">
+<div class="header-icon-box notification-box">
+
+<div class="notification-dot"></div>
 
 <img
-src="https://cdn-icons-png.flaticon.com/512/681/681494.png"
-class="w-7"
+class="header-icon"
+src="https://cdn-icons-png.flaticon.com/512/3602/3602145.png"
 />
 
 </div>
 
-<p class="text-sm mt-2">
-Total Refer
-</p>
+<!-- SUPPORT -->
 
-<h2 class="font-bold text-xl">
-125
-</h2>
-
-</div>
-
-<div>
-
-<div class="bg-green-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto">
+<div class="header-icon-box support-box">
 
 <img
-src="https://cdn-icons-png.flaticon.com/512/2693/2693507.png"
-class="w-7"
+class="header-icon"
+src="https://cdn-icons-png.flaticon.com/512/455/455705.png"
 />
-
-</div>
-
-<p class="text-sm mt-2">
-Daily Earn
-</p>
-
-<h2 class="font-bold text-xl">
-320
-</h2>
-
-</div>
-
-<div>
-
-<div class="bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto">
-
-<img
-src="https://cdn-icons-png.flaticon.com/512/2489/2489756.png"
-class="w-7"
-/>
-
-</div>
-
-<p class="text-sm mt-2">
-Total Earn
-</p>
-
-<h2 class="font-bold text-xl">
-5250
-</h2>
-
-</div>
-
-<div>
-
-<div class="bg-orange-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto">
-
-<img
-src="https://cdn-icons-png.flaticon.com/512/2933/2933116.png"
-class="w-7"
-/>
-
-</div>
-
-<p class="text-sm mt-2">
-Refer Earn
-</p>
-
-<h2 class="font-bold text-xl">
-1250
-</h2>
-
-</div>
-
-</div>
 
 </div>
 
 <!-- INVITE -->
 
-<div class="mx-4 mt-4 bg-white rounded-[25px] shadow p-4 flex items-center justify-between">
-
-<div class="flex items-center gap-3">
+<div class="header-icon-box invite-box">
 
 <img
-src="https://cdn-icons-png.flaticon.com/512/4213/4213958.png"
-class="w-12"
+class="header-icon"
+src="https://cdn-icons-png.flaticon.com/512/2950/2950650.png"
 />
 
-<div>
+</div>
 
-<h2 class="font-bold">
+</div>
+
+</div>
+
+</header>
+
+<!-- ========================= -->
+<!-- HEADER SECTION END -->
+<!-- ========================= -->
+
+
+
+<!-- ========================= -->
+<!-- STATS SECTION START -->
+<!-- ========================= -->
+
+<section class="stats-section">
+
+<!-- TOTAL REFER -->
+
+<div class="stats-card total-refer-card">
+
+<div class="stats-icon purple-bg">
+
+<img
+class="stats-icon-image"
+src="https://cdn-icons-png.flaticon.com/512/681/681494.png"
+/>
+
+</div>
+
+<p class="stats-title">
+Total Refer
+</p>
+
+<h2
+id="totalRefer"
+class="stats-number"
+>
+0
+</h2>
+
+</div>
+
+<!-- DAILY EARN -->
+
+<div class="stats-card daily-earn-card">
+
+<div class="stats-icon green-bg">
+
+<img
+class="stats-icon-image"
+src="https://cdn-icons-png.flaticon.com/512/2693/2693507.png"
+/>
+
+</div>
+
+<p class="stats-title">
+Daily Earn
+</p>
+
+<h2
+id="dailyEarn"
+class="stats-number"
+>
+0
+</h2>
+
+</div>
+
+<!-- REFER EARN -->
+
+<div class="stats-card refer-earn-card">
+
+<div class="stats-icon orange-bg">
+
+<img
+class="stats-icon-image"
+src="https://cdn-icons-png.flaticon.com/512/2933/2933116.png"
+/>
+
+</div>
+
+<p class="stats-title">
+Refer Earn
+</p>
+
+<h2
+id="referEarn"
+class="stats-number"
+>
+0
+</h2>
+
+</div>
+
+<!-- TOTAL WITHDRAW -->
+
+<div class="stats-card withdraw-card">
+
+<div class="stats-icon blue-bg">
+
+<img
+class="stats-icon-image"
+src="https://cdn-icons-png.flaticon.com/512/2489/2489756.png"
+/>
+
+</div>
+
+<p class="stats-title">
+Total Withdraw
+</p>
+
+<h2
+id="totalWithdraw"
+class="stats-number"
+>
+0
+</h2>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- STATS SECTION END -->
+<!-- ========================= -->
+
+
+
+<!-- ========================= -->
+<!-- INVITE SECTION START -->
+<!-- ========================= -->
+
+<section class="invite-section">
+
+<div class="invite-card">
+
+<div class="invite-left">
+
+<h2 class="invite-title">
 Invite & Earn
 </h2>
 
-<p class="text-xs text-gray-500">
-Lifetime commission
+<p class="invite-bonus">
+Referral Bonus: 25 Coin
 </p>
+
+<div class="invite-link-box">
+
+<span class="invite-link-text">
+
+https://t.me/emoneymakebd_bot/app
+
+</span>
 
 </div>
 
 </div>
 
 <button
+class="copy-button"
 onclick="copyInvite()"
-class="bg-blue-600 text-white px-4 py-2 rounded-xl text-sm"
 >
 
 Copy
@@ -267,282 +337,149 @@ Copy
 
 </div>
 
-<!-- WATCH -->
+</section>
 
-<div class="p-4">
+<!-- ========================= -->
+<!-- INVITE SECTION END -->
+<!-- ========================= -->
 
-<h2 class="text-2xl font-bold mb-4">
+
+
+<!-- ========================= -->
+<!-- ADS SECTION START -->
+<!-- ========================= -->
+
+<section class="ads-section">
+
+<h2 class="section-title">
 Watch & Earn Coin
 </h2>
 
-<div class="space-y-4">
+<div class="ads-grid">
 
-<div class="bg-white rounded-[25px] shadow p-4 flex justify-between items-center">
+<!-- AD ITEM -->
 
-<div class="flex gap-3 items-center">
+<div class="ad-card">
 
-<img
-src="https://cdn-icons-png.flaticon.com/512/1179/1179069.png"
-class="w-12"
-/>
+<div class="ad-info">
 
-<div>
-
-<h2 class="font-bold text-xl">
+<h3 class="ad-title">
 Watch Ad
-</h2>
+</h3>
 
-<p class="text-xs text-gray-500">
-Watch ads and earn coins
+<p class="ad-description">
+5 Coin Reward
 </p>
 
 </div>
 
-</div>
-
-<div class="text-right">
-
-<div class="text-blue-600 font-bold">
-+5 Coin
-</div>
-
 <button
+class="claim-button"
 onclick="claimCoin(5)"
-class="bg-blue-600 text-white px-5 py-2 rounded-xl mt-1"
 >
 
-Watch
+<img
+class="claim-coin-icon"
+src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png"
+/>
+
+5
 
 </button>
 
 </div>
 
-</div>
+<!-- AD ITEM -->
 
-<div class="bg-white rounded-[25px] shadow p-4 flex justify-between items-center">
+<div class="ad-card">
 
-<div class="flex gap-3 items-center">
+<div class="ad-info">
 
-<img
-src="https://cdn-icons-png.flaticon.com/512/3659/3659899.png"
-class="w-12"
-/>
-
-<div>
-
-<h2 class="font-bold text-xl">
+<h3 class="ad-title">
 Video Ad
-</h2>
+</h3>
 
-<p class="text-xs text-gray-500">
-Watch videos and earn
+<p class="ad-description">
+10 Coin Reward
 </p>
 
 </div>
 
-</div>
-
-<div class="text-right">
-
-<div class="text-purple-600 font-bold">
-+10 Coin
-</div>
-
 <button
+class="claim-button"
 onclick="claimCoin(10)"
-class="bg-purple-600 text-white px-5 py-2 rounded-xl mt-1"
 >
 
-Watch
+<img
+class="claim-coin-icon"
+src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png"
+/>
+
+10
 
 </button>
 
 </div>
 
-</div>
+<!-- AD ITEM -->
 
-</div>
+<div class="ad-card">
 
-</div>
+<div class="ad-info">
 
-<!-- DAILY TASK -->
+<h3 class="ad-title">
+Premium Ad
+</h3>
 
-<div class="px-4">
-
-<div class="flex justify-between items-center mb-4">
-
-<h2 class="text-2xl font-bold">
-Daily Tasks
-</h2>
-
-<div
-id="timer"
-class="bg-white shadow px-4 py-2 rounded-full font-bold"
->
-23:59:59
-</div>
-
-</div>
-
-<div class="bg-white rounded-[25px] shadow p-4 flex justify-between items-center">
-
-<div class="flex gap-3 items-center">
-
-<img
-src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
-class="w-14"
-/>
-
-<div>
-
-<h2 class="font-bold text-xl">
-Watch 5 Videos
-</h2>
-
-<p class="text-sm text-gray-500">
-0 / 5 Completed
+<p class="ad-description">
+20 Coin Reward
 </p>
 
-</div>
-
-</div>
-
-<div class="text-right">
-
-<div class="text-green-600 font-bold">
-+50 Coin
 </div>
 
 <button
-class="bg-red-600 text-white px-5 py-2 rounded-xl mt-1"
+class="claim-button"
+onclick="claimCoin(20)"
 >
 
-Start
+<img
+class="claim-coin-icon"
+src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png"
+/>
+
+20
 
 </button>
 
 </div>
 
-</div>
+<!-- AD ITEM -->
 
-</div>
+<div class="ad-card">
 
-<!-- SOCIAL -->
+<div class="ad-info">
 
-<div class="p-4">
+<h3 class="ad-title">
+Sponsor Ad
+</h3>
 
-<h2 class="text-2xl font-bold mb-4">
-One-Time Social Tasks
-</h2>
-
-<div class="space-y-4">
-
-<div class="bg-white rounded-[25px] shadow p-4 flex justify-between items-center">
-
-<div class="flex gap-3 items-center">
-
-<img
-src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
-class="w-12"
-/>
-
-<div>
-
-<h2 class="font-bold">
-Facebook Follow
-</h2>
-
-<p class="text-xs text-gray-500">
-One-time reward
+<p class="ad-description">
+50 Coin Reward
 </p>
 
 </div>
 
-</div>
-
-<div>
-
-<div class="text-green-600 font-bold">
-+25
-</div>
-
-<button class="bg-blue-600 text-white px-4 py-2 rounded-xl mt-1">
-Start
-</button>
-
-</div>
-
-</div>
-
-<div class="bg-white rounded-[25px] shadow p-4 flex justify-between items-center">
-
-<div class="flex gap-3 items-center">
+<button
+class="claim-button"
+onclick="claimCoin(50)"
+>
 
 <img
-src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
-class="w-12"
+class="claim-coin-icon"
+src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png"
 />
 
-<div>
-
-<h2 class="font-bold">
-YouTube Subscribe
-</h2>
-
-<p class="text-xs text-gray-500">
-One-time reward
-</p>
-
-</div>
-
-</div>
-
-<div>
-
-<div class="text-green-600 font-bold">
-+30
-</div>
-
-<button class="bg-red-600 text-white px-4 py-2 rounded-xl mt-1">
-Start
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- BOTTOM -->
-
-<div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white rounded-t-[30px] border-t p-4 flex justify-around">
-
-<button>
-
-<img
-src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png"
-class="w-7"
-/>
-
-</button>
-
-<button>
-
-<img
-src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png"
-class="w-7"
-/>
-
-</button>
-
-<button>
-
-<img
-src="https://cdn-icons-png.flaticon.com/512/2489/2489756.png"
-class="w-7"
-/>
+50
 
 </button>
 
@@ -550,174 +487,19 @@ class="w-7"
 
 </div>
 
-<!-- FIREBASE -->
+</section>
 
-<script type="module">
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-getFirestore,
-doc,
-setDoc,
-getDoc,
-updateDoc,
-increment
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-import {
-getAuth,
-signInAnonymously
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+<!-- ========================= -->
+<!-- ADS SECTION END -->
+<!-- ========================= -->
 
 
-/* FIREBASE CONFIG */
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDmHbCk23LRldjf-wi6xpw98MCE8VoupRc",
-  authDomain: "moneymaker-bd.firebaseapp.com",
-  databaseURL: "https://moneymaker-bd-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "moneymaker-bd",
-  storageBucket: "moneymaker-bd.firebasestorage.app",
-  messagingSenderId: "80983902209",
-  appId: "1:80983902209:web:79b98a24d46af20b6b9800",
-  measurementId: "G-ZWVPWP1ME9"
-};
+<!-- JS FILE -->
 
+<script type="module" src="js/firebase.js"></script>
 
-/* INIT */
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
-const auth = getAuth(app);
-
-await signInAnonymously(auth);
-
-
-/* TELEGRAM */
-
-const tg = window.Telegram.WebApp;
-
-tg.ready();
-
-tg.expand();
-
-const user = tg.initDataUnsafe?.user;
-
-const userId = user?.id || "123456789";
-
-const username =
-user?.first_name ||
-user?.username ||
-"Money Maker BD";
-
-const photo =
-user?.photo_url ||
-"https://telegram.org/img/t_logo.png";
-
-
-document.getElementById("username").innerText =
-username;
-
-document.getElementById("userid").innerText =
-userId;
-
-document.getElementById("profile").src =
-photo;
-
-
-/* DATABASE */
-
-const userRef =
-doc(db,"users",String(userId));
-
-const snap =
-await getDoc(userRef);
-
-if(!snap.exists()){
-
-await setDoc(userRef,{
-
-username: username,
-coin: 0,
-created: Date.now()
-
-});
-
-}
-
-const userData =
-(await getDoc(userRef)).data();
-
-document.getElementById("coin").innerText =
-userData.coin;
-
-
-/* CLAIM */
-
-window.claimCoin = async(amount)=>{
-
-await updateDoc(userRef,{
-coin: increment(amount)
-});
-
-location.reload();
-
-};
-
-
-/* INVITE */
-
-window.copyInvite = ()=>{
-
-const link =
-`https://t.me/emoneymakebd_bot/app?startapp=${userId}`;
-
-navigator.clipboard.writeText(link);
-
-alert("Invite Link Copied");
-
-};
-
-
-/* TIMER */
-
-function startTimer(){
-
-let h=23;
-let m=59;
-let s=59;
-
-setInterval(()=>{
-
-s--;
-
-if(s<0){
-s=59;
-m--;
-}
-
-if(m<0){
-m=59;
-h--;
-}
-
-document.getElementById("timer").innerText =
-`${h}:${m}:${s}`;
-
-},1000);
-
-}
-
-startTimer();
-
-</script>
+<script type="module" src="js/app.js"></script>
 
 </body>
 </html>

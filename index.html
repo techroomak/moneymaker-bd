@@ -109,11 +109,6 @@ src="https://cdn-icons-png.flaticon.com/512/455/455705.png"
 
 <div class="coin-left">
 
-<img
-class="coin-icon"
-src="https://cdn-icons-png.flaticon.com/512/272/272525.png"
-/>
-
 <div>
 
 <h2 class="coin-title">
@@ -259,12 +254,15 @@ class="stats-number"
 </section>
 
 <!-- ========================= -->
-<!-- INVITE -->
+<!-- INVITE SECTION -->
 <!-- ========================= -->
 
 <section class="invite-section">
 
-<div class="invite-card">
+<div
+class="invite-card"
+onclick="copyInvite()"
+>
 
 <div class="invite-left">
 
@@ -275,11 +273,26 @@ class="gift-icon"
 src="https://cdn-icons-png.flaticon.com/512/4213/4213958.png"
 />
 
+<div>
+
 <h2 class="invite-title">
 
-Invite & Earn 25 Coin
+Invite & Earn
 
 </h2>
+
+<p class="invite-reward">
+
+<img
+class="mini-coin-icon"
+src="https://cdn-icons-png.flaticon.com/512/272/272525.png"
+/>
+
+25 Coin
+
+</p>
+
+</div>
 
 </div>
 
@@ -294,17 +307,10 @@ Loading...
 
 </span>
 
-<button
-class="copy-link-button"
-onclick="copyInvite()"
->
-
 <img
 class="copy-link-icon"
 src="https://cdn-icons-png.flaticon.com/512/1621/1621635.png"
 />
-
-</button>
 
 </div>
 

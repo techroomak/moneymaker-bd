@@ -603,3 +603,173 @@ color:#666;
 .active-nav span{
 color:#7c3aed;
 }
+/* ========================= */
+/* LEADERBOARD */
+/* ========================= */
+
+.leaderboard-section{
+padding:15px;
+}
+
+.leaderboard-list{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.leaderboard-item{
+background:white;
+padding:14px;
+border-radius:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 4px 12px rgba(0,0,0,.05);
+}
+
+.leaderboard-left{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.leaderboard-rank{
+width:34px;
+height:34px;
+border-radius:50%;
+background:#ede9fe;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:13px;
+font-weight:700;
+color:#7c3aed;
+}
+
+.leaderboard-avatar{
+width:46px;
+height:46px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.leaderboard-name{
+font-size:15px;
+font-weight:700;
+margin:0;
+}
+
+.leaderboard-id{
+font-size:11px;
+margin-top:2px;
+color:#6b7280;
+}
+
+.leaderboard-right{
+display:flex;
+align-items:center;
+gap:4px;
+}
+
+.leaderboard-coin-icon{
+width:18px;
+height:18px;
+}
+
+.leaderboard-coin{
+font-size:15px;
+font-weight:700;
+color:#22c55e;
+}
+
+/* ========================= */
+/* WITHDRAW */
+/* ========================= */
+
+.withdraw-section{
+padding:15px;
+}
+
+.withdraw-card{
+background:white;
+padding:18px;
+border-radius:22px;
+box-shadow:0 4px 12px rgba(0,0,0,.05);
+}
+
+.withdraw-label{
+display:block;
+font-size:13px;
+font-weight:700;
+margin-bottom:8px;
+margin-top:12px;
+color:#374151;
+}
+
+.withdraw-input{
+width:100%;
+padding:12px;
+border-radius:14px;
+border:1px solid #e5e7eb;
+font-size:13px;
+outline:none;
+background:#f9fafb;
+}
+
+.withdraw-input:focus{
+border-color:#7c3aed;
+}
+
+.withdraw-button{
+width:100%;
+margin-top:18px;
+padding:13px;
+border:none;
+border-radius:14px;
+background:linear-gradient(to right,#2563eb,#7c3aed);
+color:white;
+font-size:14px;
+font-weight:700;
+}
+
+/* ========================= */
+/* HISTORY */
+/* ========================= */
+
+.withdraw-history-section{
+padding:0 15px 20px;
+}
+
+.history-list{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.history-item{
+background:white;
+padding:14px;
+border-radius:18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 4px 12px rgba(0,0,0,.05);
+}
+
+.history-title{
+font-size:14px;
+font-weight:700;
+margin:0;
+}
+
+.history-date{
+font-size:11px;
+margin-top:3px;
+color:#f59e0b;
+}
+
+.history-amount{
+font-size:13px;
+font-weight:700;
+color:#22c55e;
+}

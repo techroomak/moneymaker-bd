@@ -109,36 +109,58 @@ border:2px solid white;
 
 .coin-card{
 margin-top:16px;
-padding:12px 14px;
-background:linear-gradient(to right,#6d28d9,#2563eb);
+padding:16px;
+background:linear-gradient(to right,#2563eb,#60a5fa);
 border-radius:22px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-box-shadow:0 6px 18px rgba(0,0,0,.12);
+box-shadow:0 8px 18px rgba(0,0,0,.12);
 }
 
 .coin-left{
 display:flex;
-align-items:center;
-gap:10px;
+flex-direction:column;
+justify-content:center;
 }
 
-.coin-title{
+.earn-title{
+font-size:16px;
+font-weight:600;
+margin:0;
+color:white;
+opacity:.95;
+}
+
+.coin-row{
+display:flex;
+align-items:center;
+gap:8px;
+margin-top:6px;
+}
+
+.coin-row span{
 font-size:24px;
 font-weight:700;
-margin:0;
+color:white;
+}
+
+.coin-main-icon{
+width:28px;
+height:28px;
 }
 
 .coin-bdt{
-margin-top:3px;
-font-size:11px;
-opacity:.9;
+margin-top:6px;
+font-size:13px;
+font-weight:700;
+color:#86efac;
 }
 
 .money-bag-icon{
-width:64px;
-height:64px;
+width:88px;
+height:88px;
+object-fit:contain;
 }
 
 /* ========================= */
@@ -371,16 +393,9 @@ height:14px;
 /* DAILY TASK */
 /* ========================= */
 
-.task-list{
-padding:0 15px;
-display:flex;
-flex-direction:column;
-gap:12px;
-}
-
 .task-item{
 background:white;
-padding:13px;
+padding:14px;
 border-radius:20px;
 display:flex;
 justify-content:space-between;
@@ -391,31 +406,35 @@ box-shadow:0 4px 12px rgba(0,0,0,.05);
 .task-left{
 display:flex;
 align-items:center;
-gap:10px;
+gap:12px;
+flex:1;
 }
 
 .task-icon{
-width:38px;
-height:38px;
+width:40px;
+height:40px;
+flex-shrink:0;
 }
 
 .task-title-row{
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:6px;
+gap:10px;
 }
 
 .task-title{
 font-size:14px;
 font-weight:700;
 margin:0;
+line-height:1.2;
 }
 
 .task-description{
 font-size:11px;
 margin-top:2px;
-color:#777;
+color:#666;
+line-height:1.2;
 }
 
 .task-limit{
@@ -427,8 +446,8 @@ color:#999;
 .task-coin{
 display:flex;
 align-items:center;
-gap:3px;
-font-size:12px;
+gap:4px;
+font-size:13px;
 font-weight:700;
 color:#22c55e;
 white-space:nowrap;
@@ -441,6 +460,7 @@ border-radius:12px;
 color:white;
 font-weight:700;
 font-size:12px;
+margin-left:10px;
 }
 
 .red-btn{

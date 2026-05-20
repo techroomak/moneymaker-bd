@@ -42,39 +42,106 @@
 
 <div class="withdraw-card">
 
+<!-- METHOD -->
+
 <label class="withdraw-label">
-Payment Method
+Cash Out Method
 </label>
 
-<select class="withdraw-input">
+<select
+id="paymentMethod"
+class="withdraw-input"
+onchange="changeWithdrawInfo()"
+>
 
-<option>bKash</option>
+<option value="bkash">
+bKash
+</option>
 
-<option>Nagad</option>
+<option value="nagad">
+Nagad
+</option>
 
-<option>Recharge</option>
+<option value="recharge">
+Mobile Recharge
+</option>
 
 </select>
+
+<!-- NAME -->
+
+<label class="withdraw-label">
+Account Name
+</label>
+
+<input
+id="accountName"
+class="withdraw-input"
+type="text"
+placeholder="Enter account name"
+/>
+
+<!-- NUMBER -->
 
 <label class="withdraw-label">
 Account Number
 </label>
 
 <input
+id="accountNumber"
 class="withdraw-input"
 type="number"
 placeholder="01XXXXXXXXX"
 />
+
+<!-- AMOUNT -->
 
 <label class="withdraw-label">
 Amount
 </label>
 
 <input
+id="withdrawAmount"
 class="withdraw-input"
 type="number"
-placeholder="100"
+placeholder="Enter amount"
+oninput="checkWithdrawAmount()"
 />
+
+<!-- ALERT -->
+
+<p
+id="withdrawInfo"
+class="withdraw-alert"
+>
+
+Minimum 500Tk • Maximum 1000Tk
+
+</p>
+
+<!-- COIN -->
+
+<p
+id="coinConvert"
+class="coin-convert"
+>
+
+0 Coin Required
+
+</p>
+
+<!-- LIMIT -->
+
+<p
+id="withdrawLimit"
+class="withdraw-limit"
+>
+
+Daily Withdraw Limit: 3 Times
+
+</p>
+
+<!-- BUTTON -->
 
 <button class="withdraw-button">
 Request Withdraw
@@ -96,22 +163,88 @@ Transaction History
 
 <div class="history-list">
 
+<!-- HISTORY ITEM -->
+
 <div class="history-item">
 
-<div>
+<div class="history-left">
+
+<div class="history-method">
+
+<img
+class="history-method-icon"
+src="https://cdn-icons-png.flaticon.com/512/5968/5968299.png"
+/>
+
+<span>
+bKash
+</span>
+
+</div>
 
 <h3 class="history-title">
-Withdraw Request
+017XXXXXXXX
 </h3>
 
 <p class="history-date">
-Pending
+20 May 2026 • 11:42 PM
 </p>
 
 </div>
 
+<div class="history-right">
+
 <div class="history-amount">
-1000 Coin
+500Tk
+</div>
+
+<div class="history-status pending-status">
+Pending
+</div>
+
+</div>
+
+</div>
+
+<!-- HISTORY ITEM -->
+
+<div class="history-item">
+
+<div class="history-left">
+
+<div class="history-method">
+
+<img
+class="history-method-icon"
+src="https://cdn-icons-png.flaticon.com/512/2504/2504801.png"
+/>
+
+<span>
+Nagad
+</span>
+
+</div>
+
+<h3 class="history-title">
+018XXXXXXXX
+</h3>
+
+<p class="history-date">
+19 May 2026 • 09:15 PM
+</p>
+
+</div>
+
+<div class="history-right">
+
+<div class="history-amount">
+1000Tk
+</div>
+
+<div class="history-status success-status">
+Success
+</div>
+
 </div>
 
 </div>
@@ -177,6 +310,8 @@ Withdraw
 </nav>
 
 </div>
+
+<script type="module" src="js/app.js"></script>
 
 </body>
 </html>

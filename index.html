@@ -23,7 +23,7 @@
 <div class="app-container">
 
 <!-- ========================= -->
-<!-- HEADER SECTION -->
+<!-- HEADER -->
 <!-- ========================= -->
 
 <header class="header-section">
@@ -75,6 +75,8 @@ ID:
 
 <div class="header-icons">
 
+<!-- NOTIFICATION -->
+
 <div class="header-icon-box">
 
 <div class="notify-dot"></div>
@@ -85,6 +87,8 @@ src="https://cdn-icons-png.flaticon.com/512/3602/3602145.png"
 />
 
 </div>
+
+<!-- SUPPORT -->
 
 <div class="header-icon-box">
 
@@ -99,7 +103,7 @@ src="https://cdn-icons-png.flaticon.com/512/455/455705.png"
 
 </div>
 
-<!-- COIN BOX -->
+<!-- TOTAL EARN -->
 
 <div class="coin-card">
 
@@ -107,7 +111,7 @@ src="https://cdn-icons-png.flaticon.com/512/455/455705.png"
 
 <img
 class="coin-icon"
-src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png"
+src="https://cdn-icons-png.flaticon.com/512/272/272525.png"
 />
 
 <div>
@@ -137,6 +141,11 @@ BDT
 
 </div>
 
+<img
+class="money-bag-icon"
+src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png"
+/>
+
 </div>
 
 </header>
@@ -146,6 +155,8 @@ BDT
 <!-- ========================= -->
 
 <section class="stats-section">
+
+<!-- REFER -->
 
 <div class="stats-card">
 
@@ -157,15 +168,20 @@ src="https://cdn-icons-png.flaticon.com/512/681/681494.png"
 
 </div>
 
-<h3>
+<h3 class="stats-title">
 Total Refer
 </h3>
 
-<p id="totalRefer">
+<p
+id="totalRefer"
+class="stats-number"
+>
 0
 </p>
 
 </div>
+
+<!-- DAILY -->
 
 <div class="stats-card">
 
@@ -177,15 +193,20 @@ src="https://cdn-icons-png.flaticon.com/512/2693/2693507.png"
 
 </div>
 
-<h3>
+<h3 class="stats-title">
 Daily Earn
 </h3>
 
-<p id="dailyEarn">
+<p
+id="dailyEarn"
+class="stats-number"
+>
 0
 </p>
 
 </div>
+
+<!-- REFER EARN -->
 
 <div class="stats-card">
 
@@ -197,15 +218,20 @@ src="https://cdn-icons-png.flaticon.com/512/2933/2933116.png"
 
 </div>
 
-<h3>
+<h3 class="stats-title">
 Refer Earn
 </h3>
 
-<p id="referEarn">
+<p
+id="referEarn"
+class="stats-number"
+>
 0
 </p>
 
 </div>
+
+<!-- WITHDRAW -->
 
 <div class="stats-card">
 
@@ -217,11 +243,14 @@ src="https://cdn-icons-png.flaticon.com/512/2489/2489756.png"
 
 </div>
 
-<h3>
+<h3 class="stats-title">
 Withdraw
 </h3>
 
-<p id="totalWithdraw">
+<p
+id="totalWithdraw"
+class="stats-number"
+>
 0
 </p>
 
@@ -237,25 +266,49 @@ Withdraw
 
 <div class="invite-card">
 
-<div>
+<div class="invite-left">
 
-<h2>
-Invite & Earn
+<div class="invite-top">
+
+<img
+class="gift-icon"
+src="https://cdn-icons-png.flaticon.com/512/4213/4213958.png"
+/>
+
+<h2 class="invite-title">
+
+Invite & Earn 25 Coin
+
 </h2>
-
-<p>
-Invite Bonus: 25 Coin
-</p>
 
 </div>
 
-<button class="copy-button">
+<div class="invite-link-box">
+
+<span
+id="inviteLink"
+class="invite-link-text"
+>
+
+Loading...
+
+</span>
+
+<button
+class="copy-link-button"
+onclick="copyInvite()"
+>
 
 <img
+class="copy-link-icon"
 src="https://cdn-icons-png.flaticon.com/512/1621/1621635.png"
 />
 
 </button>
+
+</div>
+
+</div>
 
 </div>
 
@@ -273,66 +326,102 @@ Watch & Earn Coin
 
 <div class="ads-grid">
 
+<!-- AD -->
+
 <div class="ad-card">
 
-<h3>
+<h3 class="ad-title">
 Watch Ad
 </h3>
 
-<p>
+<p class="ad-description">
 +5 Coin
 </p>
 
-<button>
+<button class="claim-button">
+
+<img
+class="claim-icon"
+src="https://cdn-icons-png.flaticon.com/512/272/272525.png"
+/>
+
 Claim
+
 </button>
 
 </div>
 
+<!-- AD -->
+
 <div class="ad-card">
 
-<h3>
+<h3 class="ad-title">
 Video Ad
 </h3>
 
-<p>
+<p class="ad-description">
 +10 Coin
 </p>
 
-<button>
+<button class="claim-button">
+
+<img
+class="claim-icon"
+src="https://cdn-icons-png.flaticon.com/512/272/272525.png"
+/>
+
 Claim
+
 </button>
 
 </div>
 
+<!-- AD -->
+
 <div class="ad-card">
 
-<h3>
+<h3 class="ad-title">
 Premium Ad
 </h3>
 
-<p>
+<p class="ad-description">
 +20 Coin
 </p>
 
-<button>
+<button class="claim-button">
+
+<img
+class="claim-icon"
+src="https://cdn-icons-png.flaticon.com/512/272/272525.png"
+/>
+
 Claim
+
 </button>
 
 </div>
 
+<!-- AD -->
+
 <div class="ad-card">
 
-<h3>
+<h3 class="ad-title">
 Sponsor Ad
 </h3>
 
-<p>
+<p class="ad-description">
 +50 Coin
 </p>
 
-<button>
+<button class="claim-button">
+
+<img
+class="claim-icon"
+src="https://cdn-icons-png.flaticon.com/512/272/272525.png"
+/>
+
 Claim
+
 </button>
 
 </div>
@@ -352,6 +441,8 @@ Daily Tasks
 </h2>
 
 <div class="task-list">
+
+<!-- VIDEO -->
 
 <div class="task-item">
 
@@ -381,6 +472,8 @@ Start
 
 </div>
 
+<!-- WEBSITE -->
+
 <div class="task-item">
 
 <div class="task-left">
@@ -409,16 +502,35 @@ Go
 
 </div>
 
+<!-- SHORTLINK -->
+
+<div class="task-item">
+
+<div class="task-left">
+
+<img
+src="https://cdn-icons-png.flaticon.com/512/892/892692.png"
+/>
+
+<div>
+
+<h3>
+Visit Shortlink
+</h3>
+
+<p>
+Complete shortlink
+</p>
+
 </div>
 
-<!-- TIMER -->
+</div>
 
-<div class="task-timer-box">
+<button class="orange-btn">
+Go
+</button>
 
-Reset In:
-<span id="dailyTimer">
-23:59:59
-</span>
+</div>
 
 </div>
 
@@ -435,6 +547,8 @@ One-Time Social Tasks
 </h2>
 
 <div class="social-list">
+
+<!-- FACEBOOK -->
 
 <div class="social-item">
 
@@ -458,11 +572,59 @@ Follow our page
 
 </div>
 
-<button>
-+25
+<div class="social-right">
+
+<div class="social-reward">
++25 Coin
+</div>
+
+<button class="social-button">
+Go
 </button>
 
 </div>
+
+</div>
+
+<!-- GROUP -->
+
+<div class="social-item">
+
+<div class="social-left">
+
+<img
+src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
+/>
+
+<div>
+
+<h3>
+Facebook Group
+</h3>
+
+<p>
+Join Facebook group
+</p>
+
+</div>
+
+</div>
+
+<div class="social-right">
+
+<div class="social-reward">
++25 Coin
+</div>
+
+<button class="social-button">
+Go
+</button>
+
+</div>
+
+</div>
+
+<!-- INSTAGRAM -->
 
 <div class="social-item">
 
@@ -486,9 +648,55 @@ Follow Instagram
 
 </div>
 
-<button>
-+25
+<div class="social-right">
+
+<div class="social-reward">
++25 Coin
+</div>
+
+<button class="social-button">
+Go
 </button>
+
+</div>
+
+</div>
+
+<!-- YOUTUBE -->
+
+<div class="social-item">
+
+<div class="social-left">
+
+<img
+src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+/>
+
+<div>
+
+<h3>
+YouTube Subscribe
+</h3>
+
+<p>
+Subscribe channel
+</p>
+
+</div>
+
+</div>
+
+<div class="social-right">
+
+<div class="social-reward">
++25 Coin
+</div>
+
+<button class="social-button">
+Go
+</button>
+
+</div>
 
 </div>
 
@@ -502,6 +710,8 @@ Follow Instagram
 
 <nav class="bottom-nav">
 
+<!-- HOME -->
+
 <button class="nav-item active-nav">
 
 <img
@@ -514,10 +724,12 @@ Home
 
 </button>
 
+<!-- LEADERBOARD -->
+
 <button class="nav-item">
 
 <img
-src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png"
+src="https://cdn-icons-png.flaticon.com/512/2583/2583344.png"
 />
 
 <span>
@@ -525,6 +737,8 @@ Leaderboard
 </span>
 
 </button>
+
+<!-- WITHDRAW -->
 
 <button class="nav-item">
 

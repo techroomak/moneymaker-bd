@@ -139,11 +139,8 @@ location.reload();
 
 window.copyInvite = ()=>{
 
-const link =
-`https://t.me/emoneymakebd_bot/app?startapp=${userId}`;
+navigator.clipboard.writeText(referralLink);
 
-navigator.clipboard.writeText(link);
-
-alert("Invite Link Copied");
+alert("Referral Link Copied");
 
 };

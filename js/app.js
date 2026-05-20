@@ -33,6 +33,14 @@ tg.initDataUnsafe?.user;
 const userId =
 user?.id || "123456789";
 
+
+const referralLink =
+`https://t.me/emoneymakebd_bot/app?startapp=${userId}`;
+
+document.getElementById("inviteLink")
+.innerText = referralLink;
+
+
 const username =
 user?.first_name ||
 user?.username ||

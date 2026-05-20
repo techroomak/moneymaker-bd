@@ -1,505 +1,331 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<title>Money Maker BD</title>
-
-<!-- TAILWIND -->
-
-<script src="https://cdn.tailwindcss.com"></script>
-
-<!-- TELEGRAM WEB APP -->
-
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-<!-- CUSTOM CSS -->
-
-<link rel="stylesheet" href="css/style.css"/>
-
-</head>
-
-<body>
-
 <!-- ========================= -->
-<!-- APP START -->
+<!-- APP CONTAINER -->
 <!-- ========================= -->
 
 <div class="app-container">
 
-<!-- ========================= -->
-<!-- HEADER SECTION START -->
-<!-- ========================= -->
 
-<header class="header-section">
 
-<!-- TOP BAR -->
+  <!-- ========================= -->
+  <!-- HEADER SECTION -->
+  <!-- ========================= -->
 
-<div class="top-bar">
+  <header class="header-section">
 
-<!-- PROFILE AREA -->
+    <div class="top-bar">
 
-<div class="profile-area">
+      <!-- PROFILE AREA -->
 
-<!-- PROFILE IMAGE -->
+      <div class="profile-area">
 
-<img
-id="profile"
-class="profile-image"
-src="https://telegram.org/img/t_logo.png"
-/>
+        <img class="profile-image"/>
 
-<!-- PROFILE INFO -->
+        <div class="profile-info">
 
-<div class="profile-info">
+          <div class="name-row">
 
-<!-- NAME ROW -->
+            <h2 class="profile-name"></h2>
 
-<div class="name-row">
+            <img class="verify-badge"/>
 
-<h2
-id="username"
-class="profile-name"
->
+          </div>
 
-Money Maker BD
+          <p class="user-id-text"></p>
 
-</h2>
+          <div class="earn-box">
 
-<img
-class="verify-badge"
-src="https://cdn-icons-png.flaticon.com/512/7641/7641727.png"
-/>
+            <img class="coin-logo"/>
+
+            <div class="earn-info">
+
+              <h3 class="coin-text"></h3>
+
+              <p class="bdt-text"></p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- HEADER ICONS -->
+
+      <div class="header-icons">
+
+        <div class="header-icon-box notification-box">
+
+          <div class="notification-dot"></div>
+
+          <img class="header-icon"/>
+
+        </div>
+
+        <div class="header-icon-box support-box">
+
+          <img class="header-icon"/>
+
+        </div>
+
+        <div class="header-icon-box invite-box">
+
+          <img class="header-icon"/>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- ========================= -->
+  <!-- STATS SECTION -->
+  <!-- ========================= -->
+
+  <section class="stats-section">
+
+    <div class="stats-card total-refer-card">
+
+      <div class="stats-icon purple-bg">
+
+        <img class="stats-icon-image"/>
+
+      </div>
+
+      <p class="stats-title"></p>
+
+      <h2 class="stats-number"></h2>
+
+    </div>
+
+
+
+    <div class="stats-card daily-earn-card">
+
+      <div class="stats-icon green-bg">
+
+        <img class="stats-icon-image"/>
+
+      </div>
+
+      <p class="stats-title"></p>
+
+      <h2 class="stats-number"></h2>
+
+    </div>
+
+
+
+    <div class="stats-card refer-earn-card">
+
+      <div class="stats-icon orange-bg">
+
+        <img class="stats-icon-image"/>
+
+      </div>
+
+      <p class="stats-title"></p>
+
+      <h2 class="stats-number"></h2>
+
+    </div>
+
+
+
+    <div class="stats-card withdraw-card">
+
+      <div class="stats-icon blue-bg">
+
+        <img class="stats-icon-image"/>
+
+      </div>
+
+      <p class="stats-title"></p>
+
+      <h2 class="stats-number"></h2>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================= -->
+  <!-- INVITE SECTION -->
+  <!-- ========================= -->
+
+  <section class="invite-section">
+
+    <div class="invite-card">
+
+      <div class="invite-left">
+
+        <h2 class="invite-title"></h2>
+
+        <p class="invite-bonus"></p>
+
+        <div class="invite-link-box">
+
+          <span class="invite-link-text"></span>
+
+        </div>
+
+      </div>
+
+      <button class="copy-button"></button>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================= -->
+  <!-- ADS SECTION -->
+  <!-- ========================= -->
+
+  <section class="ads-section">
+
+    <h2 class="section-title"></h2>
+
+    <div class="ads-grid">
+
+
+
+      <div class="ad-card">
+
+        <div class="ad-info">
+
+          <h3 class="ad-title"></h3>
+
+          <p class="ad-description"></p>
+
+        </div>
+
+        <button class="claim-button">
+
+          <img class="claim-coin-icon"/>
+
+        </button>
+
+      </div>
+
+
+
+      <div class="ad-card"></div>
+
+      <div class="ad-card"></div>
+
+      <div class="ad-card"></div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================= -->
+  <!-- DAILY TASK SECTION -->
+  <!-- ========================= -->
+
+  <section class="daily-task-section">
+
+    <h2 class="section-title"></h2>
+
+    <div class="task-card">
+
+      <div class="task-info">
+
+        <h3 class="task-title"></h3>
+
+        <p class="task-description"></p>
+
+      </div>
+
+      <button class="task-button"></button>
+
+      <div class="task-timer"></div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================= -->
+  <!-- SOCIAL TASK SECTION -->
+  <!-- ========================= -->
+
+  <section class="social-task-section">
+
+    <h2 class="section-title"></h2>
+
+    <div class="social-list">
+
+
+
+      <a class="social-item">
+
+        <div class="social-left">
+
+          <img class="social-icon"/>
+
+          <span class="social-name"></span>
+
+        </div>
+
+        <button class="social-button"></button>
+
+      </a>
+
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================= -->
+  <!-- BOTTOM NAVIGATION -->
+  <!-- ========================= -->
+
+  <nav class="bottom-nav">
+
+    <button class="nav-button home-button">
+
+      <img class="nav-icon"/>
+
+      <span class="nav-text"></span>
+
+    </button>
+
+
+
+    <button class="nav-button leaderboard-button">
+
+      <img class="nav-icon"/>
+
+      <span class="nav-text"></span>
+
+    </button>
+
+
+
+    <button class="nav-button withdraw-button">
+
+      <img class="nav-icon"/>
+
+      <span class="nav-text"></span>
+
+    </button>
+
+  </nav>
+
+
 
 </div>
-
-<!-- USER ID -->
-
-<p class="user-id-text">
-
-ID:
-<span id="userid">
-123456789
-</span>
-
-</p>
-
-<!-- TOTAL EARN BOX -->
-
-<div class="earn-box">
-
-<img
-class="coin-logo"
-src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png"
-/>
-
-<div class="earn-info">
-
-<h3 class="coin-text">
-
-<span id="coin">
-0
-</span>
-
-Coin
-
-</h3>
-
-<p class="bdt-text">
-
-≈ ৳
-<span id="bdt">
-0
-</span>
-
-BDT
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- RIGHT ICONS -->
-
-<div class="header-icons">
-
-<!-- NOTIFICATION -->
-
-<div class="header-icon-box notification-box">
-
-<div class="notification-dot"></div>
-
-<img
-class="header-icon"
-src="https://cdn-icons-png.flaticon.com/512/3602/3602145.png"
-/>
-
-</div>
-
-<!-- SUPPORT -->
-
-<div class="header-icon-box support-box">
-
-<img
-class="header-icon"
-src="https://cdn-icons-png.flaticon.com/512/455/455705.png"
-/>
-
-</div>
-
-<!-- INVITE -->
-
-<div class="header-icon-box invite-box">
-
-<img
-class="header-icon"
-src="https://cdn-icons-png.flaticon.com/512/2950/2950650.png"
-/>
-
-</div>
-
-</div>
-
-</div>
-
-</header>
-
-<!-- ========================= -->
-<!-- HEADER SECTION END -->
-<!-- ========================= -->
-
-
-
-<!-- ========================= -->
-<!-- STATS SECTION START -->
-<!-- ========================= -->
-
-<section class="stats-section">
-
-<!-- TOTAL REFER -->
-
-<div class="stats-card total-refer-card">
-
-<div class="stats-icon purple-bg">
-
-<img
-class="stats-icon-image"
-src="https://cdn-icons-png.flaticon.com/512/681/681494.png"
-/>
-
-</div>
-
-<p class="stats-title">
-Total Refer
-</p>
-
-<h2
-id="totalRefer"
-class="stats-number"
->
-0
-</h2>
-
-</div>
-
-<!-- DAILY EARN -->
-
-<div class="stats-card daily-earn-card">
-
-<div class="stats-icon green-bg">
-
-<img
-class="stats-icon-image"
-src="https://cdn-icons-png.flaticon.com/512/2693/2693507.png"
-/>
-
-</div>
-
-<p class="stats-title">
-Daily Earn
-</p>
-
-<h2
-id="dailyEarn"
-class="stats-number"
->
-0
-</h2>
-
-</div>
-
-<!-- REFER EARN -->
-
-<div class="stats-card refer-earn-card">
-
-<div class="stats-icon orange-bg">
-
-<img
-class="stats-icon-image"
-src="https://cdn-icons-png.flaticon.com/512/2933/2933116.png"
-/>
-
-</div>
-
-<p class="stats-title">
-Refer Earn
-</p>
-
-<h2
-id="referEarn"
-class="stats-number"
->
-0
-</h2>
-
-</div>
-
-<!-- TOTAL WITHDRAW -->
-
-<div class="stats-card withdraw-card">
-
-<div class="stats-icon blue-bg">
-
-<img
-class="stats-icon-image"
-src="https://cdn-icons-png.flaticon.com/512/2489/2489756.png"
-/>
-
-</div>
-
-<p class="stats-title">
-Total Withdraw
-</p>
-
-<h2
-id="totalWithdraw"
-class="stats-number"
->
-0
-</h2>
-
-</div>
-
-</section>
-
-<!-- ========================= -->
-<!-- STATS SECTION END -->
-<!-- ========================= -->
-
-
-
-<!-- ========================= -->
-<!-- INVITE SECTION START -->
-<!-- ========================= -->
-
-<section class="invite-section">
-
-<div class="invite-card">
-
-<div class="invite-left">
-
-<h2 class="invite-title">
-Invite & Earn
-</h2>
-
-<p class="invite-bonus">
-Referral Bonus: 25 Coin
-</p>
-
-<div class="invite-link-box">
-
-<span class="invite-link-text">
-
-https://t.me/emoneymakebd_bot/app
-
-</span>
-
-</div>
-
-</div>
-
-<button
-class="copy-button"
-onclick="copyInvite()"
->
-
-Copy
-
-</button>
-
-</div>
-
-</section>
-
-<!-- ========================= -->
-<!-- INVITE SECTION END -->
-<!-- ========================= -->
-
-
-
-<!-- ========================= -->
-<!-- ADS SECTION START -->
-<!-- ========================= -->
-
-<section class="ads-section">
-
-<h2 class="section-title">
-Watch & Earn Coin
-</h2>
-
-<div class="ads-grid">
-
-<!-- AD ITEM -->
-
-<div class="ad-card">
-
-<div class="ad-info">
-
-<h3 class="ad-title">
-Watch Ad
-</h3>
-
-<p class="ad-description">
-5 Coin Reward
-</p>
-
-</div>
-
-<button
-class="claim-button"
-onclick="claimCoin(5)"
->
-
-<img
-class="claim-coin-icon"
-src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png"
-/>
-
-5
-
-</button>
-
-</div>
-
-<!-- AD ITEM -->
-
-<div class="ad-card">
-
-<div class="ad-info">
-
-<h3 class="ad-title">
-Video Ad
-</h3>
-
-<p class="ad-description">
-10 Coin Reward
-</p>
-
-</div>
-
-<button
-class="claim-button"
-onclick="claimCoin(10)"
->
-
-<img
-class="claim-coin-icon"
-src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png"
-/>
-
-10
-
-</button>
-
-</div>
-
-<!-- AD ITEM -->
-
-<div class="ad-card">
-
-<div class="ad-info">
-
-<h3 class="ad-title">
-Premium Ad
-</h3>
-
-<p class="ad-description">
-20 Coin Reward
-</p>
-
-</div>
-
-<button
-class="claim-button"
-onclick="claimCoin(20)"
->
-
-<img
-class="claim-coin-icon"
-src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png"
-/>
-
-20
-
-</button>
-
-</div>
-
-<!-- AD ITEM -->
-
-<div class="ad-card">
-
-<div class="ad-info">
-
-<h3 class="ad-title">
-Sponsor Ad
-</h3>
-
-<p class="ad-description">
-50 Coin Reward
-</p>
-
-</div>
-
-<button
-class="claim-button"
-onclick="claimCoin(50)"
->
-
-<img
-class="claim-coin-icon"
-src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png"
-/>
-
-50
-
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ========================= -->
-<!-- ADS SECTION END -->
-<!-- ========================= -->
-
-
-
-<!-- JS FILE -->
-
-<script type="module" src="js/firebase.js"></script>
-
-<script type="module" src="js/app.js"></script>
-
-</body>
-</html>

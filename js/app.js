@@ -354,3 +354,87 @@ timerEl.style.display =
 },1000);
 
 };
+
+/* ========================= */
+/* WITHDRAW */
+/* ========================= */
+
+window.changeWithdrawInfo = ()=>{
+
+const method =
+document.getElementById("paymentMethod").value;
+
+const info =
+document.getElementById("withdrawInfo");
+
+if(method === "recharge"){
+
+info.innerText =
+"Minimum 20Tk • Maximum 100Tk";
+
+}else{
+
+info.innerText =
+"Minimum 500Tk • Maximum 1000Tk";
+
+}
+
+};
+
+/* ========================= */
+/* COIN CONVERT */
+/* ========================= */
+
+window.checkWithdrawAmount = ()=>{
+
+const method =
+document.getElementById("paymentMethod").value;
+
+const amount =
+Number(
+document.getElementById("withdrawAmount").value
+);
+
+const convert =
+document.getElementById("coinConvert");
+
+const info =
+document.getElementById("withdrawInfo");
+
+const neededCoin =
+amount * 10;
+
+convert.innerText =
+`${neededCoin} Coin Required`;
+
+if(method === "recharge"){
+
+if(amount < 20 || amount > 100){
+
+info.innerText =
+"Recharge Limit: Min 20Tk • Max 100Tk";
+
+}else{
+
+info.innerText =
+"Recharge amount valid";
+
+}
+
+}else{
+
+if(amount < 500 || amount > 1000){
+
+info.innerText =
+"Cashout Limit: Min 500Tk • Max 1000Tk";
+
+}else{
+
+info.innerText =
+"Cashout amount valid";
+
+}
+
+}
+
+};

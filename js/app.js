@@ -1,3 +1,7 @@
+// =========================
+// FIREBASE
+// =========================
+
 import { db }
 from "./firebase.js";
 
@@ -21,37 +25,83 @@ tg.ready();
 
 tg.expand();
 
+/* ========================= */
+/* USER */
+/* ========================= */
+
 const user =
-tg.initDataUnsafe?.user;
+tg.initDataUnsafe.user;
+
+// TELEGRAM ONLY
+
+if(!user){
+
+alert("Open inside Telegram");
+
+throw new Error("Telegram Only");
+
+}
 
 /* ========================= */
 /* USER INFO */
 /* ========================= */
 
 const userId =
-user?.id || "123456789";
+String(user.id);
 
 const username =
-user?.first_name ||
-user?.username ||
-"Money Maker BD";
+user.first_name ||
+user.username;
 
 const photo =
-user?.photo_url ||
-"https://telegram.org/img/t_logo.png";
+user.photo_url;
+
+/* ========================= */
+/* HTML ELEMENTS */
+/* ========================= */
+
+const usernameEl =
+document.getElementById("username");
+
+const useridEl =
+document.getElementById("userid");
+
+const profileEl =
+document.getElementById("profile");
+
+const coinEl =
+document.getElementById("coin");
+
+const bdtEl =
+document.getElementById("bdt");
+
+const totalReferEl =
+document.getElementById("totalRefer");
+
+const dailyEarnEl =
+document.getElementById("dailyEarn");
+
+const referEarnEl =
+document.getElementById("referEarn");
+
+const totalWithdrawEl =
+document.getElementById("totalWithdraw");
+
+const inviteLinkEl =
+document.getElementById("inviteLink");
 
 /* ========================= */
 /* UI UPDATE */
 /* ========================= */
 
-document.getElementById("username")
-.innerText = username;
+usernameEl.innerText =
+username;
 
-document.getElementById("userid")
-.innerText = userId;
+useridEl.innerText =
+userId;
 
-document.getElementById("profile")
-.src = photo;
+profileEl.src =
+photo;
 
 /* ========================= */
 /* REFERRAL LINK */
@@ -60,15 +110,19 @@ document.getElementById("profile")
 const referralLink =
 `https://t.me/emoneymakebd_bot/app?startapp=${userId}`;
 
-document.getElementById("inviteLink")
-.innerText = referralLink;
+inviteLinkEl.innerText =
+referralLink;
 
 /* ========================= */
 /* DATABASE */
 /* ========================= */
 
 const userRef =
-doc(db,"users",String(userId));
+doc(db,"users",userId);
+
+/* ========================= */
+/* CREATE USER */
+/* ========================= */
 
 const snap =
 await getDoc(userRef);
@@ -77,17 +131,35 @@ if(!snap.exists()){
 
 await setDoc(userRef,{
 
-username: username,
-coin: 0,
-refer: 0,
-referEarn: 0,
-withdraw: 0,
-dailyEarn: 0,
-created: Date.now()
+id:userId,
+
+username:username,
+
+photo:photo,
+
+coin:0,
+
+refer:0,
+
+referEarn:0,
+
+withdraw:0,
+
+dailyEarn:0,
+
+completedSocialTasks:[],
+
+completedDailyTasks:[],
+
+createdAt:Date.now()
 
 });
 
 }
+
+/* ========================= */
+/* LOAD USER */
+/* ========================= */
 
 const userData =
 (await getDoc(userRef)).data();
@@ -96,29 +168,39 @@ const userData =
 /* UI DATA */
 /* ========================= */
 
-document.getElementById("coin")
-.innerText =
-userData.coin;
+coinEl.innerText =
+userData.coin || 0;
 
-document.getElementById("bdt")
-.innerText =
-(userData.coin/10).toFixed(2);
+bdtEl.innerText =
+(userData.coin / 10).toFixed(2);
 
-document.getElementById("totalRefer")
-.innerText =
-userData.refer;
+totalReferEl.innerText =
+userData.refer || 0;
 
-document.getElementById("dailyEarn")
-.innerText =
-userData.dailyEarn;
+dailyEarnEl.innerText =
+userData.dailyEarn || 0;
 
-document.getElementById("referEarn")
-.innerText =
-userData.referEarn;
+referEarnEl.innerText =
+userData.referEarn || 0;
 
-document.getElementById("totalWithdraw")
-.innerText =
-userData.withdraw;
+totalWithdrawEl.innerText =
+userData.withdraw || 0;
+
+/* ========================= */
+/* COPY INVITE */
+/* ========================= */
+
+window.copyInvite = ()=>{
+
+navigator.clipboard.writeText(
+referralLink
+);
+
+tg.showAlert(
+"Referral Link Copied"
+);
+
+};
 
 /* ========================= */
 /* CLAIM COIN */
@@ -128,31 +210,50 @@ window.claimCoin =
 async(amount)=>{
 
 await updateDoc(userRef,{
-coin: increment(amount),
-dailyEarn: increment(amount)
+
+coin:increment(amount),
+
+dailyEarn:increment(amount)
+
 });
 
-location.reload();
+loadUserData();
 
 };
 
 /* ========================= */
-/* COPY INVITE */
+/* LOAD DATA FUNCTION */
 /* ========================= */
 
-window.copyInvite = ()=>{
+async function loadUserData(){
 
-navigator.clipboard.writeText(referralLink);
+const updatedSnap =
+await getDoc(userRef);
 
-alert("Referral Link Copied");
+const updatedData =
+updatedSnap.data();
 
-};
+coinEl.innerText =
+updatedData.coin || 0;
+
+bdtEl.innerText =
+(updatedData.coin / 10).toFixed(2);
+
+dailyEarnEl.innerText =
+updatedData.dailyEarn || 0;
+
+}
 
 /* ========================= */
 /* DAILY TIMER */
 /* ========================= */
 
 function startTimer(){
+
+const timer =
+document.getElementById("dailyTimer");
+
+if(!timer) return;
 
 let h=23;
 let m=59;
@@ -163,21 +264,93 @@ setInterval(()=>{
 s--;
 
 if(s<0){
+
 s=59;
 m--;
+
 }
 
 if(m<0){
+
 m=59;
 h--;
+
 }
 
-document.getElementById("dailyTimer")
-.innerText =
-`${h}:${m}:${s}`;
+timer.innerText =
+
+`${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
 
 },1000);
 
 }
 
 startTimer();
+
+/* ========================= */
+/* SOCIAL TASK */
+/* ========================= */
+
+window.completeSocialTask =
+async(button)=>{
+
+button.innerText =
+"Completed";
+
+button.disabled = true;
+
+button.classList.remove(
+"social-button"
+);
+
+button.classList.add(
+"social-complete-button"
+);
+
+};
+
+/* ========================= */
+/* AD COOLDOWN */
+/* ========================= */
+
+window.startAdCooldown =
+(button,timerEl)=>{
+
+button.style.display =
+"none";
+
+timerEl.style.display =
+"block";
+
+let time = 120;
+
+const interval =
+setInterval(()=>{
+
+time--;
+
+const min =
+Math.floor(time/60);
+
+const sec =
+time%60;
+
+timerEl.innerText =
+
+`${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
+
+if(time<=0){
+
+clearInterval(interval);
+
+button.style.display =
+"flex";
+
+timerEl.style.display =
+"none";
+
+}
+
+},1000);
+
+};

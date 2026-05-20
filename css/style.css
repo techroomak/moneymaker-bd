@@ -16,7 +16,7 @@ box-sizing:border-box;
 .app-container{
 max-width:480px;
 margin:auto;
-padding-bottom:100px;
+padding-bottom:110px;
 }
 
 /* ========================= */
@@ -78,6 +78,10 @@ margin-top:3px;
 opacity:.9;
 }
 
+/* ========================= */
+/* EARN BOX */
+/* ========================= */
+
 .earn-box{
 margin-top:10px;
 background:rgba(255,255,255,.12);
@@ -133,6 +137,7 @@ backdrop-filter:blur(10px);
 .header-icon{
 width:22px;
 height:22px;
+filter:brightness(0) invert(1);
 }
 
 .notification-dot{
@@ -167,8 +172,8 @@ box-shadow:0 5px 15px rgba(0,0,0,.05);
 }
 
 .stats-icon{
-width:44px;
-height:44px;
+width:46px;
+height:46px;
 border-radius:50%;
 display:flex;
 justify-content:center;
@@ -199,8 +204,8 @@ background:#dbeafe;
 
 .stats-title{
 font-size:11px;
-color:#666;
 margin-top:8px;
+color:#666;
 }
 
 .stats-number{
@@ -215,13 +220,13 @@ margin-top:4px;
 
 .invite-section{
 padding:0 15px;
-margin-top:8px;
+margin-top:10px;
 }
 
 .invite-card{
 background:linear-gradient(to right,#7c3aed,#2563eb);
 padding:18px;
-border-radius:26px;
+border-radius:25px;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -235,7 +240,7 @@ overflow:hidden;
 }
 
 .invite-title{
-font-size:24px;
+font-size:22px;
 font-weight:700;
 margin:0;
 }
@@ -255,6 +260,10 @@ overflow:hidden;
 white-space:nowrap;
 text-overflow:ellipsis;
 font-size:12px;
+}
+
+.invite-link-text{
+color:white;
 }
 
 .copy-button{
@@ -298,7 +307,7 @@ box-shadow:0 4px 15px rgba(0,0,0,.05);
 }
 
 .ad-title{
-font-size:20px;
+font-size:18px;
 font-weight:700;
 margin:0;
 }
@@ -334,6 +343,10 @@ height:18px;
 /* DAILY TASK */
 /* ========================= */
 
+.daily-task-section{
+margin-top:5px;
+}
+
 .task-card{
 background:white;
 margin:0 15px;
@@ -346,13 +359,13 @@ box-shadow:0 4px 15px rgba(0,0,0,.05);
 }
 
 .task-title{
-font-size:20px;
+font-size:18px;
 font-weight:700;
 margin:0;
 }
 
 .task-description{
-font-size:13px;
+font-size:12px;
 margin-top:4px;
 color:#777;
 }
@@ -377,6 +390,10 @@ font-weight:700;
 /* SOCIAL TASK */
 /* ========================= */
 
+.social-task-section{
+margin-top:5px;
+}
+
 .social-list{
 padding:0 15px;
 display:flex;
@@ -395,24 +412,24 @@ text-decoration:none;
 box-shadow:0 4px 15px rgba(0,0,0,.05);
 }
 
-.social-item div{
+.social-left{
 display:flex;
 align-items:center;
 gap:12px;
 }
 
-.social-item img{
+.social-icon{
 width:42px;
 height:42px;
 }
 
-.social-item span{
-font-weight:700;
+.social-name{
 font-size:17px;
+font-weight:700;
 color:black;
 }
 
-.social-item button{
+.social-button{
 background:#2563eb;
 color:white;
 border:none;
@@ -440,12 +457,22 @@ border-radius:28px 28px 0 0;
 box-shadow:0 -4px 15px rgba(0,0,0,.05);
 }
 
-.bottom-nav button{
+.nav-button{
 background:none;
 border:none;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:4px;
 }
 
-.bottom-nav img{
-width:28px;
-height:28px;
+.nav-icon{
+width:26px;
+height:26px;
+}
+
+.nav-text{
+font-size:12px;
+font-weight:600;
+color:#444;
 }

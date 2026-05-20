@@ -361,28 +361,16 @@ timerEl.style.display =
 
 window.changeWithdrawInfo = ()=>{
 
-const method =
-document.getElementById("paymentMethod").value;
+document.getElementById("withdrawAmount").value = "";
 
-const info =
-document.getElementById("withdrawInfo");
+document.getElementById("withdrawInfo").style.display = "none";
 
-if(method === "recharge"){
-
-info.innerText =
-"Minimum 20Tk • Maximum 100Tk";
-
-}else{
-
-info.innerText =
-"Minimum 500Tk • Maximum 1000Tk";
-
-}
+document.getElementById("coinConvert").style.display = "none";
 
 };
 
 /* ========================= */
-/* COIN CONVERT */
+/* CHECK WITHDRAW */
 /* ========================= */
 
 window.checkWithdrawAmount = ()=>{
@@ -401,37 +389,67 @@ document.getElementById("coinConvert");
 const info =
 document.getElementById("withdrawInfo");
 
+// EMPTY
+
+if(!amount){
+
+convert.style.display = "none";
+
+info.style.display = "none";
+
+return;
+
+}
+
 const neededCoin =
 amount * 10;
 
+// SHOW COIN
+
+convert.style.display = "block";
+
 convert.innerText =
 `${neededCoin} Coin Required`;
+
+// RECHARGE
 
 if(method === "recharge"){
 
 if(amount < 20 || amount > 100){
 
+info.style.display = "block";
+
 info.innerText =
 "Recharge Limit: Min 20Tk • Max 100Tk";
 
+info.style.color =
+"#ef4444";
+
 }else{
 
-info.innerText =
-"Recharge amount valid";
+info.style.display = "none";
 
 }
 
-}else{
+}
+
+// BKASH / NAGAD
+
+else{
 
 if(amount < 500 || amount > 1000){
+
+info.style.display = "block";
 
 info.innerText =
 "Cashout Limit: Min 500Tk • Max 1000Tk";
 
+info.style.color =
+"#ef4444";
+
 }else{
 
-info.innerText =
-"Cashout amount valid";
+info.style.display = "none";
 
 }
 

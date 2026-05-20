@@ -395,3 +395,98 @@ font-weight:600;
 .active-nav span{
 color:#2563eb;
 }
+/* ========================= */
+/* MONEY BAG */
+/* ========================= */
+
+.money-bag-icon{
+width:42px;
+height:42px;
+}
+
+/* ========================= */
+/* INVITE */
+/* ========================= */
+
+.invite-top{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:10px;
+}
+
+.gift-icon{
+width:30px;
+height:30px;
+}
+
+.invite-title{
+font-size:20px;
+font-weight:700;
+margin:0;
+}
+
+.invite-link-box{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+background:rgba(255,255,255,.12);
+padding:10px;
+border-radius:14px;
+}
+
+.copy-link-button{
+width:40px;
+height:40px;
+border:none;
+border-radius:12px;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.copy-link-icon{
+width:18px;
+height:18px;
+}
+
+/* ========================= */
+/* CLAIM */
+/* ========================= */
+
+.claim-button{
+margin-top:14px;
+background:linear-gradient(to right,#2563eb,#7c3aed);
+color:white;
+border:none;
+padding:10px;
+width:100%;
+border-radius:14px;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:6px;
+font-weight:700;
+}
+
+.claim-icon{
+width:18px;
+height:18px;
+}
+
+/* ========================= */
+/* SOCIAL */
+/* ========================= */
+
+.social-right{
+text-align:right;
+}
+
+.social-reward{
+font-size:14px;
+font-weight:700;
+color:#22c55e;
+margin-bottom:8px;
+}

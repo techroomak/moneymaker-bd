@@ -100,24 +100,29 @@ document.getElementById("inviteLink");
 /* UI UPDATE */
 /* ========================= */
 
-usernameEl.innerText =
-username;
+if(usernameEl){
 
-useridEl.innerText =
-userId;
+usernameEl.innerText = username;
 
-profileEl.src =
-photo;
+}
 
-/* ========================= */
-/* REFERRAL LINK */
-/* ========================= */
+if(useridEl){
 
-const referralLink =
-`https://t.me/emoneymakebd_bot/app?startapp=${userId}`;
+useridEl.innerText = userId;
 
-inviteLinkEl.innerText =
-referralLink;
+}
+
+if(profileEl){
+
+profileEl.src = photo;
+
+}
+
+if(inviteLinkEl){
+
+inviteLinkEl.innerText = referralLink;
+
+}
 
 /* ========================= */
 /* DATABASE */
@@ -174,23 +179,47 @@ const userData =
 /* UI DATA */
 /* ========================= */
 
+if(coinEl){
+
 coinEl.innerText =
 userData.coin || 0;
+
+}
+
+if(bdtEl){
 
 bdtEl.innerText =
 (userData.coin / 10).toFixed(2);
 
+}
+
+if(totalReferEl){
+
 totalReferEl.innerText =
 userData.refer || 0;
+
+}
+
+if(dailyEarnEl){
 
 dailyEarnEl.innerText =
 userData.dailyEarn || 0;
 
+}
+
+if(referEarnEl){
+
 referEarnEl.innerText =
 userData.referEarn || 0;
 
+}
+
+if(totalWithdrawEl){
+
 totalWithdrawEl.innerText =
 userData.withdraw || 0;
+
+}
 
 /* ========================= */
 /* COPY INVITE */

@@ -761,4 +761,10 @@ ${data.status}
 
 }
 
-loadWithdrawHistory();
+loadWithdrawHistory();window.submitWithdraw = async()=>{
+
+alert("Button Working");
+
+};
+
+

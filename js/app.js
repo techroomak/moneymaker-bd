@@ -565,18 +565,20 @@ window.submitWithdraw = async()=>{
 const method =
 document.getElementById("paymentMethod").value;
 
-const name =
+const accountName =
 document.getElementById("accountName").value;
 
-const number =
+const accountNumber =
 document.getElementById("accountNumber").value;
 
 const amount =
-document.getElementById("withdrawAmount").value;
+Number(
+document.getElementById("withdrawAmount").value
+);
 
 // EMPTY CHECK
 
-if(!name || !number || !amount){
+if(!accountName || !accountNumber || !amount){
 
 alert("Fill all fields");
 
@@ -598,13 +600,19 @@ await addDoc(
 collection(db,"withdraws"),
 {
 
+userId:userId,
+
+username:username,
+
 method:method,
 
-name:name,
+accountName:accountName,
 
-number:number,
+accountNumber:accountNumber,
 
 amount:amount,
+
+coin:amount * 10,
 
 status:"Pending",
 
@@ -622,6 +630,19 @@ alert(
 "Withdraw Request Submitted"
 );
 
-};
+// RESET
 
+document.getElementById(
+"accountName"
+).value = "";
+
+document.getElementById(
+"accountNumber"
+).value = "";
+
+document.getElementById(
+"withdrawAmount"
+).value = "";
+
+};
 

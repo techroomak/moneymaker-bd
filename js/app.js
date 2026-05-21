@@ -10,7 +10,13 @@ doc,
 setDoc,
 getDoc,
 updateDoc,
-increment
+increment,
+collection,
+addDoc,
+query,
+where,
+getDocs,
+orderBy
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 

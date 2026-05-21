@@ -152,10 +152,13 @@ style="display:none;"
 
 <!-- BUTTON -->
 
-<button class="withdraw-button">
+<button
+id="withdrawButton"
+class="withdraw-button"
+onclick="submitWithdraw()"
+>
 Request Withdraw
 </button>
-
 </div>
 
 </section>
@@ -170,7 +173,10 @@ Request Withdraw
 Transaction History
 </h2>
 
-<div class="history-list">
+<div
+id="historyList"
+class="history-list"
+>
 
 <!-- HISTORY ITEM -->
 

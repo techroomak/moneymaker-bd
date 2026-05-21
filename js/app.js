@@ -775,3 +775,103 @@ loadUserData();
 
 };
 
+/* ========================= */
+/* LEADERBOARD */
+/* ========================= */
+
+async function loadLeaderboard(){
+
+const board =
+document.getElementById(
+"leaderboardList"
+);
+
+if(!board) return;
+
+board.innerHTML = "";
+
+const q =
+query(
+collection(db,"users")
+);
+
+const snap =
+await getDocs(q);
+
+let users = [];
+
+snap.forEach((doc)=>{
+
+users.push(doc.data());
+
+});
+
+// SORT
+
+users.sort((a,b)=>
+(b.coin || 0) - (a.coin || 0)
+);
+
+// TOP USERS
+
+users.forEach((data,index)=>{
+
+const shortId =
+String(data.id)
+.slice(0,2)
++
+"***"
++
+String(data.id).slice(-2);
+
+board.innerHTML += `
+
+<div class="leaderboard-item">
+
+<div class="leaderboard-left">
+
+<div class="leaderboard-rank">
+#${index+1}
+</div>
+
+<img
+class="leaderboard-avatar"
+src="${data.photo}"
+/>
+
+<div>
+
+<h3 class="leaderboard-name">
+${data.username}
+</h3>
+
+<p class="leaderboard-id">
+ID: ${shortId}
+</p>
+
+</div>
+
+</div>
+
+<div class="leaderboard-right">
+
+<img
+class="leaderboard-coin-icon"
+src="https://cdn-icons-png.flaticon.com/512/272/272525.png"
+/>
+
+<span class="leaderboard-coin">
+${data.coin || 0}
+</span>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+loadLeaderboard();

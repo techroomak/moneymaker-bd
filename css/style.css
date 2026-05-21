@@ -744,8 +744,14 @@ background:linear-gradient(to right,#2563eb,#7c3aed);
 color:white;
 font-size:14px;
 font-weight:700;
+transition:.2s;
+cursor:pointer;
 }
 
+.withdraw-button:active{
+transform:scale(.97);
+opacity:.9;
+}
 /* ========================= */
 /* HISTORY */
 /* ========================= */

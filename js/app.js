@@ -132,6 +132,15 @@ referralLink;
 
 }
 
+/* ========================= */
+/* REFERRAL SYSTEM */
+/* ========================= */
+
+const startParam =
+tg.initDataUnsafe.start_param;
+
+const referrerId =
+startParam || null;
 
 /* ========================= */
 /* DATABASE */
@@ -223,7 +232,7 @@ refData.photo || ""
 });
 
 }
-
+}
 }
 
 /* ========================= */

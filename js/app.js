@@ -118,11 +118,6 @@ profileEl.src = photo;
 
 }
 
-if(inviteLinkEl){
-
-inviteLinkEl.innerText = referralLink;
-
-}
 /* ========================= */
 /* REFERRAL LINK */
 /* ========================= */
@@ -130,20 +125,13 @@ inviteLinkEl.innerText = referralLink;
 const referralLink =
 `https://t.me/emoneymakebd_bot/app?startapp=${userId}`;
 
-/* ========================= */
-/* REFERRAL SYSTEM */
-/* ========================= */
-
-const startParam =
-tg.initDataUnsafe.start_param;
-
-// REFERRER ID
-
-const referrerId =
-startParam || null;
+if(inviteLinkEl){
 
 inviteLinkEl.innerText =
 referralLink;
+
+}
+
 
 /* ========================= */
 /* DATABASE */
@@ -169,7 +157,7 @@ username:username,
 
 photo:photo,
 
-coin:0,
+coin:25,
 
 refer:0,
 
@@ -186,6 +174,40 @@ completedDailyTasks:[],
 createdAt:Date.now()
 
 });
+
+/* ========================= */
+/* REFERRAL BONUS */
+/* ========================= */
+
+const startParam =
+tg.initDataUnsafe.start_param;
+
+const referrerId =
+startParam || null;
+
+if(referrerId && referrerId !== userId){
+
+const refUserRef =
+doc(db,"users",String(referrerId));
+
+const refSnap =
+await getDoc(refUserRef);
+
+if(refSnap.exists()){
+
+await updateDoc(refUserRef,{
+
+coin:increment(25),
+
+refer:increment(1),
+
+referEarn:increment(25)
+
+});
+
+}
+
+}
 
 }
 
@@ -626,10 +648,17 @@ Number(
 document.getElementById("withdrawAmount").value
 );
 
+// EMPTY
 
-/* ========================= */
-/* VALIDATION */
-/* ========================= */
+if(!method || !accountName || !accountNumber || !amount){
+
+alert("Fill all fields");
+
+return;
+
+}
+
+// VALIDATION
 
 if(method === "recharge"){
 
@@ -657,11 +686,16 @@ return;
 
 }
 
-// EMPTY CHECK
+// COIN CHECK
 
-if(!accountName || !accountNumber || !amount){
+const needCoin =
+amount * 10;
 
-alert("Fill all fields");
+if(userData.coin < needCoin){
+
+alert(
+"Not Enough Coin"
+);
 
 return;
 
@@ -693,7 +727,7 @@ accountNumber:accountNumber,
 
 amount:amount,
 
-coin:amount * 10,
+coin:needCoin,
 
 status:"Pending",
 
@@ -701,6 +735,16 @@ createdAt:Date.now()
 
 }
 );
+
+// DEDUCT COIN
+
+await updateDoc(userRef,{
+
+coin:increment(-needCoin),
+
+withdraw:increment(amount)
+
+});
 
 // SUCCESS
 
@@ -724,6 +768,10 @@ document.getElementById(
 document.getElementById(
 "withdrawAmount"
 ).value = "";
+
+// RELOAD DATA
+
+loadUserData();
 
 };
 

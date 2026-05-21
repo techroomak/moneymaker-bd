@@ -181,8 +181,7 @@ background:linear-gradient(to bottom,#ffffff,#f3f4f6);
 padding:11px 6px;
 border-radius:18px;
 text-align:center;
-box-shadow:0 4px 10px rgb(0 0 0 /56%
-56%);
+box-shadow:0 4px 12px rgb(0 0 0 / 31%);
 border:1px solid #eef2ff;
 }
 
@@ -253,6 +252,10 @@ gap:8px;
 .gift-icon{
 width:58px;
 height:58px;
+display:inline-block;
+align-items:left;
+
+
 }
 
 .invite-title{
@@ -403,7 +406,9 @@ border-radius:20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-box-shadow:0 4px 12px rgba(0,0,0,.05);
+box-shadow:0 4px 12px rgb(0 0 0 / 31%);
+margin-top:5px;
+
 }
 
 .task-left{

@@ -12,3 +12,4 @@ document.body.innerHTML =
 throw new Error("Unauthorized");
 
 }
+console.log("NEW ADMIN AUTH");

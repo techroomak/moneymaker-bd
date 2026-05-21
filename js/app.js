@@ -480,3 +480,66 @@ info.style.display = "none";
 
 };
 
+/* ========================= */
+/* NOTIFICATION SYSTEM */
+/* ========================= */
+
+window.openNotification = ()=>{
+
+document.getElementById(
+"notificationPopup"
+).style.display = "flex";
+
+// HIDE RED DOT
+
+document.getElementById(
+"notifyDot"
+).style.display = "none";
+
+};
+
+window.closeNotification = ()=>{
+
+document.getElementById(
+"notificationPopup"
+).style.display = "none";
+
+};
+
+/* ========================= */
+/* AUTO REMOVE NOTIFICATION */
+/* ========================= */
+
+setTimeout(()=>{
+
+const items =
+document.querySelectorAll(
+".notification-item"
+);
+
+// REMOVE FIRST OLD NOTIFICATION
+
+if(items.length > 0){
+
+items[0].remove();
+
+}
+
+// CHECK REMAINING
+
+const leftItems =
+document.querySelectorAll(
+".notification-item"
+);
+
+// HIDE DOT IF EMPTY
+
+if(leftItems.length === 0){
+
+document.getElementById(
+"notifyDot"
+).style.display = "none";
+
+}
+
+},10000);

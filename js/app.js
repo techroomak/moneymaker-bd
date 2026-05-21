@@ -123,6 +123,27 @@ if(inviteLinkEl){
 inviteLinkEl.innerText = referralLink;
 
 }
+/* ========================= */
+/* REFERRAL LINK */
+/* ========================= */
+
+const referralLink =
+`https://t.me/emoneymakebd_bot/app?startapp=${userId}`;
+
+/* ========================= */
+/* REFERRAL SYSTEM */
+/* ========================= */
+
+const startParam =
+tg.initDataUnsafe.start_param;
+
+// REFERRER ID
+
+const referrerId =
+startParam || null;
+
+inviteLinkEl.innerText =
+referralLink;
 
 /* ========================= */
 /* DATABASE */
@@ -604,6 +625,37 @@ const amount =
 Number(
 document.getElementById("withdrawAmount").value
 );
+
+
+/* ========================= */
+/* VALIDATION */
+/* ========================= */
+
+if(method === "recharge"){
+
+if(amount < 20 || amount > 100){
+
+alert(
+"Recharge Limit: 20Tk - 100Tk"
+);
+
+return;
+
+}
+
+}else{
+
+if(amount < 500 || amount > 1000){
+
+alert(
+"Cashout Limit: 500Tk - 1000Tk"
+);
+
+return;
+
+}
+
+}
 
 // EMPTY CHECK
 

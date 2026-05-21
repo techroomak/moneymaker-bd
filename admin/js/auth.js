@@ -25,16 +25,7 @@ tg.initDataUnsafe.user;
 
 // BLOCK OUTSIDE TG
 
-if(!user){
 
-document.body.innerHTML =
-"<h1>Open Inside Telegram</h1>";
-
-throw new Error(
-"Telegram Only"
-);
-
-}
 
 /* ========================= */
 /* ADMIN CHECK */
@@ -48,36 +39,6 @@ await getDoc(adminRef);
 
 // NOT ADMIN
 
-if(!adminSnap.exists()){
-
-document.body.innerHTML =
-
-`
-
-<div style="
-
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:#0f172a;
-color:white;
-font-size:24px;
-font-family:sans-serif;
-
-">
-
-Access Denied
-
-</div>
-
-`;
-
-throw new Error(
-"Not Admin"
-);
-
-}
 
 // ADMIN OK
 

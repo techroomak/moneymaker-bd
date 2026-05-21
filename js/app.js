@@ -543,3 +543,216 @@ document.getElementById(
 }
 
 },10000);
+
+
+/* ========================= */
+/* WITHDRAW SYSTEM */
+/* ========================= */
+
+import {
+collection,
+addDoc,
+query,
+where,
+getDocs,
+orderBy
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* ========================= */
+/* SUBMIT WITHDRAW */
+/* ========================= */
+
+window.submitWithdraw = async()=>{
+
+const method =
+document.getElementById(
+"paymentMethod"
+).value;
+
+const name =
+document.getElementById(
+"accountName"
+).value;
+
+const number =
+document.getElementById(
+"accountNumber"
+).value;
+
+const amount =
+Number(
+document.getElementById(
+"withdrawAmount"
+).value
+);
+
+const neededCoin =
+amount * 10;
+
+// CHECK EMPTY
+
+if(!name || !number || !amount){
+
+tg.showAlert(
+"Fill all fields"
+);
+
+return;
+
+}
+
+// CHECK COIN
+
+if(userData.coin < neededCoin){
+
+tg.showAlert(
+"Not enough coin"
+);
+
+return;
+
+}
+
+// DAILY LIMIT
+
+if(dailyWithdrawCount >= 3){
+
+tg.showAlert(
+"Daily withdraw limit reached"
+);
+
+return;
+
+}
+
+// SAVE REQUEST
+
+await addDoc(
+collection(db,"withdraws"),
+{
+
+userId:userId,
+
+username:username,
+
+method:method,
+
+accountName:name,
+
+accountNumber:number,
+
+amount:amount,
+
+coin:neededCoin,
+
+status:"Pending",
+
+createdAt:Date.now()
+
+}
+);
+
+// DEDUCT COIN
+
+await updateDoc(userRef,{
+
+coin:increment(-neededCoin)
+
+});
+
+// UPDATE LIMIT
+
+dailyWithdrawCount++;
+
+// SUCCESS
+
+tg.showAlert(
+"Withdraw Request Submitted"
+);
+
+// RELOAD
+
+location.reload();
+
+};
+
+/* ========================= */
+/* LOAD HISTORY */
+/* ========================= */
+
+async function loadWithdrawHistory(){
+
+const historyList =
+document.getElementById(
+"historyList"
+);
+
+if(!historyList) return;
+
+historyList.innerHTML = "";
+
+const q =
+query(
+collection(db,"withdraws"),
+where("userId","==",userId)
+);
+
+const snap =
+await getDocs(q);
+
+snap.forEach((doc)=>{
+
+const data =
+doc.data();
+
+historyList.innerHTML += `
+
+<div class="history-item">
+
+<div class="history-left">
+
+<div class="history-method">
+
+<img
+class="history-method-icon"
+src="https://cdn-icons-png.flaticon.com/512/2489/2489756.png"
+/>
+
+<span>
+${data.method}
+</span>
+
+</div>
+
+<h3 class="history-title">
+${data.accountNumber}
+</h3>
+
+<p class="history-date">
+${new Date(data.createdAt).toLocaleString()}
+</p>
+
+</div>
+
+<div class="history-right">
+
+<div class="history-amount">
+${data.amount}Tk
+</div>
+
+<div class="history-status pending-status">
+${data.status}
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+loadWithdrawHistory();

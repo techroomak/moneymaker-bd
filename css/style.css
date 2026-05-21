@@ -299,7 +299,11 @@ width:18px;
 height:18px;
 filter:brightness(0) invert(1);
 }
-
+.invite-link{
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+}
 /* ========================= */
 /* SECTION TITLE */
 /* ========================= */
@@ -583,6 +587,11 @@ display:flex;
 justify-content:space-around;
 border-radius:24px 24px 0 0;
 box-shadow:0 -4px 12px rgba(0,0,0,.05);
+.bottom-nav{
+backdrop-filter:blur(10px);
+background:rgba(255,255,255,.95);
+}
+
 }
 
 .nav-item{
@@ -855,7 +864,10 @@ color:#16a34a;
 background:#fee2e2;
 color:#dc2626;
 }
-
+.withdraw-header{
+padding:16px 20px;
+min-height:90px;
+}
 /* ========================= */
 /* NOTIFICATION POPUP */
 /* ========================= */
@@ -992,4 +1004,8 @@ top:5px;
 right:5px;
 border:2px solid white;
 display:block;
+}
+.header-icon-box{
+width:42px;
+height:42px;
 }

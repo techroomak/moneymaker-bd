@@ -62,7 +62,7 @@ src="https://cdn-icons-png.flaticon.com/512/7641/7641727.png"
 
 ID:
 <span id="userid">
-123456789
+Loading...
 </span>
 
 </p>
@@ -77,14 +77,21 @@ ID:
 
 <!-- NOTIFICATION -->
 
-<div class="header-icon-box">
-
-<div class="notify-dot"></div>
+<div
+class="header-icon-box"
+onclick="openNotification()"
+>
 
 <img
 class="header-icon"
-src="https://cdn-icons-png.flaticon.com/512/3602/3602145.png"
+src="https://cdn-icons-png.flaticon.com/512/1827/1827392.png"
 />
+
+<div
+id="notifyDot"
+class="notify-dot"
+>
+</div>
 
 </div>
 
@@ -145,7 +152,7 @@ BDT
 
 <img
 class="money-bag-icon"
-src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png"
+src="https://png.pngtree.com/png-vector/20241217/ourmid/pngtree-clipart-of-a-money-bag-filled-with-gold-coins-featuring-dollar-png-image_14789520.png"
 />
 
 </div>
@@ -690,7 +697,7 @@ src="https://cdn-icons-png.flaticon.com/512/272/272525.png"
 </div>
 
 <button class="social-button">
-Go
+Claim
 </button>
 
 </div>
@@ -736,7 +743,7 @@ src="https://cdn-icons-png.flaticon.com/512/272/272525.png"
 </div>
 
 <button class="social-button">
-Go
+Claim
 </button>
 
 </div>
@@ -782,7 +789,7 @@ src="https://cdn-icons-png.flaticon.com/512/272/272525.png"
 </div>
 
 <button class="social-button">
-Go
+Claim
 </button>
 
 </div>
@@ -856,6 +863,99 @@ Withdraw
 </nav>
 
 </nav>
+
+</div>
+
+<!-- ========================= -->
+<!-- NOTIFICATION POPUP -->
+<!-- ========================= -->
+
+<div
+id="notificationPopup"
+class="popup-overlay"
+>
+
+<div class="popup-card">
+
+<!-- HEADER -->
+
+<div class="popup-header">
+
+<h2 class="popup-title">
+Notifications
+</h2>
+
+<button
+class="popup-close"
+onclick="closeNotification()"
+>
+✕
+</button>
+
+</div>
+
+<!-- LIST -->
+
+<div
+id="notificationList"
+class="notification-list"
+>
+
+<!-- ITEM -->
+
+<div class="notification-item">
+
+<div class="notification-top">
+
+<h3 class="notification-title">
+🎉 New Event Started
+</h3>
+
+<span class="notification-badge">
+NEW
+</span>
+
+</div>
+
+<p class="notification-text">
+Complete daily tasks and earn bonus reward coins today.
+</p>
+
+<p class="notification-time">
+2 Hours Ago
+</p>
+
+</div>
+
+<!-- ITEM -->
+
+<div class="notification-item">
+
+<div class="notification-top">
+
+<h3 class="notification-title">
+💳 Withdraw Update
+</h3>
+
+<span class="notification-badge blue-badge">
+INFO
+</span>
+
+</div>
+
+<p class="notification-text">
+Your withdraw request is currently processing.
+</p>
+
+<p class="notification-time">
+5 Hours Ago
+</p>
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 

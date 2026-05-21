@@ -9,8 +9,8 @@ if(key !== "AKADMIN2026"){
 document.body.innerHTML =
 "Access Denied";
 
-throw new Error("Unauthorized");
+throw new Error(
+"Unauthorized"
+);
 
 }
-
-console.log("Admin Access Granted");

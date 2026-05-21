@@ -123,7 +123,7 @@ profileEl.src = photo;
 /* ========================= */
 
 const referralLink =
-`https://t.me/emoneymakebd_bot/app?startapp=${userId}`;
+`https://t.me/emoneymakebd_bot?startapp=${userId}`;
 
 if(inviteLinkEl){
 
@@ -171,6 +171,12 @@ completedSocialTasks:[],
 
 completedDailyTasks:[],
 
+joinedBy:referrerId || "",
+
+referrerName:"",
+
+referrerPhoto:"",
+
 createdAt:Date.now()
 
 });
@@ -178,12 +184,6 @@ createdAt:Date.now()
 /* ========================= */
 /* REFERRAL BONUS */
 /* ========================= */
-
-const startParam =
-tg.initDataUnsafe.start_param;
-
-const referrerId =
-startParam || null;
 
 if(referrerId && referrerId !== userId){
 
@@ -195,6 +195,11 @@ await getDoc(refUserRef);
 
 if(refSnap.exists()){
 
+const refData =
+refSnap.data();
+
+// UPDATE REFERRER
+
 await updateDoc(refUserRef,{
 
 coin:increment(25),
@@ -205,7 +210,17 @@ referEarn:increment(25)
 
 });
 
-}
+// SAVE REFERRER INFO
+
+await updateDoc(userRef,{
+
+referrerName:
+refData.username || "",
+
+referrerPhoto:
+refData.photo || ""
+
+});
 
 }
 
@@ -875,3 +890,83 @@ ${data.coin || 0}
 }
 
 loadLeaderboard();
+
+/* ========================= */
+/* LOAD WITHDRAW HISTORY */
+/* ========================= */
+
+async function loadWithdrawHistory(){
+
+const historyList =
+document.getElementById(
+"historyList"
+);
+
+if(!historyList) return;
+
+historyList.innerHTML = "";
+
+const q =
+query(
+collection(db,"withdraws"),
+where("userId","==",userId)
+);
+
+const snap =
+await getDocs(q);
+
+snap.forEach((doc)=>{
+
+const data =
+doc.data();
+
+historyList.innerHTML += `
+
+<div class="history-item">
+
+<div class="history-left">
+
+<div class="history-method">
+
+<img
+class="history-method-icon"
+src="https://cdn-icons-png.flaticon.com/512/2489/2489756.png"
+/>
+
+<span>
+${data.method}
+</span>
+
+</div>
+
+<h3 class="history-title">
+${data.accountNumber}
+</h3>
+
+<p class="history-date">
+${new Date(data.createdAt).toLocaleString()}
+</p>
+
+</div>
+
+<div class="history-right">
+
+<div class="history-amount">
+${data.amount}Tk
+</div>
+
+<div class="history-status pending-status">
+${data.status}
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+loadWithdrawHistory();

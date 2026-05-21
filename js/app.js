@@ -555,15 +555,6 @@ document.getElementById(
 /* WITHDRAW SYSTEM */
 /* ========================= */
 
-import {
-collection,
-addDoc,
-query,
-where,
-getDocs,
-orderBy
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 /* ========================= */
 /* SUBMIT WITHDRAW */
@@ -630,10 +621,6 @@ btn.innerText =
 alert(
 "Withdraw Request Submitted"
 );
-
-};
-
-alert("Button Working");
 
 };
 

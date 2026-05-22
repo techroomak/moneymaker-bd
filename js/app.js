@@ -62,6 +62,14 @@ user.username;
 const photo =
 user.photo_url;
 
+await updateDoc(
+doc(db,"users",String(user.id)),
+{
+lastActive: Date.now()
+}
+);
+
+
 /* ========================= */
 /* HTML ELEMENTS */
 /* ========================= */
@@ -188,6 +196,7 @@ referrerPhoto:"",
 
 createdAt:Date.now()
 
+lastActive:Date.now()
 });
 
 /* ========================= */

@@ -186,9 +186,9 @@ referrerName:"",
 
 referrerPhoto:"",
 
-createdAt:Date.now()
+createdAt:Date.now(),
 
-lastActive:Date.now(),
+lastActive:Date.now()
 });
 
 /* ========================= */

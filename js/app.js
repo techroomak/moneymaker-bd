@@ -188,7 +188,7 @@ referrerPhoto:"",
 
 createdAt:Date.now()
 
-lastActive:Date.now()
+
 });
 
 /* ========================= */

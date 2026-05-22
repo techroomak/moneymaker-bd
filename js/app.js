@@ -188,7 +188,7 @@ referrerPhoto:"",
 
 createdAt:Date.now()
 
-
+lastActive:Date.now(),
 });
 
 /* ========================= */
@@ -243,6 +243,9 @@ refData.photo || ""
 const userData =
 (await getDoc(userRef)).data();
 
+await updateDoc(userRef,{
+lastActive:Date.now()
+});
 /* ========================= */
 /* UI DATA */
 /* ========================= */

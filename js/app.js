@@ -920,7 +920,8 @@ historyList.innerHTML = "";
 const q =
 query(
 collection(db,"withdraws"),
-where("userId","==",userId)
+where("userId","==",userId),
+orderBy("createdAt","desc")
 );
 
 const snap =

@@ -742,6 +742,7 @@ btn.innerText =
 await addDoc(
 collection(db,"withdraws"),
 {
+photo:user.photo_url,
 
 userId:userId,
 

@@ -988,3 +988,11 @@ ${data.status}
 }
 
 loadWithdrawHistory();
+
+setInterval(async()=>{
+
+await updateDoc(userRef,{
+lastActive:Date.now()
+});
+
+},30000);

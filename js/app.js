@@ -765,8 +765,6 @@ createdAt:Date.now()
 }
 );
 
-await addDoc(...);
-
 await updateDoc(userRef,{
 pending:increment(1)
 });

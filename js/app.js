@@ -1042,10 +1042,19 @@ ${data.status}
 
 loadWithdrawHistory();
 
-setInterval(async()=>{
-
 await updateDoc(userRef,{
+online:true,
 lastActive:Date.now()
 });
 
-},1000);
+window.addEventListener(
+"beforeunload",
+async()=>{
+
+await updateDoc(userRef,{
+online:false,
+lastActive:Date.now()
+});
+
+}
+);

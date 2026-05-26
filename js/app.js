@@ -770,8 +770,6 @@ await updateDoc(userRef,{
 
 coin:increment(-needCoin),
 
-withdraw:increment(amount)
-
 });
 
 // SUCCESS

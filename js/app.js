@@ -975,10 +975,10 @@ historyList.innerHTML += `
 class="history-method-icon"
 src="${
 data.method === 'bkash'
-? 'https://images.seeklogo.com/logo-png/47/3/bkash-logo-png_seeklogo-471379.png'
+? 'https://www.logo.wine/a/logo/BKash/BKash-Icon-Logo.wine.svg'
 : data.method === 'nagad'
-? 'https://seeklogo.com/images/N/nagad-logo-7A70CCFEE0-seeklogo.com.png'
-: 'https://cdn-icons-png.flaticon.com/128/1018/1018197.png'
+? 'https://www.logo.wine/a/logo/Nagad/Nagad-Vertical-Logo.wine.svg'
+: 'https://cdn-icons-png.flaticon.com/128/9418/9418116.png'
 }"
 />
 

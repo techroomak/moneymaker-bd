@@ -659,7 +659,6 @@ document.getElementById(
 /* ========================= */
 /* SUBMIT WITHDRAW */
 /* ========================= */
-
 window.submitWithdraw = async()=>{
 
 const method =
@@ -676,9 +675,14 @@ Number(
 document.getElementById("withdrawAmount").value
 );
 
-// EMPTY
+/* EMPTY */
 
-if(!method || !accountName || !accountNumber || !amount){
+if(
+!method ||
+!accountName ||
+!accountNumber ||
+!amount
+){
 
 alert("Fill all fields");
 
@@ -686,7 +690,7 @@ return;
 
 }
 
-// VALIDATION
+/* VALIDATION */
 
 if(method === "recharge"){
 
@@ -714,39 +718,48 @@ return;
 
 }
 
-// COIN CHECK
+/* COIN CHECK */
 
 const needCoin =
 amount * 10;
 
-if(userData.coin < needCoin){
+const latestSnap =
+await getDoc(userRef);
 
-alert(
-"Not Enough Coin"
-);
+const latestData =
+latestSnap.data();
+
+if((latestData.coin || 0) < needCoin){
+
+alert("Not Enough Coin");
 
 return;
 
 }
 
-// BUTTON
+/* BUTTON */
 
 const btn =
-document.getElementById("withdrawButton");
+document.getElementById(
+"withdrawButton"
+);
+
+btn.disabled = true;
 
 btn.innerText =
 "Processing...";
 
-// SAVE FIREBASE
+/* SAVE */
 
 await addDoc(
 collection(db,"withdraws"),
 {
-photo:user.photo_url,
 
 userId:userId,
 
 username:username,
+
+photo:user.photo_url,
 
 method:method,
 
@@ -760,24 +773,28 @@ coin:needCoin,
 
 status:"Pending",
 
-createdAt:Date.now()
+createdAt:Date.now(),
+
+requestTime:
+new Date()
+.toLocaleString()
 
 }
 );
+
+/* PENDING */
 
 await updateDoc(userRef,{
 pending:increment(1)
 });
 
-// DEDUCT COIN
+/* DEDUCT COIN */
 
 await updateDoc(userRef,{
-
-coin:increment(-needCoin),
-
+coin:increment(-needCoin)
 });
 
-// SUCCESS
+/* SUCCESS */
 
 btn.innerText =
 "Success";
@@ -786,7 +803,7 @@ alert(
 "Withdraw Request Submitted"
 );
 
-// RESET
+/* RESET */
 
 document.getElementById(
 "accountName"
@@ -800,9 +817,18 @@ document.getElementById(
 "withdrawAmount"
 ).value = "";
 
-// RELOAD DATA
-
 loadUserData();
+
+/* BUTTON RESET */
+
+setTimeout(()=>{
+
+btn.disabled = false;
+
+btn.innerText =
+"Withdraw";
+
+},2000);
 
 };
 
@@ -911,7 +937,7 @@ loadLeaderboard();
 /* LOAD WITHDRAW HISTORY */
 /* ========================= */
 
-async function loadWithdrawHistory(){
+function loadWithdrawHistory(){
 
 const historyList =
 document.getElementById(
@@ -920,8 +946,6 @@ document.getElementById(
 
 if(!historyList) return;
 
-historyList.innerHTML = "";
-
 const q =
 query(
 collection(db,"withdraws"),
@@ -929,10 +953,11 @@ where("userId","==",userId),
 orderBy("createdAt","desc")
 );
 
-const snap =
-await getDocs(q);
+onSnapshot(q,(snapshot)=>{
 
-snap.forEach((doc)=>{
+historyList.innerHTML = "";
+
+snapshot.forEach((doc)=>{
 
 const data =
 doc.data();
@@ -955,6 +980,7 @@ data.method === 'bkash'
 : 'https://cdn-icons-png.flaticon.com/128/1018/1018197.png'
 }"
 />
+
 <span>
 ${data.method}
 </span>
@@ -977,8 +1003,28 @@ ${new Date(data.createdAt).toLocaleString()}
 ${data.amount}Tk
 </div>
 
-<div class="history-status pending-status">
+<div class="history-status
+${
+
+data.status === "Success"
+?
+"success-status"
+
+:
+
+data.status === "Cancelled"
+?
+"cancel-status"
+
+:
+
+"pending-status"
+
+}
+">
+
 ${data.status}
+
 </div>
 
 </div>
@@ -986,6 +1032,8 @@ ${data.status}
 </div>
 
 `;
+
+});
 
 });
 
@@ -999,4 +1047,4 @@ await updateDoc(userRef,{
 lastActive:Date.now()
 });
 
-},30000);
+},1000);

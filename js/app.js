@@ -178,6 +178,7 @@ withdraw:0,
 dailyEarn:0,
 
 dailyAds:0,
+totalAds:0,
 lastAdWatch:0,
 
 ad1Count:0,
@@ -1286,7 +1287,7 @@ coin:increment(reward),
 dailyEarn:increment(reward),
 
 dailyAds:increment(1),
-
+totalAds:increment(1),
 ad1Count:increment(1),
 
 ad1Last:Date.now(),
@@ -1369,7 +1370,7 @@ coin:increment(reward),
 dailyEarn:increment(reward),
 
 dailyAds:increment(1),
-
+totalAds:increment(1),
 ad2Count:increment(1),
 
 ad2Last:Date.now(),
@@ -1452,7 +1453,7 @@ coin:increment(reward),
 dailyEarn:increment(reward),
 
 dailyAds:increment(1),
-
+totalAds:increment(1),
 ad3Count:increment(1),
 
 ad3Last:Date.now(),
@@ -1535,7 +1536,7 @@ coin:increment(reward),
 dailyEarn:increment(reward),
 
 dailyAds:increment(1),
-
+totalAds:increment(1),
 ad4Count:increment(1),
 
 ad4Last:Date.now(),

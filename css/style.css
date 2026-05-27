@@ -840,8 +840,8 @@ margin-bottom:5px;
 }
 
 .history-method-icon{
-width:18px;
-height:18px;
+width:30px;
+height:30px;
 object-fit:contain;
 }
 
@@ -863,7 +863,7 @@ color:#16a34a;
 }
 
 .failed-status{
-background:#fee2e2;
+background:#ff4747;
 color:#dc2626;
 }
 .withdraw-header{

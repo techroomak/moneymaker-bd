@@ -1111,18 +1111,11 @@ settings.notice || "";
 
 document
 .querySelectorAll(".claim-button")
-.forEach((button)=>{
+.forEach((button,index)=>{
 
 button.onclick = async()=>{
 
 if(button.disabled) return;
-
-const reward =
-Number(
-button.dataset.reward
-);
-
-/* DISABLE */
 
 button.disabled = true;
 
@@ -1132,9 +1125,19 @@ button.innerHTML;
 button.innerText =
 "Loading Ad...";
 
-/* SHOW AD */
+const reward =
+Number(
+button.dataset.reward
+);
 
-show_11035690('pop')
+/* ========================= */
+/* BUTTON 1 + 2 */
+/* REWARDED INTERSTITIAL */
+/* ========================= */
+
+if(index === 0 || index === 1){
+
+show_11035690()
 
 .then(async()=>{
 
@@ -1148,7 +1151,7 @@ dailyEarn:increment(reward)
 
 });
 
-/* UPDATE UI */
+/* UPDATE */
 
 await loadUserData();
 
@@ -1194,6 +1197,78 @@ originalText;
 alert("Ad Not Completed");
 
 });
+
+}
+
+/* ========================= */
+/* BUTTON 3 + 4 */
+/* POPUP WEBSITE ADS */
+/* ========================= */
+
+else{
+
+show_11035690('pop')
+
+.then(async()=>{
+
+/* REWARD */
+
+await updateDoc(userRef,{
+
+coin:increment(reward),
+
+dailyEarn:increment(reward)
+
+});
+
+/* UPDATE */
+
+await loadUserData();
+
+/* SUCCESS */
+
+button.innerHTML =
+"✅ Claimed";
+
+/* COOLDOWN */
+
+let sec = 20;
+
+const timer =
+setInterval(()=>{
+
+button.innerText =
+`Wait ${sec}s`;
+
+sec--;
+
+if(sec < 0){
+
+clearInterval(timer);
+
+button.disabled = false;
+
+button.innerHTML =
+originalText;
+
+}
+
+},1000);
+
+})
+
+.catch(()=>{
+
+button.disabled = false;
+
+button.innerHTML =
+originalText;
+
+alert("Ad Not Completed");
+
+});
+
+}
 
 };
 

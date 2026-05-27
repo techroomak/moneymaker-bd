@@ -177,6 +177,19 @@ withdraw:0,
 
 dailyEarn:0,
 
+dailyAds:0,
+lastAdWatch:0,
+
+ad1Count:0,
+ad2Count:0,
+ad3Count:0,
+ad4Count:0,
+
+ad1Last:0,
+ad2Last:0,
+ad3Last:0,
+ad4Last:0,
+
 completedSocialTasks:[],
 
 completedDailyTasks:[],
@@ -1138,12 +1151,79 @@ await getDoc(userRef);
 const userData =
 userSnap.data();
 
+/* SETTINGS */
+
+let limit = 0;
+let cooldown = 0;
+let adCountField = "";
+let adLastField = "";
+
+/* BUTTON 1 */
+
+if(index === 0){
+
+limit = 15;
+cooldown = 15;
+
+adCountField =
+"ad1Count";
+
+adLastField =
+"ad1Last";
+
+}
+
+/* BUTTON 2 */
+
+else if(index === 1){
+
+limit = 10;
+cooldown = 20;
+
+adCountField =
+"ad2Count";
+
+adLastField =
+"ad2Last";
+
+}
+
+/* BUTTON 3 */
+
+else if(index === 2){
+
+limit = 5;
+cooldown = 30;
+
+adCountField =
+"ad3Count";
+
+adLastField =
+"ad3Last";
+
+}
+
+/* BUTTON 4 */
+
+else if(index === 3){
+
+limit = 3;
+cooldown = 45;
+
+adCountField =
+"ad4Count";
+
+adLastField =
+"ad4Last";
+
+}
+
 /* DAILY LIMIT */
 
-if((userData.dailyAds || 0) >= 30){
+if((userData[adCountField]) >= limit){
 
 const lastWatch =
-userData.lastAdWatch || 0;
+userData[adLastField];
 
 const nextTime =
 lastWatch + (24 * 60 * 60 * 1000);
@@ -1191,7 +1271,6 @@ return;
 
 /* ========================= */
 /* BUTTON 1 */
-/* WATCH AD */
 /* ========================= */
 
 if(index === 0){
@@ -1199,8 +1278,6 @@ if(index === 0){
 show_11035690()
 
 .then(async()=>{
-
-/* REWARD */
 
 await updateDoc(userRef,{
 
@@ -1210,15 +1287,15 @@ dailyEarn:increment(reward),
 
 dailyAds:increment(1),
 
+ad1Count:increment(1),
+
+ad1Last:Date.now(),
+
 lastAdWatch:Date.now()
 
 });
 
-/* UPDATE UI */
-
 await loadUserData();
-
-/* POPUP */
 
 tg.showPopup({
 
@@ -1234,14 +1311,10 @@ type:"ok"
 
 });
 
-/* SUCCESS */
-
 button.innerHTML =
 "✅ Claimed";
 
-/* COOLDOWN */
-
-let sec = 15;
+let sec = cooldown;
 
 const timer =
 setInterval(()=>{
@@ -1281,7 +1354,6 @@ alert("Ad Not Completed");
 
 /* ========================= */
 /* BUTTON 2 */
-/* VIDEO AD */
 /* ========================= */
 
 else if(index === 1){
@@ -1297,6 +1369,10 @@ coin:increment(reward),
 dailyEarn:increment(reward),
 
 dailyAds:increment(1),
+
+ad2Count:increment(1),
+
+ad2Last:Date.now(),
 
 lastAdWatch:Date.now()
 
@@ -1321,7 +1397,7 @@ type:"ok"
 button.innerHTML =
 "✅ Claimed";
 
-let sec = 15;
+let sec = cooldown;
 
 const timer =
 setInterval(()=>{
@@ -1361,7 +1437,6 @@ alert("Video Ad Not Completed");
 
 /* ========================= */
 /* BUTTON 3 */
-/* PREMIUM AD */
 /* ========================= */
 
 else if(index === 2){
@@ -1377,6 +1452,10 @@ coin:increment(reward),
 dailyEarn:increment(reward),
 
 dailyAds:increment(1),
+
+ad3Count:increment(1),
+
+ad3Last:Date.now(),
 
 lastAdWatch:Date.now()
 
@@ -1401,7 +1480,7 @@ type:"ok"
 button.innerHTML =
 "✅ Claimed";
 
-let sec = 15;
+let sec = cooldown;
 
 const timer =
 setInterval(()=>{
@@ -1441,7 +1520,6 @@ alert("Premium Ad Not Completed");
 
 /* ========================= */
 /* BUTTON 4 */
-/* SPONSOR AD */
 /* ========================= */
 
 else if(index === 3){
@@ -1457,6 +1535,10 @@ coin:increment(reward),
 dailyEarn:increment(reward),
 
 dailyAds:increment(1),
+
+ad4Count:increment(1),
+
+ad4Last:Date.now(),
 
 lastAdWatch:Date.now()
 
@@ -1481,7 +1563,7 @@ type:"ok"
 button.innerHTML =
 "✅ Claimed";
 
-let sec = 15;
+let sec = cooldown;
 
 const timer =
 setInterval(()=>{

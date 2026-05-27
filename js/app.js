@@ -1117,19 +1117,28 @@ button.onclick = async()=>{
 
 if(button.disabled) return;
 
-/* OPEN AD */
-
-window.open(
-"https://www.profitableratecpm.com/example",
-"_blank"
-);
-
-/* REWARD */
-
 const reward =
 Number(
 button.dataset.reward
 );
+
+/* DISABLE */
+
+button.disabled = true;
+
+const originalText =
+button.innerHTML;
+
+button.innerText =
+"Loading Ad...";
+
+/* SHOW AD */
+
+show_11035690('pop')
+
+.then(async()=>{
+
+/* REWARD */
 
 await updateDoc(userRef,{
 
@@ -1139,31 +1148,28 @@ dailyEarn:increment(reward)
 
 });
 
-/* RELOAD */
+/* UPDATE UI */
 
 await loadUserData();
 
+/* SUCCESS */
+
+button.innerHTML =
+"✅ Claimed";
+
 /* COOLDOWN */
 
-button.disabled = true;
-
-const originalText =
-button.innerHTML;
-
 let sec = 15;
-
-button.innerText =
-`Wait ${sec}s`;
 
 const timer =
 setInterval(()=>{
 
-sec--;
-
 button.innerText =
 `Wait ${sec}s`;
 
-if(sec <= 0){
+sec--;
+
+if(sec < 0){
 
 clearInterval(timer);
 
@@ -1175,6 +1181,19 @@ originalText;
 }
 
 },1000);
+
+})
+
+.catch(()=>{
+
+button.disabled = false;
+
+button.innerHTML =
+originalText;
+
+alert("Ad Not Completed");
+
+});
 
 };
 

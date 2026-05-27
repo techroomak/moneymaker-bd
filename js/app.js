@@ -167,7 +167,7 @@ username:username,
 
 photo:photo,
 
-coin:25,
+coin:5,
 
 refer:0,
 
@@ -227,11 +227,11 @@ refSnap.data();
 
 await updateDoc(refUserRef,{
 
-coin:increment(25),
+coin:increment(10),
 
 refer:increment(1),
 
-referEarn:increment(25)
+referEarn:increment(10)
 
 });
 

@@ -1142,24 +1142,48 @@ userSnap.data();
 
 if((userData.dailyAds || 0) >= 30){
 
-tg.showPopup({
+const lastWatch =
+userData.lastAdWatch || 0;
 
-title:"Daily Limit",
+const nextTime =
+lastWatch + (24 * 60 * 60 * 1000);
 
-message:"Daily Ads Limit Reached",
+const interval =
+setInterval(()=>{
 
-buttons:[
-{
-type:"ok"
-}
-]
+const now =
+Date.now();
 
-});
+const diff =
+nextTime - now;
+
+if(diff <= 0){
+
+clearInterval(interval);
 
 button.disabled = false;
 
 button.innerHTML =
 originalText;
+
+return;
+
+}
+
+const h =
+Math.floor(diff / 3600000);
+
+const m =
+Math.floor((diff % 3600000) / 60000);
+
+const s =
+Math.floor((diff % 60000) / 1000);
+
+button.innerText =
+
+`${h}h ${m}m ${s}s`;
+
+},1000);
 
 return;
 
@@ -1217,7 +1241,7 @@ button.innerHTML =
 
 /* COOLDOWN */
 
-let sec = 60;
+let sec = 15;
 
 const timer =
 setInterval(()=>{
@@ -1297,7 +1321,7 @@ type:"ok"
 button.innerHTML =
 "✅ Claimed";
 
-let sec = 90;
+let sec = 15;
 
 const timer =
 setInterval(()=>{
@@ -1377,7 +1401,7 @@ type:"ok"
 button.innerHTML =
 "✅ Claimed";
 
-let sec = 120;
+let sec = 15;
 
 const timer =
 setInterval(()=>{
@@ -1457,7 +1481,7 @@ type:"ok"
 button.innerHTML =
 "✅ Claimed";
 
-let sec = 180;
+let sec = 15;
 
 const timer =
 setInterval(()=>{

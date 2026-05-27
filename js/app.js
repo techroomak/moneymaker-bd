@@ -1130,6 +1130,41 @@ Number(
 button.dataset.reward
 );
 
+/* USER DATA */
+
+const userSnap =
+await getDoc(userRef);
+
+const userData =
+userSnap.data();
+
+/* DAILY LIMIT */
+
+if((userData.dailyAds || 0) >= 30){
+
+tg.showPopup({
+
+title:"Daily Limit",
+
+message:"Daily Ads Limit Reached",
+
+buttons:[
+{
+type:"ok"
+}
+]
+
+});
+
+button.disabled = false;
+
+button.innerHTML =
+originalText;
+
+return;
+
+}
+
 /* ========================= */
 /* BUTTON 1 */
 /* WATCH AD */
@@ -1141,13 +1176,21 @@ show_11035690()
 
 .then(async()=>{
 
+/* REWARD */
+
 await updateDoc(userRef,{
 
 coin:increment(reward),
 
-dailyEarn:increment(reward)
+dailyEarn:increment(reward),
+
+dailyAds:increment(1),
+
+lastAdWatch:Date.now()
 
 });
+
+/* UPDATE UI */
 
 await loadUserData();
 
@@ -1174,7 +1217,7 @@ button.innerHTML =
 
 /* COOLDOWN */
 
-let sec = 15;
+let sec = 60;
 
 const timer =
 setInterval(()=>{
@@ -1227,7 +1270,11 @@ await updateDoc(userRef,{
 
 coin:increment(reward),
 
-dailyEarn:increment(reward)
+dailyEarn:increment(reward),
+
+dailyAds:increment(1),
+
+lastAdWatch:Date.now()
 
 });
 
@@ -1250,7 +1297,7 @@ type:"ok"
 button.innerHTML =
 "✅ Claimed";
 
-let sec = 20;
+let sec = 90;
 
 const timer =
 setInterval(()=>{
@@ -1303,7 +1350,11 @@ await updateDoc(userRef,{
 
 coin:increment(reward),
 
-dailyEarn:increment(reward)
+dailyEarn:increment(reward),
+
+dailyAds:increment(1),
+
+lastAdWatch:Date.now()
 
 });
 
@@ -1326,7 +1377,7 @@ type:"ok"
 button.innerHTML =
 "✅ Claimed";
 
-let sec = 25;
+let sec = 120;
 
 const timer =
 setInterval(()=>{
@@ -1379,7 +1430,11 @@ await updateDoc(userRef,{
 
 coin:increment(reward),
 
-dailyEarn:increment(reward)
+dailyEarn:increment(reward),
+
+dailyAds:increment(1),
+
+lastAdWatch:Date.now()
 
 });
 
@@ -1402,7 +1457,7 @@ type:"ok"
 button.innerHTML =
 "✅ Claimed";
 
-let sec = 30;
+let sec = 180;
 
 const timer =
 setInterval(()=>{

@@ -1128,7 +1128,7 @@ button.innerText =
 `Wait ${sec}s`;
 
 const timer =
-setInterval(()=>{
+setInterval(async()=>{
 
 sec--;
 
@@ -1144,7 +1144,21 @@ Number(
 button.dataset.reward
 );
 
-await window.claimCoin(reward);
+/* CLAIM */
+
+await updateDoc(userRef,{
+
+coin:increment(reward),
+
+dailyEarn:increment(reward)
+
+});
+
+/* RELOAD */
+
+await loadUserData();
+
+/* SUCCESS */
 
 button.innerHTML =
 "✅ Claimed";

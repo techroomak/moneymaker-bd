@@ -1104,6 +1104,7 @@ settings.notice || "";
 }
 
 });
+
 /* ========================= */
 /* CLAIM BUTTON SYSTEM */
 /* ========================= */
@@ -1143,7 +1144,7 @@ Number(
 button.dataset.reward
 );
 
-await claimCoin(reward);
+await window.claimCoin(reward);
 
 button.innerHTML =
 "✅ Claimed";

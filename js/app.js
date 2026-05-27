@@ -1047,14 +1047,10 @@ online:true,
 lastActive:Date.now()
 });
 
-window.addEventListener(
-"beforeunload",
-async()=>{
+setInterval(async()=>{
 
 await updateDoc(userRef,{
-online:false,
 lastActive:Date.now()
 });
 
-}
-);
+},5000);

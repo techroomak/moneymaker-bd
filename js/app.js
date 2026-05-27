@@ -1164,7 +1164,7 @@ let adLastField = "";
 if(index === 0){
 
 limit = 15;
-cooldown = 15;
+cooldown = 10;
 
 adCountField =
 "ad1Count";
@@ -1179,7 +1179,7 @@ adLastField =
 else if(index === 1){
 
 limit = 10;
-cooldown = 20;
+cooldown = 10;
 
 adCountField =
 "ad2Count";
@@ -1209,7 +1209,7 @@ adLastField =
 else if(index === 3){
 
 limit = 3;
-cooldown = 45;
+cooldown = 30;
 
 adCountField =
 "ad4Count";

@@ -1106,7 +1106,7 @@ settings.notice || "";
 });
 
 /* ========================= */
-/* CLAIM BUTTON SYSTEM */
+/* ADS BUTTON SYSTEM */
 /* ========================= */
 
 document
@@ -1117,34 +1117,19 @@ button.onclick = async()=>{
 
 if(button.disabled) return;
 
-button.disabled = true;
+/* OPEN AD */
 
-const originalText =
-button.innerHTML;
+window.open(
+"https://www.profitableratecpm.com/example",
+"_blank"
+);
 
-let sec = 5;
-
-button.innerText =
-`Wait ${sec}s`;
-
-const timer =
-setInterval(async()=>{
-
-sec--;
-
-button.innerText =
-`Wait ${sec}s`;
-
-if(sec <= 0){
-
-clearInterval(timer);
+/* REWARD */
 
 const reward =
 Number(
 button.dataset.reward
 );
-
-/* CLAIM */
 
 await updateDoc(userRef,{
 
@@ -1158,19 +1143,34 @@ dailyEarn:increment(reward)
 
 await loadUserData();
 
-/* SUCCESS */
+/* COOLDOWN */
 
-button.innerHTML =
-"✅ Claimed";
+button.disabled = true;
 
-setTimeout(()=>{
+const originalText =
+button.innerHTML;
+
+let sec = 15;
+
+button.innerText =
+`Wait ${sec}s`;
+
+const timer =
+setInterval(()=>{
+
+sec--;
+
+button.innerText =
+`Wait ${sec}s`;
+
+if(sec <= 0){
+
+clearInterval(timer);
 
 button.disabled = false;
 
 button.innerHTML =
 originalText;
-
-},3000);
 
 }
 

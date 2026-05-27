@@ -1131,17 +1131,15 @@ button.dataset.reward
 );
 
 /* ========================= */
-/* BUTTON 1 + 2 */
-/* REWARDED INTERSTITIAL */
+/* BUTTON 1 */
+/* WATCH AD */
 /* ========================= */
 
-if(index === 0 || index === 1){
+if(index === 0){
 
 show_11035690()
 
 .then(async()=>{
-
-/* REWARD */
 
 await updateDoc(userRef,{
 
@@ -1151,9 +1149,23 @@ dailyEarn:increment(reward)
 
 });
 
-/* UPDATE */
-
 await loadUserData();
+
+/* POPUP */
+
+tg.showPopup({
+
+title:"Reward Added",
+
+message:`${reward} Coin Added Successfully`,
+
+buttons:[
+{
+type:"ok"
+}
+]
+
+});
 
 /* SUCCESS */
 
@@ -1201,17 +1213,15 @@ alert("Ad Not Completed");
 }
 
 /* ========================= */
-/* BUTTON 3 + 4 */
-/* POPUP WEBSITE ADS */
+/* BUTTON 2 */
+/* VIDEO AD */
 /* ========================= */
 
-else{
+else if(index === 1){
 
-show_11035690('pop')
+show_11035690()
 
 .then(async()=>{
-
-/* REWARD */
 
 await updateDoc(userRef,{
 
@@ -1221,16 +1231,24 @@ dailyEarn:increment(reward)
 
 });
 
-/* UPDATE */
-
 await loadUserData();
 
-/* SUCCESS */
+tg.showPopup({
+
+title:"Video Reward",
+
+message:`${reward} Coin Added Successfully`,
+
+buttons:[
+{
+type:"ok"
+}
+]
+
+});
 
 button.innerHTML =
 "✅ Claimed";
-
-/* COOLDOWN */
 
 let sec = 20;
 
@@ -1264,7 +1282,159 @@ button.disabled = false;
 button.innerHTML =
 originalText;
 
-alert("Ad Not Completed");
+alert("Video Ad Not Completed");
+
+});
+
+}
+
+/* ========================= */
+/* BUTTON 3 */
+/* PREMIUM AD */
+/* ========================= */
+
+else if(index === 2){
+
+show_11035690('pop')
+
+.then(async()=>{
+
+await updateDoc(userRef,{
+
+coin:increment(reward),
+
+dailyEarn:increment(reward)
+
+});
+
+await loadUserData();
+
+tg.showPopup({
+
+title:"Premium Reward",
+
+message:`${reward} Coin Added Successfully`,
+
+buttons:[
+{
+type:"ok"
+}
+]
+
+});
+
+button.innerHTML =
+"✅ Claimed";
+
+let sec = 25;
+
+const timer =
+setInterval(()=>{
+
+button.innerText =
+`Wait ${sec}s`;
+
+sec--;
+
+if(sec < 0){
+
+clearInterval(timer);
+
+button.disabled = false;
+
+button.innerHTML =
+originalText;
+
+}
+
+},1000);
+
+})
+
+.catch(()=>{
+
+button.disabled = false;
+
+button.innerHTML =
+originalText;
+
+alert("Premium Ad Not Completed");
+
+});
+
+}
+
+/* ========================= */
+/* BUTTON 4 */
+/* SPONSOR AD */
+/* ========================= */
+
+else if(index === 3){
+
+show_11035690('pop')
+
+.then(async()=>{
+
+await updateDoc(userRef,{
+
+coin:increment(reward),
+
+dailyEarn:increment(reward)
+
+});
+
+await loadUserData();
+
+tg.showPopup({
+
+title:"Sponsor Reward",
+
+message:`${reward} Coin Added Successfully`,
+
+buttons:[
+{
+type:"ok"
+}
+]
+
+});
+
+button.innerHTML =
+"✅ Claimed";
+
+let sec = 30;
+
+const timer =
+setInterval(()=>{
+
+button.innerText =
+`Wait ${sec}s`;
+
+sec--;
+
+if(sec < 0){
+
+clearInterval(timer);
+
+button.disabled = false;
+
+button.innerHTML =
+originalText;
+
+}
+
+},1000);
+
+})
+
+.catch(()=>{
+
+button.disabled = false;
+
+button.innerHTML =
+originalText;
+
+alert("Sponsor Ad Not Completed");
 
 });
 

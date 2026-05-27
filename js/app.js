@@ -1104,3 +1104,63 @@ settings.notice || "";
 }
 
 });
+/* ========================= */
+/* CLAIM BUTTON SYSTEM */
+/* ========================= */
+
+document
+.querySelectorAll(".claim-button")
+.forEach((button)=>{
+
+button.onclick = async()=>{
+
+if(button.disabled) return;
+
+button.disabled = true;
+
+const originalText =
+button.innerHTML;
+
+let sec = 5;
+
+button.innerText =
+`Wait ${sec}s`;
+
+const timer =
+setInterval(()=>{
+
+sec--;
+
+button.innerText =
+`Wait ${sec}s`;
+
+if(sec <= 0){
+
+clearInterval(timer);
+
+const reward =
+Number(
+button.dataset.reward
+);
+
+await claimCoin(reward);
+
+button.innerHTML =
+"✅ Claimed";
+
+setTimeout(()=>{
+
+button.disabled = false;
+
+button.innerHTML =
+originalText;
+
+},3000);
+
+}
+
+},1000);
+
+};
+
+});

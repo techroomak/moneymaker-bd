@@ -1054,3 +1054,53 @@ lastActive:Date.now()
 });
 
 },5000);
+
+/* ========================= */
+/* APP SETTINGS */
+/* ========================= */
+
+onSnapshot(
+doc(db,"settings","app"),
+(snapshot)=>{
+
+const settings =
+snapshot.data();
+
+if(!settings) return;
+
+/* MAINTENANCE */
+
+if(settings.maintenance){
+
+document.body.innerHTML = `
+<div style="
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+font-size:28px;
+font-weight:700;
+background:#111827;
+color:white;
+text-align:center;
+padding:20px;
+">
+🚧 App Under Maintenance
+</div>
+`;
+
+}
+
+/* NOTICE */
+
+const noticeEl =
+document.getElementById("noticeText");
+
+if(noticeEl){
+
+noticeEl.innerText =
+settings.notice || "";
+
+}
+
+});

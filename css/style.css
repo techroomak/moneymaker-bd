@@ -256,13 +256,14 @@ margin-left:auto;
 }
 
 .invite-title{
+margin-top:5px;
 font-size:17px;
 font-weight:700;
 margin:0;
 }
 
 .invite-reward{
-margin-top:2px;
+margin-top:6px;
 display:flex;
 align-items:center;
 gap:4px;
@@ -394,7 +395,7 @@ display:none;
 
 font-size:12px;
 font-weight:500;
-color:#9ca3af;
+color:#6f6f6f;
 }
 
 .ad-title{

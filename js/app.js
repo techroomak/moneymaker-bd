@@ -395,16 +395,6 @@ if(ad4) ad4.innerText = `${updatedData.ad4Count || 0}/10`;
 
 }
 
-const ad1 = document.getElementById("ad1Limit");
-const ad2 = document.getElementById("ad2Limit");
-const ad3 = document.getElementById("ad3Limit");
-const ad4 = document.getElementById("ad4Limit");
-
-if(ad1) ad1.innerText = `${updatedData.ad1Count || 0}/25`;
-if(ad2) ad2.innerText = `${updatedData.ad2Count || 0}/20`;
-if(ad3) ad3.innerText = `${updatedData.ad3Count || 0}/15`;
-if(ad4) ad4.innerText = `${updatedData.ad4Count || 0}/10`;
-
 /* ========================= */
 /* DAILY TIMER */
 /* ========================= */

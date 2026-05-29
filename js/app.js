@@ -386,6 +386,18 @@ updatedData.dailyEarn || 0;
 }
 
 document.getElementById("ad1Limit").innerText =
+`${updatedData.ad1Count || 0}/25`;
+
+document.getElementById("ad2Limit").innerText =
+`${updatedData.ad2Count || 0}/20`;
+
+document.getElementById("ad3Limit").innerText =
+`${updatedData.ad3Count || 0}/15`;
+
+document.getElementById("ad4Limit").innerText =
+`${updatedData.ad4Count || 0}/10`;
+
+document.getElementById("ad1Limit").innerText =
 `${userData.ad1Count || 0}/25`;
 
 document.getElementById("ad2Limit").innerText =

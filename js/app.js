@@ -529,6 +529,24 @@ return;
 
 }
 
+// DAILY LIMIT Reset
+const now = Date.now();
+
+if(
+userData[adLastField] &&
+(now - userData[adLastField]) >
+(24 * 60 * 60 * 1000)
+){
+
+await updateDoc(userRef,{
+
+[adCountField]:0
+
+});
+
+userData[adCountField] = 0;
+
+}
 // DAILY LIMIT
 
 if(dailyWithdrawCount >= 3){

@@ -1591,16 +1591,7 @@ alert("Premium Ad Not Completed");
 
 else if(index === 3){
 
-show_11035690({
-  type: 'inApp',
-  inAppSettings: {
-    frequency: 2,
-    capping: 0.1,
-    interval: 30,
-    timeout: 5,
-    everyPage: false
-  }
-})
+show_11035690({'pop'})
 
 .then(async()=>{
 

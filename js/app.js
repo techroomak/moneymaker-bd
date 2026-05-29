@@ -227,11 +227,11 @@ refSnap.data();
 
 await updateDoc(refUserRef,{
 
-coin:increment(10),
+coin:increment(15),
 
 refer:increment(1),
 
-referEarn:increment(10)
+referEarn:increment(15)
 
 });
 
@@ -318,7 +318,7 @@ referralLink
 );
 
 tg.showAlert(
-"Referral Link Copied"
+"Referral Link Copied ✔✔"
 );
 
 };
@@ -1170,6 +1170,61 @@ await getDoc(userRef);
 const userData =
 userSnap.data();
 
+/* new button system */
+
+const now = Date.now();
+
+if(
+(userData[adCountField] || 0) >= limit
+){
+
+const lastWatch =
+userData[adLastField] || 0;
+
+const nextTime =
+lastWatch + (24 * 60 * 60 * 1000);
+
+if(now < nextTime){
+
+button.disabled = true;
+
+const interval =
+setInterval(()=>{
+
+const diff =
+nextTime - Date.now();
+
+if(diff <= 0){
+
+clearInterval(interval);
+
+button.disabled = false;
+
+button.innerHTML =
+originalText;
+
+return;
+
+}
+
+const h =
+Math.floor(diff / 3600000);
+
+const m =
+Math.floor((diff % 3600000) / 60000);
+
+const s =
+Math.floor((diff % 60000) / 1000);
+
+button.innerHTML =
+`${h}h ${m}m ${s}s`;
+
+},1000);
+
+return;
+
+}
+
 /* SETTINGS */
 
 let limit = 0;
@@ -1181,7 +1236,7 @@ let adLastField = "";
 
 if(index === 0){
 
-limit = 15;
+limit = 25;
 cooldown = 10;
 
 adCountField =
@@ -1196,7 +1251,7 @@ adLastField =
 
 else if(index === 1){
 
-limit = 10;
+limit = 20;
 cooldown = 10;
 
 adCountField =
@@ -1211,8 +1266,8 @@ adLastField =
 
 else if(index === 2){
 
-limit = 5;
-cooldown = 30;
+limit = 15;
+cooldown = 15;
 
 adCountField =
 "ad3Count";
@@ -1226,8 +1281,8 @@ adLastField =
 
 else if(index === 3){
 
-limit = 3;
-cooldown = 30;
+limit = 10;
+cooldown = 15;
 
 adCountField =
 "ad4Count";
@@ -1543,7 +1598,16 @@ alert("Premium Ad Not Completed");
 
 else if(index === 3){
 
-show_11035690('pop')
+show_11035690({
+  type: 'inApp',
+  inAppSettings: {
+    frequency: 2,
+    capping: 0.1,
+    interval: 30,
+    timeout: 5,
+    everyPage: false
+  }
+})
 
 .then(async()=>{
 

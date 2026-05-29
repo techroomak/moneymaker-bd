@@ -1144,8 +1144,8 @@ color:white;
 text-align:center;
 padding:20px;
 ">
-         🚧 
-App Under Maintenance,
+         🚧 <br>
+App Under Maintenance, <br>
 Please Check After Some Time.
 
 </div>

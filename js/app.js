@@ -365,7 +365,17 @@ updatedData.dailyEarn || 0;
 
 }
 
+document.getElementById("ad1Limit").innerText =
+`${userData.ad1Count || 0}/25`;
 
+document.getElementById("ad2Limit").innerText =
+`${userData.ad2Count || 0}/20`;
+
+document.getElementById("ad3Limit").innerText =
+`${userData.ad3Count || 0}/15`;
+
+document.getElementById("ad4Limit").innerText =
+`${userData.ad4Count || 0}/10`;
 
 /* ========================= */
 /* DAILY TIMER */
@@ -1171,61 +1181,6 @@ await getDoc(userRef);
 
 const userData =
 userSnap.data();
-
-/* new button system */
-
-const now = Date.now();
-
-if(
-(userData[adCountField] || 0) >= limit
-){
-
-const lastWatch =
-userData[adLastField] || 0;
-
-const nextTime =
-lastWatch + (24 * 60 * 60 * 1000);
-
-if(now < nextTime){
-
-button.disabled = true;
-
-const interval =
-setInterval(()=>{
-
-const diff =
-nextTime - Date.now();
-
-if(diff <= 0){
-
-clearInterval(interval);
-
-button.disabled = false;
-
-button.innerHTML =
-originalText;
-
-return;
-
-}
-
-const h =
-Math.floor(diff / 3600000);
-
-const m =
-Math.floor((diff % 3600000) / 60000);
-
-const s =
-Math.floor((diff % 60000) / 1000);
-
-button.innerHTML =
-`${h}h ${m}m ${s}s`;
-
-},1000);
-
-return;
-
-}
 
 /* SETTINGS */
 

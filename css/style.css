@@ -346,9 +346,9 @@ height:22px;
 }
 
 .ad-title{
-font-size:15px;
-font-weight:700;
-margin:0;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .ad-description{
@@ -388,6 +388,16 @@ font-weight:700;
 text-align:center;
 color:#ef4444;
 display:none;
+}
+
+#ad1Limit,
+#ad2Limit,
+#ad3Limit,
+#ad4Limit{
+
+font-size:12px;
+font-weight:500;
+color:#9ca3af;
 }
 
 /* ========================= */

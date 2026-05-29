@@ -180,7 +180,7 @@ dailyEarn:0,
 dailyAds:0,
 totalAds:0,
 lastAdWatch:0,
-
+dailyEarnDate:0,
 ad1Count:0,
 ad2Count:0,
 ad3Count:0,
@@ -261,6 +261,26 @@ const userData =
 await updateDoc(userRef,{
 lastActive:Date.now()
 });
+
+const now = new Date();
+
+const today =
+`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`;
+
+if(userData.dailyEarnDate !== today){
+
+await updateDoc(userRef,{
+
+dailyEarn:0,
+
+dailyEarnDate:today
+
+});
+
+userData.dailyEarn = 0;
+
+}
+
 /* ========================= */
 /* UI DATA */
 /* ========================= */

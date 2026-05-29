@@ -383,31 +383,27 @@ bdtEl.innerText =
 dailyEarnEl.innerText =
 updatedData.dailyEarn || 0;
 
-document.getElementById("ad1Limit").innerText =
-`${updatedData.ad1Count || 0}/25`;
+const ad1 = document.getElementById("ad1Limit");
+const ad2 = document.getElementById("ad2Limit");
+const ad3 = document.getElementById("ad3Limit");
+const ad4 = document.getElementById("ad4Limit");
 
-document.getElementById("ad2Limit").innerText =
-`${updatedData.ad2Count || 0}/20`;
-
-document.getElementById("ad3Limit").innerText =
-`${updatedData.ad3Count || 0}/15`;
-
-document.getElementById("ad4Limit").innerText =
-`${updatedData.ad4Count || 0}/10`;
+if(ad1) ad1.innerText = `${updatedData.ad1Count || 0}/25`;
+if(ad2) ad2.innerText = `${updatedData.ad2Count || 0}/20`;
+if(ad3) ad3.innerText = `${updatedData.ad3Count || 0}/15`;
+if(ad4) ad4.innerText = `${updatedData.ad4Count || 0}/10`;
 
 }
 
-document.getElementById("ad1Limit").innerText =
-`${userData.ad1Count || 0}/25`;
+const ad1 = document.getElementById("ad1Limit");
+const ad2 = document.getElementById("ad2Limit");
+const ad3 = document.getElementById("ad3Limit");
+const ad4 = document.getElementById("ad4Limit");
 
-document.getElementById("ad2Limit").innerText =
-`${userData.ad2Count || 0}/20`;
-
-document.getElementById("ad3Limit").innerText =
-`${userData.ad3Count || 0}/15`;
-
-document.getElementById("ad4Limit").innerText =
-`${userData.ad4Count || 0}/10`;
+if(ad1) ad1.innerText = `${updatedData.ad1Count || 0}/25`;
+if(ad2) ad2.innerText = `${updatedData.ad2Count || 0}/20`;
+if(ad3) ad3.innerText = `${updatedData.ad3Count || 0}/15`;
+if(ad4) ad4.innerText = `${updatedData.ad4Count || 0}/10`;
 
 /* ========================= */
 /* DAILY TIMER */

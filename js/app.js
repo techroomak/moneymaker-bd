@@ -326,7 +326,15 @@ totalWithdrawEl.innerText =
 userData.withdraw || 0;
 
 }
+const ad1 = document.getElementById("ad1Limit");
+const ad2 = document.getElementById("ad2Limit");
+const ad3 = document.getElementById("ad3Limit");
+const ad4 = document.getElementById("ad4Limit");
 
+if(ad1) ad1.innerText = `${userData.ad1Count || 0}/25`;
+if(ad2) ad2.innerText = `${userData.ad2Count || 0}/20`;
+if(ad3) ad3.innerText = `${userData.ad3Count || 0}/15`;
+if(ad4) ad4.innerText = `${userData.ad4Count || 0}/10`;
 /* ========================= */
 /* COPY INVITE */
 /* ========================= */

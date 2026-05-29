@@ -1112,7 +1112,10 @@ color:white;
 text-align:center;
 padding:20px;
 ">
-🚧 App Under Maintenance
+         🚧 
+App Under Maintenance,
+Please Check After Some Time.
+
 </div>
 `;
 
@@ -1229,6 +1232,24 @@ adCountField =
 
 adLastField =
 "ad4Last";
+
+}
+
+/* AUTO RESET AFTER 24H */
+
+const now = Date.now();
+
+if(
+userData[adLastField] &&
+(now - userData[adLastField]) >=
+(24 * 60 * 60 * 1000)
+){
+
+await updateDoc(userRef,{
+[adCountField]:0
+});
+
+userData[adCountField] = 0;
 
 }
 

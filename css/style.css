@@ -372,6 +372,8 @@ display:flex;
 justify-content:center;
 align-items:center;
 gap:5px;
+cursor:pointer;
+
 }
 
 .claim-icon{
@@ -744,7 +746,7 @@ border:1px solid #e5e7eb;
 font-size:13px;
 outline:none;
 background:#f9fafb;
-max-length:11;
+
 }
 
 .withdraw-input:focus{

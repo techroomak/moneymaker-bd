@@ -1591,7 +1591,7 @@ alert("Premium Ad Not Completed");
 
 else if(index === 3){
 
-show_11035690({'pop'})
+show_11035690('pop')
 
 .then(async()=>{
 

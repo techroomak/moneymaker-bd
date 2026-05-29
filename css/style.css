@@ -245,17 +245,14 @@ cursor:pointer;
 
 .invite-top{
 display:flex;
+justify-content:space-between;
 align-items:center;
-gap:8px;
 }
 
 .gift-icon{
 width:58px;
 height:58px;
-display:inline-block;
-align-items:left;
-
-
+margin-left:auto;
 }
 
 .invite-title{
@@ -398,6 +395,18 @@ display:none;
 font-size:12px;
 font-weight:500;
 color:#9ca3af;
+}
+
+.ad-title{
+margin:0;
+font-size:15px;
+}
+
+.ad-limit{
+margin-left:auto;
+font-size:11px;
+font-weight:500;
+color:#94a3b8;
 }
 
 /* ========================= */

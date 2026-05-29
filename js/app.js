@@ -383,8 +383,6 @@ bdtEl.innerText =
 dailyEarnEl.innerText =
 updatedData.dailyEarn || 0;
 
-}
-
 document.getElementById("ad1Limit").innerText =
 `${updatedData.ad1Count || 0}/25`;
 
@@ -396,6 +394,8 @@ document.getElementById("ad3Limit").innerText =
 
 document.getElementById("ad4Limit").innerText =
 `${updatedData.ad4Count || 0}/10`;
+
+}
 
 document.getElementById("ad1Limit").innerText =
 `${userData.ad1Count || 0}/25`;

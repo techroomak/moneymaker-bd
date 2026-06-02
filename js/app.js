@@ -322,7 +322,7 @@ if(!settingsSnap.exists()){
 
     cashoutMin:500,
     cashoutMax:1000,
-
+    coinRate:10,
     dailyWithdrawLimit:3
 
   });
@@ -405,6 +405,9 @@ missingSettings.rechargeMin = 20;
 
 if(settingsData.rechargeMax === undefined)
 missingSettings.rechargeMax = 100;
+
+if(settingsData.coinRate === undefined)
+missingSettings.coinRate = 10;
 
 if(settingsData.cashoutMin === undefined)
 missingSettings.cashoutMin = 500;

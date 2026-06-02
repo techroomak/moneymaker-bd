@@ -240,11 +240,6 @@ if(refSnap.exists()){
 const refData =
 refSnap.data();
 
-if(refData.banned === true){
-
-   return;
-
-}
 // UPDATE REFERRER
 
 await updateDoc(refUserRef,{

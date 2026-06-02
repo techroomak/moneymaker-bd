@@ -1181,7 +1181,7 @@ settingsData.minReferForWithdraw
 ){
 
 alert(
-`Minimum ${settingsData.minReferForWithdraw} Referrals Required`
+`Minimum 👥 ${settingsData.minReferForWithdraw} Referrals Required`
 );
 
 return;
@@ -1196,7 +1196,7 @@ settingsData.minWithdrawCoin
 ){
 
 alert(
-`Minimum ${settingsData.minWithdrawCoin} Coin Required`
+`Minimum 🥯 ${settingsData.minWithdrawCoin} Coin Required`
 );
 
 return;

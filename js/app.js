@@ -357,6 +357,15 @@ if(userData.adLimitDate !== today){
   userData.ad4Count = 0;
 
 }
+
+if(userData.banned === true){
+
+  tg.showAlert(
+    "Your account has been suspended. Please contact support."
+  );
+
+}
+
 /* ========================= */
 /* UI DATA */
 /* ========================= */
@@ -848,6 +857,25 @@ document.getElementById(
 /* ========================= */
 /* SUBMIT WITHDRAW */
 /* ========================= */
+
+const latestSnap =
+await getDoc(userRef);
+
+const latestData =
+latestSnap.data();
+
+if(latestData.banned === true){
+
+  tg.showPopup({
+    title:"Account Suspended",
+    message:"Your account has been suspended. Please contact support.",
+    buttons:[{type:"ok"}]
+  });
+
+  return;
+
+}
+
 window.submitWithdraw = async()=>{
 
 const method =

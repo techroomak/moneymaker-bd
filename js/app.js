@@ -858,6 +858,8 @@ document.getElementById(
 /* SUBMIT WITHDRAW */
 /* ========================= */
 
+window.submitWithdraw = async()=>{
+
 const latestSnap =
 await getDoc(userRef);
 
@@ -875,8 +877,6 @@ if(latestData.banned === true){
   return;
 
 }
-
-window.submitWithdraw = async()=>{
 
 const method =
 document.getElementById("paymentMethod").value;

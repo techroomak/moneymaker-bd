@@ -1487,10 +1487,30 @@ if(!settings) return;
 if(settings.maintenance){
 
 document.body.innerHTML = `
-${settings.maintenanceMessage || "App Under Maintenance"}
+
+<div style="
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#111827;
+color:white;
+padding:20px;
+text-align:center;
+font-size:24px;
+font-weight:700;
+">
+
+${settings.maintenanceMessage ||
+"🚧 App Under Maintenance - Please Check After Some Time"}
+
+</div>
+
 `;
 
-}
+return;
+
+  }
 
 /* NOTICE */
 

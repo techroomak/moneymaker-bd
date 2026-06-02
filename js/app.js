@@ -196,12 +196,29 @@ completedSocialTasks:[],
 completedDailyTasks:[],
 
 joinedBy:referrerId || "",
-
 referrerName:"",
-
 referrerPhoto:"",
 
 createdAt:Date.now(),
+pending: 0,
+totalEarn: 0,
+
+dailyTaskDate: "",
+adLimitDate: "",
+
+dailyWithdrawCount: 0,
+lastWithdrawDate: "",
+
+isPremium: false,
+
+country: "",
+division: "",
+district: "",
+
+deviceType: "",
+platform: tg.platform || "",
+
+joinDate: Date.now(),
 
 lastActive:Date.now()
 });
@@ -257,6 +274,50 @@ refData.photo || ""
 
 const userData =
 (await getDoc(userRef)).data();
+
+const missingFields = {};
+if(userData.pending === undefined)
+missingFields.pending = 0;
+
+if(userData.totalEarn === undefined)
+missingFields.totalEarn = 0;
+
+if(userData.dailyTaskDate === undefined)
+missingFields.dailyTaskDate = "";
+
+if(userData.adLimitDate === undefined)
+missingFields.adLimitDate = "";
+
+if(userData.dailyWithdrawCount === undefined)
+missingFields.dailyWithdrawCount = 0;
+
+if(userData.lastWithdrawDate === undefined)
+missingFields.lastWithdrawDate = "";
+
+if(userData.isPremium === undefined)
+missingFields.isPremium = false;
+
+if(userData.country === undefined)
+missingFields.country = "";
+
+if(userData.division === undefined)
+missingFields.division = "";
+
+if(userData.district === undefined)
+missingFields.district = "";
+
+if(userData.deviceType === undefined)
+missingFields.deviceType = "";
+
+if(userData.platform === undefined)
+missingFields.platform = tg.platform || "";
+
+if(userData.joinDate === undefined)
+missingFields.joinDate = Date.now();
+
+if(Object.keys(missingFields).length > 0){
+   await updateDoc(userRef, missingFields);
+}
 
 await updateDoc(userRef,{
 lastActive:Date.now()

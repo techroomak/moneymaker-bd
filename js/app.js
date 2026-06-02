@@ -170,7 +170,7 @@ username:username,
 
 photo:photo,
 
-coin:settingsData.registrationBonus || 5,
+coin:5,
 
 refer:0,
 

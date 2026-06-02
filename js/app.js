@@ -1371,17 +1371,6 @@ Number(
 button.dataset.reward
 );
 
-if(userData.banned === true){
-
-  tg.showPopup({
-    title:"Account Suspended",
-    message:"Reward system is disabled for your account.",
-    buttons:[{type:"ok"}]
-  });
-
-  return;
-
-}
 
 /* USER DATA */
 

@@ -528,7 +528,7 @@ userData.coin || 0;
 if(bdtEl){
 
 bdtEl.innerText =
-(userData.coin / 10).toFixed(2);
+(userData.coin / settingsData.coinRate).toFixed(2);
 
 }
 
@@ -704,7 +704,7 @@ coinEl.innerText =
 updatedData.coin || 0;
 
 bdtEl.innerText =
-(updatedData.coin / 10).toFixed(2);
+(updatedData.coin / settingsData.coinRate).toFixed(2);
 
 dailyEarnEl.innerText =
 updatedData.dailyEarn || 0;
@@ -894,7 +894,10 @@ return;
 
 // DAILY LIMIT
 
-if(dailyWithdrawCount >= 3){
+if(
+dailyWithdrawCount >=
+settingsData.dailyWithdrawLimit
+){
 
 limit.style.display = "block";
 
@@ -922,7 +925,10 @@ convert.innerText =
 
 if(method === "recharge"){
 
-if(amount < 20 || amount > 100){
+if(
+amount < settingsData.rechargeMin ||
+amount > settingsData.rechargeMax
+){
 
 info.style.display = "block";
 
@@ -944,7 +950,10 @@ info.style.display = "none";
 
 else{
 
-if(amount < 500 || amount > 1000){
+if(
+amount < settingsData.cashoutMin ||
+amount > settingsData.cashoutMax
+){
 
 info.style.display = "block";
 
@@ -1475,23 +1484,7 @@ if(!settings) return;
 if(settings.maintenance){
 
 document.body.innerHTML = `
-<div style="
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-font-size:28px;
-font-weight:700;
-background:#111827;
-color:white;
-text-align:center;
-padding:20px;
-">
-🚧 App এর আপডেট চলছে,
-👉 কিছুক্ষণ পর আবার চেষ্টা করুন,
-    অথবা সাপোর্টে কথা বলুন.
-
-</div>
+${settings.maintenanceMessage || "App Under Maintenance"}
 `;
 
 }
@@ -1542,11 +1535,19 @@ button.innerHTML;
 button.innerText =
 "Loading Ad...";
 
-const reward =
-Number(
-button.dataset.reward
-);
+let reward = 0;
 
+if(index === 0)
+reward = settingsData.ad1Reward;
+
+else if(index === 1)
+reward = settingsData.ad2Reward;
+
+else if(index === 2)
+reward = settingsData.ad3Reward;
+
+else if(index === 3)
+reward = settingsData.ad4Reward;
 
 /* USER DATA */
 
@@ -1582,7 +1583,7 @@ let adLastField = "";
 if(index === 0){
 
 limit = settingsData.ad1Limit;
-cooldown = 10;
+cooldown = settingsData.ad1Cooldown;
 
 adCountField =
 "ad1Count";
@@ -1597,7 +1598,8 @@ adLastField =
 else if(index === 1){
 
 limit = settingsData.ad2Limit;
-cooldown = 10;
+cooldown = settingsData.ad2Cooldown;
+
 
 adCountField =
 "ad2Count";
@@ -1612,7 +1614,8 @@ adLastField =
 else if(index === 2){
 
 limit = settingsData.ad3Limit;
-cooldown = 15;
+cooldown = settingsData.ad3Cooldown;
+
 
 adCountField =
 "ad3Count";
@@ -1627,7 +1630,7 @@ adLastField =
 else if(index === 3){
 
 limit = settingsData.ad4Limit;
-cooldown = 15;
+cooldown = settingsData.ad4Cooldown;
 
 adCountField =
 "ad4Count";

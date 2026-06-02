@@ -619,19 +619,19 @@ function startLimitCountdown(button){
 
 }
 
-if(buttons[0] && (userData.ad1Count || 0) >= 25){
+if(buttons[0] && (userData.ad1Count || 0) >= settingsData.ad1Limit){
   startLimitCountdown(buttons[0]);
 }
 
-if(buttons[1] && (userData.ad2Count || 0) >= 20){
+if(buttons[1] && (userData.ad2Count || 0) >= settingsData.ad2Limit){
   startLimitCountdown(buttons[1]);
 }
 
-if(buttons[2] && (userData.ad3Count || 0) >= 15){
+if(buttons[2] && (userData.ad3Count || 0) >= settingsData.ad3Limit){
   startLimitCountdown(buttons[2]);
 }
 
-if(buttons[3] && (userData.ad4Count || 0) >= 10){
+if(buttons[3] && (userData.ad4Count || 0) >= settingsData.ad4Limit){
   startLimitCountdown(buttons[3]);
 }
 
@@ -714,10 +714,17 @@ const ad2 = document.getElementById("ad2Limit");
 const ad3 = document.getElementById("ad3Limit");
 const ad4 = document.getElementById("ad4Limit");
 
-if(ad1) ad1.innerText = `${updatedData.ad1Count || 0}/25`;
-if(ad2) ad2.innerText = `${updatedData.ad2Count || 0}/20`;
-if(ad3) ad3.innerText = `${updatedData.ad3Count || 0}/15`;
-if(ad4) ad4.innerText = `${updatedData.ad4Count || 0}/10`;
+if(ad1) ad1.innerText =
+`${updatedData.ad1Count || 0}/${settingsData.ad1Limit}`;
+
+if(ad2) ad2.innerText =
+`${updatedData.ad2Count || 0}/${settingsData.ad2Limit}`;
+
+if(ad3) ad3.innerText =
+`${updatedData.ad3Count || 0}/${settingsData.ad3Limit}`;
+
+if(ad4) ad4.innerText =
+`${updatedData.ad4Count || 0}/${settingsData.ad4Limit}`;
 
 }
 /* ========================= */

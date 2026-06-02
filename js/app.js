@@ -1342,8 +1342,8 @@ if((userData[adCountField]) >= limit){
 const lastWatch =
 userData[adLastField];
 
-const nextTime =
-lastWatch + (24 * 60 * 60 * 1000);
+const nextTime = new Date();
+nextTime.setHours(24,0,0,0);
 
 const interval =
 setInterval(()=>{

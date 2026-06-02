@@ -244,28 +244,18 @@ const refData =
 refSnap.data();
 
 
-// UPDATE Banned REFERRER
-
-if(refData.banned !== true){
-
-  await updateDoc(refUserRef,{
-    coin:increment(10),
-    refer:increment(1),
-    referEarn:increment(10)
-  });
-
-}
+// UPDATE REFERRER for banned
 
 await updateDoc(refUserRef,{
-  refer:increment(1)
+refer:increment(1)
 });
 
 if(refData.banned !== true){
 
-  await updateDoc(refUserRef,{
-    coin:increment(10),
-    referEarn:increment(10)
-  });
+await updateDoc(refUserRef,{
+coin:increment(10),
+referEarn:increment(10)
+});
 
 }
 // SAVE REFERRER INFO
@@ -296,12 +286,17 @@ if(!settingsSnap.exists()){
   await setDoc(settingsRef,{
 
     maintenance:false,
-    notice:"",
+    notice:"Welcome",
 
-    ad1Reward:5,
-    ad2Reward:10,
-    ad3Reward:15,
-    ad4Reward:20,
+    ads:true,
+    socialTask:true,
+    dailyTask:true,
+    withdraw:true,
+
+    ad1Reward:2,
+    ad2Reward:2,
+    ad3Reward:4,
+    ad4Reward:5,
 
     ad1Limit:25,
     ad2Limit:20,
@@ -313,12 +308,14 @@ if(!settingsSnap.exists()){
     ad3Zone:"",
     ad4Zone:"",
 
-    referBonus:15,
-
+    referBonus:10,
     registrationBonus:5,
 
     minWithdrawCoin:1000,
     minReferForWithdraw:5,
+
+    minWithdraw:500,
+    maxWithdraw:1000,
 
     rechargeMin:20,
     rechargeMax:100,
@@ -337,23 +334,83 @@ const settingsData =
 
 const missingSettings = {};
 
+if(settingsData.ads === undefined)
+missingSettings.ads = true;
+
+if(settingsData.socialTask === undefined)
+missingSettings.socialTask = true;
+
+if(settingsData.dailyTask === undefined)
+missingSettings.dailyTask = true;
+
+if(settingsData.withdraw === undefined)
+missingSettings.withdraw = true;
+
 if(settingsData.ad1Reward === undefined)
-missingSettings.ad1Reward = 5;
+missingSettings.ad1Reward = 2;
 
 if(settingsData.ad2Reward === undefined)
-missingSettings.ad2Reward = 10;
+missingSettings.ad2Reward = 2;
 
 if(settingsData.ad3Reward === undefined)
-missingSettings.ad3Reward = 15;
+missingSettings.ad3Reward = 4;
 
 if(settingsData.ad4Reward === undefined)
-missingSettings.ad4Reward = 20;
+missingSettings.ad4Reward = 5;
+
+if(settingsData.ad1Limit === undefined)
+missingSettings.ad1Limit = 25;
+
+if(settingsData.ad2Limit === undefined)
+missingSettings.ad2Limit = 20;
+
+if(settingsData.ad3Limit === undefined)
+missingSettings.ad3Limit = 15;
+
+if(settingsData.ad4Limit === undefined)
+missingSettings.ad4Limit = 10;
+
+if(settingsData.ad1Zone === undefined)
+missingSettings.ad1Zone = "";
+
+if(settingsData.ad2Zone === undefined)
+missingSettings.ad2Zone = "";
+
+if(settingsData.ad3Zone === undefined)
+missingSettings.ad3Zone = "";
+
+if(settingsData.ad4Zone === undefined)
+missingSettings.ad4Zone = "";
+
+if(settingsData.referBonus === undefined)
+missingSettings.referBonus = 10;
+
+if(settingsData.registrationBonus === undefined)
+missingSettings.registrationBonus = 5;
 
 if(settingsData.minWithdrawCoin === undefined)
 missingSettings.minWithdrawCoin = 1000;
 
 if(settingsData.minReferForWithdraw === undefined)
 missingSettings.minReferForWithdraw = 5;
+
+if(settingsData.minWithdraw === undefined)
+missingSettings.minWithdraw = 500;
+
+if(settingsData.maxWithdraw === undefined)
+missingSettings.maxWithdraw = 1000;
+
+if(settingsData.rechargeMin === undefined)
+missingSettings.rechargeMin = 20;
+
+if(settingsData.rechargeMax === undefined)
+missingSettings.rechargeMax = 100;
+
+if(settingsData.cashoutMin === undefined)
+missingSettings.cashoutMin = 500;
+
+if(settingsData.cashoutMax === undefined)
+missingSettings.cashoutMax = 1000;
 
 if(settingsData.dailyWithdrawLimit === undefined)
 missingSettings.dailyWithdrawLimit = 3;

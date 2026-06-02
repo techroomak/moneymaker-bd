@@ -638,6 +638,34 @@ if(buttons[3] && (userData.ad4Count || 0) >= settingsData.ad4Limit){
   startLimitCountdown(buttons[3]);
 }
 
+const ad1RewardText =
+document.getElementById("ad1RewardText");
+
+const ad2RewardText =
+document.getElementById("ad2RewardText");
+
+const ad3RewardText =
+document.getElementById("ad3RewardText");
+
+const ad4RewardText =
+document.getElementById("ad4RewardText");
+
+if(ad1RewardText)
+ad1RewardText.innerText =
+`+${settingsData.ad1Reward} Coin`;
+
+if(ad2RewardText)
+ad2RewardText.innerText =
+`+${settingsData.ad2Reward} Coin`;
+
+if(ad3RewardText)
+ad3RewardText.innerText =
+`+${settingsData.ad3Reward} Coin`;
+
+if(ad4RewardText)
+ad4RewardText.innerText =
+`+${settingsData.ad4Reward} Coin`;
+
 /* ========================= */
 /* COPY INVITE */
 /* ========================= */
@@ -1480,6 +1508,34 @@ doc(db,"settings","app"),
 const settings =
 snapshot.data();
 settingsData = settings;
+
+const ad1RewardText =
+document.getElementById("ad1RewardText");
+
+const ad2RewardText =
+document.getElementById("ad2RewardText");
+
+const ad3RewardText =
+document.getElementById("ad3RewardText");
+
+const ad4RewardText =
+document.getElementById("ad4RewardText");
+
+if(ad1RewardText)
+ad1RewardText.innerText =
+`+${settings.ad1Reward} Coin`;
+
+if(ad2RewardText)
+ad2RewardText.innerText =
+`+${settings.ad2Reward} Coin`;
+
+if(ad3RewardText)
+ad3RewardText.innerText =
+`+${settings.ad3Reward} Coin`;
+
+if(ad4RewardText)
+ad4RewardText.innerText =
+`+${settings.ad4Reward} Coin`;
 
 if(!settings) return;
 

@@ -329,7 +329,7 @@ if(!settingsSnap.exists()){
 
 }
 
-const settingsData =
+let settingsData =
 (await getDoc(settingsRef)).data();
 
 const missingSettings = {};
@@ -1479,6 +1479,7 @@ doc(db,"settings","app"),
 
 const settings =
 snapshot.data();
+settingsData = settings;
 
 if(!settings) return;
 

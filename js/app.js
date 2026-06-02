@@ -950,7 +950,7 @@ amount * settingsData.coinRate;
 convert.style.display = "block";
 
 convert.innerText =
-`${neededCoin} Coin Required`;
+`${needCoin} Coin Required`;
 
 // RECHARGE
 
@@ -1175,7 +1175,7 @@ return;
 
 /* COIN CHECK */
 
-const neededCoin =
+const needCoin =
 amount * settingsData.coinRate;
 
 if((latestData.coin || 0) < needCoin){

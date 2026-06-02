@@ -170,7 +170,7 @@ username:username,
 
 photo:photo,
 
-coin:5,
+coin:settingsData.registrationBonus || 5,
 
 refer:0,
 
@@ -253,8 +253,8 @@ refer:increment(1)
 if(refData.banned !== true){
 
 await updateDoc(refUserRef,{
-coin:increment(10),
-referEarn:increment(10)
+coin:increment(settingsData.referBonus),
+referEarn:increment(settingsData.referBonus)
 });
 
 }
@@ -1033,6 +1033,18 @@ document.getElementById(
 
 window.submitWithdraw = async()=>{
 
+if(settingsData.withdraw !== true){
+
+tg.showPopup({
+title:"Withdraw Disabled",
+message:"Withdraw system is currently disabled.",
+buttons:[{type:"ok"}]
+});
+
+return;
+
+}
+
 const latestSnap =
 await getDoc(userRef);
 
@@ -1500,6 +1512,18 @@ document
 .forEach((button,index)=>{
 
 button.onclick = async()=>{
+
+if(settingsData.ads !== true){
+
+tg.showPopup({
+title:"Ads Disabled",
+message:"Ads system is currently disabled.",
+buttons:[{type:"ok"}]
+});
+
+return;
+
+}
 
 if(button.disabled) return;
 

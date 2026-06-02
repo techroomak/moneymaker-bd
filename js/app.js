@@ -950,9 +950,6 @@ return;
 const needCoin =
 amount * 10;
 
-const latestSnap =
-await getDoc(userRef);
-
 if((latestData.coin || 0) < needCoin){
 
 alert("Not Enough Coin");

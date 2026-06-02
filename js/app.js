@@ -1173,6 +1173,36 @@ return;
 
 }
 
+/* MIN REFER CHECK */
+
+if(
+(latestData.refer || 0) <
+settingsData.minReferForWithdraw
+){
+
+alert(
+`Minimum ${settingsData.minReferForWithdraw} Referrals Required`
+);
+
+return;
+
+}
+
+/* MIN COIN CHECK */
+
+if(
+(latestData.coin || 0) <
+settingsData.minWithdrawCoin
+){
+
+alert(
+`Minimum ${settingsData.minWithdrawCoin} Coin Required`
+);
+
+return;
+
+}
+
 /* COIN CHECK */
 
 const needCoin =

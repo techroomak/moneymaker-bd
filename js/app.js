@@ -150,6 +150,9 @@ startParam || null;
 const userRef =
 doc(db,"users",userId);
 
+const settingsRef =
+doc(db,"settings","app");
+
 /* ========================= */
 /* CREATE USER */
 /* ========================= */
@@ -279,6 +282,89 @@ refData.photo || ""
 
 }
 }
+}
+
+/* ========================= */
+/* APP SETTINGS DEFAULT */
+/* ========================= */
+
+const settingsSnap =
+await getDoc(settingsRef);
+
+if(!settingsSnap.exists()){
+
+  await setDoc(settingsRef,{
+
+    maintenance:false,
+    notice:"",
+
+    ad1Reward:5,
+    ad2Reward:10,
+    ad3Reward:15,
+    ad4Reward:20,
+
+    ad1Limit:25,
+    ad2Limit:20,
+    ad3Limit:15,
+    ad4Limit:10,
+
+    ad1Zone:"",
+    ad2Zone:"",
+    ad3Zone:"",
+    ad4Zone:"",
+
+    referBonus:15,
+
+    registrationBonus:5,
+
+    minWithdrawCoin:1000,
+    minReferForWithdraw:5,
+
+    rechargeMin:20,
+    rechargeMax:100,
+
+    cashoutMin:500,
+    cashoutMax:1000,
+
+    dailyWithdrawLimit:3
+
+  });
+
+}
+
+const settingsData =
+(await getDoc(settingsRef)).data();
+
+const missingSettings = {};
+
+if(settingsData.ad1Reward === undefined)
+missingSettings.ad1Reward = 5;
+
+if(settingsData.ad2Reward === undefined)
+missingSettings.ad2Reward = 10;
+
+if(settingsData.ad3Reward === undefined)
+missingSettings.ad3Reward = 15;
+
+if(settingsData.ad4Reward === undefined)
+missingSettings.ad4Reward = 20;
+
+if(settingsData.minWithdrawCoin === undefined)
+missingSettings.minWithdrawCoin = 1000;
+
+if(settingsData.minReferForWithdraw === undefined)
+missingSettings.minReferForWithdraw = 5;
+
+if(settingsData.dailyWithdrawLimit === undefined)
+missingSettings.dailyWithdrawLimit = 3;
+
+if(Object.keys(missingSettings).length > 0){
+
+  await updateDoc(
+    settingsRef,
+    missingSettings
+  );
+
 }
 
 /* ========================= */

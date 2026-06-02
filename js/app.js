@@ -240,17 +240,18 @@ if(refSnap.exists()){
 const refData =
 refSnap.data();
 
-// UPDATE REFERRER
 
-await updateDoc(refUserRef,{
+// UPDATE Banned REFERRER
 
-coin:increment(15),
+if(refData.banned !== true){
 
-refer:increment(1),
+  await updateDoc(refUserRef,{
+    coin:increment(15),
+    refer:increment(1),
+    referEarn:increment(15)
+  });
 
-referEarn:increment(15)
-
-});
+}
 
 // SAVE REFERRER INFO
 
@@ -1361,6 +1362,20 @@ await getDoc(userRef);
 const userData =
 userSnap.data();
 
+if(userData.banned === true){
+
+  tg.showPopup({
+    title:"Account Suspended",
+    message:"Rewards are disabled for your account.",
+    buttons:[{type:"ok"}]
+  });
+
+  button.disabled = false;
+  button.innerHTML = originalText;
+
+  return;
+
+}
 /* SETTINGS */
 
 let limit = 0;

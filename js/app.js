@@ -246,13 +246,25 @@ refSnap.data();
 if(refData.banned !== true){
 
   await updateDoc(refUserRef,{
-    coin:increment(15),
+    coin:increment(10),
     refer:increment(1),
-    referEarn:increment(15)
+    referEarn:increment(10)
   });
 
 }
 
+await updateDoc(refUserRef,{
+  refer:increment(1)
+});
+
+if(refData.banned !== true){
+
+  await updateDoc(refUserRef,{
+    coin:increment(10),
+    referEarn:increment(10)
+  });
+
+}
 // SAVE REFERRER INFO
 
 await updateDoc(userRef,{

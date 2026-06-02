@@ -341,7 +341,22 @@ dailyEarnDate:today
 userData.dailyEarn = 0;
 
 }
+if(userData.adLimitDate !== today){
 
+  await updateDoc(userRef,{
+    ad1Count:0,
+    ad2Count:0,
+    ad3Count:0,
+    ad4Count:0,
+    adLimitDate:today
+  });
+
+  userData.ad1Count = 0;
+  userData.ad2Count = 0;
+  userData.ad3Count = 0;
+  userData.ad4Count = 0;
+
+}
 /* ========================= */
 /* UI DATA */
 /* ========================= */
@@ -1198,9 +1213,8 @@ color:white;
 text-align:center;
 padding:20px;
 ">
-         🚧 
-App Under Maintenance,
-Please Check After Some Time.
+🚧 App Under Maintenance,
+👉 Please Check After Some Time.
 
 </div>
 `;
@@ -1318,24 +1332,6 @@ adCountField =
 
 adLastField =
 "ad4Last";
-
-}
-
-/* AUTO RESET AFTER 24H */
-
-const now = Date.now();
-
-if(
-userData[adLastField] &&
-(now - userData[adLastField]) >=
-(24 * 60 * 60 * 1000)
-){
-
-await updateDoc(userRef,{
-[adCountField]:0
-});
-
-userData[adCountField] = 0;
 
 }
 

@@ -942,8 +942,8 @@ return;
 
 }
 
-const neededCoin =
-amount * 10;
+const needCoin =
+amount * settingsData.coinRate;
 
 // SHOW COIN
 
@@ -964,7 +964,7 @@ amount > settingsData.rechargeMax
 info.style.display = "block";
 
 info.innerText =
-"Recharge Limit: Min 20Tk • Max 100Tk";
+`Recharge Limit: Min ${settingsData.rechargeMin}Tk • Max ${settingsData.rechargeMax}Tk`;
 
 info.style.color =
 "#ef4444";
@@ -989,7 +989,7 @@ amount > settingsData.cashoutMax
 info.style.display = "block";
 
 info.innerText =
-"Cashout Limit: Min 500Tk • Max 1000Tk";
+`Cashout Limit: Min ${settingsData.cashoutMin}Tk • Max ${settingsData.cashoutMax}Tk`;
 
 info.style.color =
 "#ef4444";
@@ -1143,10 +1143,13 @@ return;
 
 if(method === "recharge"){
 
-if(amount < 20 || amount > 100){
+if(
+amount < settingsData.rechargeMin ||
+amount > settingsData.rechargeMax
+){
 
 alert(
-"Recharge Limit: 20Tk - 100Tk"
+`Recharge Limit: ${settingsData.rechargeMin}Tk - ${settingsData.rechargeMax}Tk`
 );
 
 return;
@@ -1155,10 +1158,13 @@ return;
 
 }else{
 
-if(amount < 500 || amount > 1000){
+if(
+amount < settingsData.cashoutMin ||
+amount > settingsData.cashoutMax
+){
 
 alert(
-"Cashout Limit: 500Tk - 1000Tk"
+`Cashout Limit: ${settingsData.cashoutMin}Tk - ${settingsData.cashoutMax}Tk`
 );
 
 return;
@@ -1169,8 +1175,8 @@ return;
 
 /* COIN CHECK */
 
-const needCoin =
-amount * 10;
+const neededCoin =
+amount * settingsData.coinRate;
 
 if((latestData.coin || 0) < needCoin){
 

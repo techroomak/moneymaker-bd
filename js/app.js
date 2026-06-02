@@ -564,10 +564,17 @@ const ad2 = document.getElementById("ad2Limit");
 const ad3 = document.getElementById("ad3Limit");
 const ad4 = document.getElementById("ad4Limit");
 
-if(ad1) ad1.innerText = `${userData.ad1Count || 0}/25`;
-if(ad2) ad2.innerText = `${userData.ad2Count || 0}/20`;
-if(ad3) ad3.innerText = `${userData.ad3Count || 0}/15`;
-if(ad4) ad4.innerText = `${userData.ad4Count || 0}/10`;
+if(ad1) ad1.innerText =
+`${userData.ad1Count || 0}/${settingsData.ad1Limit}`;
+
+if(ad2) ad2.innerText =
+`${userData.ad2Count || 0}/${settingsData.ad2Limit}`;
+
+if(ad3) ad3.innerText =
+`${userData.ad3Count || 0}/${settingsData.ad3Limit}`;
+
+if(ad4) ad4.innerText =
+`${userData.ad4Count || 0}/${settingsData.ad4Limit}`;
 
 const buttons =
 document.querySelectorAll(".claim-button");
@@ -639,7 +646,7 @@ referralLink
 );
 
 tg.showAlert(
-"Referral Link Copied ✔✔"
+"Referral Link Copied ✅✅"
 );
 
 };
@@ -1035,7 +1042,7 @@ latestSnap.data();
 if(latestData.banned === true){
 
   tg.showPopup({
-    title:"Account Suspended",
+    title:"Your Account Suspended",
     message:"Your account has been suspended. Please contact support.",
     buttons:[{type:"ok"}]
   });
@@ -1461,8 +1468,9 @@ color:white;
 text-align:center;
 padding:20px;
 ">
-🚧 App Under Maintenance,
-👉 Please Check After Some Time.
+🚧 App এর আপডেট চলছে,
+👉 কিছুক্ষণ পর আবার চেষ্টা করুন,
+    অথবা সাপোর্টে কথা বলুন.
 
 </div>
 `;
@@ -1520,7 +1528,7 @@ userSnap.data();
 if(userData.banned === true){
 
   tg.showPopup({
-    title:"Account Suspended",
+    title:"Your Account Banned",
     message:"Rewards are disabled for your account.",
     buttons:[{type:"ok"}]
   });
@@ -1542,7 +1550,7 @@ let adLastField = "";
 
 if(index === 0){
 
-limit = 25;
+limit = settingsData.ad1Limit;
 cooldown = 10;
 
 adCountField =
@@ -1557,7 +1565,7 @@ adLastField =
 
 else if(index === 1){
 
-limit = 20;
+limit = settingsData.ad2Limit;
 cooldown = 10;
 
 adCountField =
@@ -1572,7 +1580,7 @@ adLastField =
 
 else if(index === 2){
 
-limit = 15;
+limit = settingsData.ad3Limit;
 cooldown = 15;
 
 adCountField =
@@ -1587,7 +1595,7 @@ adLastField =
 
 else if(index === 3){
 
-limit = 10;
+limit = settingsData.ad4Limit;
 cooldown = 15;
 
 adCountField =

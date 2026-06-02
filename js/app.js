@@ -240,6 +240,11 @@ if(refSnap.exists()){
 const refData =
 refSnap.data();
 
+if(refData.banned === true){
+
+   return;
+
+}
 // UPDATE REFERRER
 
 await updateDoc(refUserRef,{
@@ -502,6 +507,24 @@ tg.showAlert(
 
 window.claimCoin =
 async(amount)=>{
+
+const latestSnap =
+await getDoc(userRef);
+
+const latestData =
+latestSnap.data();
+
+if(latestData.banned === true){
+
+  tg.showPopup({
+    title:"Account Suspended",
+    message:"Reward system is disabled for your account.",
+    buttons:[{type:"ok"}]
+  });
+
+  return;
+
+}
 
 await updateDoc(userRef,{
 
@@ -1347,6 +1370,18 @@ const reward =
 Number(
 button.dataset.reward
 );
+
+if(userData.banned === true){
+
+  tg.showPopup({
+    title:"Account Suspended",
+    message:"Reward system is disabled for your account.",
+    buttons:[{type:"ok"}]
+  });
+
+  return;
+
+}
 
 /* USER DATA */
 

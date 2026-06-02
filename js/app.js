@@ -240,6 +240,15 @@ if(refSnap.exists()){
 const refData =
 refSnap.data();
 
+if(refData.banned !== true){
+
+  await updateDoc(refUserRef,{
+    coin:increment(15),
+    refer:increment(1),
+    referEarn:increment(15)
+  });
+
+}
 // UPDATE REFERRER
 
 await updateDoc(refUserRef,{
@@ -355,14 +364,6 @@ if(userData.adLimitDate !== today){
   userData.ad2Count = 0;
   userData.ad3Count = 0;
   userData.ad4Count = 0;
-
-}
-
-if(userData.banned === true){
-
-  tg.showAlert(
-    "Your account has been suspended. Please contact support."
-  );
 
 }
 

@@ -411,6 +411,66 @@ if(ad1) ad1.innerText = `${userData.ad1Count || 0}/25`;
 if(ad2) ad2.innerText = `${userData.ad2Count || 0}/20`;
 if(ad3) ad3.innerText = `${userData.ad3Count || 0}/15`;
 if(ad4) ad4.innerText = `${userData.ad4Count || 0}/10`;
+
+const buttons =
+document.querySelectorAll(".claim-button");
+
+const nextTime = new Date();
+nextTime.setHours(24,0,0,0);
+
+function startLimitCountdown(button){
+
+  button.disabled = true;
+
+  const interval = setInterval(()=>{
+
+    const diff =
+    nextTime.getTime() - Date.now();
+
+    if(diff <= 0){
+
+      clearInterval(interval);
+
+      button.disabled = false;
+
+      button.innerHTML = "Claim";
+
+      return;
+
+    }
+
+    const h =
+    Math.floor(diff / 3600000);
+
+    const m =
+    Math.floor((diff % 3600000) / 60000);
+
+    const s =
+    Math.floor((diff % 60000) / 1000);
+
+    button.innerText =
+    `${h}h ${m}m ${s}s`;
+
+  },1000);
+
+}
+
+if(buttons[0] && (userData.ad1Count || 0) >= 25){
+  startLimitCountdown(buttons[0]);
+}
+
+if(buttons[1] && (userData.ad2Count || 0) >= 20){
+  startLimitCountdown(buttons[1]);
+}
+
+if(buttons[2] && (userData.ad3Count || 0) >= 15){
+  startLimitCountdown(buttons[2]);
+}
+
+if(buttons[3] && (userData.ad4Count || 0) >= 10){
+  startLimitCountdown(buttons[3]);
+}
+
 /* ========================= */
 /* COPY INVITE */
 /* ========================= */

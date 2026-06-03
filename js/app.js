@@ -492,14 +492,17 @@ if(userData.dailyEarnDate !== today){
 await updateDoc(userRef,{
 
 dailyEarn:0,
+dailyAds:0,
 
 dailyEarnDate:today
 
 });
 
 userData.dailyEarn = 0;
+userData.dailyAds = 0;
 
 }
+
 if(userData.adLimitDate !== today){
 
   await updateDoc(userRef,{

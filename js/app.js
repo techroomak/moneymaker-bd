@@ -323,7 +323,7 @@ if(!settingsSnap.exists()){
     cashoutMin:500,
     cashoutMax:1000,
     coinRate:10,
-    dailyWithdrawLimit:3
+    dailyWithdrawLimit:3,
 
 dailyTasks:{
  task1:{
@@ -334,14 +334,10 @@ dailyTasks:{
   links:[]
  }
 },
-
+socialTasks:{}
   });
 
 }
-
-
-
-socialTasks:{}
 
 let settingsData =
 (await getDoc(settingsRef)).data();

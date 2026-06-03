@@ -325,9 +325,23 @@ if(!settingsSnap.exists()){
     coinRate:10,
     dailyWithdrawLimit:3
 
+dailyTasks:{
+ task1:{
+  name:"Website Visit",
+  reward:20,
+  dailyLimit:1,
+  enabled:true,
+  links:[]
+ }
+},
+
   });
 
 }
+
+
+
+socialTasks:{}
 
 let settingsData =
 (await getDoc(settingsRef)).data();
@@ -347,28 +361,28 @@ if(settingsData.withdraw === undefined)
 missingSettings.withdraw = true;
 
 if(settingsData.ad1Reward === undefined)
-missingSettings.ad1Reward = 2;
+missingSettings.ad1Reward = 0;
 
 if(settingsData.ad2Reward === undefined)
-missingSettings.ad2Reward = 2;
+missingSettings.ad2Reward = 0;
 
 if(settingsData.ad3Reward === undefined)
-missingSettings.ad3Reward = 4;
+missingSettings.ad3Reward = 0;
 
 if(settingsData.ad4Reward === undefined)
-missingSettings.ad4Reward = 5;
+missingSettings.ad4Reward = 0;
 
 if(settingsData.ad1Limit === undefined)
-missingSettings.ad1Limit = 25;
+missingSettings.ad1Limit = 0;
 
 if(settingsData.ad2Limit === undefined)
-missingSettings.ad2Limit = 20;
+missingSettings.ad2Limit = 0;
 
 if(settingsData.ad3Limit === undefined)
-missingSettings.ad3Limit = 15;
+missingSettings.ad3Limit = 0;
 
 if(settingsData.ad4Limit === undefined)
-missingSettings.ad4Limit = 10;
+missingSettings.ad4Limit = 0;
 
 if(settingsData.ad1Zone === undefined)
 missingSettings.ad1Zone = "";
@@ -417,6 +431,20 @@ missingSettings.cashoutMax = 1000;
 
 if(settingsData.dailyWithdrawLimit === undefined)
 missingSettings.dailyWithdrawLimit = 3;
+
+if(settingsData.dailyTasks === undefined)
+missingSettings.dailyTasks = {
+ task1:{
+  name:"Website Visit",
+  reward:20,
+  dailyLimit:1,
+  enabled:true,
+  links:[]
+ }
+};
+
+if(settingsData.socialTasks === undefined)
+missingSettings.socialTasks = {};
 
 if(Object.keys(missingSettings).length > 0){
 
@@ -1619,7 +1647,8 @@ noticeEl.innerText =
 settings.notice || "";
 
 }
-
+renderDailyTasks();
+renderSocialTasks();
 });
 
 /* ========================= */
@@ -2209,5 +2238,71 @@ Start
 </div>
 
 `;
+
+}
+
+function renderSocialTasks(){
+
+const list =
+document.getElementById(
+"socialTaskList"
+);
+
+if(!list) return;
+
+list.innerHTML = "";
+
+const tasks =
+settingsData.socialTasks || {};
+
+Object.values(tasks).forEach((task)=>{
+
+if(!task || task.enabled !== true)
+return;
+
+list.innerHTML += `
+
+<div class="social-item">
+
+<div class="social-left">
+
+<img
+class="social-icon"
+src="${task.logo || 'https://cdn-icons-png.flaticon.com/512/733/733547.png'}"
+/>
+
+<div>
+
+<h3 class="social-title">
+${task.name}
+</h3>
+
+<p class="social-description">
+Complete Task
+</p>
+
+</div>
+
+</div>
+
+<div class="social-right">
+
+<div class="social-reward">
+🪙 ${task.reward}
+</div>
+
+<button
+class="social-button"
+>
+Start
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
 
 }

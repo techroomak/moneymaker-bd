@@ -2006,7 +2006,7 @@ await loadUserData();
 
 tg.showPopup({
 
-title:"Premium Reward",
+title:"Ads Reward ✅",
 
 message:`${reward} Coin Added Successfully`,
 
@@ -2053,7 +2053,7 @@ button.disabled = false;
 button.innerHTML =
 originalText;
 
-alert("Premium Ad Not Completed");
+alert("Ad Not Completed | Plz Wait 30s");
 
 });
 
@@ -2089,7 +2089,7 @@ await loadUserData();
 
 tg.showPopup({
 
-title:"Sponsor Reward",
+title:"Ads Reward",
 
 message:`${reward} Coin Added Successfully`,
 
@@ -2136,7 +2136,7 @@ button.disabled = false;
 button.innerHTML =
 originalText;
 
-alert("Sponsor Ad Not Completed");
+alert("Ad Not Completed | Plz Wait 30s");
 
 });
 
@@ -2145,3 +2145,69 @@ alert("Sponsor Ad Not Completed");
 };
 
 });
+
+/* Task Edit */
+function renderDailyTasks(){
+
+const list =
+document.getElementById(
+"dailyTaskList"
+);
+
+if(!list) return;
+
+const task =
+settingsData.dailyTasks?.task1;
+
+if(!task || task.enabled !== true){
+
+list.innerHTML = "";
+
+return;
+
+}
+
+list.innerHTML = `
+
+<div class="task-item">
+
+<div class="task-left">
+
+<img
+class="task-icon"
+src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png"
+/>
+
+<div>
+
+<div class="task-title-row">
+
+<h3 class="task-title">
+${task.name}
+</h3>
+
+<div class="task-coin">
+🪙 ${task.reward}
+</div>
+
+</div>
+
+<p class="task-description">
+Visit ${task.links?.length || 0} Websites
+</p>
+
+</div>
+
+</div>
+
+<button
+class="task-button blue-btn"
+>
+Start
+</button>
+
+</div>
+
+`;
+
+}

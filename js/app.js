@@ -347,12 +347,6 @@ const missingSettings = {};
 if(settingsData.ads === undefined)
 missingSettings.ads = true;
 
-if(settingsData.socialTask === undefined)
-missingSettings.socialTask = true;
-
-if(settingsData.dailyTask === undefined)
-missingSettings.dailyTask = true;
-
 if(settingsData.withdraw === undefined)
 missingSettings.withdraw = true;
 
@@ -440,7 +434,57 @@ missingSettings.dailyTasks = {
 };
 
 if(settingsData.socialTasks === undefined)
-missingSettings.socialTasks = {};
+missingSettings.socialTasks = {
+
+ task1:{
+  name:"Telegram Channel",
+  reward:10,
+  enabled:true,
+  link:"",
+  logo:""
+ },
+
+ task2:{
+  name:"Telegram Group",
+  reward:10,
+  enabled:true,
+  link:"",
+  logo:""
+ },
+
+ task3:{
+  name:"Facebook Page",
+  reward:10,
+  enabled:true,
+  link:"",
+  logo:""
+ },
+
+ task4:{
+  name:"Facebook Group",
+  reward:10,
+  enabled:true,
+  link:"",
+  logo:""
+ },
+
+ task5:{
+  name:"YouTube Channel",
+  reward:10,
+  enabled:true,
+  link:"",
+  logo:""
+ },
+
+ task6:{
+  name:"Website",
+  reward:10,
+  enabled:true,
+  link:"",
+  logo:""
+ }
+
+};
 
 if(Object.keys(missingSettings).length > 0){
 

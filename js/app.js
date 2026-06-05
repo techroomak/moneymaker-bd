@@ -430,8 +430,7 @@ missingSettings.dailyTasks = {
   dailyLimit:1,
   enabled:true,
   links:[]
- }
-};
+ },
  task2:{
   name:"YouTube Watch",
   reward:0,

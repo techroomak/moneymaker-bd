@@ -477,7 +477,7 @@ color:#111827;
 }
 
 .task-description{
-font-size:10px;
+font-size:11px;
 margin-top:1px;
 color:#9ca3af;
 line-height:1.4;
@@ -499,7 +499,7 @@ font-weight:700;
 color:#22c55e;
 white-space:nowrap;
 margin-left:4px;
-margin-top:1px;
+margin-top:0px;
 }
 
 .task-button{

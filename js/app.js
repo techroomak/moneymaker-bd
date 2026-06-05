@@ -2315,25 +2315,12 @@ Start
 
 }
 
-window.startDailyTask = ()=>{
+window.startDailyTask = async()=>{
 
 const task =
 settingsData.dailyTasks?.task1;
 
 if(!task) return;
-
-if(
-!task.links ||
-task.links.length === 0
-){
-
-alert(
-"No website link added"
-);
-
-return;
-
-}
 
 const progress =
 userData.dailyTaskProgress?.task1 || 0;
@@ -2350,6 +2337,30 @@ window.open(
 task.links[progress],
 "_blank"
 );
+
+setTimeout(async()=>{
+
+const newProgress =
+progress + 1;
+
+await updateDoc(userRef,{
+
+dailyTaskProgress:{
+...(userData.dailyTaskProgress || {}),
+task1:newProgress
+}
+
+});
+
+userData.dailyTaskProgress = {
+...(userData.dailyTaskProgress || {}),
+task1:newProgress
+};
+
+renderDailyTasks();
+
+},30000);
+
 };
 
 function renderSocialTasks(){

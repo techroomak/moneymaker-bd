@@ -425,8 +425,11 @@ height:14px;
 /* DAILY TASK */
 /* ========================= */
 
-#dailyTaskList{
+.task-list{
 padding:0 15px;
+display:flex;
+flex-direction:column;
+gap:12px;
 }
 
 .task-item{

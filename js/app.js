@@ -2539,26 +2539,23 @@ ${task.reward} Coin
 </div>
 
 ${
-completed && !claimed
+claimed
 ?
 
 `<button
-class="social-button orange-btn"
-onclick="claimSocialReward(${i})"
+class="social-button social-complete-button"
+disabled
 >
-Claim
+Completed
 </button>`
 
 :
 
 `<button
-class="social-button
-${claimed ? 'social-complete-button' : ''}
-"
-${claimed ? 'disabled' : ''}
-onclick="alert('Button Clicked')"
+class="social-button"
+onclick="startSocialTask(${i})"
 >
-${claimed ? 'Completed' : 'Start'}
+Start
 </button>`
 }
 
@@ -2597,14 +2594,22 @@ task.link,
 "_blank"
 );
 
+/* Telegram Verify */
+
+if(
+task.chatId &&
+(
+task.chatId === "@techroom_ak" ||
+task.chatId === "@techroomak"
+)
+){
+
 const ok =
 confirm(
-"Join task then click OK"
+"Join task and press OK"
 );
 
 if(!ok) return;
-
-try{
 
 const res =
 await fetch(
@@ -2623,6 +2628,10 @@ alert(
 return;
 
 }
+
+}
+
+/* Reward */
 
 await updateDoc(userRef,{
 
@@ -2643,19 +2652,13 @@ completedSocialTasks:[
 });
 
 userData.claimedSocialTasks = [
-
 ...(userData.claimedSocialTasks || []),
-
 `task${id}`
-
 ];
 
 userData.completedSocialTasks = [
-
 ...(userData.completedSocialTasks || []),
-
 `task${id}`
-
 ];
 
 alert(
@@ -2665,16 +2668,6 @@ alert(
 renderSocialTasks();
 
 loadUserData();
-
-}catch(error){
-
-console.error(error);
-
-alert(
-"Verification Failed"
-);
-
-}
 
 }
 

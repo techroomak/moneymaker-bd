@@ -2597,6 +2597,31 @@ task.link,
 
 setTimeout(async()=>{
 
+const ok =
+confirm(
+"After joining, click OK to verify"
+);
+
+if(!ok) return;
+
+const res =
+await fetch(
+`https://telegram-check.techroom-ak.workers.dev?userId=${userId}&chatId=${task.chatId}`
+);
+
+const data =
+await res.json();
+
+if(!data.joined){
+
+alert(
+"Join task first"
+);
+
+return;
+
+}
+
 await updateDoc(userRef,{
 
 completedSocialTasks:[
@@ -2613,7 +2638,11 @@ userData.completedSocialTasks = [
 
 renderSocialTasks();
 
-},10000);
+alert(
+"Verification Successful"
+);
+
+},1000);
 
 };
 

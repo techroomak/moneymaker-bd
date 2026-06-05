@@ -477,17 +477,18 @@ color:#111827;
 }
 
 .task-description{
-font-size:11px;
+font-size:12px;
 margin-top:1px;
-color:#9ca3af;
+color:#6f6f6f;
 line-height:1.4;
+font-weight:500;
 }
 
 .task-limit{
-font-size:10px;
+font-size:11px;
 margin-top:5px;
-color:#4b5563;
-font-weight:600;
+color:#6f6f6f;
+font-weight:500;
 }
 
 .task-coin{

@@ -195,8 +195,9 @@ ad3Last:0,
 ad4Last:0,
 
 completedSocialTasks:[],
-
 completedDailyTasks:[],
+dailyTaskProgress:{},
+lastDailyTaskDate:"",
 
 joinedBy:referrerId || "",
 referrerName:"",
@@ -569,6 +570,9 @@ dailyEarn:0,
 dailyAds:0,
 
 dailyEarnDate:today
+
+dailyTaskProgress:{},
+completedDailyTasks:[]
 
 });
 
@@ -2286,8 +2290,12 @@ ${task.reward} Coin
 </p>
 </div>
 
+<p class="task-progress">
+0/${task.links?.length || 0}
+</p>
+
 <p class="task-description">
-Visit ${task.links?.length || 0} Websites
+Minimum 30s wait per website
 </p>
 
 </div>
@@ -2296,6 +2304,7 @@ Visit ${task.links?.length || 0} Websites
 
 <button
 class="task-button blue-btn"
+onclick="startDailyTask()"
 >
 Start
 </button>
@@ -2305,6 +2314,33 @@ Start
 `;
 
 }
+
+window.startDailyTask = ()=>{
+
+const task =
+settingsData.dailyTasks?.task1;
+
+if(!task) return;
+
+if(
+!task.links ||
+task.links.length === 0
+){
+
+alert(
+"No website link added"
+);
+
+return;
+
+}
+
+window.open(
+task.links[0],
+"_blank"
+);
+
+};
 
 function renderSocialTasks(){
 

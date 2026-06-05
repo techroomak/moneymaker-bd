@@ -199,6 +199,7 @@ completedDailyTasks:[],
 dailyTaskProgress:{},
 lastDailyTaskDate:"",
 claimedDailyTasks:[],
+claimedSocialTasks:[],
 
 joinedBy:referrerId || "",
 referrerName:"",
@@ -574,7 +575,8 @@ dailyEarnDate:today,
 
 dailyTaskProgress:{},
 completedDailyTasks:[],
-claimedDailyTasks:[]
+claimedDailyTasks:[],
+claimedSocialTasks:[]
 });
 
 userData.dailyEarn = 0;
@@ -2482,6 +2484,14 @@ for(let i=1;i<=6;i++){
 const task =
 tasks[`task${i}`];
 
+const completed =
+(userData.completedSocialTasks || [])
+.includes(`task${i}`);
+
+const claimed =
+(userData.claimedSocialTasks || [])
+.includes(`task${i}`);
+
 if(!task || task.enabled !== true)
 continue;
 
@@ -2525,11 +2535,29 @@ ${task.reward} Coin
 
 </div>
 
-<button
-class="social-button"
+${
+completed && !claimed
+?
+
+`<button
+class="social-button orange-btn"
+onclick="claimSocialReward(${i})"
 >
-Start
-</button>
+Claim
+</button>`
+
+:
+
+`<button
+class="social-button
+${claimed ? 'social-complete-button' : ''}
+"
+${claimed ? 'disabled' : ''}
+onclick="startSocialTask(${i})"
+>
+${claimed ? 'Completed' : 'Start'}
+</button>`
+}
 
 </div>
 
@@ -2552,4 +2580,69 @@ visibleCount > 0
 
 }
 
+window.startSocialTask = async(id)=>{
 
+const task =
+settingsData.socialTasks?.[`task${id}`];
+
+if(!task) return;
+
+window.open(
+task.link,
+"_blank"
+);
+
+setTimeout(async()=>{
+
+await updateDoc(userRef,{
+
+completedSocialTasks:[
+...(userData.completedSocialTasks || []),
+`task${id}`
+]
+
+});
+
+userData.completedSocialTasks = [
+...(userData.completedSocialTasks || []),
+`task${id}`
+];
+
+renderSocialTasks();
+
+},10000);
+
+};
+
+window.claimSocialReward = async(id)=>{
+
+const task =
+settingsData.socialTasks?.[`task${id}`];
+
+await updateDoc(userRef,{
+
+coin:increment(task.reward),
+
+dailyEarn:increment(task.reward),
+
+claimedSocialTasks:[
+...(userData.claimedSocialTasks || []),
+`task${id}`
+]
+
+});
+
+userData.claimedSocialTasks = [
+...(userData.claimedSocialTasks || []),
+`task${id}`
+];
+
+alert(
+`${task.reward} Coin Added Successfully`
+);
+
+renderSocialTasks();
+
+loadUserData();
+
+};

@@ -425,6 +425,10 @@ height:14px;
 /* DAILY TASK */
 /* ========================= */
 
+#dailyTaskList{
+padding:0 15px;
+}
+
 .task-item{
 background:white;
 padding:13px;

@@ -2585,6 +2585,8 @@ visibleCount > 0
 
 window.startSocialTask = async(id)=>{
 
+alert("Start Clicked : " + id);
+
 const task =
 settingsData.socialTasks?.[`task${id}`];
 

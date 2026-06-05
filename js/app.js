@@ -2388,8 +2388,6 @@ Start
 
 }
 
-}
-
 if(section){
 
 section.style.display =
@@ -2400,3 +2398,7 @@ visibleCount > 0
 "none";
 
 }
+
+}
+
+

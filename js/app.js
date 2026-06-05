@@ -450,7 +450,8 @@ missingSettings.socialTasks = {
   reward:0,
   enabled:true,
   link:"",
-  logo:""
+  logo:"",
+  chatId:"@techroom_ak"
  },
 
  task2:{
@@ -458,7 +459,9 @@ missingSettings.socialTasks = {
   reward:0,
   enabled:true,
   link:"",
-  logo:""
+  logo:"",
+  chatId:"@techroomak"
+
  },
 
  task3:{

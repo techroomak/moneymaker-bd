@@ -2272,23 +2272,9 @@ src="https://cdn-icons-png.flaticon.com/128/8743/8743996.png"
 
 <div>
 
-<div class="task-title-row">
-
 <h3 class="task-title">
 ${task.name}
 </h3>
-
-<p class="task-reward">
-
-<img
-class="mini-coin-icon"
-src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
-/>
-
-${task.reward} Coin
-
-</p>
-</div>
 
 <p class="task-progress">
 ${userData.dailyTaskProgress?.task1 || 0}/${task.links?.length || 0}
@@ -2301,6 +2287,19 @@ Minimum 30s wait per website
 </div>
 
 </div>
+
+<div class="task-right">
+
+<p class="task-reward">
+
+<img
+class="mini-coin-icon"
+src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
+/>
+
+${task.reward} Coin
+
+</p>
 
 <button
 class="task-button blue-btn"

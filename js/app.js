@@ -2243,6 +2243,10 @@ if(!list) return;
 const task =
 settingsData.dailyTasks?.task1;
 
+const completed =
+(userData.completedDailyTasks || [])
+.includes("task1");
+
 if(!task || task.enabled !== true){
 
 list.innerHTML = "";
@@ -2302,10 +2306,12 @@ ${task.reward} Coin
 </p>
 
 <button
-class="task-button blue-btn"
+class="task-button
+${completed ? 'red-btn' : 'blue-btn'}"
+${completed ? 'disabled' : ''}
 onclick="startDailyTask()"
 >
-Start
+${completed ? 'Completed' : 'Start'}
 </button>
 
 </div>
@@ -2341,6 +2347,33 @@ setTimeout(async()=>{
 
 const newProgress =
 progress + 1;
+
+if(
+newProgress >= task.links.length
+){
+
+await updateDoc(userRef,{
+
+coin:increment(
+task.reward
+),
+
+dailyEarn:increment(
+task.reward
+),
+
+completedDailyTasks:[
+...(userData.completedDailyTasks || []),
+"task1"
+]
+
+});
+
+alert(
+`${task.reward} Coin Added Successfully`
+);
+
+}
 
 await updateDoc(userRef,{
 

@@ -2263,7 +2263,7 @@ list.innerHTML = `
 
 <img
 class="task-icon"
-src="https://cdn-icons-png.flaticon.com/128/8297/8297314.png"
+src="https://cdn-icons-png.flaticon.com/128/8743/8743996.png"
 />
 
 <div>
@@ -2274,10 +2274,16 @@ src="https://cdn-icons-png.flaticon.com/128/8297/8297314.png"
 ${task.name}
 </h3>
 
-<div class="task-coin">
-🪙 ${task.reward}
-</div>
+<p class="task-reward">
 
+<img
+class="mini-coin-icon"
+src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
+/>
+
+${task.reward} Coin
+
+</p>
 </div>
 
 <p class="task-description">
@@ -2328,9 +2334,6 @@ tasks[`task${i}`];
 if(!task || task.enabled !== true)
 continue;
 
-if(!task || task.enabled !== true)
-return;
-
 visibleCount++;
 
 list.innerHTML += `
@@ -2361,7 +2364,14 @@ Complete Task
 <div class="social-right">
 
 <div class="social-reward">
-🪙 ${task.reward}
+
+<img
+class="mini-coin-icon"
+src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
+/>
+
+${task.reward} Coin
+
 </div>
 
 <button

@@ -569,7 +569,7 @@ await updateDoc(userRef,{
 dailyEarn:0,
 dailyAds:0,
 
-dailyEarnDate:today
+dailyEarnDate:today,
 
 dailyTaskProgress:{},
 completedDailyTasks:[]

@@ -198,6 +198,7 @@ completedSocialTasks:[],
 completedDailyTasks:[],
 dailyTaskProgress:{},
 lastDailyTaskDate:"",
+claimedDailyTasks:[],
 
 joinedBy:referrerId || "",
 referrerName:"",
@@ -572,8 +573,8 @@ dailyAds:0,
 dailyEarnDate:today,
 
 dailyTaskProgress:{},
-completedDailyTasks:[]
-
+completedDailyTasks:[],
+claimedDailyTasks:[]
 });
 
 userData.dailyEarn = 0;
@@ -2226,6 +2227,14 @@ alert("Ad Not Completed | Plz Wait 30s");
 });
 
 /* Task Edit */
+
+if(progressEl){
+
+progressEl.innerText =
+`${newProgress}/${task.links.length}`;
+
+}
+
 function renderDailyTasks(){
 
 const list =
@@ -2245,6 +2254,10 @@ settingsData.dailyTasks?.task1;
 
 const completed =
 (userData.completedDailyTasks || [])
+.includes("task1");
+
+const claimed =
+(userData.claimedDailyTasks || [])
 .includes("task1");
 
 if(!task || task.enabled !== true){
@@ -2284,7 +2297,10 @@ ${task.name}
 Minimum 30s wait per website
 </p>
 
-<p class="task-progress">
+<p
+id="dailyTaskProgress"
+class="task-progress"
+>
 ${userData.dailyTaskProgress?.task1 || 0}/${task.links?.length || 0}
 </p>
 
@@ -2305,15 +2321,28 @@ ${task.reward} Coin
 
 </p>
 
-<button
+${
+completed && !claimed
+?
+
+`<button
+class="task-button orange-btn"
+onclick="claimDailyReward()"
+>
+Claim
+</button>`
+
+:
+
+`<button
 class="task-button
-${completed ? 'red-btn' : 'blue-btn'}"
-${completed ? 'disabled' : ''}
+${claimed ? 'red-btn' : 'blue-btn'}"
+${claimed ? 'disabled' : ''}
 onclick="startDailyTask()"
 >
-${completed ? 'Completed' : 'Start'}
-</button>
-
+${claimed ? 'Completed' : 'Start'}
+</button>`
+}
 </div>
 
 `;
@@ -2343,37 +2372,37 @@ task.links[progress],
 "_blank"
 );
 
+const progressEl =
+document.getElementById(
+"dailyTaskProgress"
+);
+
+let sec = 30;
+
+const timer =
+setInterval(()=>{
+
+if(progressEl){
+
+progressEl.innerText =
+`${sec}s Remaining`;
+
+}
+
+sec--;
+
+if(sec < 0){
+
+clearInterval(timer);
+
+}
+
+},1000);
+
 setTimeout(async()=>{
 
 const newProgress =
 progress + 1;
-
-if(
-newProgress >= task.links.length
-){
-
-await updateDoc(userRef,{
-
-coin:increment(
-task.reward
-),
-
-dailyEarn:increment(
-task.reward
-),
-
-completedDailyTasks:[
-...(userData.completedDailyTasks || []),
-"task1"
-]
-
-});
-
-alert(
-`${task.reward} Coin Added Successfully`
-);
-
-}
 
 await updateDoc(userRef,{
 
@@ -2392,6 +2421,39 @@ task1:newProgress
 renderDailyTasks();
 
 },30000);
+
+};
+
+window.claimDailyReward = async()=>{
+
+const task =
+settingsData.dailyTasks?.task1;
+
+await updateDoc(userRef,{
+
+coin:increment(task.reward),
+
+dailyEarn:increment(task.reward),
+
+claimedDailyTasks:[
+...(userData.claimedDailyTasks || []),
+"task1"
+]
+
+});
+
+userData.claimedDailyTasks = [
+...(userData.claimedDailyTasks || []),
+"task1"
+];
+
+alert(
+`${task.reward} Coin Added Successfully`
+);
+
+renderDailyTasks();
+
+loadUserData();
 
 };
 

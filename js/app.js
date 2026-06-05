@@ -2583,9 +2583,9 @@ visibleCount > 0
 
 }
 
-window.startSocialTask = async(id)=>{
+/* SOCIAL TASK */
 
-alert("Start Clicked : " + id);
+async function startSocialTask(id){
 
 const task =
 settingsData.socialTasks?.[`task${id}`];
@@ -2597,14 +2597,14 @@ task.link,
 "_blank"
 );
 
-setTimeout(async()=>{
-
 const ok =
 confirm(
-"After joining, click OK to verify"
+"Join task then click OK"
 );
 
 if(!ok) return;
+
+try{
 
 const res =
 await fetch(
@@ -2617,41 +2617,12 @@ await res.json();
 if(!data.joined){
 
 alert(
-"Join task first"
+"Please join first"
 );
 
 return;
 
 }
-
-await updateDoc(userRef,{
-
-completedSocialTasks:[
-...(userData.completedSocialTasks || []),
-`task${id}`
-]
-
-});
-
-userData.completedSocialTasks = [
-...(userData.completedSocialTasks || []),
-`task${id}`
-];
-
-renderSocialTasks();
-
-alert(
-"Verification Successful"
-);
-
-},1000);
-
-};
-
-window.claimSocialReward = async(id)=>{
-
-const task =
-settingsData.socialTasks?.[`task${id}`];
 
 await updateDoc(userRef,{
 
@@ -2662,13 +2633,29 @@ dailyEarn:increment(task.reward),
 claimedSocialTasks:[
 ...(userData.claimedSocialTasks || []),
 `task${id}`
+],
+
+completedSocialTasks:[
+...(userData.completedSocialTasks || []),
+`task${id}`
 ]
 
 });
 
 userData.claimedSocialTasks = [
+
 ...(userData.claimedSocialTasks || []),
+
 `task${id}`
+
+];
+
+userData.completedSocialTasks = [
+
+...(userData.completedSocialTasks || []),
+
+`task${id}`
+
 ];
 
 alert(
@@ -2679,4 +2666,17 @@ renderSocialTasks();
 
 loadUserData();
 
-};
+}catch(error){
+
+console.error(error);
+
+alert(
+"Verification Failed"
+);
+
+}
+
+}
+
+window.startSocialTask =
+startSocialTask;

@@ -440,7 +440,7 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 box-shadow:0 4px 12px rgba(0,0,0,.05);
-margin-top:0;
+margin-top:0 !important;
 }
 .task-right{
 display:flex;

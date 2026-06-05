@@ -2276,12 +2276,12 @@ src="https://cdn-icons-png.flaticon.com/128/8743/8743996.png"
 ${task.name}
 </h3>
 
-<p class="task-progress">
-${userData.dailyTaskProgress?.task1 || 0}/${task.links?.length || 0}
-</p>
-
 <p class="task-description">
 Minimum 30s wait per website
+</p>
+
+<p class="task-progress">
+${userData.dailyTaskProgress?.task1 || 0}/${task.links?.length || 0}
 </p>
 
 </div>

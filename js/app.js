@@ -426,19 +426,26 @@ if(settingsData.dailyTasks === undefined)
 missingSettings.dailyTasks = {
  task1:{
   name:"Website Visit",
-  reward:20,
+  reward:0,
   dailyLimit:1,
   enabled:true,
   links:[]
  }
 };
-
+ task2:{
+  name:"YouTube Watch",
+  reward:0,
+  dailyLimit:1,
+  enabled:true,
+  links:[]
+ }
+};
 if(settingsData.socialTasks === undefined)
 missingSettings.socialTasks = {
 
  task1:{
   name:"Telegram Channel",
-  reward:10,
+  reward:0,
   enabled:true,
   link:"",
   logo:""
@@ -446,7 +453,7 @@ missingSettings.socialTasks = {
 
  task2:{
   name:"Telegram Group",
-  reward:10,
+  reward:0,
   enabled:true,
   link:"",
   logo:""
@@ -454,7 +461,7 @@ missingSettings.socialTasks = {
 
  task3:{
   name:"Facebook Page",
-  reward:10,
+  reward:0,
   enabled:true,
   link:"",
   logo:""
@@ -462,7 +469,7 @@ missingSettings.socialTasks = {
 
  task4:{
   name:"Facebook Group",
-  reward:10,
+  reward:0,
   enabled:true,
   link:"",
   logo:""
@@ -470,7 +477,7 @@ missingSettings.socialTasks = {
 
  task5:{
   name:"YouTube Channel",
-  reward:10,
+  reward:0,
   enabled:true,
   link:"",
   logo:""
@@ -478,7 +485,7 @@ missingSettings.socialTasks = {
 
  task6:{
   name:"Website",
-  reward:10,
+  reward:0,
   enabled:true,
   link:"",
   logo:""
@@ -1666,7 +1673,7 @@ font-weight:700;
 ">
 
 ${settings.maintenanceMessage ||
-"🚧 App Under Maintenance - Please Check After Some Time"}
+"🚧 App আপডেট চলছে, কিছুক্ষণ পর আমার চেষ্টা করুন।"}
 
 </div>
 
@@ -2223,6 +2230,11 @@ document.getElementById(
 "dailyTaskList"
 );
 
+const section =
+document.querySelector(
+".daily-task-section"
+);
+
 if(!list) return;
 
 const task =
@@ -2232,8 +2244,16 @@ if(!task || task.enabled !== true){
 
 list.innerHTML = "";
 
+if(section){
+section.style.display = "none";
+}
+
 return;
 
+}
+
+if(section){
+section.style.display = "block";
 }
 
 list.innerHTML = `
@@ -2288,9 +2308,15 @@ document.getElementById(
 "socialTaskList"
 );
 
+const section =
+document.querySelector(
+".social-task-section"
+);
+
 if(!list) return;
 
 list.innerHTML = "";
+let visibleCount = 0;
 
 const tasks =
 settingsData.socialTasks || {};
@@ -2299,6 +2325,8 @@ Object.values(tasks).forEach((task)=>{
 
 if(!task || task.enabled !== true)
 return;
+
+visibleCount++;
 
 list.innerHTML += `
 
@@ -2344,5 +2372,16 @@ Start
 `;
 
 });
+
+}
+
+if(section){
+
+section.style.display =
+visibleCount > 0
+?
+"block"
+:
+"none";
 
 }

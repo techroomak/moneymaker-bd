@@ -2556,7 +2556,7 @@ class="social-button
 ${claimed ? 'social-complete-button' : ''}
 "
 ${claimed ? 'disabled' : ''}
-onclick="startSocialTask(${i})"
+onclick="alert('Button Clicked')"
 >
 ${claimed ? 'Completed' : 'Start'}
 </button>`

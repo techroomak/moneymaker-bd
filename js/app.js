@@ -2291,7 +2291,7 @@ ${task.reward} Coin
 </div>
 
 <p class="task-progress">
-0/${task.links?.length || 0}
+${userData.dailyTaskProgress?.task1 || 0}/${task.links?.length || 0}
 </p>
 
 <p class="task-description">
@@ -2335,11 +2335,21 @@ return;
 
 }
 
+const progress =
+userData.dailyTaskProgress?.task1 || 0;
+
+if(progress >= task.links.length){
+
+alert("Task already completed");
+
+return;
+
+}
+
 window.open(
-task.links[0],
+task.links[progress],
 "_blank"
 );
-
 };
 
 function renderSocialTasks(){

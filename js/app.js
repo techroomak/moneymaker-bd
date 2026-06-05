@@ -2263,7 +2263,7 @@ list.innerHTML = `
 
 <img
 class="task-icon"
-src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png"
+src="https://cdn-icons-png.flaticon.com/128/8297/8297314.png"
 />
 
 <div>
@@ -2320,7 +2320,13 @@ let visibleCount = 0;
 const tasks =
 settingsData.socialTasks || {};
 
-Object.values(tasks).forEach((task)=>{
+for(let i=1;i<=6;i++){
+
+const task =
+tasks[`task${i}`];
+
+if(!task || task.enabled !== true)
+continue;
 
 if(!task || task.enabled !== true)
 return;
@@ -2335,7 +2341,7 @@ list.innerHTML += `
 
 <img
 class="social-icon"
-src="${task.logo || 'https://cdn-icons-png.flaticon.com/512/733/733547.png'}"
+src="${task.logo || 'https://cdn-icons-png.flaticon.com/128/8297/8297314.png'}"
 />
 
 <div>
@@ -2370,7 +2376,7 @@ Start
 
 `;
 
-});
+}
 
 }
 

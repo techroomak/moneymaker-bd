@@ -427,14 +427,14 @@ height:14px;
 
 .task-item{
 background:white;
-padding:14px;
+padding:12px 14px;
 border-radius:20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-box-shadow:0 4px 12px rgb(0 0 0 / 31%);
+box-shadow:0 4px 12px rgb(0 0 0 / 12%);
 margin-top:5px;
-
+min-height:90px;
 }
 
 .task-left{
@@ -453,10 +453,10 @@ flex-shrink:0;
 .task-title-row{
 display:flex;
 align-items:center;
-gap:8px;
-margin-bottom:4px;
+gap:10px;
+margin-bottom:3px;
+flex-wrap:wrap;
 }
-
 .task-title{
 font-size:15px;
 font-weight:700;
@@ -466,9 +466,9 @@ color:#111827;
 }
 
 .task-description{
-font-size:11px;
+font-size:10px;
 margin-top:1px;
-color:#6b7280;
+color:#9ca3af;
 line-height:1.4;
 }
 
@@ -511,6 +511,22 @@ background:#2563eb;
 
 .orange-btn{
 background:#f97316;
+}
+.task-reward{
+display:flex;
+align-items:center;
+gap:4px;
+font-size:13px;
+font-weight:700;
+color:#22c55e;
+margin:0;
+}
+
+.task-progress{
+font-size:11px;
+font-weight:600;
+color:#94a3b8;
+margin:2px 0;
 }
 
 /* ========================= */

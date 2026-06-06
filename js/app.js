@@ -446,7 +446,6 @@ missingSettings.socialTasks = {
   link:"",
   logo:"",
   chatId:"",
-  type = "telegram"
  },
 
  task2:{
@@ -456,7 +455,6 @@ missingSettings.socialTasks = {
   link:"",
   logo:"",
   chatId:"",
-  type = "telegram"
  },
 
  task3:{

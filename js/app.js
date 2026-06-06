@@ -2284,7 +2284,7 @@ ${task.name}
 </h3>
 
 <p class="task-description">
-Minimum 30s wait per website
+Minimum 30s wait per website & complete to claim reward
 </p>
 
 <p
@@ -2407,13 +2407,6 @@ let sec = 30;
 const timer =
 setInterval(()=>{
 
-if(progressEl){
-
-progressEl.innerText =
-`${sec}s Remaining`;
-
-}
-
 if(startBtn){
 
 startBtn.innerText =
@@ -2430,16 +2423,6 @@ clearInterval(timer);
 }
 
 },1000);
-
-
-if(startBtn){
-
-startBtn.disabled = false;
-
-startBtn.innerText =
-"Start";
-
-}
   
 setTimeout(async()=>{
 
@@ -2481,6 +2464,15 @@ userData.dailyTaskProgress = {
 task1:newProgress
 };
 
+if(startBtn){
+
+startBtn.disabled = false;
+
+startBtn.innerText =
+"Start";
+
+}
+  
 renderDailyTasks();
 
 },30000);

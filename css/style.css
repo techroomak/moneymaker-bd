@@ -668,6 +668,11 @@ color:#7c3aed;
 padding:15px;
 }
 
+.you-card{
+border:2px solid #22c55e;
+background:#f0fdf4;
+}
+
 .leaderboard-list{
 display:flex;
 flex-direction:column;

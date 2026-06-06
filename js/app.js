@@ -2700,6 +2700,13 @@ return;
 }
 
 /* VERIFY */
+const btn =
+document.querySelector(
+`button[data-id="${id}"]`
+);
+
+btn.disabled = true;
+btn.innerText = "Verifying...";
 
 try{
 
@@ -2709,9 +2716,40 @@ const res = await fetch(
 
 const data = await res.json();
 
+const latestSnap =
+await getDoc(userRef);
+
+const latestData =
+latestSnap.data();
+
+if(
+(latestData.claimedSocialTasks || [])
+.includes(`task${id}`)
+){
+
+btn.innerText = "Completed";
+
+return;
+
+}
+  
 if(!data.joined){
 
-alert("Please Join First");
+const joinNow = confirm(
+"❌ You haven't joined yet.\n\nPress OK to Join Now."
+);
+
+if(joinNow){
+
+window.open(
+task.link,
+"_blank"
+);
+
+}
+
+btn.disabled = false;
+btn.innerText = "Verify";
 
 return;
 

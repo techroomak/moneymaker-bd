@@ -2728,6 +2728,7 @@ if(
 ){
 
 btn.innerText = "Completed";
+btn.disabled = true;
 
 return;
 
@@ -2736,7 +2737,7 @@ return;
 if(!data.joined){
 
 const joinNow = confirm(
-"❌ You haven't joined yet.\n\nPress OK to Join Now."
+"❌ Not Joined Yet\n\nClick OK to Join Now"
 );
 
 if(joinNow){
@@ -2745,6 +2746,15 @@ window.open(
 task.link,
 "_blank"
 );
+
+}
+
+btn.disabled = false;
+btn.style.opacity = "1";
+btn.style.pointerEvents = "auto";
+btn.innerText = "Verify";
+
+return;
 
 }
 
@@ -2787,6 +2797,12 @@ userData.pendingSocialTasks =
 (userData.pendingSocialTasks || [])
 .filter(x => x !== `task${id}`);
 
+ btn.innerText = "Completed";
+btn.disabled = true;
+
+btn.style.opacity = "1";
+btn.style.pointerEvents = "none"; 
+  
 alert(`${task.reward} Coin Added`);
 
 renderSocialTasks();
@@ -2842,6 +2858,9 @@ btn.innerText = "Claim";
 
 btn.onclick = async()=>{
 
+btn.disabled = true;
+btn.innerText = "Processing...";  
+  
 await updateDoc(userRef,{
 
 coin:increment(task.reward),

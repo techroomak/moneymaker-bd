@@ -137,11 +137,13 @@ referralLink;
 /* REFERRAL SYSTEM */
 /* ========================= */
 
-const startParam =
-tg.initDataUnsafe.start_param;
+const urlParams =
+new URLSearchParams(
+window.location.search
+);
 
 const referrerId =
-startParam || null;
+urlParams.get("ref");
 
 /* ========================= */
 /* DATABASE */

@@ -2388,6 +2388,20 @@ document.getElementById(
 "dailyTaskProgress"
 );
 
+const startBtn =
+document.getElementById(
+"dailyTaskStartBtn"
+);
+
+if(startBtn){
+
+startBtn.disabled = true;
+
+startBtn.innerText =
+"Wait 30s";
+
+}
+  
 let sec = 30;
 
 const timer =
@@ -2397,6 +2411,13 @@ if(progressEl){
 
 progressEl.innerText =
 `${sec}s Remaining`;
+
+}
+
+if(startBtn){
+
+startBtn.innerText =
+`Wait ${sec}s`;
 
 }
 
@@ -2410,6 +2431,16 @@ clearInterval(timer);
 
 },1000);
 
+
+if(startBtn){
+
+startBtn.disabled = false;
+
+startBtn.innerText =
+"Start";
+
+}
+  
 setTimeout(async()=>{
 
 const newProgress =

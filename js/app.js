@@ -2725,14 +2725,78 @@ return;
 
 else{
 
+const btn =
+document.querySelector(
+`button[data-id="${id}"]`
+);
+
 window.open(
 task.link,
 "_blank"
 );
 
-alert(
-`Wait ${task.wait || 60}s then claim`
-);
+btn.disabled = true;
+
+let sec = task.wait || 60;
+
+btn.innerText =
+`Wait ${sec}s`;
+
+const timer =
+setInterval(()=>{
+
+sec--;
+
+btn.innerText =
+`Wait ${sec}s`;
+
+if(sec <= 0){
+
+clearInterval(timer);
+
+btn.disabled = false;
+
+btn.innerText = "Claim";
+
+btn.onclick = async()=>{
+
+await updateDoc(userRef,{
+
+coin:increment(task.reward),
+
+dailyEarn:increment(task.reward),
+
+claimedSocialTasks:[
+...(userData.claimedSocialTasks || []),
+`task${id}`
+],
+
+completedSocialTasks:[
+...(userData.completedSocialTasks || []),
+`task${id}`
+]
+
+});
+
+userData.claimedSocialTasks = [
+...(userData.claimedSocialTasks || []),
+`task${id}`
+];
+
+userData.completedSocialTasks = [
+...(userData.completedSocialTasks || []),
+`task${id}`
+];
+
+renderSocialTasks();
+
+loadUserData();
+
+};
+
+}
+
+},1000);
 
 return;
 
@@ -2758,6 +2822,20 @@ completedSocialTasks:[
 
 });
 
+userData.claimedSocialTasks = [
+...(userData.claimedSocialTasks || []),
+`task${id}`
+];
+
+userData.completedSocialTasks = [
+...(userData.completedSocialTasks || []),
+`task${id}`
+];
+
+userData.pendingSocialTasks =
+(userData.pendingSocialTasks || [])
+.filter(x => x !== `task${id}`);
+  
 alert(
 `${task.reward} Coin Added`
 );

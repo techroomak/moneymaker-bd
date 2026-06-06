@@ -2524,6 +2524,10 @@ document.querySelector(
 ".social-task-section"
 );
 
+ alert(
+JSON.stringify(task)
+); 
+  
 if(!list) return;
 
 list.innerHTML = "";

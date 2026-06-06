@@ -2699,25 +2699,22 @@ return;
 
 /* VERIFY */
 
-try{
+try {
 
-const res =
-await fetch(
+const res = await fetch(
 `https://telegram-check.techroom-ak.workers.dev?userId=${userId}&chatId=${task.chatId}`
 );
 
-alert(res.status);
+const data = await res.json();
 
-const text =
-await res.text();
+if(!data.joined){
 
-alert(text);
+alert("Please Join First");
 
-}catch(error){
-
-alert(error.message);
+return;
 
 }
+
 await updateDoc(userRef,{
 
 coin:increment(task.reward),
@@ -2736,20 +2733,6 @@ completedSocialTasks:[
 
 });
 
-userData.claimedSocialTasks = [
-...(userData.claimedSocialTasks || []),
-`task${id}`
-];
-
-userData.completedSocialTasks = [
-...(userData.completedSocialTasks || []),
-`task${id}`
-];
-
-userData.pendingSocialTasks =
-(userData.pendingSocialTasks || [])
-.filter(x => x !== `task${id}`);
-
 alert(`${task.reward} Coin Added`);
 
 renderSocialTasks();
@@ -2758,18 +2741,12 @@ loadUserData();
 
 }catch(error){
 
-alert(
-error.message
-);
+alert(error.message);
 
 console.error(error);
 
 }
-
-return;
-
-}
-
+  
 /* TIMER TASK */
 
 const btn =

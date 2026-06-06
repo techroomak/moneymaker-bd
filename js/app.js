@@ -2609,7 +2609,14 @@ Completed
 class="social-button social-start-btn"
 data-id="${i}"
 >
-Start
+${
+(userData.pendingSocialTasks || [])
+.includes(`task${i}`)
+?
+"Verify"
+:
+"Start"
+}
 </button>`
 }
 
@@ -2654,30 +2661,47 @@ async function startSocialTask(id){
 
 const task =
 settingsData.socialTasks?.[`task${id}`];
-  
+
 if(!task) return;
+
+/* TELEGRAM */
+
+if(task.type === "telegram"){
+
+if(
+!(userData.pendingSocialTasks || [])
+.includes(`task${id}`)
+){
 
 window.open(
 task.link,
 "_blank"
 );
 
-/* Telegram Verify */
+await updateDoc(userRef,{
 
-if(
-task.chatId &&
-(
-task.chatId === "@techroom_ak" ||
-task.chatId === "@techroomak"
-)
-){
+pendingSocialTasks:[
+...(userData.pendingSocialTasks || []),
+`task${id}`
+]
 
-const ok =
-confirm(
-"Join task and press OK"
-);
+});
 
-if(!ok) return;
+userData.pendingSocialTasks = [
+
+...(userData.pendingSocialTasks || []),
+
+`task${id}`
+
+];
+
+renderSocialTasks();
+
+return;
+
+}
+
+/* VERIFY */
 
 const res =
 await fetch(
@@ -2689,9 +2713,7 @@ await res.json();
 
 if(!data.joined){
 
-alert(
-"Please join first"
-);
+alert("Join first");
 
 return;
 
@@ -2699,7 +2721,24 @@ return;
 
 }
 
-/* Reward */
+/* TIMER TASK */
+
+else{
+
+window.open(
+task.link,
+"_blank"
+);
+
+alert(
+`Wait ${task.wait || 60}s then claim`
+);
+
+return;
+
+}
+
+/* REWARD */
 
 await updateDoc(userRef,{
 
@@ -2719,18 +2758,8 @@ completedSocialTasks:[
 
 });
 
-userData.claimedSocialTasks = [
-...(userData.claimedSocialTasks || []),
-`task${id}`
-];
-
-userData.completedSocialTasks = [
-...(userData.completedSocialTasks || []),
-`task${id}`
-];
-
 alert(
-`${task.reward} Coin Added Successfully`
+`${task.reward} Coin Added`
 );
 
 renderSocialTasks();
@@ -2738,6 +2767,3 @@ renderSocialTasks();
 loadUserData();
 
 }
-
-window.startSocialTask =
-startSocialTask;

@@ -1594,7 +1594,9 @@ ${me.coin || 0}
 
 }
 }
-loadLeaderboard();
+if(document.getElementById("leaderboardList")){
+  loadLeaderboard();
+}
 
 /* ========================= */
 /* LOAD WITHDRAW HISTORY */

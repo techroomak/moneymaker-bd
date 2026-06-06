@@ -124,7 +124,7 @@ profileEl.src = photo;
 /* ========================= */
 
 const referralLink =
-`https://t.me/emoneymakebd_bot?start=${userId}`;
+`https://t.me/emoneymakebd_bot?start=${refId}`;
 
 if(inviteLinkEl){
 

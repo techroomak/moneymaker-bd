@@ -2241,8 +2241,7 @@ progressEl.innerText =
 }
 
 function renderDailyTasks(){
-  
-alert("Daily Task Working");
+
 const list =
 document.getElementById(
 "dailyTaskList"
@@ -2352,9 +2351,6 @@ ${claimed ? 'Completed' : 'Start'}
 </div>
 
 `;
-
-}
-
 const dailyBtn =
 document.getElementById(
 "dailyTaskStartBtn"
@@ -2365,6 +2361,7 @@ if(dailyBtn){
 dailyBtn.onclick =
 startDailyTask;
 
+}
 }
 
 window.startDailyTask = async()=>{
@@ -2422,6 +2419,27 @@ setTimeout(async()=>{
 const newProgress =
 progress + 1;
 
+if(
+newProgress >=
+task.links.length
+){
+
+await updateDoc(userRef,{
+
+completedDailyTasks:[
+...(userData.completedDailyTasks || []),
+"task1"
+]
+
+});
+
+userData.completedDailyTasks = [
+...(userData.completedDailyTasks || []),
+"task1"
+];
+
+}
+  
 await updateDoc(userRef,{
 
 dailyTaskProgress:{
@@ -2476,7 +2494,7 @@ loadUserData();
 };
 
 function renderSocialTasks(){
-alert("Social Task Working");
+
 const list =
 document.getElementById(
 "socialTaskList"
@@ -2565,7 +2583,6 @@ Completed
 :
 
 `<button
-class="social-button"
 class="social-button social-start-btn"
 data-id="${i}"
 >
@@ -2578,21 +2595,6 @@ Start
 </div>
 
 `;
-
-}
-
-if(section){
-
-section.style.display =
-visibleCount > 0
-?
-"block"
-:
-"none";
-
-}
-
-}
 
 document
 .querySelectorAll(".social-start-btn")
@@ -2607,6 +2609,21 @@ btn.dataset.id
 };
 
 });
+  
+}
+
+if(section){
+
+section.style.display =
+visibleCount > 0
+?
+"block"
+:
+"none";
+
+}
+
+}
 
 /* SOCIAL TASK */
 

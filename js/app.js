@@ -2370,12 +2370,9 @@ userData.dailyTaskProgress?.task1 || 0;
 if(
 !task.links ||
 progress >= (task.links?.length || 0)
-)
-
+){
 alert("Task already completed");
-
 return;
-
 }
 
 if(

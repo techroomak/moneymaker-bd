@@ -2668,9 +2668,11 @@ settingsData.socialTasks?.[`task${id}`];
 
 if(!task) return;
 
-/* TELEGRAM */
+/* TELEGRAM TASK */
 
 if(task.type === "telegram"){
+
+/* START */
 
 if(
 !(userData.pendingSocialTasks || [])
@@ -2694,11 +2696,12 @@ userData.pendingSocialTasks = [
 renderSocialTasks();
 
 return;
+
 }
 
 /* VERIFY */
 
-try {
+try{
 
 const res = await fetch(
 `https://telegram-check.techroom-ak.workers.dev?userId=${userId}&chatId=${task.chatId}`
@@ -2732,6 +2735,20 @@ completedSocialTasks:[
 
 });
 
+userData.claimedSocialTasks = [
+...(userData.claimedSocialTasks || []),
+`task${id}`
+];
+
+userData.completedSocialTasks = [
+...(userData.completedSocialTasks || []),
+`task${id}`
+];
+
+userData.pendingSocialTasks =
+(userData.pendingSocialTasks || [])
+.filter(x => x !== `task${id}`);
+
 alert(`${task.reward} Coin Added`);
 
 renderSocialTasks();
@@ -2745,7 +2762,11 @@ alert(error.message);
 console.error(error);
 
 }
-  
+
+return;
+
+}
+
 /* TIMER TASK */
 
 const btn =

@@ -445,7 +445,8 @@ missingSettings.socialTasks = {
   enabled:true,
   link:"",
   logo:"",
-  chatId:"@techroom_ak"
+  chatId:"",
+  type = "telegram"
  },
 
  task2:{
@@ -454,8 +455,8 @@ missingSettings.socialTasks = {
   enabled:true,
   link:"",
   logo:"",
-  chatId:"@techroomak"
-
+  chatId:"",
+  type = "telegram"
  },
 
  task3:{

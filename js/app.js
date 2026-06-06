@@ -2241,7 +2241,8 @@ progressEl.innerText =
 }
 
 function renderDailyTasks(){
-
+  
+alert("Daily Task Working");
 const list =
 document.getElementById(
 "dailyTaskList"
@@ -2343,7 +2344,7 @@ Claim
 class="task-button
 ${claimed ? 'red-btn' : 'blue-btn'}"
 ${claimed ? 'disabled' : ''}
-onclick="startDailyTask()"
+id="dailyTaskStartBtn"
 >
 ${claimed ? 'Completed' : 'Start'}
 </button>`
@@ -2351,6 +2352,18 @@ ${claimed ? 'Completed' : 'Start'}
 </div>
 
 `;
+
+}
+
+const dailyBtn =
+document.getElementById(
+"dailyTaskStartBtn"
+);
+
+if(dailyBtn){
+
+dailyBtn.onclick =
+startDailyTask;
 
 }
 
@@ -2463,7 +2476,7 @@ loadUserData();
 };
 
 function renderSocialTasks(){
-
+alert("Social Task Working");
 const list =
 document.getElementById(
 "socialTaskList"
@@ -2553,7 +2566,8 @@ Completed
 
 `<button
 class="social-button"
-onclick="startSocialTask(${i})"
+class="social-button social-start-btn"
+data-id="${i}"
 >
 Start
 </button>`
@@ -2579,6 +2593,20 @@ visibleCount > 0
 }
 
 }
+
+document
+.querySelectorAll(".social-start-btn")
+.forEach(btn=>{
+
+btn.onclick = ()=>{
+
+startSocialTask(
+btn.dataset.id
+);
+
+};
+
+});
 
 /* SOCIAL TASK */
 

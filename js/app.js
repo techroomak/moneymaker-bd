@@ -2736,7 +2736,11 @@ return;
   
 if(!data.joined){
 
-alert("❌ Join Required");
+tg.showPopup({
+title:"Join Required",
+message:"Please join channel/group first",
+buttons:[{type:"ok"}]
+});
 
 await updateDoc(userRef,{
 pendingSocialTasks:

@@ -2673,32 +2673,23 @@ if(
 .includes(`task${id}`)
 ){
 
-window.open(
-task.link,
-"_blank"
-);
+window.open(task.link,"_blank");
 
 await updateDoc(userRef,{
-
 pendingSocialTasks:[
 ...(userData.pendingSocialTasks || []),
 `task${id}`
 ]
-
 });
 
 userData.pendingSocialTasks = [
-
 ...(userData.pendingSocialTasks || []),
-
 `task${id}`
-
 ];
 
 renderSocialTasks();
 
 return;
-
 }
 
 /* VERIFY */
@@ -2710,36 +2701,67 @@ await fetch(
 `https://telegram-check.techroom-ak.workers.dev?userId=${userId}&chatId=${task.chatId}`
 );
 
-const text =
-await res.text();
-
-alert(text);
-
 const data =
-JSON.parse(text);
+await res.json();
 
 if(!data.joined){
 
-alert("Join first");
+alert("Please join first");
 
 return;
-
 }
+
+await updateDoc(userRef,{
+
+coin:increment(task.reward),
+
+dailyEarn:increment(task.reward),
+
+claimedSocialTasks:[
+...(userData.claimedSocialTasks || []),
+`task${id}`
+],
+
+completedSocialTasks:[
+...(userData.completedSocialTasks || []),
+`task${id}`
+]
+
+});
+
+userData.claimedSocialTasks = [
+...(userData.claimedSocialTasks || []),
+`task${id}`
+];
+
+userData.completedSocialTasks = [
+...(userData.completedSocialTasks || []),
+`task${id}`
+];
+
+userData.pendingSocialTasks =
+(userData.pendingSocialTasks || [])
+.filter(x => x !== `task${id}`);
+
+alert(`${task.reward} Coin Added`);
+
+renderSocialTasks();
+
+loadUserData();
 
 }catch(error){
 
 alert(
-"Verify Error: " +
-error.message
+"Verify Failed"
 );
+
+}
 
 return;
 
 }
 
 /* TIMER TASK */
-
-else{
 
 const btn =
 document.querySelector(
@@ -2813,51 +2835,5 @@ loadUserData();
 }
 
 },1000);
-
-return;
-
-}
-
-/* REWARD */
-
-await updateDoc(userRef,{
-
-coin:increment(task.reward),
-
-dailyEarn:increment(task.reward),
-
-claimedSocialTasks:[
-...(userData.claimedSocialTasks || []),
-`task${id}`
-],
-
-completedSocialTasks:[
-...(userData.completedSocialTasks || []),
-`task${id}`
-]
-
-});
-
-userData.claimedSocialTasks = [
-...(userData.claimedSocialTasks || []),
-`task${id}`
-];
-
-userData.completedSocialTasks = [
-...(userData.completedSocialTasks || []),
-`task${id}`
-];
-
-userData.pendingSocialTasks =
-(userData.pendingSocialTasks || [])
-.filter(x => x !== `task${id}`);
-  
-alert(
-`${task.reward} Coin Added`
-);
-
-renderSocialTasks();
-
-loadUserData();
 
 }

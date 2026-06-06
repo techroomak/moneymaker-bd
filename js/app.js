@@ -2650,10 +2650,6 @@ async function startSocialTask(id){
 
 const task =
 settingsData.socialTasks?.[`task${id}`];
-
-alert(
-JSON.stringify(task)
-); 
   
 if(!task) return;
 

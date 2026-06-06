@@ -1523,8 +1523,6 @@ ${data.coin || 0}
 
 });
 
-}
-
 if(!amITop10){
 
 const me =
@@ -1591,7 +1589,7 @@ ${me.coin || 0}
 }
 
 }
-
+}
 loadLeaderboard();
 
 /* ========================= */

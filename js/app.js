@@ -2225,14 +2225,6 @@ alert("Ad Not Completed | Plz Wait 30s");
 });
 
 /* Task Edit */
-
-if(progressEl){
-
-progressEl.innerText =
-`${newProgress}/${task.links.length}`;
-
-}
-
 function renderDailyTasks(){
 
 const list =

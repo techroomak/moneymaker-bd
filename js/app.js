@@ -256,9 +256,15 @@ refer:increment(1)
 
 if(refData.banned !== true){
 
+const settingsSnap =
+await getDoc(settingsRef);
+
+const referBonus =
+settingsSnap.data()?.referBonus || 10;
+
 await updateDoc(refUserRef,{
-coin:increment(settingsData.referBonus),
-referEarn:increment(settingsData.referBonus)
+coin:increment(referBonus),
+referEarn:increment(referBonus)
 });
 
 }

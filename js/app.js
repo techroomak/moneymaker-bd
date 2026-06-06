@@ -2758,13 +2758,6 @@ return;
 
 }
 
-btn.disabled = false;
-btn.innerText = "Verify";
-
-return;
-
-}
-
 await updateDoc(userRef,{
 
 coin:increment(task.reward),

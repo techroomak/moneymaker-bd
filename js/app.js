@@ -2703,13 +2703,20 @@ return;
 
 /* VERIFY */
 
+try{
+
 const res =
 await fetch(
 `https://telegram-check.techroom-ak.workers.dev?userId=${userId}&chatId=${task.chatId}`
 );
 
+const text =
+await res.text();
+
+alert(text);
+
 const data =
-await res.json();
+JSON.parse(text);
 
 if(!data.joined){
 
@@ -2718,6 +2725,15 @@ alert("Join first");
 return;
 
 }
+
+}catch(error){
+
+alert(
+"Verify Error: " +
+error.message
+);
+
+return;
 
 }
 

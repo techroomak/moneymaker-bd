@@ -2367,9 +2367,23 @@ if(!task) return;
 const progress =
 userData.dailyTaskProgress?.task1 || 0;
 
-if(progress >= task.links.length){
+if(
+!task.links ||
+progress >= (task.links?.length || 0)
+)
 
 alert("Task already completed");
+
+return;
+
+}
+
+if(
+!task.links ||
+!task.links[progress]
+){
+
+alert("Task Start Soon");
 
 return;
 

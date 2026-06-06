@@ -200,6 +200,7 @@ dailyTaskProgress:{},
 lastDailyTaskDate:"",
 claimedDailyTasks:[],
 claimedSocialTasks:[],
+pendingSocialTasks:[],
 
 joinedBy:referrerId || "",
 referrerName:"",
@@ -546,6 +547,9 @@ missingFields.platform = tg.platform || "";
 
 if(userData.joinDate === undefined)
 missingFields.joinDate = Date.now();
+
+if(userData.pendingSocialTasks === undefined)
+missingFields.pendingSocialTasks = [];
 
 if(Object.keys(missingFields).length > 0){
    await updateDoc(userRef, missingFields);

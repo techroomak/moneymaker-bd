@@ -1449,10 +1449,23 @@ users.push(doc.data());
 users.sort((a,b)=>
 (b.coin || 0) - (a.coin || 0)
 );
-
+  
 // TOP USERS
 
-users.forEach((data,index)=>{
+const topUsers =
+users.slice(0,10);
+
+const myRank =
+users.findIndex(
+u => String(u.id) === userId
+) + 1;
+
+const amITop10 =
+topUsers.some(
+u => String(u.id) === userId
+);
+  
+topUsers.forEach((data,index)=>{
 
 const shortId =
 String(data.id)
@@ -1509,6 +1522,73 @@ ${data.coin || 0}
 `;
 
 });
+
+}
+
+if(!amITop10){
+
+const me =
+users.find(
+u => String(u.id) === userId
+);
+
+if(me){
+
+const shortId =
+String(me.id)
+.slice(0,2)
++
+"***"
++
+String(me.id).slice(-2);
+
+board.innerHTML += `
+
+<div class="leaderboard-item">
+
+<div class="leaderboard-left">
+
+<div class="leaderboard-rank">
+#${myRank}
+</div>
+
+<img
+class="leaderboard-avatar"
+src="${me.photo}"
+/>
+
+<div>
+
+<h3 class="leaderboard-name">
+You
+</h3>
+
+<p class="leaderboard-id">
+ID: ${shortId}
+</p>
+
+</div>
+
+</div>
+
+<div class="leaderboard-right">
+
+<img
+class="leaderboard-coin-icon"
+src="https://cdn-icons-png.flaticon.com/512/272/272525.png"
+/>
+
+<span class="leaderboard-coin">
+${me.coin || 0}
+</span>
+
+</div>
+
+</div>
+
+`;
+
+}
 
 }
 

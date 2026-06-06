@@ -1453,14 +1453,14 @@ users.sort((a,b)=>
 // TOP USERS
 
 const topUsers =
-users.slice(0,10);
+users.slice(0,7);
 
 const myRank =
 users.findIndex(
 u => String(u.id) === userId
 ) + 1;
 
-const amITop10 =
+const amITop7 =
 topUsers.some(
 u => String(u.id) === userId
 );
@@ -1523,7 +1523,7 @@ ${data.coin || 0}
 
 });
 
-if(!amITop10){
+if(!amITop7){
 
 const me =
 users.find(
@@ -1542,7 +1542,7 @@ String(me.id).slice(-2);
 
 board.innerHTML += `
 
-<div class="leaderboard-item">
+<div class="leaderboard-item you-card">
 
 <div class="leaderboard-left">
 

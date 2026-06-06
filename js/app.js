@@ -2704,6 +2704,8 @@ await fetch(
 const data =
 await res.json();
 
+alert(JSON.stringify(data));
+
 if(!data.joined){
 
 alert("Please join first");

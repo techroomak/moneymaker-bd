@@ -454,39 +454,43 @@ missingSettings.socialTasks = {
   enabled:true,
   link:"",
   logo:"",
-  chatId:"",
+  chatId:""
  },
 
  task3:{
-  name:"Facebook Page",
+  name:"",
   reward:0,
   enabled:true,
   link:"",
-  logo:""
+  logo:"",
+  chatId:""
  },
 
  task4:{
-  name:"Facebook Group",
+  name:"",
   reward:0,
   enabled:true,
   link:"",
-  logo:""
+  logo:"",
+  chatId:""
  },
 
  task5:{
-  name:"YouTube Channel",
+  name:"",
   reward:0,
   enabled:true,
   link:"",
-  logo:""
+  logo:"",
+  chatId:""
  },
 
  task6:{
-  name:"Website",
+  name:"",
   reward:0,
   enabled:true,
   link:"",
-  logo:""
+  logo:"",
+  chatId:"" 
  }
 
 };
@@ -1171,8 +1175,8 @@ window.submitWithdraw = async()=>{
 if(settingsData.withdraw !== true){
 
 tg.showPopup({
-title:"Withdraw Disabled",
-message:"Withdraw system is currently disabled.",
+title:"Withdraw Closed Now",
+message:"Withdraw allow only 1th-5th each month.",
 buttons:[{type:"ok"}]
 });
 
@@ -1190,7 +1194,7 @@ if(latestData.banned === true){
 
   tg.showPopup({
     title:"Your Account Suspended",
-    message:"Your account has been suspended. Please contact support.",
+    message:"Your account has been suspended.n/n/ Please contact support.",
     buttons:[{type:"ok"}]
   });
 
@@ -1261,20 +1265,6 @@ return;
 
 }
 
-/* MIN REFER CHECK */
-
-if(
-(latestData.refer || 0) <
-settingsData.minReferForWithdraw
-){
-
-alert(
-`Minimum 👥 ${settingsData.minReferForWithdraw} Referrals Required`
-);
-
-return;
-
-}
 
 /* MIN COIN CHECK */
 
@@ -1291,6 +1281,22 @@ return;
 
 }
 
+  /* MIN REFER CHECK */
+
+if(
+(latestData.refer || 0) <
+settingsData.minReferForWithdraw
+){
+
+alert(
+`Minimum 👥 ${settingsData.minReferForWithdraw} Referrals Required`
+);
+
+return;
+
+}
+
+  
 /* COIN CHECK */
 
 const needCoin =

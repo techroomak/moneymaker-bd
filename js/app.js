@@ -574,9 +574,14 @@ dailyAds:0,
 dailyEarnDate:today,
 
 dailyTaskProgress:{},
+
 completedDailyTasks:[],
 claimedDailyTasks:[],
-claimedSocialTasks:[]
+
+claimedSocialTasks:[],
+completedSocialTasks:[],
+pendingSocialTasks:[]
+
 });
 
 userData.dailyEarn = 0;

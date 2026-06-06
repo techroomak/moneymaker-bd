@@ -2706,18 +2706,18 @@ await fetch(
 `https://telegram-check.techroom-ak.workers.dev?userId=${userId}&chatId=${task.chatId}`
 );
 
-const data =
-await res.json();
+alert(res.status);
 
-alert(JSON.stringify(data));
+const text =
+await res.text();
 
-if(!data.joined){
+alert(text);
 
-alert("Please join first");
+}catch(error){
 
-return;
+alert(error.message);
+
 }
-
 await updateDoc(userRef,{
 
 coin:increment(task.reward),

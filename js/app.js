@@ -1477,7 +1477,11 @@ String(data.id).slice(-2);
 
 board.innerHTML += `
 
-<div class="leaderboard-item">
+<div class="leaderboard-item ${
+String(data.id) === userId
+? "you-card"
+: ""
+}">
 
 <div class="leaderboard-left">
 

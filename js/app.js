@@ -2736,23 +2736,19 @@ return;
   
 if(!data.joined){
 
-const joinNow = confirm(
-"❌ Not Joined Yet\n\nClick OK to Join Now"
-);
+alert("❌ Join Required");
 
-if(joinNow){
+await updateDoc(userRef,{
+pendingSocialTasks:
+(userData.pendingSocialTasks || [])
+.filter(x => x !== `task${id}`)
+});
 
-window.open(
-task.link,
-"_blank"
-);
+userData.pendingSocialTasks =
+(userData.pendingSocialTasks || [])
+.filter(x => x !== `task${id}`);
 
-}
-
-btn.disabled = false;
-btn.style.opacity = "1";
-btn.style.pointerEvents = "auto";
-btn.innerText = "Verify";
+renderSocialTasks();
 
 return;
 

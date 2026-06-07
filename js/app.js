@@ -172,7 +172,7 @@ username:username,
 
 photo:photo,
 
-coin:5,
+coin:0,
 
 refer:0,
 

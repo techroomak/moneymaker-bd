@@ -659,7 +659,7 @@ userData.referEarn || 0;
 if(totalWithdrawEl){
 
 totalWithdrawEl.innerText =
-userData.withdraw || 0;
+userData.withdraw || ৳ 0;
 
 }
 const ad1 = document.getElementById("ad1Limit");

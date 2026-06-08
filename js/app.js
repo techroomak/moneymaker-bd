@@ -1527,7 +1527,7 @@ ${data.coin || 0}
 
 });
 
-if(!amITop7){
+if(!amITop10){
 
 const me =
 users.find(
@@ -2009,7 +2009,7 @@ await updateDoc(userRef,{
 coin:increment(reward),
 
 dailyEarn:increment(reward),
-
+totalEarn:increment(reward),
 dailyAds:increment(1),
 totalAds:increment(1),
 ad1Count:increment(1),
@@ -2092,7 +2092,7 @@ await updateDoc(userRef,{
 coin:increment(reward),
 
 dailyEarn:increment(reward),
-
+totalEarn:increment(reward),
 dailyAds:increment(1),
 totalAds:increment(1),
 ad2Count:increment(1),
@@ -2175,7 +2175,7 @@ await updateDoc(userRef,{
 coin:increment(reward),
 
 dailyEarn:increment(reward),
-
+totalEarn:increment(reward),
 dailyAds:increment(1),
 totalAds:increment(1),
 ad3Count:increment(1),
@@ -2258,7 +2258,7 @@ await updateDoc(userRef,{
 coin:increment(reward),
 
 dailyEarn:increment(reward),
-
+totalEarn:increment(reward),
 dailyAds:increment(1),
 totalAds:increment(1),
 ad4Count:increment(1),
@@ -2595,7 +2595,7 @@ await updateDoc(userRef,{
 coin:increment(task.reward),
 
 dailyEarn:increment(task.reward),
-
+totalEarn:increment(task.reward),
 claimedDailyTasks:[
 ...(userData.claimedDailyTasks || []),
 "task1"
@@ -2861,7 +2861,7 @@ await updateDoc(userRef,{
 coin:increment(task.reward),
 
 dailyEarn:increment(task.reward),
-
+totalEarn:increment(task.reward),
 claimedSocialTasks:[
 ...(userData.claimedSocialTasks || []),
 `task${id}`
@@ -2957,7 +2957,7 @@ await updateDoc(userRef,{
 coin:increment(task.reward),
 
 dailyEarn:increment(task.reward),
-
+totalEarn:increment(task.reward),
 claimedSocialTasks:[
 ...(userData.claimedSocialTasks || []),
 `task${id}`

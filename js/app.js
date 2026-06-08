@@ -266,9 +266,9 @@ settingsSnap.data()?.referBonus || 10;
 
 await updateDoc(refUserRef,{
 coin:increment(referBonus),
-referEarn:increment(referBonus)
+referEarn:increment(referBonus),
+totalEarn:increment(referBonus)
 });
-
 }
 // SAVE REFERRER INFO
 

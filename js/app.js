@@ -1202,7 +1202,7 @@ if(latestData.banned === true){
 
   tg.showPopup({
     title:"Your Account Suspended",
-    message:"Your account has been suspended.n/n/ Please contact support.",
+    message:"Your account has been suspended.n/n/ Please contact support support📞.",
     buttons:[{type:"ok"}]
   });
 
@@ -1453,14 +1453,14 @@ users.sort((a,b)=>
 // TOP USERS
 
 const topUsers =
-users.slice(0,7);
+users.slice(0,10);
 
 const myRank =
 users.findIndex(
 u => String(u.id) === userId
 ) + 1;
 
-const amITop7 =
+const amITop10 =
 topUsers.some(
 u => String(u.id) === userId
 );

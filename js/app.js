@@ -1527,7 +1527,7 @@ ${data.coin || 0}
 
 <img
 class="leaderboard-refer-icon"
-src="https://cdn-icons-png.flaticon.com/128/1077/1077114.png"
+src="https://cdn-icons-png.flaticon.com/128/8138/8138685.png"
 />
 
 <span class="leaderboard-refer">

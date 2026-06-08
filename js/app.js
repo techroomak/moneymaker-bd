@@ -1510,6 +1510,8 @@ ID: ${shortId}
 
 <div class="leaderboard-right">
 
+<div class="leaderboard-coin-row">
+
 <img
 class="leaderboard-coin-icon"
 src="https://cdn-icons-png.flaticon.com/512/272/272525.png"
@@ -1518,6 +1520,21 @@ src="https://cdn-icons-png.flaticon.com/512/272/272525.png"
 <span class="leaderboard-coin">
 ${data.coin || 0}
 </span>
+
+</div>
+
+<div class="leaderboard-refer-row">
+
+<img
+class="leaderboard-refer-icon"
+src="https://cdn-icons-png.flaticon.com/128/1077/1077114.png"
+/>
+
+<span class="leaderboard-refer">
+${data.refer || 0}
+</span>
+
+</div>
 
 </div>
 

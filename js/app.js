@@ -1537,7 +1537,6 @@ ${data.refer || 0}
 </div>
 
 </div>
-
 </div>
 
 `;

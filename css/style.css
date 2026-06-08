@@ -729,8 +729,28 @@ color:#6b7280;
 
 .leaderboard-right{
 display:flex;
+flex-direction:column;
+align-items:flex-end;
+gap:3px;
+}
+
+.leaderboard-coin-row,
+.leaderboard-refer-row{
+display:flex;
 align-items:center;
 gap:4px;
+}
+
+.leaderboard-refer-icon{
+width:14px;
+height:14px;
+object-fit:contain;
+}
+
+.leaderboard-refer{
+font-size:12px;
+font-weight:700;
+color:#64748b;
 }
 
 .leaderboard-coin-icon{

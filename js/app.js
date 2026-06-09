@@ -572,7 +572,7 @@ verifyBtn.innerText =
 verifyBtn.classList.add(
 "loading"
 );
-  
+await new Promise(resolve => setTimeout(resolve, 100));  
 const res = await fetch(
 `https://telegram-check.techroom-ak.workers.dev?userId=${userId}&chatId=${gate.chatId}`
 );

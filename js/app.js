@@ -2528,7 +2528,7 @@ ${task.name}
 </h3>
 
 <p class="task-description">
-Minimum 30s wait per website & complete to claim reward
+ এই টাস্ক কমপ্লেট করলে কয়েন পাবেন।
 </p>
 
 <p

@@ -563,6 +563,16 @@ window.open(
 
 document.getElementById("joinGateVerifyBtn").onclick = async()=>{
 
+const verifyBtn =
+document.getElementById("joinGateVerifyBtn");
+
+verifyBtn.innerText =
+"Verifying...";
+
+verifyBtn.classList.add(
+"loading"
+);
+  
 const res = await fetch(
 `https://telegram-check.techroom-ak.workers.dev?userId=${userId}&chatId=${gate.chatId}`
 );
@@ -571,6 +581,13 @@ const data = await res.json();
 
 if(!data.joined){
 
+verifyBtn.innerText =
+"Verify";
+
+verifyBtn.classList.remove(
+"loading"
+);
+  
 alert("Join করে Verify বাটন চাপুন");
 
 return;
@@ -583,6 +600,13 @@ channelVerified:true
 
 document.getElementById("joinGatePopup").style.display = "none";
 
+verifyBtn.innerText =
+"Verify";
+
+verifyBtn.classList.remove(
+"loading"
+);
+  
 alert("Verification Successful");
 
 };

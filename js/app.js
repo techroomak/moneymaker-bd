@@ -172,7 +172,7 @@ username:username,
 
 photo:photo,
 
-coin:50,
+coin:settingsData.registrationBonus || 50,
 
 refer:0,
 
@@ -210,7 +210,7 @@ referrerPhoto:"",
 
 createdAt:Date.now(),
 pending: 0,
-totalEarn: 0,
+totalEarn:settingsData.registrationBonus || 50,
 
 dailyTaskDate: "",
 adLimitDate: "",

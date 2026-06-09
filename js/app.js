@@ -561,7 +561,12 @@ window.open(
 
 }
 
-document.getElementById("joinGateVerifyBtn").onclick = async()=>{
+const verifyBtnEl =
+document.getElementById("joinGateVerifyBtn");
+
+if(verifyBtnEl){
+
+verifyBtnEl.onclick = async()=>{
 
 const verifyBtn =
 document.getElementById("joinGateVerifyBtn");
@@ -610,7 +615,7 @@ verifyBtn.classList.remove(
 alert("Verification Successful");
 
 };
-
+}
 const missingFields = {};
 if(userData.pending === undefined)
 missingFields.pending = 0;

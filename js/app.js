@@ -537,12 +537,19 @@ const userData =
 
 const gate = settingsData.joinGate || {};
 
+const joinGatePopup =
+document.getElementById("joinGatePopup");
+
+const joinGatePopup =
+document.getElementById("joinGatePopup");
+
 if(
+joinGatePopup &&
 settingsData.joinGateEnabled === true &&
 userData.channelVerified !== true
 ){
 
-document.getElementById("joinGatePopup").style.display = "flex";
+joinGatePopup.style.display = "flex";
 
 document.getElementById("joinGateTitle").innerText =
 gate.title || "Official Channel";

@@ -1881,6 +1881,24 @@ ad4RewardText.innerText =
 
 if(!settings) return;
 
+const referBonusText =
+document.getElementById("referBonusText");
+
+if(referBonusText){
+
+referBonusText.innerHTML = `
+
+<img
+class="mini-coin-icon"
+src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
+/>
+
+${settings.referBonus || 0} Coin Per Refer
+
+`;
+
+}
+  
 /* MAINTENANCE */
 
 if(settings.maintenance){

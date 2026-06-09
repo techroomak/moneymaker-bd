@@ -450,9 +450,6 @@ logo:"https://telegram.org/img/t_logo.png"
 
 };
 
-if(settingsData.supportBot === undefined)
-missingSettings.supportBot = "";
-
 if(settingsData.dailyTasks === undefined)
 missingSettings.dailyTasks = {
  task1:{
@@ -561,9 +558,6 @@ window.open(
 );
 
 };
-
-document.getElementById("supportBotBtn").href =
-settingsData.supportBot || "#";
 
 }
 

@@ -540,9 +540,6 @@ const gate = settingsData.joinGate || {};
 const joinGatePopup =
 document.getElementById("joinGatePopup");
 
-const joinGatePopup =
-document.getElementById("joinGatePopup");
-
 if(
 joinGatePopup &&
 settingsData.joinGateEnabled === true &&

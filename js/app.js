@@ -434,6 +434,25 @@ missingSettings.cashoutMax = 1000;
 if(settingsData.dailyWithdrawLimit === undefined)
 missingSettings.dailyWithdrawLimit = 3;
 
+if(settingsData.joinGateEnabled === undefined)
+missingSettings.joinGateEnabled = true;
+
+if(settingsData.joinGate === undefined)
+missingSettings.joinGate = {
+
+title:"Official Channel",
+
+username:"",
+
+chatId:"",
+
+logo:"https://telegram.org/img/t_logo.png"
+
+};
+
+if(settingsData.supportBot === undefined)
+missingSettings.supportBot = "";
+
 if(settingsData.dailyTasks === undefined)
 missingSettings.dailyTasks = {
  task1:{
@@ -519,9 +538,67 @@ if(Object.keys(missingSettings).length > 0){
 const userData =
 (await getDoc(userRef)).data();
 
+const gate = settingsData.joinGate || {};
+
+if(
+settingsData.joinGateEnabled === true &&
+userData.channelVerified !== true
+){
+
+document.getElementById("joinGatePopup").style.display = "flex";
+
+document.getElementById("joinGateTitle").innerText =
+gate.title || "Official Channel";
+
+document.getElementById("joinGateLogo").src =
+gate.logo || "https://telegram.org/img/t_logo.png";
+
+document.getElementById("joinGateJoinBtn").onclick = ()=>{
+
+window.open(
+`https://t.me/${gate.username}`,
+"_blank"
+);
+
+};
+
+document.getElementById("supportBotBtn").href =
+settingsData.supportBot || "#";
+
+}
+
+document.getElementById("joinGateVerifyBtn").onclick = async()=>{
+
+const res = await fetch(
+`https://telegram-check.techroom-ak.workers.dev?userId=${userId}&chatId=${gate.chatId}`
+);
+
+const data = await res.json();
+
+if(!data.joined){
+
+alert("Join করে Verify বাটন চাপুন");
+
+return;
+
+}
+
+await updateDoc(userRef,{
+channelVerified:true
+});
+
+document.getElementById("joinGatePopup").style.display = "none";
+
+alert("Verification Successful");
+
+};
+
 const missingFields = {};
 if(userData.pending === undefined)
 missingFields.pending = 0;
+
+if(userData.channelVerified === undefined)
+missingFields.channelVerified = false;
 
 if(userData.totalEarn === undefined)
 missingFields.totalEarn = 0;

@@ -2642,11 +2642,11 @@ if(startBtn){
 startBtn.disabled = true;
 
 startBtn.innerText =
-"Wait 30s";
+"Wait 10s";
 
 }
   
-let sec = 30;
+let sec = 10;
 
 const timer =
 setInterval(()=>{

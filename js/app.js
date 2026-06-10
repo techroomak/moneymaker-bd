@@ -692,11 +692,7 @@ dailyEarnDate:today,
 dailyTaskProgress:{},
 
 completedDailyTasks:[],
-claimedDailyTasks:[],
-
-claimedSocialTasks:[],
-completedSocialTasks:[],
-pendingSocialTasks:[]
+claimedDailyTasks:[]
 
 });
 
@@ -2907,16 +2903,19 @@ const currentVersion =
 task.version || 1;
 
 const savedVersion =
-userData.socialTaskVersions?.[taskId] || 0;
+userData.socialTaskVersions?.[`task${id}`] || 0;
 
 if(savedVersion !== currentVersion){
 
+await updateDoc(userRef,{
+claimedSocialTasks:
 (userData.claimedSocialTasks || [])
-.splice(
+.filter(x => x !== `task${id}`)
+});
+
+userData.claimedSocialTasks =
 (userData.claimedSocialTasks || [])
-.indexOf(taskId),
-1
-);
+.filter(x => x !== `task${id}`);
 
 }
   
@@ -3022,10 +3021,10 @@ dailyEarn:increment(task.reward),
 totalEarn:increment(task.reward),
 claimedSocialTasks:[
 ...(userData.claimedSocialTasks || []),
-taskId
+`task${id}`
 ],
 
-[`socialTaskVersions.${taskId}`]:
+[`socialTaskVersions.task${id}`]:
 task.version || 1,
 
 completedSocialTasks:[

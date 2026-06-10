@@ -771,7 +771,22 @@ document.getElementById(
 if(withdrawBalance){
 
 withdrawBalance.innerText =
-`${userData.coin || 0} Coin`;
+userData.coin || 0;
+
+}
+
+const withdrawBalanceBdt =
+document.getElementById(
+"withdrawBalanceBdt"
+);
+
+if(withdrawBalanceBdt){
+
+withdrawBalanceBdt.innerText =
+`৳ ${(
+(userData.coin || 0)
+/ settingsData.coinRate
+).toFixed(2)}`;
 
 }
 
@@ -981,6 +996,33 @@ updatedSnap.data();
 coinEl.innerText =
 updatedData.coin || 0;
 
+const withdrawBalance =
+document.getElementById(
+"withdrawBalance"
+);
+
+if(withdrawBalance){
+
+withdrawBalance.innerText =
+updatedData.coin || 0;
+
+}
+
+const withdrawBalanceBdt =
+document.getElementById(
+"withdrawBalanceBdt"
+);
+
+if(withdrawBalanceBdt){
+
+withdrawBalanceBdt.innerText =
+`৳ ${(
+(updatedData.coin || 0)
+/ settingsData.coinRate
+).toFixed(2)}`;
+
+}
+  
 bdtEl.innerText =
 (updatedData.coin / settingsData.coinRate).toFixed(2);
 

@@ -196,13 +196,10 @@ ad2Last:0,
 ad3Last:0,
 ad4Last:0,
 
-completedSocialTasks:[],
 completedDailyTasks:[],
 dailyTaskProgress:{},
 lastDailyTaskDate:"",
 claimedDailyTasks:[],
-claimedSocialTasks:[],
-pendingSocialTasks:[],
 
 joinedBy:referrerId || "",
 referrerName:"",

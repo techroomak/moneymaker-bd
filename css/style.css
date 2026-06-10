@@ -774,6 +774,13 @@ color:#22c55e;
 padding:15px;
 }
 
+.balance-number-row{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:6px;
+}
+
 .withdraw-card{
 background:white;
 padding:18px;
@@ -852,26 +859,24 @@ gap:12px;
 }
 
 .balance-coin-icon{
-width:50px;
-height:50px;
-flex-shrink:0;
+width:42px;
+height:42px;
 }
 
 .withdraw-coin{
-width:25px;
-height:25px;
-flex-shrink:0;
+width:24px;
+height:24px;
 }
 
 .balance-value{
-font-size:22px;
+font-size:26px;
 font-weight:800;
 line-height:1;
 margin:0;
 }
 
 .balance-bdt{
-font-size:15px;
+font-size:14px;
 font-weight:700;
 color:#22c55e;
 margin-top:4px;

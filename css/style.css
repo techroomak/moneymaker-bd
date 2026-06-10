@@ -2,7 +2,7 @@ body{
 margin:0;
 padding:0;
 background:#f5f7ff;
-font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+font-family:Arial, sans-serif;
 max-width:100vw;
 overflow-x:hidden;
 }
@@ -869,8 +869,8 @@ height:24px;
 }
 
 .balance-value{
-font-size:26px;
-font-weight:800;
+font-size:24px;
+font-weight:700;
 line-height:1;
 margin:0;
 }

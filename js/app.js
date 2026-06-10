@@ -230,6 +230,11 @@ district: "",
 
 deviceType: "",
 platform: tg.platform || "",
+deviceId:
+`${tg.platform}|${navigator.userAgent}|${screen.width}x${screen.height}|${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
+
+userAgent:
+navigator.userAgent,
 
 joinDate: Date.now(),
 
@@ -678,6 +683,14 @@ missingFields.deviceType = "";
 
 if(userData.platform === undefined)
 missingFields.platform = tg.platform || "";
+
+if(userData.deviceId === undefined)
+missingFields.deviceId =
+`${tg.platform}|${navigator.userAgent}|${screen.width}x${screen.height}|${Intl.DateTimeFormat().resolvedOptions().timeZone}`;
+
+if(userData.userAgent === undefined)
+missingFields.userAgent =
+navigator.userAgent;
 
 if(userData.joinDate === undefined)
 missingFields.joinDate = Date.now();
@@ -1442,6 +1455,43 @@ return;
 
 /* BUTTON */
 
+const sameDeviceQuery = query(
+collection(db,"users"),
+where("deviceId","==",latestData.deviceId)
+);
+
+const sameDeviceSnap =
+await getDocs(sameDeviceQuery);
+
+if(sameDeviceSnap.size > 1){
+
+const accounts = [];
+
+sameDeviceSnap.forEach((d)=>{
+
+const u = d.data();
+
+accounts.push({
+userId:d.id,
+username:u.username || "Unknown"
+});
+
+});
+
+await addDoc(
+collection(db,"logs"),
+{
+username,
+userId,
+reason:`Same Device (${sameDeviceSnap.size} Accounts)`,
+matchedAccounts:accounts,
+deviceId:latestData.deviceId,
+createdAt:Date.now()
+}
+);
+
+}
+  
 const btn =
 document.getElementById(
 "withdrawButton"

@@ -2737,7 +2737,7 @@ startBtn.innerText =
   
 renderDailyTasks();
 
-},30000);
+},10000);
 
 };
 

@@ -2,7 +2,9 @@ body{
 margin:0;
 padding:0;
 background:#f5f7ff;
-font-family:sans-serif;
+font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+max-width:100vw;
+overflow-x:hidden;
 }
 
 *{
@@ -11,8 +13,8 @@ box-sizing:border-box;
 
 .app-container{
 max-width:480px;
-margin:auto;
-padding-bottom:100px;
+width:100%;
+margin:0 auto;
 }
 
 /* ========================= */
@@ -845,7 +847,7 @@ margin-top:5px;
 
 .balance-content{
 display:flex;
-justify-content:space-between;
+justify-content:center;
 align-items:center;
 margin-top:10px;
 }
@@ -862,10 +864,9 @@ gap:10px;
 }
 
 .balance-coin-icon{
-width:36px;
-height:36px;
+width:34px;
+height:34px;
 }
-
 .balance-bdt{
 font-size:13px;
 font-weight:600;
@@ -885,10 +886,9 @@ height:42px;
 }
 
 .balance-value{
-font-size:34px;
+font-size:28px;
 font-weight:800;
 line-height:1;
-margin:0;
 }
 
 .balance-bdt{
@@ -897,13 +897,6 @@ font-weight:700;
 color:#22c55e;
 margin-top:4px;
 }
-
-.method-card img{
-width:80px;
-height:45px;
-object-fit:contain;
-}
-
 .recharge-logo{
 width:48px !important;
 height:48px !important;
@@ -928,8 +921,8 @@ transition:.2s;
 }
 
 .method-card img{
-width:60px;
-height:60px;
+width:80px;
+height:45px;
 object-fit:contain;
 margin-bottom:8px;
 }

@@ -45,31 +45,69 @@
 
 <!-- METHOD -->
 
+<div class="withdraw-balance-card">
+
+<div class="balance-label">
+Current Balance
+</div>
+
+<div id="withdrawBalance" class="balance-value">
+0 Coin
+</div>
+
+</div>
+   
 <label class="withdraw-label">
-Cash Out Method
+Select Payment Method
 </label>
 
-<select
-id="paymentMethod"
-class="withdraw-input"
-onchange="changeWithdrawInfo()"
+<div class="method-grid">
+
+<div
+class="method-card"
+onclick="selectMethod('bkash',this)"
 >
-<option value="">
-Select Bank
-</option>
-<option value="bkash">
-bKash
-</option>
 
-<option value="nagad">
-Nagad
-</option>
+<img
+src="https://download.logo.wine/logo/BKash/BKash-bKash-Logo.wine.png"
+>
 
-<option value="recharge">
-Mobile Recharge
-</option>
+<span>bKash</span>
 
-</select>
+</div>
+
+<div
+class="method-card"
+onclick="selectMethod('nagad',this)"
+>
+
+<img
+src="https://download.logo.wine/logo/Nagad/Nagad-Vertical-Logo.wine.png"
+>
+
+<span>Nagad</span>
+
+</div>
+
+<div
+class="method-card"
+onclick="selectMethod('recharge',this)"
+>
+
+<img
+src="https://cdn-icons-png.flaticon.com/128/1936/1936112.png"
+>
+
+<span>Recharge</span>
+
+</div>
+
+</div>
+
+<input
+type="hidden"
+id="paymentMethod"
+/>
 
 <!-- NAME -->
 

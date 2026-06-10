@@ -843,6 +843,32 @@ color:#111827;
 margin-top:5px;
 }
 
+.balance-row{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:12px;
+margin-top:6px;
+}
+
+.balance-coin-icon{
+width:36px;
+height:36px;
+}
+
+.balance-bdt{
+font-size:13px;
+font-weight:600;
+color:#22c55e;
+margin-top:2px;
+}
+
+.method-card img{
+width:60px;
+height:60px;
+object-fit:contain;
+}
+
 .method-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -862,8 +888,8 @@ transition:.2s;
 }
 
 .method-card img{
-width:48px;
-height:48px;
+width:60px;
+height:60px;
 object-fit:contain;
 margin-bottom:8px;
 }

@@ -214,7 +214,7 @@ referrerPhoto:"",
 
 createdAt:Date.now(),
 pending: 0,
-totalEarn:settingsData.registrationBonus || 50,
+totalEarn:settingsDataInit.registrationBonus || 50,
 
 dailyTaskDate: "",
 adLimitDate: "",

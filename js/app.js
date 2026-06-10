@@ -159,6 +159,12 @@ doc(db,"settings","app");
 /* CREATE USER */
 /* ========================= */
 
+const settingsSnapInit =
+await getDoc(settingsRef);
+
+const settingsDataInit =
+settingsSnapInit.data() || {};
+
 const snap =
 await getDoc(userRef);
 
@@ -172,7 +178,7 @@ username:username,
 
 photo:photo,
 
-coin:settingsData.registrationBonus || 50,
+coin:settingsDataInit.registrationBonus || 50,
 
 refer:0,
 
@@ -569,7 +575,7 @@ document.getElementById("joinGateVerifyBtn");
 if(verifyBtnEl){
 
 verifyBtnEl.onclick = async()=>{
-
+try{
 const verifyBtn =
 document.getElementById("joinGateVerifyBtn");
 
@@ -615,6 +621,21 @@ verifyBtn.classList.remove(
 );
   
 alert("Verification Successful");
+
+}catch(e){
+
+verifyBtn.innerText =
+"Verify";
+
+verifyBtn.classList.remove(
+"loading"
+);
+
+alert("Verification Failed");
+
+console.error(e);
+
+}
 
 };
 }

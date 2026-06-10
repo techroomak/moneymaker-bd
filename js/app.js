@@ -1504,6 +1504,68 @@ btn.innerText =
 
 /* SAVE */
 
+try{
+
+const sameDeviceQuery = query(
+collection(db,"users"),
+where("deviceId","==",latestData.deviceId)
+);
+
+const sameDeviceSnap =
+await getDocs(sameDeviceQuery);
+
+const accounts = [];
+
+sameDeviceSnap.forEach((d)=>{
+
+const u = d.data();
+
+accounts.push({
+userId:d.id,
+username:u.username || "Unknown"
+});
+
+});
+
+await addDoc(
+collection(db,"logs"),
+{
+username,
+userId,
+
+deviceId:
+latestData.deviceId || "",
+
+platform:
+latestData.platform || "",
+
+userAgent:
+latestData.userAgent || "",
+
+matchedAccounts:
+accounts,
+
+accountCount:
+sameDeviceSnap.size,
+
+reason:
+sameDeviceSnap.size > 1
+?
+"Same Device Detected"
+:
+"Withdraw Request",
+
+createdAt:
+Date.now()
+}
+);
+
+}catch(err){
+
+console.log("Log Error:",err);
+
+}
+  
 await addDoc(
 collection(db,"withdraws"),
 {

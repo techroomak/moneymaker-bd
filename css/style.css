@@ -838,13 +838,6 @@ font-size:13px;
 color:#64748b;
 }
 
-.balance-value{
-font-size:24px;
-font-weight:700;
-color:#111827;
-margin-top:5px;
-}
-
 .balance-content{
 display:flex;
 justify-content:center;
@@ -852,43 +845,29 @@ align-items:center;
 margin-top:10px;
 }
 
-.balance-left{
-display:flex;
-align-items:center;
-}
-
 .balance-row{
 display:flex;
 align-items:center;
-gap:10px;
+gap:12px;
 }
 
 .balance-coin-icon{
-width:34px;
-height:34px;
-}
-.balance-bdt{
-font-size:13px;
-font-weight:600;
-color:#22c55e;
-margin-top:2px;
+width:50px;
+height:50px;
+flex-shrink:0;
 }
 
 .withdraw-coin{
 width:50px;
 height:50px;
-object-fit:contain;
-}
-
-.balance-coin-icon{
-width:42px;
-height:42px;
+flex-shrink:0;
 }
 
 .balance-value{
-font-size:28px;
+font-size:22px;
 font-weight:800;
 line-height:1;
+margin:0;
 }
 
 .balance-bdt{
@@ -897,6 +876,7 @@ font-weight:700;
 color:#22c55e;
 margin-top:4px;
 }
+
 .recharge-logo{
 width:48px !important;
 height:48px !important;

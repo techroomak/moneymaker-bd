@@ -200,6 +200,7 @@ completedDailyTasks:[],
 dailyTaskProgress:{},
 lastDailyTaskDate:"",
 claimedDailyTasks:[],
+socialTaskVersions:{},
 
 joinedBy:referrerId || "",
 referrerName:"",
@@ -663,6 +664,9 @@ missingFields.joinDate = Date.now();
 if(userData.pendingSocialTasks === undefined)
 missingFields.pendingSocialTasks = [];
 
+if(userData.socialTaskVersions === undefined)
+missingFields.socialTaskVersions = {};
+  
 if(Object.keys(missingFields).length > 0){
    await updateDoc(userRef, missingFields);
 }
@@ -2899,7 +2903,26 @@ async function startSocialTask(id){
 const task =
 settingsData.socialTasks?.[`task${id}`];
 
-if(!task) return;
+const currentVersion =
+task.version || 1;
+
+const savedVersion =
+userData.socialTaskVersions?.[taskId] || 0;
+
+if(savedVersion !== currentVersion){
+
+(userData.claimedSocialTasks || [])
+.splice(
+(userData.claimedSocialTasks || [])
+.indexOf(taskId),
+1
+);
+
+}
+  
+if(!task?.enabled){
+return;
+}
 
 /* TELEGRAM TASK */
 
@@ -2999,8 +3022,11 @@ dailyEarn:increment(task.reward),
 totalEarn:increment(task.reward),
 claimedSocialTasks:[
 ...(userData.claimedSocialTasks || []),
-`task${id}`
+taskId
 ],
+
+[`socialTaskVersions.${taskId}`]:
+task.version || 1,
 
 completedSocialTasks:[
 ...(userData.completedSocialTasks || []),

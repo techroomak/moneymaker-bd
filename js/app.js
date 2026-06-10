@@ -763,6 +763,18 @@ userData.coin || 0;
 
 }
 
+const withdrawBalance =
+document.getElementById(
+"withdrawBalance"
+);
+
+if(withdrawBalance){
+
+withdrawBalance.innerText =
+`${userData.coin || 0} Coin`;
+
+}
+
 if(bdtEl){
 
 bdtEl.innerText =
@@ -1109,6 +1121,24 @@ timerEl.style.display =
 /* ========================= */
 
 let dailyWithdrawCount = 0;
+
+window.selectMethod = (method,el)=>{
+
+document
+.querySelectorAll(".method-card")
+.forEach(card=>{
+card.classList.remove("active");
+});
+
+el.classList.add("active");
+
+document.getElementById(
+"paymentMethod"
+).value = method;
+
+changeWithdrawInfo();
+
+};
 
 window.changeWithdrawInfo = ()=>{
 
@@ -1605,6 +1635,18 @@ document.getElementById(
 
 loadUserData();
 
+const withdrawBalance =
+document.getElementById(
+"withdrawBalance"
+);
+
+if(withdrawBalance){
+
+withdrawBalance.innerText =
+`${latestData.coin - needCoin} Coin`;
+
+}
+  
 /* BUTTON RESET */
 
 setTimeout(()=>{

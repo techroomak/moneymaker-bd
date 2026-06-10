@@ -1463,35 +1463,6 @@ where("deviceId","==",latestData.deviceId)
 const sameDeviceSnap =
 await getDocs(sameDeviceQuery);
 
-if(sameDeviceSnap.size > 1){
-
-const accounts = [];
-
-sameDeviceSnap.forEach((d)=>{
-
-const u = d.data();
-
-accounts.push({
-userId:d.id,
-username:u.username || "Unknown"
-});
-
-});
-
-await addDoc(
-collection(db,"logs"),
-{
-username,
-userId,
-reason:`Same Device (${sameDeviceSnap.size} Accounts)`,
-matchedAccounts:accounts,
-deviceId:latestData.deviceId,
-createdAt:Date.now()
-}
-);
-
-}
-  
 const btn =
 document.getElementById(
 "withdrawButton"

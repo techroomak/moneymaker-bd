@@ -51,11 +51,15 @@
 Current Balance
 </div>
 
+<div class="balance-content">
+
+<div class="balance-left">
+
 <div class="balance-row">
 
 <img
 class="balance-coin-icon"
-src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
+src="https://cdn-icons-png.flaticon.com/128/3258/3258446.png"
 >
 
 <div>
@@ -73,6 +77,19 @@ class="balance-bdt"
 >
 ৳0.00
 </div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="balance-right">
+
+<img
+class="withdraw-moneybag"
+src="https://png.pngtree.com/png-vector/20241217/ourmid/pngtree-clipart-of-a-money-bag-filled-with-gold-coins-featuring-dollar-png-image_14789520.png"
+>
 
 </div>
 
@@ -117,7 +134,7 @@ class="method-card"
 onclick="selectMethod('recharge',this)"
 >
 
-<img
+<img class="recharge-logo"
 src="https://cdn-icons-png.flaticon.com/128/1936/1936112.png"
 >
 
@@ -161,14 +178,14 @@ placeholder="01XXXXXXXXX"
 <!-- AMOUNT -->
 
 <label class="withdraw-label">
-Amount
+Amount ৳
 </label>
 
 <input
 id="withdrawAmount"
 class="withdraw-input"
 type="number"
-placeholder="Enter amount"
+placeholder="Enter TAKA"
 oninput="checkWithdrawAmount()"
 />
 

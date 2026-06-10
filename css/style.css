@@ -843,12 +843,22 @@ color:#111827;
 margin-top:5px;
 }
 
+.balance-content{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:10px;
+}
+
+.balance-left{
+display:flex;
+align-items:center;
+}
+
 .balance-row{
 display:flex;
-justify-content:center;
 align-items:center;
-gap:12px;
-margin-top:6px;
+gap:10px;
 }
 
 .balance-coin-icon{
@@ -863,10 +873,40 @@ color:#22c55e;
 margin-top:2px;
 }
 
+.withdraw-moneybag{
+width:70px;
+height:70px;
+object-fit:contain;
+}
+
+.balance-coin-icon{
+width:42px;
+height:42px;
+}
+
+.balance-value{
+font-size:34px;
+font-weight:800;
+line-height:1;
+margin:0;
+}
+
+.balance-bdt{
+font-size:15px;
+font-weight:700;
+color:#22c55e;
+margin-top:4px;
+}
+
 .method-card img{
 width:60px;
 height:60px;
 object-fit:contain;
+}
+
+.recharge-logo{
+width:48px !important;
+height:48px !important;
 }
 
 .method-grid{

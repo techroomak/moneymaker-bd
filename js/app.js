@@ -2338,32 +2338,6 @@ totalEarn:increment(reward),
 dailyAds:increment(1),
 totalAds:increment(1),
 ad1Count:increment(1),
-
-if(userData.joinedBy){
-
-const referrerRef =
-doc(
-db,
-"users",
-String(userData.joinedBy)
-);
-
-const bonus =
-Math.floor(reward * 0.10);
-
-if(bonus > 0){
-
-await updateDoc(
-referrerRef,
-{
-teamBonus:increment(bonus),
-totalTeamBonus:increment(bonus)
-}
-);
-
-}
-
-}
   
 ad1Last:Date.now(),
 
@@ -2448,31 +2422,6 @@ dailyAds:increment(1),
 totalAds:increment(1),
 ad2Count:increment(1),
 
- if(userData.joinedBy){
-
-const referrerRef =
-doc(
-db,
-"users",
-String(userData.joinedBy)
-);
-
-const bonus =
-Math.floor(reward * 0.10);
-
-if(bonus > 0){
-
-await updateDoc(
-referrerRef,
-{
-teamBonus:increment(bonus),
-totalTeamBonus:increment(bonus)
-}
-);
-
-}
-
-} 
   
 ad2Last:Date.now(),
 
@@ -2556,32 +2505,6 @@ totalEarn:increment(reward),
 dailyAds:increment(1),
 totalAds:increment(1),
 ad3Count:increment(1),
-
-if(userData.joinedBy){
-
-const referrerRef =
-doc(
-db,
-"users",
-String(userData.joinedBy)
-);
-
-const bonus =
-Math.floor(reward * 0.10);
-
-if(bonus > 0){
-
-await updateDoc(
-referrerRef,
-{
-teamBonus:increment(bonus),
-totalTeamBonus:increment(bonus)
-}
-);
-
-}
-
-}
   
 ad3Last:Date.now(),
 
@@ -2665,32 +2588,6 @@ totalEarn:increment(reward),
 dailyAds:increment(1),
 totalAds:increment(1),
 ad4Count:increment(1),
-
-if(userData.joinedBy){
-
-const referrerRef =
-doc(
-db,
-"users",
-String(userData.joinedBy)
-);
-
-const bonus =
-Math.floor(reward * 0.10);
-
-if(bonus > 0){
-
-await updateDoc(
-referrerRef,
-{
-teamBonus:increment(bonus),
-totalTeamBonus:increment(bonus)
-}
-);
-
-}
-
-}
   
 ad4Last:Date.now(),
 

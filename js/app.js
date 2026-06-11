@@ -1953,7 +1953,27 @@ await getDocs(q);
 let totalRefer = 0;
 let activeRefer = 0;
 
-teamList.innerHTML = "";
+if(snap.empty){
+
+teamList.innerHTML = `
+
+<div class="team-loading">
+
+<h3>No Referral Found</h3>
+
+<p>
+Refer friends and earn
+lifetime 10% bonus.
+Claim daily.
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
 
 snap.forEach((docSnap)=>{
 

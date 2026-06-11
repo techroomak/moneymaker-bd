@@ -20,119 +20,55 @@
 
 <!-- HEADER -->
 
-<header class="header-section">
+<!-- TEAM TOP CARD -->
 
-<div class="header-top">
+<section class="team-top-section">
 
-<h2 class="profile-name">
-👥 My Team
-</h2>
+<div class="team-top-card">
 
+<div class="team-box">
+
+<div class="team-label">
+Available Bonus
 </div>
 
-</header>
-
-<!-- AVAILABLE BONUS -->
-
-<section class="withdraw-section">
-
-<div class="withdraw-card">
-
-<div class="withdraw-balance-card">
-
-<div class="balance-label">
-Available Team Bonus
-</div>
-
-<div class="balance-content">
-
-<div class="balance-row">
-
-<img
-class="balance-coin-icon"
-src="https://cdn-icons-png.flaticon.com/128/3258/3258446.png"
->
-
-<div>
-
-<div class="balance-number-row">
-
-<div
-id="teamBonus"
-class="balance-value"
->
-0
-</div>
-
-<img
-class="withdraw-coin"
-src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
->
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+<div class="team-value">
+<span id="teamBonus">0</span>
 </div>
 
 <button
 id="claimTeamBonusBtn"
-class="withdraw-button"
+class="team-claim-btn"
 onclick="claimTeamBonus()"
+disabled
 >
-Claim Bonus
+Locked
 </button>
 
 </div>
 
-</section>
+<div class="team-divider"></div>
 
-<!-- TOTAL BONUS -->
+<div class="team-box">
 
-<section class="withdraw-section">
-
-<div class="withdraw-card">
-
-<div class="withdraw-balance-card">
-
-<div class="balance-label">
-Total Team Bonus Earned
+<div class="team-label">
+Total Earned
 </div>
 
-<div class="balance-content">
+<div class="team-value">
+<span id="totalTeamBonus">0</span>
+</div>
 
-<div class="balance-row">
+<div class="team-refer-count">
 
 <img
-class="balance-coin-icon"
-src="https://cdn-icons-png.flaticon.com/128/3258/3258446.png"
+src="https://cdn-icons-png.flaticon.com/128/681/681494.png"
+class="team-refer-icon"
 >
 
-<div>
-
-<div class="balance-number-row">
-
-<div
-id="totalTeamBonus"
-class="balance-value"
->
+<span id="teamTotalRefer">
 0
-</div>
-
-<img
-class="withdraw-coin"
-src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
->
-
-</div>
-
-</div>
-
-</div>
+</span>
 
 </div>
 
@@ -144,56 +80,36 @@ src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
 
 <!-- TEAM STATS -->
 
-<section class="withdraw-history-section">
+<section class="team-stat-section">
 
-<h2 class="section-title">
-Team Statistics
-</h2>
+<div class="team-stat-card">
 
-<div id="teamStats" class="history-list">
+<div class="team-stat-item">
 
-<div class="history-item">
-
-<div class="history-left">
-
-<h3 class="history-title">
+<div class="team-stat-title">
 Total Refer
-</h3>
-
 </div>
 
-<div class="history-right">
-
 <div
-id="teamTotalRefer"
-class="history-amount"
+id="teamTotalRefer2"
+class="team-stat-value"
 >
 0
 </div>
 
 </div>
 
-</div>
+<div class="team-stat-item">
 
-<div class="history-item">
-
-<div class="history-left">
-
-<h3 class="history-title">
+<div class="team-stat-title">
 Active Refer
-</h3>
-
 </div>
-
-<div class="history-right">
 
 <div
 id="teamActiveRefer"
-class="history-amount"
+class="team-stat-value"
 >
 0
-</div>
-
 </div>
 
 </div>
@@ -202,38 +118,34 @@ class="history-amount"
 
 </section>
 
-<!-- TEAM MEMBERS -->
+<!-- TABLE -->
 
-<section class="withdraw-history-section">
+<section class="team-table-section">
 
-<h2 class="section-title">
-My Team Members
-</h2>
+<div class="team-table-header">
 
-<div
-id="teamList"
-class="history-list"
->
+<div>User</div>
 
-<div
-class="history-item"
->
+<div>Comm.</div>
 
-<div
-style="
-margin:auto;
-font-size:16px;
-"
->
+<div>Daily</div>
+
+<div>Total</div>
+
+<div>Status</div>
+
+</div>
+
+<div id="teamList">
+
+<div class="team-loading">
 Loading...
 </div>
 
 </div>
 
-</div>
-
 </section>
-
+  
 <!-- BOTTOM NAV -->
 
 <nav class="bottom-nav">

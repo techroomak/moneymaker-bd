@@ -723,7 +723,26 @@ const today =
 
 if(userData.dailyEarnDate !== today){
 
-await updateDoc(userRef,{
+awaawait updateDoc(userRef,{
+
+teamBonus:
+increment(
+Math.floor(
+(userData.referDailyEarn || 0) * 0.10
+)
+),
+
+totalTeamBonus:
+increment(
+Math.floor(
+(userData.referDailyEarn || 0) * 0.10
+)
+),
+
+yesterdayReferEarn:
+userData.referDailyEarn || 0,
+
+referDailyEarn:0,
 
 dailyEarn:0,
 dailyAds:0,
@@ -734,7 +753,6 @@ dailyTaskProgress:{},
 
 completedDailyTasks:[],
 claimedDailyTasks:[]
-
 });
 
 userData.dailyEarn = 0;
@@ -984,6 +1002,8 @@ dailyEarn:increment(amount)
 
 });
 
+
+  
 loadUserData();
 
 };
@@ -2350,6 +2370,22 @@ lastAdWatch:Date.now()
 
 });
 
+if(userData.joinedBy){
+
+const refRef =
+doc(
+db,
+"users",
+String(userData.joinedBy)
+);
+
+await updateDoc(refRef,{
+referDailyEarn:
+increment(reward)
+});
+
+}
+  
 await loadUserData();
 
 tg.showPopup({
@@ -2434,6 +2470,22 @@ lastAdWatch:Date.now()
 
 });
 
+if(userData.joinedBy){
+
+const refRef =
+doc(
+db,
+"users",
+String(userData.joinedBy)
+);
+
+await updateDoc(refRef,{
+referDailyEarn:
+increment(reward)
+});
+
+}
+  
 await loadUserData();
 
 tg.showPopup({
@@ -2517,6 +2569,22 @@ lastAdWatch:Date.now()
 
 });
 
+ if(userData.joinedBy){
+
+const refRef =
+doc(
+db,
+"users",
+String(userData.joinedBy)
+);
+
+await updateDoc(refRef,{
+referDailyEarn:
+increment(reward)
+});
+
+} 
+  
 await loadUserData();
 
 tg.showPopup({
@@ -2600,6 +2668,22 @@ lastAdWatch:Date.now()
 
 });
 
+if(userData.joinedBy){
+
+const refRef =
+doc(
+db,
+"users",
+String(userData.joinedBy)
+);
+
+await updateDoc(refRef,{
+referDailyEarn:
+increment(reward)
+});
+
+}
+  
 await loadUserData();
 
 tg.showPopup({
@@ -2918,6 +3002,22 @@ renderDailyTasks();
 
 window.claimDailyReward = async()=>{
 
+if(userData.joinedBy){
+
+const refRef =
+doc(
+db,
+"users",
+String(userData.joinedBy)
+);
+
+await updateDoc(refRef,{
+referDailyEarn:
+increment(task.reward)
+});
+
+}
+  
 const task =
 settingsData.dailyTasks?.task1;
 
@@ -3249,6 +3349,22 @@ btn.disabled = true;
 
 btn.style.opacity = "1";
 btn.style.pointerEvents = "none"; 
+
+if(userData.joinedBy){
+
+const refRef =
+doc(
+db,
+"users",
+String(userData.joinedBy)
+);
+
+await updateDoc(refRef,{
+referDailyEarn:
+increment(task.reward)
+});
+
+}
   
 alert(`${task.reward} Coin Added`);
 

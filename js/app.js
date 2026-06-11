@@ -2099,12 +2099,6 @@ referCountEl.innerText = totalRefer;
 
 }
 
-if(document.getElementById("teamList")){
-
-loadTeamData();
-
-loadTeamBonusData();
-}
 /* ========================= */
 /* LOAD WITHDRAW HISTORY */
 /* ========================= */
@@ -3684,6 +3678,8 @@ await loadTeamBonusData();
 await loadUserData();
 
 await loadTeamData();
+  
+};
 
 async function loadTeamBonusData(){
 
@@ -3747,6 +3743,11 @@ btn.innerHTML =
 "Locked";
 
 }
+if(document.getElementById("teamList")){
 
+loadTeamData();
+
+loadTeamBonusData();
+}
 }
 

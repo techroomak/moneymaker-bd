@@ -3664,6 +3664,7 @@ await updateDoc(
 userRef,
 {
 coin:increment(bonus),
+totalEarn:increment(bonus),
 teamBonus:0,
 lastTeamClaim:today
 }

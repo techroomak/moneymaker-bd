@@ -723,7 +723,7 @@ const today =
 
 if(userData.dailyEarnDate !== today){
 
-awaawait updateDoc(userRef,{
+await updateDoc(userRef,{
 
 teamBonus:
 increment(
@@ -2354,8 +2354,6 @@ show_11035690()
 
 .then(async()=>{
 
-await updateDoc(userRef,{
-
 if(userData.joinedBy){
 
 const refRef =
@@ -2372,6 +2370,8 @@ increment(reward)
 
 }
   
+await updateDoc(userRef,{
+
 coin:increment(reward),
 
 dailyEarn:increment(reward),
@@ -2453,8 +2453,6 @@ show_11035690()
 
 .then(async()=>{
 
-await updateDoc(userRef,{
-
 if(userData.joinedBy){
 
 const refRef =
@@ -2470,6 +2468,8 @@ increment(reward)
 });
 
 }
+  
+await updateDoc(userRef,{
   
 coin:increment(reward),
 dailyEarn:increment(reward),
@@ -2549,8 +2549,6 @@ show_11035690('pop')
 
 .then(async()=>{
 
-await updateDoc(userRef,{
-
 if(userData.joinedBy){
 
 const refRef =
@@ -2566,6 +2564,8 @@ increment(reward)
 });
 
 }
+  
+await updateDoc(userRef,{
   
 coin:increment(reward),
 dailyEarn:increment(reward),
@@ -2647,8 +2647,6 @@ show_11035690('pop')
 
 .then(async()=>{
 
-await updateDoc(userRef,{
-
 if(userData.joinedBy){
 
 const refRef =
@@ -2664,6 +2662,8 @@ increment(reward)
 });
 
 }
+  
+await updateDoc(userRef,{
   
 coin:increment(reward),
 dailyEarn:increment(reward),

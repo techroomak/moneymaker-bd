@@ -1466,3 +1466,27 @@ border-radius:14px;
 text-align:center;
 font-size:14px;
 }
+
+/* TEAM VALUE COLOR */
+
+.team-row > div:nth-child(2),
+.team-row > div:nth-child(3),
+.team-row > div:nth-child(4){
+color:#111827;
+font-weight:700;
+text-align:center;
+}
+
+/* TOTAL COIN */
+
+.team-row > div:nth-child(4) > div:first-child{
+color:#111827;
+font-weight:700;
+}
+
+/* REFER COUNT */
+
+.team-row > div:nth-child(4) span{
+color:#111827;
+font-weight:600;
+}

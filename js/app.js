@@ -3677,9 +3677,11 @@ alert(
 `${bonus} Coin Claimed`
 );
 
-loadTeamData();
+await loadTeamBonusData();
 
-};
+await loadUserData();
+
+await loadTeamData();
 
 async function loadTeamBonusData(){
 

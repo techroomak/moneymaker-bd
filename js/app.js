@@ -240,7 +240,12 @@ joinDate: Date.now(),
 
 lastActive:Date.now(),
 teamBonus: 0,
-totalTeamBonus: 0
+totalTeamBonus: 0,
+teamClaimable:0,
+lastTeamClaim:"",
+referDailyEarn:0,
+yesterdayReferEarn:0,
+teamCommissionEarned:0
 });
 
 /* ========================= */

@@ -2100,7 +2100,9 @@ referCountEl.innerText = totalRefer;
 }
 
 if(document.getElementById("teamList")){
+
 loadTeamData();
+
 loadTeamBonusData();
 }
 /* ========================= */

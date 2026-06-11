@@ -3523,11 +3523,3 @@ document.getElementById(
 me.totalTeamBonus || 0;
 
 }
-
-if(
-document.getElementById(
-"teamBonus"
-)
-){
-loadTeamData();
-}

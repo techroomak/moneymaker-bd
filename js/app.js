@@ -3145,6 +3145,9 @@ renderDailyTasks();
 
 window.claimDailyReward = async()=>{
 
+const task =
+settingsData.dailyTasks?.task1;
+  
 if(userData.joinedBy){
 
 const refRef =
@@ -3160,9 +3163,6 @@ increment(task.reward)
 });
 
 }
-  
-const task =
-settingsData.dailyTasks?.task1;
 
 await updateDoc(userRef,{
 
@@ -3659,7 +3659,7 @@ loadTeamData();
 
 };
 
-async function loadTeamData(){
+async function loadTeamBonusData(){
 
 const teamBonusEl =
 document.getElementById(
@@ -3683,4 +3683,8 @@ document.getElementById(
 ).innerText =
 me.totalTeamBonus || 0;
 
+}
+
+if(document.getElementById("teamBonus")){
+loadTeamBonusData();
 }

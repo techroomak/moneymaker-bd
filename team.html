@@ -1,1 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>My Team</title>
+
+<link rel="stylesheet" href="css/style.css"/>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+</head>
+
+<body>
+
+<div class="app-container">
+
+<!-- HEADER -->
+
+<header class="header-section">
+
+<div class="header-top">
+
+<h2 class="profile-name">
+👥 My Team
+</h2>
+
+</div>
+
+</header>
+
+<!-- AVAILABLE BONUS -->
+
+<section class="withdraw-section">
+
+<div class="withdraw-card">
+
+<div class="withdraw-balance-card">
+
+<div class="balance-label">
+Available Team Bonus
+</div>
+
+<div class="balance-content">
+
+<div class="balance-row">
+
+<img
+class="balance-coin-icon"
+src="https://cdn-icons-png.flaticon.com/128/3258/3258446.png"
+>
+
+<div>
+
+<div class="balance-number-row">
+
+<div
+id="teamBonus"
+class="balance-value"
+>
+0
+</div>
+
+<img
+class="withdraw-coin"
+src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
+>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<button
+id="claimTeamBonusBtn"
+class="withdraw-button"
+onclick="claimTeamBonus()"
+>
+Claim Bonus
+</button>
+
+</div>
+
+</section>
+
+<!-- TOTAL BONUS -->
+
+<section class="withdraw-section">
+
+<div class="withdraw-card">
+
+<div class="withdraw-balance-card">
+
+<div class="balance-label">
+Total Team Bonus Earned
+</div>
+
+<div class="balance-content">
+
+<div class="balance-row">
+
+<img
+class="balance-coin-icon"
+src="https://cdn-icons-png.flaticon.com/128/3258/3258446.png"
+>
+
+<div>
+
+<div class="balance-number-row">
+
+<div
+id="totalTeamBonus"
+class="balance-value"
+>
+0
+</div>
+
+<img
+class="withdraw-coin"
+src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
+>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TEAM STATS -->
+
+<section class="withdraw-history-section">
+
+<h2 class="section-title">
+Team Statistics
+</h2>
+
+<div id="teamStats" class="history-list">
+
+<div class="history-item">
+
+<div class="history-left">
+
+<h3 class="history-title">
+Total Refer
+</h3>
+
+</div>
+
+<div class="history-right">
+
+<div
+id="teamTotalRefer"
+class="history-amount"
+>
+0
+</div>
+
+</div>
+
+</div>
+
+<div class="history-item">
+
+<div class="history-left">
+
+<h3 class="history-title">
+Active Refer
+</h3>
+
+</div>
+
+<div class="history-right">
+
+<div
+id="teamActiveRefer"
+class="history-amount"
+>
+0
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TEAM MEMBERS -->
+
+<section class="withdraw-history-section">
+
+<h2 class="section-title">
+My Team Members
+</h2>
+
+<div
+id="teamList"
+class="history-list"
+>
+
+<div
+class="history-item"
+>
+
+<div
+style="
+margin:auto;
+font-size:16px;
+"
+>
+Loading...
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- BOTTOM NAV -->
+
+<nav class="bottom-nav">
+
+<button
+class="nav-item"
+onclick="window.location.href='index.html'"
+>
+
+<img
+class="nav-icon"
+src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png"
+/>
+
+<span class="nav-text">
+Home
+</span>
+
+</button>
+
+<button
+class="nav-item active-nav"
+onclick="window.location.href='team.html'"
+>
+
+<img
+class="nav-icon"
+src="https://cdn-icons-png.flaticon.com/128/681/681494.png"
+/>
+
+<span class="nav-text">
+My Team
+</span>
+
+</button>
+
+<button
+class="nav-item"
+onclick="window.location.href='leaderboard.html'"
+>
+
+<img
+class="nav-icon"
+src="https://cdn-icons-png.flaticon.com/128/3713/3713857.png"
+/>
+
+<span class="nav-text">
+Leaderboard
+</span>
+
+</button>
+
+<button
+class="nav-item"
+onclick="window.location.href='withdraw.html'"
+>
+
+<img
+class="nav-icon"
+src="https://cdn-icons-png.flaticon.com/128/7710/7710772.png"
+/>
+
+<span class="nav-text">
+Withdraw
+</span>
+
+</button>
+
+</nav>
+
+</div>
+
+<script type="module" src="js/app.js"></script>
+
+</body>
+</html>

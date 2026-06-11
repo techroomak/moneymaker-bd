@@ -1931,6 +1931,157 @@ if(document.getElementById("leaderboardList")){
 }
 
 /* ========================= */
+/* TEAM PAGE */
+/* ========================= */
+
+async function loadTeamData(){
+
+const teamList =
+document.getElementById("teamList");
+
+if(!teamList) return;
+
+const q =
+query(
+collection(db,"users"),
+where("joinedBy","==",userId)
+);
+
+const snap =
+await getDocs(q);
+
+let totalRefer = 0;
+let activeRefer = 0;
+
+teamList.innerHTML = "";
+
+snap.forEach((docSnap)=>{
+
+const data = docSnap.data();
+
+totalRefer++;
+
+const isInactive =
+(Date.now() - (data.lastActive || 0))
+>
+(30 * 60 * 60 * 1000);
+
+if(!isInactive){
+activeRefer++;
+}
+
+const status =
+isInactive
+?
+"Inactive"
+:
+"Active";
+
+const statusClass =
+isInactive
+?
+"team-status-inactive"
+:
+"team-status-active";
+
+teamList.innerHTML += `
+
+<div class="team-row">
+
+<div class="team-user">
+
+<img src="${data.photo}">
+
+<div class="team-user-info">
+
+<div class="team-user-name">
+${data.username || "Unknown"}
+</div>
+
+<div class="team-user-id">
+ID:${docSnap.id}
+</div>
+
+</div>
+
+</div>
+
+<div>
+0
+</div>
+
+<div>
+${data.dailyEarn || 0}
+</div>
+
+<div>
+
+<div>
+${data.totalEarn || 0}
+</div>
+
+<div
+style="
+display:flex;
+align-items:center;
+justify-content:center;
+gap:3px;
+font-size:10px;
+margin-top:2px;
+color:#64748b;
+"
+>
+
+<img
+src="https://cdn-icons-png.flaticon.com/128/681/681494.png"
+style="
+width:11px;
+height:11px;
+"
+>
+
+<span>
+${data.refer || 0}
+</span>
+
+</div>
+
+</div>
+
+<div class="${statusClass}">
+${status}
+</div>
+
+</div>
+
+`;
+
+});
+
+const totalReferEl =
+document.getElementById("teamTotalRefer2");
+
+const activeReferEl =
+document.getElementById("teamActiveRefer");
+
+const referCountEl =
+document.getElementById("teamReferCount");
+
+if(totalReferEl)
+totalReferEl.innerText = totalRefer;
+
+if(activeReferEl)
+activeReferEl.innerText = activeRefer;
+
+if(referCountEl)
+referCountEl.innerText = totalRefer;
+
+}
+
+if(document.getElementById("teamList")){
+loadTeamData();
+}
+/* ========================= */
 /* LOAD WITHDRAW HISTORY */
 /* ========================= */
 

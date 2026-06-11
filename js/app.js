@@ -1959,12 +1959,10 @@ teamList.innerHTML = `
 
 <div class="team-loading">
 
-<h3>No Referral Found</h3>
+<h3>আপনার কোনো রেফার নেই</h3>
 
 <p>
-Refer friends and earn
-lifetime 10% bonus.
-Claim daily.
+রেফার করুন আপনার বন্ধুকে <br> এবং লাইফটাইম ১০% বোনাস জিতুন ডেইলি
 </p>
 
 </div>

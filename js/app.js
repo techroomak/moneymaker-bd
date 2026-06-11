@@ -238,7 +238,9 @@ navigator.userAgent,
 
 joinDate: Date.now(),
 
-lastActive:Date.now()
+lastActive:Date.now(),
+teamBonus: 0,
+totalTeamBonus: 0
 });
 
 /* ========================= */

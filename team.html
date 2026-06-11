@@ -17,9 +17,20 @@
 <body>
 
 <div class="app-container">
+     
+        <!-- HEADER -->
+<header class="header-section">
 
-<!-- HEADER -->
+<div class="header-top">
 
+<h2 class="profile-name">
+👥 My Team
+</h2>
+
+</div>
+
+</header>
+  
 <!-- TEAM TOP CARD -->
 
 <section class="team-top-section">
@@ -39,10 +50,9 @@ Available Bonus
 <button
 id="claimTeamBonusBtn"
 class="team-claim-btn"
-onclick="claimTeamBonus()"
 disabled
 >
-Locked
+Claimed
 </button>
 
 </div>
@@ -57,19 +67,6 @@ Total Earned
 
 <div class="team-value">
 <span id="totalTeamBonus">0</span>
-</div>
-
-<div class="team-refer-count">
-
-<img
-src="https://cdn-icons-png.flaticon.com/128/681/681494.png"
-class="team-refer-icon"
->
-
-<span id="teamTotalRefer">
-0
-</span>
-
 </div>
 
 </div>
@@ -126,16 +123,16 @@ class="team-stat-value"
 
 <div>User</div>
 
-<div>Comm.</div>
+<div>Bonus</div>
 
-<div>Daily</div>
+<div>Today</div>
 
 <div>Total</div>
 
 <div>Status</div>
 
 </div>
-
+  
 <div id="teamList">
 
 <div class="team-loading">

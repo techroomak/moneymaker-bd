@@ -1440,7 +1440,8 @@ line-height:1.2;
 
 .team-user-name{
 font-size:9px;
-font-weight:0;
+font-weight:600;
+color:black;
 }
 
 .team-user-id{

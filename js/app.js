@@ -2101,6 +2101,7 @@ referCountEl.innerText = totalRefer;
 
 if(document.getElementById("teamList")){
 loadTeamData();
+loadTeamBonusData();
 }
 /* ========================= */
 /* LOAD WITHDRAW HISTORY */
@@ -3744,9 +3745,4 @@ btn.innerHTML =
 }
 
 }
-alert(
-`${bonus} Coin Claimed`
-);
 
-await loadTeamBonusData();
-loadUserData();

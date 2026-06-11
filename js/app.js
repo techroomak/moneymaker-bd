@@ -3682,12 +3682,17 @@ loadTeamData();
 
 async function loadTeamBonusData(){
 
+const btn =
+document.getElementById(
+"claimTeamBonusBtn"
+);
+
 const teamBonusEl =
 document.getElementById(
 "teamBonus"
 );
 
-if(!teamBonusEl)
+if(!teamBonusEl || !btn)
 return;
 
 const snap =
@@ -3696,16 +3701,52 @@ await getDoc(userRef);
 const me =
 snap.data();
 
-teamBonusEl.innerText =
+const bonus =
 me.teamBonus || 0;
+
+teamBonusEl.innerText = bonus;
 
 document.getElementById(
 "totalTeamBonus"
 ).innerText =
 me.totalTeamBonus || 0;
 
+const today =
+new Date()
+.toISOString()
+.slice(0,10);
+
+if(me.lastTeamClaim === today){
+
+btn.disabled = true;
+
+btn.innerHTML =
+"✅ Claimed";
+
+return;
+
 }
 
-if(document.getElementById("teamBonus")){
-loadTeamBonusData();
+if(bonus > 0){
+
+btn.disabled = false;
+
+btn.innerHTML =
+"Claim Today";
+
+}else{
+
+btn.disabled = true;
+
+btn.innerHTML =
+"Locked";
+
 }
+
+}
+alert(
+`${bonus} Coin Claimed`
+);
+
+await loadTeamBonusData();
+loadUserData();

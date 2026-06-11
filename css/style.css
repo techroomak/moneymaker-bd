@@ -1405,7 +1405,12 @@ margin-bottom:8px;
 
 .team-row{
 display:grid;
-grid-template-columns:2.3fr .8fr .8fr .8fr 1fr;
+grid-template-columns:
+2fr
+1fr
+1fr
+1.2fr
+1fr;
 align-items:center;
 background:#fff;
 padding:8px;

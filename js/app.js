@@ -1975,6 +1975,8 @@ return;
 
 }
 
+teamList.innerHTML = "";
+  
 snap.forEach((docSnap)=>{
 
 const data = docSnap.data();

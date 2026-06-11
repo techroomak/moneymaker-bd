@@ -2356,20 +2356,6 @@ show_11035690()
 
 await updateDoc(userRef,{
 
-coin:increment(reward),
-
-dailyEarn:increment(reward),
-totalEarn:increment(reward),
-dailyAds:increment(1),
-totalAds:increment(1),
-ad1Count:increment(1),
-  
-ad1Last:Date.now(),
-
-lastAdWatch:Date.now()
-
-});
-
 if(userData.joinedBy){
 
 const refRef =
@@ -2386,6 +2372,20 @@ increment(reward)
 
 }
   
+coin:increment(reward),
+
+dailyEarn:increment(reward),
+totalEarn:increment(reward),
+dailyAds:increment(1),
+totalAds:increment(1),
+ad1Count:increment(1),
+  
+ad1Last:Date.now(),
+
+lastAdWatch:Date.now()
+
+});
+
 await loadUserData();
 
 tg.showPopup({
@@ -2455,21 +2455,6 @@ show_11035690()
 
 await updateDoc(userRef,{
 
-coin:increment(reward),
-
-dailyEarn:increment(reward),
-totalEarn:increment(reward),
-dailyAds:increment(1),
-totalAds:increment(1),
-ad2Count:increment(1),
-
-  
-ad2Last:Date.now(),
-
-lastAdWatch:Date.now()
-
-});
-
 if(userData.joinedBy){
 
 const refRef =
@@ -2485,6 +2470,17 @@ increment(reward)
 });
 
 }
+  
+coin:increment(reward),
+dailyEarn:increment(reward),
+totalEarn:increment(reward),
+dailyAds:increment(1),
+totalAds:increment(1),
+ad2Count:increment(1),
+ad2Last:Date.now(),
+lastAdWatch:Date.now()
+
+});
   
 await loadUserData();
 
@@ -2555,21 +2551,7 @@ show_11035690('pop')
 
 await updateDoc(userRef,{
 
-coin:increment(reward),
-
-dailyEarn:increment(reward),
-totalEarn:increment(reward),
-dailyAds:increment(1),
-totalAds:increment(1),
-ad3Count:increment(1),
-  
-ad3Last:Date.now(),
-
-lastAdWatch:Date.now()
-
-});
-
- if(userData.joinedBy){
+if(userData.joinedBy){
 
 const refRef =
 doc(
@@ -2583,8 +2565,21 @@ referDailyEarn:
 increment(reward)
 });
 
-} 
+}
   
+coin:increment(reward),
+dailyEarn:increment(reward),
+totalEarn:increment(reward),
+dailyAds:increment(1),
+totalAds:increment(1),
+ad3Count:increment(1),
+  
+ad3Last:Date.now(),
+
+lastAdWatch:Date.now()
+
+});
+
 await loadUserData();
 
 tg.showPopup({
@@ -2654,20 +2649,6 @@ show_11035690('pop')
 
 await updateDoc(userRef,{
 
-coin:increment(reward),
-
-dailyEarn:increment(reward),
-totalEarn:increment(reward),
-dailyAds:increment(1),
-totalAds:increment(1),
-ad4Count:increment(1),
-  
-ad4Last:Date.now(),
-
-lastAdWatch:Date.now()
-
-});
-
 if(userData.joinedBy){
 
 const refRef =
@@ -2683,6 +2664,17 @@ increment(reward)
 });
 
 }
+  
+coin:increment(reward),
+dailyEarn:increment(reward),
+totalEarn:increment(reward),
+dailyAds:increment(1),
+totalAds:increment(1),
+ad4Count:increment(1),
+ad4Last:Date.now(),
+lastAdWatch:Date.now()
+
+});
   
 await loadUserData();
 

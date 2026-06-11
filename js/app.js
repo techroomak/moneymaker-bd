@@ -1995,9 +1995,8 @@ teamList.innerHTML += `
 <div class="team-user-info">
 
 <div class="team-user-name">
-${data.username || "Unknown"}
+${data.username || data.first_name || "No Name"}
 </div>
-
 <div class="team-user-id">
 ID:${docSnap.id}
 </div>

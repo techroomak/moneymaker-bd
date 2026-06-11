@@ -3744,11 +3744,11 @@ btn.innerHTML =
 "Locked";
 
 }
+
+}
 if(document.getElementById("teamList")){
 
 loadTeamData();
 
 loadTeamBonusData();
 }
-}
-

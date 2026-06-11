@@ -2339,6 +2339,32 @@ dailyAds:increment(1),
 totalAds:increment(1),
 ad1Count:increment(1),
 
+if(userData.joinedBy){
+
+const referrerRef =
+doc(
+db,
+"users",
+String(userData.joinedBy)
+);
+
+const bonus =
+Math.floor(reward * 0.10);
+
+if(bonus > 0){
+
+await updateDoc(
+referrerRef,
+{
+teamBonus:increment(bonus),
+totalTeamBonus:increment(bonus)
+}
+);
+
+}
+
+}
+  
 ad1Last:Date.now(),
 
 lastAdWatch:Date.now()
@@ -2422,6 +2448,32 @@ dailyAds:increment(1),
 totalAds:increment(1),
 ad2Count:increment(1),
 
+ if(userData.joinedBy){
+
+const referrerRef =
+doc(
+db,
+"users",
+String(userData.joinedBy)
+);
+
+const bonus =
+Math.floor(reward * 0.10);
+
+if(bonus > 0){
+
+await updateDoc(
+referrerRef,
+{
+teamBonus:increment(bonus),
+totalTeamBonus:increment(bonus)
+}
+);
+
+}
+
+} 
+  
 ad2Last:Date.now(),
 
 lastAdWatch:Date.now()
@@ -2505,6 +2557,32 @@ dailyAds:increment(1),
 totalAds:increment(1),
 ad3Count:increment(1),
 
+if(userData.joinedBy){
+
+const referrerRef =
+doc(
+db,
+"users",
+String(userData.joinedBy)
+);
+
+const bonus =
+Math.floor(reward * 0.10);
+
+if(bonus > 0){
+
+await updateDoc(
+referrerRef,
+{
+teamBonus:increment(bonus),
+totalTeamBonus:increment(bonus)
+}
+);
+
+}
+
+}
+  
 ad3Last:Date.now(),
 
 lastAdWatch:Date.now()
@@ -2588,6 +2666,32 @@ dailyAds:increment(1),
 totalAds:increment(1),
 ad4Count:increment(1),
 
+if(userData.joinedBy){
+
+const referrerRef =
+doc(
+db,
+"users",
+String(userData.joinedBy)
+);
+
+const bonus =
+Math.floor(reward * 0.10);
+
+if(bonus > 0){
+
+await updateDoc(
+referrerRef,
+{
+teamBonus:increment(bonus),
+totalTeamBonus:increment(bonus)
+}
+);
+
+}
+
+}
+  
 ad4Last:Date.now(),
 
 lastAdWatch:Date.now()
@@ -3340,4 +3444,90 @@ loadUserData();
 
 },1000);
 
+}
+
+/* team claim */
+
+window.claimTeamBonus =
+async()=>{
+
+const snap =
+await getDoc(userRef);
+
+const data =
+snap.data();
+
+const bonus =
+data.teamBonus || 0;
+
+if(bonus <= 0){
+
+alert("No bonus available");
+
+return;
+
+}
+
+const today =
+new Date()
+.toISOString()
+.slice(0,10);
+
+if(data.lastTeamClaim === today){
+
+alert("Already claimed today");
+
+return;
+
+}
+
+await updateDoc(
+userRef,
+{
+coin:increment(bonus),
+teamBonus:0,
+lastTeamClaim:today
+}
+);
+
+alert(
+`${bonus} Coin Claimed`
+);
+
+loadTeamData();
+
+};
+
+async function loadTeamData(){
+
+const teamBonusEl =
+document.getElementById(
+"teamBonus"
+);
+
+if(!teamBonusEl)
+return;
+
+const snap =
+await getDoc(userRef);
+
+const me =
+snap.data();
+
+teamBonusEl.innerText =
+me.teamBonus || 0;
+
+document.getElementById(
+"totalTeamBonus"
+).innerText =
+me.totalTeamBonus || 0;
+
+}
+
+if(
+document.getElementById(
+"teamBonus"
+)
+){
+loadTeamData();
 }

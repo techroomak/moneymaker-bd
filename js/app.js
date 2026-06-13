@@ -1436,7 +1436,7 @@ if(latestData.banned === true){
 
   tg.showPopup({
     title:"Your Account Suspended",
-    message:"Your account has been suspended.n/n/ Please contact support support📞.",
+    message:"আপনার একাউন্ট ব্যান করা হয়েছে.n/n/সাপোর্টে কথা বলুন📞.",
     buttons:[{type:"ok"}]
   });
 
@@ -1467,7 +1467,7 @@ if(
 !amount
 ){
 
-alert("Fill all fields");
+alert("ফিল্ড গুলো পূরণ করুন");
 
 return;
 
@@ -1475,7 +1475,7 @@ return;
 
 /* VALIDATION */
 
-if(method === "recharge"){
+if(method === "Recharge"){
 
 if(
 amount < settingsData.rechargeMin ||
@@ -1516,7 +1516,7 @@ settingsData.minWithdrawCoin
 ){
 
 alert(
-`Minimum 🥯 ${settingsData.minWithdrawCoin} Coin Required`
+`সর্বনিম্ন ${settingsData.minWithdrawCoin}💰 কয়েন লাগবে`
 );
 
 return;
@@ -1531,7 +1531,7 @@ settingsData.minReferForWithdraw
 ){
 
 alert(
-`Minimum 👥 ${settingsData.minReferForWithdraw} Referrals Required`
+`সর্বনিম্ন ${settingsData.minReferForWithdraw} 👥 রেফার থাকতে হবে`
 );
 
 return;
@@ -2798,7 +2798,7 @@ button.disabled = false;
 button.innerHTML =
 originalText;
 
-alert("Ad Not Completed | Plz Wait 30s");
+alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি, সম্পুর্ণ দেখুন।");
 
 });
 
@@ -2894,7 +2894,7 @@ button.disabled = false;
 button.innerHTML =
 originalText;
 
-alert("Ad Not Completed | Plz Wait 30s");
+alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি, সম্পুর্ণ দেখুন।");
 
 });
 
@@ -2964,7 +2964,7 @@ ${task.name}
 </h3>
 
 <p class="task-description">
- এই টাস্ক কমপ্লেট করলে কয়েন পাবেন।
+ টাস্কটি সম্পুর্ণ করে কয়েন জিতুন
 </p>
 
 <p

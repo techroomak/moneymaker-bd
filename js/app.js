@@ -2604,7 +2604,7 @@ button.disabled = false;
 button.innerHTML =
 originalText;
 
-alert("Ad Not Completed");
+alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি। অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
 
 });
 
@@ -2700,7 +2700,7 @@ button.disabled = false;
 button.innerHTML =
 originalText;
 
-alert("Video Ad Not Completed");
+alert("ভিডিও বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি।");
 
 });
 
@@ -3639,7 +3639,7 @@ data.teamBonus || 0;
 
 if(bonus <= 0){
 
-alert("No bonus available");
+alert("বর্তমানে কোনো টিম বোনাস জমা হয়নি।");
 
 return;
 
@@ -3652,7 +3652,7 @@ new Date()
 
 if(data.lastTeamClaim === today){
 
-alert("Already claimed today");
+alert("আজকের বোনাস ইতোমধ্যে ক্লেইম করা হয়েছে।");
 
 return;
 
@@ -3668,10 +3668,8 @@ lastTeamClaim:today
 }
 );
 
-alert(
-`${bonus} Coin Claimed`
-);
-
+alert(`অভিনন্দন! ${bonus} Coin সফলভাবে যোগ হয়েছে।`);
+  
 await loadTeamBonusData();
 
 await loadUserData();

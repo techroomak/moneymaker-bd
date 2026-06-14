@@ -1719,10 +1719,14 @@ margin-top:6px;
 }
 
 .top-refer{
-margin-top:4px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:4px;
 font-size:12px;
-font-weight:600;
-color:#555;
+font-weight:700;
+color:#64748b;
+margin-top:4px;
 }
 
 .my-rank-card{
@@ -1733,7 +1737,9 @@ align-items:center;
 padding:10px;
 border-radius:16px;
 background:#f0fdf4;
-border:2px solid #22c55e;
+border:2px solid #22c55e !important;
+box-shadow:
+0 0 0 3px rgba(34,197,94,.15);
 }
 
 .my-left{

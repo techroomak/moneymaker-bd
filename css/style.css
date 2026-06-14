@@ -1619,11 +1619,11 @@ overflow:visible;
 order:2;
 margin-bottom:25px;
 background:linear-gradient(
-135deg,
-#dbeafe,
-#bfdbfe
+180deg,
+#fff4c7,
+#ffe59a
 );
-border:2px solid #60a5fa;
+border:2px solid #f7c948;
 }
 
 .top2,
@@ -1634,11 +1634,11 @@ width:115px;
 .top2{
 order:1;
 background:linear-gradient(
-180deg,
-#f3f4f8,
-#dde2ee
+135deg,
+#f5f3ff,
+#ddd6fe
 );
-border:2px solid #60a5fa;
+border: 2px solid #7c3aed;
 }
 
 .top3{

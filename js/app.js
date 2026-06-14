@@ -1765,22 +1765,25 @@ top3[2]
 ];
 displayTop3.forEach((user,index)=>{
 
-const medal =
-index===0 ? "🥇" :
-index===1 ? "🥈" :
-"🥉";
+const crown =
+index===1
+? "👑"
+: index===0
+? "♔"
+: "♔";
 
-const cardClass =
-index===0 ? "top1" :
-index===1 ? "top2" :
-"top3";
+const rankNo =
+index===1
+? "1"
+: index===0
+? "2"
+: "3";
 
 html += `
-
 <div class="top-card ${cardClass}">
 
-<div class="top-medal">
-${medal}
+<div class="top-crown">
+${crown}
 </div>
 
 <img
@@ -1788,21 +1791,20 @@ class="top-avatar"
 src="${user.photo}"
 >
 
-<h3 class="top-name">
+<div class="rank-badge">
+${rankNo}
+</div>
+
+<div class="top-name">
 ${user.username}
-</h3>
+</div>
 
 <div class="top-coin">
-
 <img
 class="leaderboard-coin-icon"
 src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
 >
-
-<span>
 ${user.coin || 0}
-</span>
-
 </div>
 
 <div class="top-refer">

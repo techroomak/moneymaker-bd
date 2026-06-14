@@ -1619,11 +1619,11 @@ overflow:visible;
 order:2;
 margin-bottom:25px;
 background:linear-gradient(
-180deg,
-#fff4c7,
-#ffe59a
+135deg,
+#dbeafe,
+#bfdbfe
 );
-border:2px solid #f7c948;
+border:2px solid #60a5fa;
 }
 
 .top2,
@@ -1692,7 +1692,7 @@ background:#f4b400;
 }
 
 .top2 .rank-badge{
-background:#e6cf91;
+background:#fabf98;
 }
 
 .top3 .rank-badge{

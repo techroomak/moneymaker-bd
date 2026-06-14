@@ -1820,7 +1820,14 @@ ${user.coin || 0}
 </div>
 
 <div class="top-refer">
-👥 ${user.refer || 0}
+
+<img
+class="leaderboard-refer-icon"
+src="https://cdn-icons-png.flaticon.com/128/681/681494.png"
+>
+
+<span>${user.refer || 0}</span>
+
 </div>
 
 </div>

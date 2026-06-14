@@ -1884,6 +1884,9 @@ html += `
 board.innerHTML = html;
 }
 
+if(document.getElementById("leaderboardList")){
+   loadLeaderboard();
+}
 /* ========================= */
 /* TEAM PAGE */
 /* ========================= */

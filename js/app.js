@@ -2597,14 +2597,19 @@ originalText;
 
 })
 
-.catch(()=>{
+.catch(async(error)=>{
+
+await saveErrorLog(
+"Monetag Ad Failed",
+error
+);
 
 button.disabled = false;
 
 button.innerHTML =
 originalText;
 
-alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি। অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
+alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি। n/n/ অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
 
 });
 
@@ -2693,14 +2698,19 @@ originalText;
 
 })
 
-.catch(()=>{
+.catch(async(error)=>{
+
+await saveErrorLog(
+"Monetag Ad Failed",
+error
+);
 
 button.disabled = false;
 
 button.innerHTML =
 originalText;
 
-alert("ভিডিও বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি।");
+alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি। n/n/ অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
 
 });
 
@@ -2791,14 +2801,19 @@ originalText;
 
 })
 
-.catch(()=>{
+.catch(async(error)=>{
+
+await saveErrorLog(
+"Monetag Ad Failed",
+error
+);
 
 button.disabled = false;
 
 button.innerHTML =
 originalText;
 
-alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি, সম্পুর্ণ দেখুন।");
+alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি। n/n/ অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
 
 });
 
@@ -2887,14 +2902,19 @@ originalText;
 
 })
 
-.catch(()=>{
+.catch(async(error)=>{
+
+await saveErrorLog(
+"Monetag Ad Failed",
+error
+);
 
 button.disabled = false;
 
 button.innerHTML =
 originalText;
 
-alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি, সম্পুর্ণ দেখুন।");
+alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি। n/n/ অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
 
 });
 
@@ -3747,4 +3767,39 @@ if(document.getElementById("teamList")){
 loadTeamData();
 
 loadTeamBonusData();
+}
+
+
+/* User Error Logs */
+
+async function saveErrorLog(reason,error=""){
+
+try{
+
+await addDoc(
+collection(db,"logs"),
+{
+type:"reward_error",
+
+userId:userId,
+username:username,
+
+reason:reason,
+
+error:
+typeof error === "string"
+?
+error
+:
+(error?.message || JSON.stringify(error)),
+
+createdAt:Date.now()
+});
+
+}catch(e){
+
+console.log("Log Save Failed",e);
+
+}
+
 }

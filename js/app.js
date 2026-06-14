@@ -3771,7 +3771,7 @@ async function saveErrorLog(reason,error=""){
 
 try{
 
-await addDoc(
+const logRef = await addDoc(
 collection(db,"logs"),
 {
 type:"reward_error",
@@ -3789,6 +3789,10 @@ error
 (error?.message || JSON.stringify(error)),
 
 createdAt:Date.now()
+});
+
+await updateDoc(logRef,{
+documentId:logRef.id
 });
 
 }catch(e){

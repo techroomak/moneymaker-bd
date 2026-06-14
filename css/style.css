@@ -1606,113 +1606,115 @@ color:#374151;
 display:flex;
 justify-content:center;
 align-items:flex-end;
-gap:12px;
-margin:15px 0 20px;
+gap:10px;
+margin:20px 0;
 }
 
 .top-card{
-width:105px;
-background:#fff;
-border-radius:20px;
-padding:10px;
+position:relative;
+width:95px;
+min-height:160px;
+padding:8px 6px;
+border-radius:22px;
 text-align:center;
-box-shadow:0 4px 12px rgba(0,0,0,.08);
-}
-
-.top2{
-order:1;
-margin-bottom:0;
+box-shadow:0 6px 18px rgba(0,0,0,.08);
+overflow:visible;
 }
 
 .top1{
 order:2;
-margin-bottom:35px;
+margin-bottom:40px;
+background:linear-gradient(
+180deg,
+#fff4c7,
+#ffe59a
+);
+border:2px solid #f7c948;
+}
+
+.top2{
+order:1;
+background:linear-gradient(
+180deg,
+#f3f4f8,
+#dde2ee
+);
+border:2px solid #b8c0d4;
 }
 
 .top3{
 order:3;
-margin-bottom:0;
+background:linear-gradient(
+180deg,
+#ffe8d8,
+#ffd0ae
+);
+border:2px solid #e3a46b;
 }
 
-.top-medal{
-font-size:32px;
-margin-bottom:8px;
+.top-crown{
+position:absolute;
+top:-20px;
+left:50%;
+transform:translateX(-50%);
+font-size:28px;
 }
 
 .top-avatar{
-width:65px;
-height:65px;
+width:58px;
+height:58px;
 border-radius:50%;
 object-fit:cover;
-margin-top:5px;
+margin-top:6px;
+border:3px solid #fff;
+}
+
+.rank-badge{
+position:absolute;
+left:18px;
+top:72px;
+width:30px;
+height:30px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:15px;
+font-weight:700;
+color:#fff;
+}
+
+.top1 .rank-badge{
+background:#f4b400;
+}
+
+.top2 .rank-badge{
+background:#9ca3af;
+}
+
+.top3 .rank-badge{
+background:#cd7f32;
 }
 
 .top-name{
-font-size:14px;
+font-size:15px;
 font-weight:700;
-margin:8px 0 4px;
+margin:10px 0 4px;
 }
 
 .top-coin{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:4px;
 font-size:18px;
 font-weight:700;
 margin-top:6px;
 }
 
 .top-refer{
-font-size:13px;
-margin-top:5px;
-}
-
-.normal-rank-list{
-display:flex;
-flex-direction:column;
-gap:10px;
-}
-
-.my-rank-card{
-margin-top:20px;
-background:#dcfce7;
-border:2px solid #22c55e;
-padding:16px;
-border-radius:18px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-font-weight:700;
-}
-
-.my-rank-card{
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:#dcfce7;
-border:2px solid #22c55e;
-border-radius:20px;
-padding:14px;
-margin-top:15px;
-}
-
-.my-left{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.top-coin{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:5px;
-font-size:18px;
-font-weight:700;
-}
-
-.top-refer{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:4px;
-font-size:13px;
+margin-top:4px;
+font-size:12px;
 font-weight:600;
+color:#555;
 }

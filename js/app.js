@@ -1597,38 +1597,29 @@ username:u.username || "Unknown"
 
 });
 
-await addDoc(
+const logRef = await addDoc(
 collection(db,"logs"),
 {
 username,
 userId,
-
-deviceId:
-latestData.deviceId || "",
-
-platform:
-latestData.platform || "",
-
-userAgent:
-latestData.userAgent || "",
-
-matchedAccounts:
-accounts,
-
-accountCount:
-sameDeviceSnap.size,
-
+deviceId:latestData.deviceId || "",
+platform:latestData.platform || "",
+userAgent:latestData.userAgent || "",
+matchedAccounts:accounts,
+accountCount:sameDeviceSnap.size,
 reason:
 sameDeviceSnap.size > 1
 ?
 "Same Device Detected"
 :
 "Withdraw Request",
-
-createdAt:
-Date.now()
+createdAt:Date.now()
 }
 );
+
+await updateDoc(logRef,{
+documentId:logRef.id
+});
 
 }catch(err){
 
@@ -1636,7 +1627,7 @@ console.log("Log Error:",err);
 
 }
   
-await addDoc(
+const withdrawRef = await addDoc(
 collection(db,"withdraws"),
 {
 
@@ -1667,6 +1658,10 @@ new Date()
 }
 );
 
+await updateDoc(withdrawRef,{
+documentId:withdrawRef.id
+});
+  
 /* PENDING */
 
 await updateDoc(userRef,{

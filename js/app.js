@@ -1917,9 +1917,9 @@ if(me && myRank > 10){
 
 html += `
 
-<div class="my-rank-card">
+<div class="leaderboard-item you-card">
 
-<div class="my-left">
+<divclass="leaderboard-left">
 
 <div class="leaderboard-rank">
 #${myRank}

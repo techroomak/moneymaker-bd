@@ -1919,7 +1919,7 @@ html += `
 
 <div class="leaderboard-item you-card">
 
-<divclass="leaderboard-left">
+<div class="leaderboard-left">
 
 <div class="leaderboard-rank">
 #${myRank}

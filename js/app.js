@@ -1850,7 +1850,14 @@ ID: ${String(user.id).slice(0,2)}***${String(user.id).slice(-2)}
 <div class="leaderboard-right">
 
 <div class="leaderboard-coin">
+
+<img
+class="leaderboard-coin-icon"
+src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
+>
+
 ${user.coin || 0}
+
 </div>
 
 <div class="leaderboard-refer">

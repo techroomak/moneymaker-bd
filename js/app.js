@@ -1830,7 +1830,7 @@ ${user.coin || 0}
 html += `
 </div>
 
-<div class="normal-rank-list">
+<div  class="leaderboard-list">
 `;
 
 others.forEach((user,index)=>{

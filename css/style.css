@@ -1612,8 +1612,8 @@ margin:20px 0;
 
 .top-card{
 position:relative;
-width:95px;
-min-height:160px;
+width:130px;
+min-height:150px;
 padding:8px 6px;
 border-radius:22px;
 text-align:center;
@@ -1630,6 +1630,11 @@ background:linear-gradient(
 #ffe59a
 );
 border:2px solid #f7c948;
+}
+
+.top2,
+.top3{
+width:115px;
 }
 
 .top2{
@@ -1661,27 +1666,28 @@ font-size:28px;
 }
 
 .top-avatar{
-width:58px;
-height:58px;
+width:60px;
+height:60px;
 border-radius:50%;
 object-fit:cover;
 margin-top:6px;
 border:3px solid #fff;
+position:relative;
 }
 
 .rank-badge{
 position:absolute;
-left:18px;
-top:72px;
-width:30px;
-height:30px;
+bottom:-8px;
+left:50%;
+transform:translateX(-50%);
+width:36px;
+height:36px;
 border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:15px;
 font-weight:700;
-color:#fff;
+z-index:5;
 }
 
 .top1 .rank-badge{
@@ -1717,4 +1723,21 @@ margin-top:4px;
 font-size:12px;
 font-weight:600;
 color:#555;
+}
+
+.my-rank-card{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#fff;
+border-radius:18px;
+padding:14px;
+margin-top:18px;
+box-shadow:0 3px 10px rgba(0,0,0,.06);
+}
+
+.my-left{
+display:flex;
+align-items:center;
+gap:10px;
 }

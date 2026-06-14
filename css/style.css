@@ -1613,7 +1613,7 @@ margin:20px 0;
 .top-card{
 position:relative;
 width:130px;
-min-height:150px;
+min-height:160px;
 padding:8px 6px;
 border-radius:22px;
 text-align:center;
@@ -1623,7 +1623,7 @@ overflow:visible;
 
 .top1{
 order:2;
-margin-bottom:40px;
+margin-bottom:25px;
 background:linear-gradient(
 180deg,
 #fff4c7,
@@ -1666,8 +1666,8 @@ font-size:28px;
 }
 
 .top-avatar{
-width:70px;
-height:70px;
+width:78px;
+height:78px;
 border-radius:50%;
 object-fit:cover;
 margin-top:6px;
@@ -1736,4 +1736,17 @@ margin-top:4px;
 display:flex;
 align-items:center;
 gap:10px;
+}
+
+.my-rank-card{
+margin-top:7px !important;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:10px;
+border-radius:16px;
+background:#f0fdf4;
+border:2px solid #22c55e !important;
+box-shadow:
+0 0 0 3px rgba(34,197,94,.15);
 }

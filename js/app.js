@@ -1840,7 +1840,7 @@ const rank = index + 4;
 html += `
 
 <div class="leaderboard-item ${
-String(user.id)===userId ? "my-rank-card" : ""
+String(user.id)===userId ? "you-card" : ""
 }">
 
 <div class="leaderboard-left">
@@ -1885,7 +1885,12 @@ ${user.coin || 0}
 </div>
 
 <div class="leaderboard-refer">
-👥 ${user.refer || 0}
+<img
+class="leaderboard-refer-icon"
+src="https://cdn-icons-png.flaticon.com/128/681/681494.png"
+>
+
+<span>${user.refer || 0}</span>
 </div>
 
 </div>

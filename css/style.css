@@ -1666,8 +1666,8 @@ font-size:28px;
 }
 
 .top-avatar{
-width:60px;
-height:60px;
+width:70px;
+height:70px;
 border-radius:50%;
 object-fit:cover;
 margin-top:6px;
@@ -1677,17 +1677,20 @@ position:relative;
 
 .rank-badge{
 position:absolute;
+left:18px;
+top:55px;
+z-index:5;
 bottom:-8px;
 left:50%;
 transform:translateX(-50%);
-width:36px;
-height:36px;
+width:22px;
+height:22px;
 border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
-font-weight:700;
-z-index:5;
+font-weight:600;
+font-size:11px;
 }
 
 .top1 .rank-badge{
@@ -1703,8 +1706,8 @@ background:#cd7f32;
 }
 
 .top-name{
-font-size:15px;
-font-weight:700;
+font-size:14px;
+font-weight:600;
 margin:10px 0 4px;
 }
 
@@ -1729,25 +1732,8 @@ color:#64748b;
 margin-top:4px;
 }
 
-.my-rank-card{
-margin-top:10px !important;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:10px;
-border-radius:16px;
-background:#f0fdf4;
-border:2px solid #22c55e !important;
-box-shadow:
-0 0 0 3px rgba(34,197,94,.15);
-}
-
 .my-left{
 display:flex;
 align-items:center;
 gap:10px;
-}
-.rank-badge{
-left:8px;
-top:48px;
 }

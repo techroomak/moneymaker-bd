@@ -1490,3 +1490,155 @@ font-weight:700;
 color:#111827;
 font-weight:600;
 }
+
+
+/* ========================= */
+/* PREMIUM LEADERBOARD */
+/* ========================= */
+
+.leaderboard-list{
+display:flex;
+flex-direction:column;
+gap:10px;
+padding-bottom:15px;
+}
+
+.leaderboard-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px;
+border-radius:18px;
+background:#ffffff;
+box-shadow:
+0 4px 14px rgba(0,0,0,.08);
+transition:.25s;
+border:2px solid transparent;
+}
+
+.leaderboard-item:hover{
+transform:translateY(-2px);
+}
+
+.gold-card{
+background:
+linear-gradient(
+135deg,
+#fff5cc,
+#ffe08a
+);
+border:2px solid #facc15;
+}
+
+.silver-card{
+background:
+linear-gradient(
+135deg,
+#f3f4f6,
+#d1d5db
+);
+border:2px solid #9ca3af;
+}
+
+.bronze-card{
+background:
+linear-gradient(
+135deg,
+#fde7d7,
+#f6b58c
+);
+border:2px solid #c97b45;
+}
+
+.you-card{
+border:2px solid #22c55e !important;
+box-shadow:
+0 0 0 3px rgba(34,197,94,.15);
+}
+
+.leaderboard-rank{
+width:48px;
+height:48px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:700;
+font-size:15px;
+background:#eef2ff;
+color:#3730a3;
+}
+
+.gold-card .leaderboard-rank{
+background:#f59e0b;
+color:#fff;
+}
+
+.silver-card .leaderboard-rank{
+background:#6b7280;
+color:#fff;
+}
+
+.bronze-card .leaderboard-rank{
+background:#b45309;
+color:#fff;
+}
+
+.leaderboard-avatar{
+width:56px;
+height:56px;
+border-radius:50%;
+object-fit:cover;
+border:2px solid #fff;
+}
+
+.leaderboard-name{
+margin:0;
+font-size:15px;
+font-weight:700;
+color:#111827;
+}
+
+.leaderboard-id{
+margin-top:2px;
+font-size:11px;
+color:#6b7280;
+}
+
+.leaderboard-left{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.leaderboard-right{
+display:flex;
+flex-direction:column;
+align-items:flex-end;
+gap:5px;
+}
+
+.leaderboard-coin-row,
+.leaderboard-refer-row{
+display:flex;
+align-items:center;
+gap:5px;
+}
+
+.leaderboard-coin-icon,
+.leaderboard-refer-icon{
+width:16px;
+height:16px;
+}
+
+.leaderboard-coin{
+font-size:15px;
+font-weight:700;
+color:#111827;
+}
+
+.leaderboard-refer{
+font-size:13px;
+font-weight:600;
+color:#374151;
+}

@@ -1726,18 +1726,22 @@ color:#555;
 }
 
 .my-rank-card{
+margin-top:10px !important;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:#fff;
-border-radius:18px;
-padding:14px;
-margin-top:18px;
-box-shadow:0 3px 10px rgba(0,0,0,.06);
+padding:10px;
+border-radius:16px;
+background:#f0fdf4;
+border:2px solid #22c55e;
 }
 
 .my-left{
 display:flex;
 align-items:center;
 gap:10px;
+}
+.rank-badge{
+left:8px;
+top:48px;
 }

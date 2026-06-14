@@ -1788,7 +1788,16 @@ ${user.username}
 </h3>
 
 <div class="top-coin">
-💰 ${user.coin || 0}
+
+<img
+class="leaderboard-coin-icon"
+src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
+>
+
+<span>
+${user.coin || 0}
+</span>
+
 </div>
 
 <div class="top-refer">
@@ -1867,13 +1876,48 @@ html += `
 
 <div class="my-rank-card">
 
-<div>
-<b>You</b><br>
+<div class="my-left">
+
+<div class="leaderboard-rank">
 #${myRank}
 </div>
 
+<img
+class="leaderboard-avatar"
+src="${me.photo}"
+>
+
 <div>
-💰 ${me.coin || 0}
+
+<div class="leaderboard-name">
+You
+</div>
+
+<div class="leaderboard-id">
+${me.username}
+</div>
+
+</div>
+
+</div>
+
+<div class="leaderboard-right">
+
+<div class="leaderboard-coin">
+
+<img
+class="leaderboard-coin-icon"
+src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
+>
+
+${me.coin || 0}
+
+</div>
+
+<div class="leaderboard-refer">
+👥 ${me.refer || 0}
+</div>
+
 </div>
 
 </div>

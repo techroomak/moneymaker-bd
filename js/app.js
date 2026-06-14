@@ -1788,9 +1788,16 @@ String(data.id).slice(-2);
 
 board.innerHTML += `
 
-<div class="leaderboard-item ${
+<div class="leaderboard-item
+${
+index === 0 ? "gold-card" :
+index === 1 ? "silver-card" :
+index === 2 ? "bronze-card" :
+""
+}
+${
 String(data.id) === userId
-? "you-card"
+? " you-card"
 : ""
 }">
 

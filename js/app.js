@@ -1730,97 +1730,109 @@ btn.innerText =
 
 async function loadLeaderboard(){
 
-const board =
-document.getElementById(
-"leaderboardList"
-);
-
+const board = document.getElementById("leaderboardList");
 if(!board) return;
 
 board.innerHTML = "";
 
-const q =
-query(
-collection(db,"users")
-);
-
-const snap =
-await getDocs(q);
+const q = query(collection(db,"users"));
+const snap = await getDocs(q);
 
 let users = [];
 
 snap.forEach((doc)=>{
-
 users.push(doc.data());
-
 });
 
-// SORT
+users.sort((a,b)=>(b.coin||0)-(a.coin||0));
 
-users.sort((a,b)=>
-(b.coin || 0) - (a.coin || 0)
-);
-  
-// TOP USERS
-
-const topUsers =
-users.slice(0,10);
+const top3 = users.slice(0,3);
+const others = users.slice(3,10);
 
 const myRank =
 users.findIndex(
 u => String(u.id) === userId
-) + 1;
+)+1;
 
-const amITop10 =
-topUsers.some(
-u => String(u.id) === userId
-);
-  
-topUsers.forEach((data,index)=>{
+let html = `
+<div class="top3-wrapper">
+`;
 
-const shortId =
-String(data.id)
-.slice(0,2)
-+
-"***"
-+
-String(data.id).slice(-2);
+top3.forEach((user,index)=>{
 
-board.innerHTML += `
+const medal =
+index===0 ? "🥇" :
+index===1 ? "🥈" :
+"🥉";
 
-<div class="leaderboard-item
-${
-index === 0 ? "gold-card" :
-index === 1 ? "silver-card" :
-index === 2 ? "bronze-card" :
-""
-}
-${
-String(data.id) === userId
-? " you-card"
-: ""
-}">
+const cardClass =
+index===0 ? "top1" :
+index===1 ? "top2" :
+"top3";
+
+html += `
+
+<div class="top-card ${cardClass}">
+
+<div class="top-medal">
+${medal}
+</div>
+
+<img
+class="top-avatar"
+src="${user.photo}"
+>
+
+<h3 class="top-name">
+${user.username}
+</h3>
+
+<div class="top-coin">
+💰 ${user.coin || 0}
+</div>
+
+<div class="top-refer">
+👥 ${user.refer || 0}
+</div>
+
+</div>
+`;
+});
+
+html += `
+</div>
+
+<div class="normal-rank-list">
+`;
+
+others.forEach((user,index)=>{
+
+const rank = index + 4;
+
+html += `
+
+<div class="leaderboard-item">
 
 <div class="leaderboard-left">
 
 <div class="leaderboard-rank">
-#${index+1}
+#${rank}
 </div>
 
 <img
 class="leaderboard-avatar"
-src="${data.photo}"
-/>
+src="${user.photo}"
+>
 
 <div>
 
-<h3 class="leaderboard-name">
-${data.username}
-</h3>
+<div class="leaderboard-name">
+${user.username}
+</div>
 
-<p class="leaderboard-id">
-ID: ${shortId}
-</p>
+<div class="leaderboard-id">
+ID: ${String(user.id).slice(0,2)}***${String(user.id).slice(-2)}
+</div>
 
 </div>
 
@@ -1828,108 +1840,48 @@ ID: ${shortId}
 
 <div class="leaderboard-right">
 
-<div class="leaderboard-coin-row">
-
-<img
-class="leaderboard-coin-icon"
-src="https://cdn-icons-png.flaticon.com/512/272/272525.png"
-/>
-
-<span class="leaderboard-coin">
-${data.coin || 0}
-</span>
-
+<div class="leaderboard-coin">
+${user.coin || 0}
 </div>
 
-<div class="leaderboard-refer-row">
-
-<img
-class="leaderboard-refer-icon"
-src="https://cdn-icons-png.flaticon.com/512/681/681494.png"
-/>
-
-<span class="leaderboard-refer">
-${data.refer || 0}
-</span>
+<div class="leaderboard-refer">
+👥 ${user.refer || 0}
+</div>
 
 </div>
 
 </div>
-</div>
-
 `;
-
 });
 
-if(!amITop10){
+html += `</div>`;
 
 const me =
 users.find(
 u => String(u.id) === userId
 );
 
-if(me){
+if(me && myRank > 10){
 
-const shortId =
-String(me.id)
-.slice(0,2)
-+
-"***"
-+
-String(me.id).slice(-2);
+html += `
 
-board.innerHTML += `
+<div class="my-rank-card">
 
-<div class="leaderboard-item you-card">
-
-<div class="leaderboard-left">
-
-<div class="leaderboard-rank">
+<div>
+<b>You</b><br>
 #${myRank}
 </div>
 
-<img
-class="leaderboard-avatar"
-src="${me.photo}"
-/>
-
 <div>
-
-<h3 class="leaderboard-name">
-You
-</h3>
-
-<p class="leaderboard-id">
-ID: ${shortId}
-</p>
-
-</div>
-
-</div>
-
-<div class="leaderboard-right">
-
-<img
-class="leaderboard-coin-icon"
-src="https://cdn-icons-png.flaticon.com/512/272/272525.png"
-/>
-
-<span class="leaderboard-coin">
-${me.coin || 0}
-</span>
-
+💰 ${me.coin || 0}
 </div>
 
 </div>
 
 `;
-
 }
 
-}
-}
-if(document.getElementById("leaderboardList")){
-  loadLeaderboard();
+board.innerHTML = html;
 }
 
 /* ========================= */

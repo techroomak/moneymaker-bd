@@ -1765,6 +1765,18 @@ top3[2]
 ];
 displayTop3.forEach((user,index)=>{
 
+let cardClass = "";
+
+if(index === 0){
+cardClass = "top2";
+}
+else if(index === 1){
+cardClass = "top1";
+}
+else{
+cardClass = "top3";
+}
+ 
 const crown =
 index===1
 ? "👑"
@@ -2318,7 +2330,7 @@ font-weight:700;
 ">
 
 ${settings.maintenanceMessage ||
-"🚧 App আপডেট চলছে, কিছুক্ষণ পর আমার চেষ্টা করুন।"}
+"🚧 App আপডেট চলছে, n/n/ কিছুক্ষণ পর আবার চেষ্টা করুন।"}
 
 </div>
 
@@ -2577,7 +2589,7 @@ await loadUserData();
 
 tg.showPopup({
 
-title:"Reward Added",
+title:"Ads Reward Added",
 
 message:`${reward} Coin Added Successfully`,
 
@@ -2678,7 +2690,7 @@ await loadUserData();
 
 tg.showPopup({
 
-title:"Video Reward",
+title:"Ads Reward Added ✅ ",
 
 message:`${reward} Coin Added Successfully`,
 
@@ -2781,7 +2793,7 @@ await loadUserData();
 
 tg.showPopup({
 
-title:"Ads Reward ✅",
+title:"Ads Reward Added ✅",
 
 message:`${reward} Coin Added Successfully`,
 
@@ -2833,7 +2845,7 @@ button.disabled = false;
 button.innerHTML =
 originalText;
 
-alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি। n/n/ অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
+alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি। <br> অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
 
 });
 
@@ -2882,7 +2894,7 @@ await loadUserData();
 
 tg.showPopup({
 
-title:"Ads Reward",
+title:"Ads Reward Added ✅",
 
 message:`${reward} Coin Added Successfully`,
 
@@ -2934,7 +2946,7 @@ button.disabled = false;
 button.innerHTML =
 originalText;
 
-alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি। n/n/ অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
+alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি। <br> অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
 
 });
 

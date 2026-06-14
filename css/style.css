@@ -1604,32 +1604,34 @@ color:#374151;
 
 .top3-wrapper{
 display:flex;
-align-items:flex-end;
 justify-content:center;
-gap:10px;
-margin-bottom:20px;
+align-items:flex-end;
+gap:12px;
+margin:15px 0 20px;
 }
 
 .top-card{
+width:105px;
 background:#fff;
 border-radius:20px;
-padding:12px 8px;
-width:105px;
+padding:10px;
 text-align:center;
 box-shadow:0 4px 12px rgba(0,0,0,.08);
 }
 
-.top1{
-transform:translateY(-20px);
-border:2px solid #facc15;
+.top2{
+order:1;
+margin-bottom:0;
 }
 
-.top2{
-border:2px solid #d1d5db;
+.top1{
+order:2;
+margin-bottom:35px;
 }
 
 .top3{
-border:2px solid #fb923c;
+order:3;
+margin-bottom:0;
 }
 
 .top-medal{

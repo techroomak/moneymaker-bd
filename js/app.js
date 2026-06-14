@@ -1758,7 +1758,12 @@ let html = `
 <div class="top3-wrapper">
 `;
 
-top3.forEach((user,index)=>{
+const displayTop3 = [
+top3[1],
+top3[0],
+top3[2]
+];
+displayTop3.forEach((user,index)=>{
 
 const medal =
 index===0 ? "🥇" :
@@ -1820,7 +1825,9 @@ const rank = index + 4;
 
 html += `
 
-<div class="leaderboard-item">
+<div class="leaderboard-item ${
+String(user.id)===userId ? "my-rank-card" : ""
+}">
 
 <div class="leaderboard-left">
 
@@ -1836,11 +1843,14 @@ src="${user.photo}"
 <div>
 
 <div class="leaderboard-name">
-${user.username}
+${String(user.id)===userId ? "You" : user.username}
 </div>
 
 <div class="leaderboard-id">
-ID: ${String(user.id).slice(0,2)}***${String(user.id).slice(-2)}
+${String(user.id)===userId
+? user.username
+: `ID: ${String(user.id).slice(0,2)}***${String(user.id).slice(-2)}`
+}
 </div>
 
 </div>

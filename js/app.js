@@ -1432,15 +1432,22 @@ return;
 
 count++;
 
+const diff =
+Date.now() -
+(data.createdAt || 0);
+
+const minutes =
+Math.floor(diff / 60000);
+
 const hours =
-Math.floor(
-(
-Date.now()
--
-(data.createdAt || 0)
-)
-/3600000
-);
+Math.floor(diff / 3600000);
+
+const timeText =
+hours >= 1
+?
+`${hours} Hour Ago`
+:
+`${minutes} Min Ago`;
 
 html += `
 
@@ -1469,7 +1476,7 @@ ${
 </p>
 
 <p class="notification-time">
-${hours} Hours Ago
+${timeText}
 </p>
 
 </div>

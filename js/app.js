@@ -1463,7 +1463,7 @@ ${
 (data.message || "")
 .replaceAll(
 ",",
-"<br><br>"
+"<br>"
 )
 }
 </p>

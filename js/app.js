@@ -17,7 +17,8 @@ query,
 where,
 getDocs,
 onSnapshot,
-orderBy
+orderBy,
+deleteDoc
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -1365,43 +1366,134 @@ document.getElementById(
 };
 
 /* ========================= */
-/* AUTO REMOVE NOTIFICATION */
+/* REAL NOTIFICATION SYSTEM */
 /* ========================= */
 
-setTimeout(()=>{
-
-const items =
-document.querySelectorAll(
-".notification-item"
+const notificationList =
+document.getElementById(
+"notificationList"
 );
 
-// REMOVE FIRST OLD NOTIFICATION
-
-if(items.length > 0){
-
-items[0].remove();
-
-}
-
-// CHECK REMAINING
-
-const leftItems =
-document.querySelectorAll(
-".notification-item"
-);
-
-// HIDE DOT IF EMPTY
-
-if(leftItems.length === 0){
-
+const notifyDot =
 document.getElementById(
 "notifyDot"
-).style.display = "none";
+);
 
+onSnapshot(
+collection(db,"notifications"),
+(snapshot)=>{
+
+if(!notificationList) return;
+
+let html = "";
+
+const docs = [];
+
+snapshot.forEach((docSnap)=>{
+docs.push(docSnap);
+});
+
+docs.sort((a,b)=>
+(b.data().createdAt || 0)
+-
+(a.data().createdAt || 0)
+);
+
+let count = 0;
+
+docs.forEach(async(docSnap)=>{
+
+const data = docSnap.data();
+
+if(
+Date.now() >
+(data.expireAt || 0)
+){
+
+await deleteDoc(
+doc(
+db,
+"notifications",
+docSnap.id
+)
+);
+
+return;
 }
 
-},10000);
+if(
+data.target === "user"
+&&
+String(data.userId)
+!== userId
+){
+return;
+}
 
+count++;
+
+const hours =
+Math.floor(
+(
+Date.now()
+-
+(data.createdAt || 0)
+)
+/3600000
+);
+
+html += `
+
+<div class="notification-item">
+
+<div class="notification-top">
+
+<h3 class="notification-title">
+${data.title}
+</h3>
+
+<span class="notification-badge">
+NEW
+</span>
+
+</div>
+
+<p class="notification-text">
+${
+(data.message || "")
+.replaceAll(
+",",
+"<br><br>"
+)
+}
+</p>
+
+<p class="notification-time">
+${hours} Hours Ago
+</p>
+
+</div>
+
+`;
+
+});
+
+notificationList.innerHTML =
+html ||
+`
+<div class="notification-item">
+<p>No Notification</p>
+</div>
+`;
+
+notifyDot.style.display =
+count > 0
+?
+"block"
+:
+"none";
+
+});
 
 /* ========================= */
 /* WITHDRAW SYSTEM */

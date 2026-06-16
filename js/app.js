@@ -1574,7 +1574,7 @@ return;
 
 /* VALIDATION */
 
-if(method === "Recharge"){
+if(method === "recharge"){
 
 if(
 amount < settingsData.rechargeMin ||

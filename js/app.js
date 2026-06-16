@@ -147,6 +147,23 @@ const referrerId =
 urlParams.get("ref");
 
 /* ========================= */
+/* AUTH WAIT */
+/* ========================= */
+
+while (!auth.currentUser) {
+
+  await new Promise(resolve =>
+    setTimeout(resolve, 100)
+  );
+
+}
+
+console.log(
+  "AUTH UID:",
+  auth.currentUser.uid
+);
+
+/* ========================= */
 /* DATABASE */
 /* ========================= */
 

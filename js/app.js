@@ -175,6 +175,9 @@ await setDoc(userRef,{
 
 id:userId,
 
+authUid: auth.currentUser?.uid || "",
+telegramId: userId,
+
 username:username,
 
 photo:photo,
@@ -551,6 +554,17 @@ if(Object.keys(missingSettings).length > 0){
 
 const userData =
 (await getDoc(userRef)).data();
+
+if(!userData.authUid){
+
+await updateDoc(userRef,{
+authUid: auth.currentUser?.uid || ""
+});
+
+userData.authUid =
+auth.currentUser?.uid || "";
+
+}
 
 const gate = settingsData.joinGate || {};
 

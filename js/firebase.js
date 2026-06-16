@@ -6,21 +6,11 @@ getFirestore
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-export const auth =
-getAuth(app);
-
-export const db =
-getFirestore(app);
-
 import {
 getAuth,
 signInAnonymously
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-/* ========================= */
-/* FIREBASE CONFIG */
-/* ========================= */
 
 const firebaseConfig = {
   apiKey: "AIzaSyDmHbCk23LRldjf-wi6xpw98MCE8VoupRc",
@@ -33,21 +23,15 @@ const firebaseConfig = {
   measurementId: "G-ZWVPWP1ME9"
 };
 
-/* ========================= */
-/* INIT */
-/* ========================= */
+const app = initializeApp(firebaseConfig);
 
-const app =
-initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-const db =
-getFirestore(app);
-
-const auth =
-getAuth(app);
+const auth = getAuth(app);
 
 await signInAnonymously(auth);
 
 export {
-db
+  db,
+  auth
 };

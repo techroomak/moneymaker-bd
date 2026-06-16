@@ -2,7 +2,7 @@
 // FIREBASE
 // =========================
 
-import { db }
+import { db, auth }
 from "./firebase.js";
 
 import {

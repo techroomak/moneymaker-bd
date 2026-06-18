@@ -1017,7 +1017,7 @@ latestSnap.data();
 if(latestData.banned === true){
 
   tg.showPopup({
-    title:"Account Suspended",
+    title:"🤕 Account Suspended",
     message:"Reward system is disabled for your account.",
     buttons:[{type:"ok"}]
   });
@@ -1565,8 +1565,8 @@ latestSnap.data();
 if(latestData.banned === true){
 
   tg.showPopup({
-    title:"Your Account Suspended",
-    message:"আপনার একাউন্ট ব্যান করা হয়েছে.n/n/সাপোর্টে কথা বলুন📞.",
+    title:"🤕 আপনার একাউন্ট সাসপেন্ড করা হয়েছে",
+    message:"আপনার একাউন্ট ব্যান করা হয়েছে. 🎧 সাপোর্টে কথা বলুন.",
     buttons:[{type:"ok"}]
   });
 
@@ -1597,7 +1597,7 @@ if(
 !amount
 ){
 
-alert("নাম, নাম্বার ও টাকার পরিমাণ দিন");
+alert("নাম, নাম্বার ও টাকার পরিমাণ দিন ও পেমেন্ট মেথড সিলেক্ট করুন");
 
 return;
 
@@ -2510,8 +2510,8 @@ button.onclick = async()=>{
 if(settingsData.ads !== true){
 
 tg.showPopup({
-title:"Ads Disabled",
-message:"Ads system is currently disabled.",
+title:"🛠️ Ads বন্ধ বন্ধ",
+message:"Ads সিস্টেম আপডেট চলছে, কিছুক্ষন পর আবার চেষ্টা করুন।",
 buttons:[{type:"ok"}]
 });
 
@@ -2554,8 +2554,8 @@ userSnap.data();
 if(userData.banned === true){
 
   tg.showPopup({
-    title:"Your Account Banned",
-    message:"Rewards are disabled for your account.",
+    title:"আপনার একাউন্ট ব্যান করা হয়েছে",
+    message:"আপনি এই মুহুর্তে কোনো রিওয়ার্ড পাবেন না। /n/n/ একাউন্ট সচল করতে সাপোর্টে কথা বলুন ",
     buttons:[{type:"ok"}]
   });
 
@@ -2731,7 +2731,7 @@ await loadUserData();
 
 tg.showPopup({
 
-title:"Ads Reward Added",
+title:"🎁 Ads Reward Added ✅",
 
 message:`${reward} Coin Added Successfully`,
 
@@ -2884,7 +2884,7 @@ button.disabled = false;
 button.innerHTML =
 originalText;
 
-alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি। n/n/ অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
+alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি। <br> অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
 
 });
 

@@ -1547,8 +1547,8 @@ window.submitWithdraw = async()=>{
 if(settingsData.withdraw !== true){
 
 tg.showPopup({
-title:"Withdraw Closed Now",
-message:"Withdraw allow only 1th-5th each month.",
+title:"💳 প্রতিমাসে একবার টাকা উত্তোলন করুন",
+message:"প্রতিমাসের ১-৫তারিখে পেমেন্ট দেওয়া হয়, ধন্যবাদ।",
 buttons:[{type:"ok"}]
 });
 

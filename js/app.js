@@ -3952,30 +3952,42 @@ loadTeamBonusData();
 }
 
 
-/* User Error Logs */
+/* ========================= */
+/* USER ERROR LOGS */
+/* ========================= */
 
-async function saveErrorLog(reason,error=""){
+async function saveErrorLog(type,error=""){
 
 try{
 
 const logRef = await addDoc(
 collection(db,"logs"),
 {
-type:"reward_error",
 
-userId:userId,
-username:username,
-
-reason:reason,
+type:type,
 
 error:
 typeof error === "string"
 ?
 error
 :
-(error?.message || JSON.stringify(error)),
+(
+error?.stack ||
+error?.message ||
+JSON.stringify(error)
+),
+
+userId:userId,
+
+username:username,
+
+deviceId:
+`${tg.platform}|${navigator.userAgent}|${screen.width}x${screen.height}`,
+
+platform:tg.platform || "",
 
 createdAt:Date.now()
+
 });
 
 await updateDoc(logRef,{
@@ -3989,3 +4001,94 @@ console.log("Log Save Failed",e);
 }
 
 }
+
+/* ========================= */
+/* GLOBAL JS ERROR */
+/* ========================= */
+
+window.addEventListener(
+"error",
+async(event)=>{
+
+await saveErrorLog(
+"JavaScript Error",
+event.error ||
+event.message
+);
+
+});
+
+/* ========================= */
+/* PROMISE ERROR */
+/* ========================= */
+
+window.addEventListener(
+"unhandledrejection",
+async(event)=>{
+
+await saveErrorLog(
+"Promise Error",
+event.reason
+);
+
+});
+
+/* ========================= */
+/* FIREBASE ERROR */
+/* ========================= */
+
+const originalError =
+console.error;
+
+console.error =
+async function(...args){
+
+try{
+
+await saveErrorLog(
+"Console Error",
+args.join(" | ")
+);
+
+}catch(e){}
+
+originalError.apply(
+console,
+args
+);
+
+};
+
+/* ========================= */
+/* NETWORK ERROR */
+/* ========================= */
+
+window.addEventListener(
+"offline",
+async()=>{
+
+await saveErrorLog(
+"Network Offline",
+"Internet Connection Lost"
+);
+
+});
+
+/* ========================= */
+/* PAGE CRASH */
+/* ========================= */
+
+window.addEventListener(
+"beforeunload",
+async()=>{
+
+try{
+
+await saveErrorLog(
+"Page Exit",
+"User Left App"
+);
+
+}catch(e){}
+
+});

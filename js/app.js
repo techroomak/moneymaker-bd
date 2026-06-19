@@ -855,17 +855,12 @@ bdtEl.innerText =
 /* TOTAL REFER COUNT */
 /* ========================= */
 
-const referQuery =
-query(
-collection(db,"users"),
-where("joinedBy","==",userId)
-);
+if(totalReferEl){
 
-const referSnap =
-await getDocs(referQuery);
+ totalReferEl.innerText =
+ userData.refer || 0;
 
-const totalReferCount =
-referSnap.size;
+}
 
 if(totalReferEl){
 
@@ -1668,29 +1663,17 @@ return;
 
   /* MIN REFER CHECK */
 
-const referCheckQuery =
-query(
-collection(db,"users"),
-where("joinedBy","==",userId)
-);
-
-const referCheckSnap =
-await getDocs(referCheckQuery);
-
 if(
-referCheckSnap.size <
-settingsData.minReferForWithdraw
-){
-
+ (latestData.refer || 0) <
+ settingsData.minReferForWithdraw
+)
+{
 alert(
 `সর্বনিম্ন ${settingsData.minReferForWithdraw} 👥 রেফার থাকতে হবে`
 );
-
 return;
-
 }
 
-  
 /* COIN CHECK */
 
 const needCoin =
@@ -1892,25 +1875,16 @@ const snap = await getDocs(q);
 
 let users = [];
 
-for (const docSnap of snap.docs){
+snap.forEach((docSnap)=>{
 
-const userData = docSnap.data();
+ const userData = docSnap.data();
 
-const referQuery =
-query(
-collection(db,"users"),
-where("joinedBy","==",String(userData.id))
-);
+ users.push({
+   ...userData,
+   realRefer: userData.refer || 0
+ });
 
-const referSnap =
-await getDocs(referQuery);
-
-users.push({
-...userData,
-realRefer: referSnap.size
 });
-
-}
 
 users.sort((a,b)=>(b.coin||0)-(a.coin||0));
 

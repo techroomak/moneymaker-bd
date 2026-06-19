@@ -1681,7 +1681,7 @@ where("deviceId","==",latestData.deviceId)
 const sameDeviceSnap =
 await getDocs(sameDeviceQuery);
 
-if(sameDeviceSnap.size > 3){
+if(sameDeviceSnap.size > 1){
 
 await saveErrorLog(
 "Abuse Attempt",

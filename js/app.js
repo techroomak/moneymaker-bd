@@ -862,13 +862,6 @@ if(totalReferEl){
 
 }
 
-if(totalReferEl){
-
-totalReferEl.innerText =
-totalReferCount;
-
-}
-
 if(dailyEarnEl){
 
 dailyEarnEl.innerText =

@@ -2389,6 +2389,37 @@ online:true,
 lastActive:Date.now()
 });
 
+/* ========================= */
+/* ONLINE OFFLINE */
+/* ========================= */
+
+document.addEventListener(
+"visibilitychange",
+async()=>{
+
+try{
+
+if(document.hidden){
+
+await updateDoc(userRef,{
+online:false
+});
+
+}else{
+
+await updateDoc(userRef,{
+online:true,
+lastActive:Date.now()
+});
+
+}
+
+}catch(e){
+console.log(e);
+}
+
+});
+  
 setInterval(async()=>{
 
 await updateDoc(userRef,{

@@ -4073,22 +4073,3 @@ await saveErrorLog(
 );
 
 });
-
-/* ========================= */
-/* PAGE CRASH */
-/* ========================= */
-
-window.addEventListener(
-"beforeunload",
-async()=>{
-
-try{
-
-await saveErrorLog(
-"Page Exit",
-"User Left App"
-);
-
-}catch(e){}
-
-});

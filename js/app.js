@@ -848,10 +848,26 @@ bdtEl.innerText =
 
 }
 
+/* ========================= */
+/* TOTAL REFER COUNT */
+/* ========================= */
+
+const referQuery =
+query(
+collection(db,"users"),
+where("joinedBy","==",userId)
+);
+
+const referSnap =
+await getDocs(referQuery);
+
+const totalReferCount =
+referSnap.size;
+
 if(totalReferEl){
 
 totalReferEl.innerText =
-userData.refer || 0;
+totalReferCount;
 
 }
 
@@ -1649,8 +1665,17 @@ return;
 
   /* MIN REFER CHECK */
 
+const referCheckQuery =
+query(
+collection(db,"users"),
+where("joinedBy","==",userId)
+);
+
+const referCheckSnap =
+await getDocs(referCheckQuery);
+
 if(
-(latestData.refer || 0) <
+referCheckSnap.size <
 settingsData.minReferForWithdraw
 ){
 
@@ -1864,9 +1889,25 @@ const snap = await getDocs(q);
 
 let users = [];
 
-snap.forEach((doc)=>{
-users.push(doc.data());
+for (const docSnap of snap.docs){
+
+const userData = docSnap.data();
+
+const referQuery =
+query(
+collection(db,"users"),
+where("joinedBy","==",String(userData.id))
+);
+
+const referSnap =
+await getDocs(referQuery);
+
+users.push({
+...userData,
+realRefer: referSnap.size
 });
+
+}
 
 users.sort((a,b)=>(b.coin||0)-(a.coin||0));
 
@@ -1905,7 +1946,7 @@ const crown =
 index===1
 ? "👑"
 : index===0
-? "♔"
+? "👒"
 : "♔";
 
 const rankNo =
@@ -1950,7 +1991,7 @@ class="leaderboard-refer-icon"
 src="https://cdn-icons-png.flaticon.com/128/681/681494.png"
 >
 
-<span>${user.refer || 0}</span>
+<span>${user.realRefer || 0}</span>
 
 </div>
 
@@ -2021,7 +2062,7 @@ class="leaderboard-refer-icon"
 src="https://cdn-icons-png.flaticon.com/128/681/681494.png"
 >
 
-<span>${user.refer || 0}</span>
+<span>${user.realRefer || 0}</span>
 </div>
 
 </div>
@@ -2082,7 +2123,7 @@ ${me.coin || 0}
 </div>
 
 <div class="leaderboard-refer">
-👥 ${me.refer || 0}
+👥 ${me.realRefer || 0}
 </div>
 
 </div>

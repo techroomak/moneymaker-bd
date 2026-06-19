@@ -1685,7 +1685,7 @@ if(sameDeviceSnap.size > 3){
 
 await saveErrorLog(
 "Abuse Attempt",
-"Multiple Accounts Same Device"
+`Same Device (${sameDeviceSnap.size} Accounts)`
 );
 
 }
@@ -2539,17 +2539,6 @@ button.innerText =
 
 let reward = 0;
   
-if(reward > 100){
-
-await saveErrorLog(
-"Suspicious Activity",
-"Invalid Ad Reward"
-);
-
-return;
-
-}
-  
 if(index === 0)
 reward = settingsData.ad1Reward;
 
@@ -3374,17 +3363,6 @@ window.claimDailyReward = async()=>{
 
 const task =
 settingsData.dailyTasks?.task1;
-
-if(task.reward > 500){
-
-await saveErrorLog(
-"Suspicious Activity",
-"Daily Task Reward Modified"
-);
-
-return;
-
-}  
   
 if(userData.joinedBy){
 
@@ -3576,17 +3554,6 @@ async function startSocialTask(id){
 const task =
 settingsData.socialTasks?.[`task${id}`];
 
-if(task.reward > 500){
-
-await saveErrorLog(
-"Suspicious Activity",
-"Social Task Reward Modified"
-);
-
-return;
-
-}
-  
 const currentVersion =
 task.version || 1;
 
@@ -3869,17 +3836,6 @@ snap.data();
 
 const bonus =
 data.teamBonus || 0;
-
-if(bonus > 10000){
-
-await saveErrorLog(
-"Suspicious Activity",
-"Team Bonus Manipulation"
-);
-
-return;
-
-}
   
 if(bonus <= 0){
 
@@ -4002,10 +3958,6 @@ async function saveErrorLog(type,error=""){
 
 try{
 
-const logRef = await addDoc(
-collection(db,"logs"),
-{
-
 const isAbuse =
 type === "Suspicious Activity" ||
 type === "Abuse Attempt";
@@ -4019,7 +3971,11 @@ isAbuse
 :
 (48 * 60 * 60 * 1000)
 );
-  
+
+const logRef = await addDoc(
+collection(db,"logs"),
+{
+
 type:type,
 
 error:
@@ -4034,7 +3990,6 @@ JSON.stringify(error)
 ),
 
 userId:userId,
-
 username:username,
 
 deviceId:
@@ -4044,12 +3999,9 @@ platform:tg.platform || "",
 
 createdAt:Date.now(),
 expireAt:expireAt
+
 });
 
-const isAbuse =
-type === "Suspicious Activity" ||
-type === "Abuse Attempt";
-  
 await updateDoc(logRef,{
 documentId:logRef.id
 });

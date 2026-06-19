@@ -2399,20 +2399,10 @@ async()=>{
 
 try{
 
-if(document.hidden){
-
 await updateDoc(userRef,{
-online:false
-});
-
-}else{
-
-await updateDoc(userRef,{
-online:true,
+online:!document.hidden,
 lastActive:Date.now()
 });
-
-}
 
 }catch(e){
 console.log(e);
@@ -2422,8 +2412,12 @@ console.log(e);
   
 setInterval(async()=>{
 
+const isVisible =
+!document.hidden;
+
 await updateDoc(userRef,{
-lastActive:Date.now()
+lastActive:Date.now(),
+online:isVisible
 });
 
 },30000);

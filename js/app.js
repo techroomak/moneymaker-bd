@@ -288,9 +288,6 @@ refSnap.data();
 
 
 // UPDATE REFERRER for banned
-await updateDoc(refUserRef,{
-  refer: increment(1)
-});
 
 await updateDoc(refUserRef,{
 refer:increment(1),

@@ -2426,7 +2426,21 @@ await updateDoc(userRef,{
 lastActive:Date.now()
 });
 
-},60000);
+},30000);
+
+window.addEventListener(
+"beforeunload",
+async()=>{
+
+try{
+
+await updateDoc(userRef,{
+online:false
+});
+
+}catch(e){}
+
+});
 
 /* ========================= */
 /* APP SETTINGS */

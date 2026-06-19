@@ -292,18 +292,12 @@ await updateDoc(refUserRef,{
   refer: increment(1)
 });
 
-await addDoc(
-collection(db,"referralEvents"),
-{
-type:"register_bonus",
-referrerId:String(referrerId),
-newUserId:userId,
-bonus:
-settingsDataInit.referBonus || 10,
-processed:false,
-createdAt:Date.now()
-}
-);
+await updateDoc(refUserRef,{
+refer:increment(1),
+referEarn:increment(settingsDataInit.referBonus || 10),
+coin:increment(settingsDataInit.referBonus || 10),
+totalEarn:increment(settingsDataInit.referBonus || 10)
+});
 // SAVE REFERRER INFO
 
 await updateDoc(userRef,{
@@ -2720,17 +2714,10 @@ db,
 String(userData.joinedBy)
 );
 
-await addDoc(
-collection(db,"referralEvents"),
-{
-type:"ad_reward",
-referrerId:String(userData.joinedBy),
-fromUserId:userId,
-reward:reward,
-processed:false,
-createdAt:Date.now()
-}
-);
+await updateDoc(refRef,{
+referDailyEarn:increment(reward),
+referEarn:increment(reward)
+});
 }
   
 await updateDoc(userRef,{
@@ -2830,17 +2817,10 @@ db,
 String(userData.joinedBy)
 );
 
-await addDoc(
-collection(db,"referralEvents"),
-{
-type:"ad_reward",
-referrerId:String(userData.joinedBy),
-fromUserId:userId,
-reward:reward,
-processed:false,
-createdAt:Date.now()
-}
-);
+await updateDoc(refRef,{
+referDailyEarn:increment(reward),
+referEarn:increment(reward)
+});
 }
   
 await updateDoc(userRef,{
@@ -2937,17 +2917,10 @@ db,
 String(userData.joinedBy)
 );
 
-await addDoc(
-collection(db,"referralEvents"),
-{
-type:"ad_reward",
-referrerId:String(userData.joinedBy),
-fromUserId:userId,
-reward:reward,
-processed:false,
-createdAt:Date.now()
-}
-);
+await updateDoc(refRef,{
+referDailyEarn:increment(reward),
+referEarn:increment(reward)
+});
 
 }
   
@@ -3047,17 +3020,10 @@ db,
 String(userData.joinedBy)
 );
 
-await addDoc(
-collection(db,"referralEvents"),
-{
-type:"ad_reward",
-referrerId:String(userData.joinedBy),
-fromUserId:userId,
-reward:reward,
-processed:false,
-createdAt:Date.now()
-}
-);
+await updateDoc(refRef,{
+referDailyEarn:increment(reward),
+referEarn:increment(reward)
+});
 
 }
   
@@ -3409,17 +3375,10 @@ db,
 String(userData.joinedBy)
 );
 
-await addDoc(
-collection(db,"referralEvents"),
-{
-type:"daily_task",
-referrerId:String(userData.joinedBy),
-fromUserId:userId,
-reward:task.reward,
-processed:false,
-createdAt:Date.now()
-}
-);
+await updateDoc(refRef,{
+referDailyEarn:increment(task.reward),
+referEarn:increment(task.reward)
+});
 
 }
 
@@ -3761,17 +3720,10 @@ db,
 String(userData.joinedBy)
 );
 
-await addDoc(
-collection(db,"referralEvents"),
-{
-type:"social_task",
-referrerId:String(userData.joinedBy),
-fromUserId:userId,
-reward:task.reward,
-processed:false,
-createdAt:Date.now()
-}
-);
+await updateDoc(refRef,{
+referDailyEarn:increment(task.reward),
+referEarn:increment(task.reward)
+});
 
 }
   

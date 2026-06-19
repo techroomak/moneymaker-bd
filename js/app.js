@@ -2385,56 +2385,20 @@ ${data.status}
 loadWithdrawHistory();
 
 await updateDoc(userRef,{
-online:true,
 lastActive:Date.now()
 });
 
 /* ========================= */
 /* ONLINE OFFLINE */
 /* ========================= */
-
-document.addEventListener(
-"visibilitychange",
-async()=>{
-
-try{
-
-await updateDoc(userRef,{
-online:!document.hidden,
-lastActive:Date.now()
-});
-
-}catch(e){
-console.log(e);
-}
-
-});
   
 setInterval(async()=>{
 
-const isVisible =
-!document.hidden;
-
 await updateDoc(userRef,{
-lastActive:Date.now(),
-online:isVisible
+lastActive:Date.now()
 });
 
-},30000);
-
-window.addEventListener(
-"beforeunload",
-async()=>{
-
-try{
-
-await updateDoc(userRef,{
-online:false
-});
-
-}catch(e){}
-
-});
+},10000);
 
 /* ========================= */
 /* APP SETTINGS */

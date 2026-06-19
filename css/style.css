@@ -510,7 +510,7 @@ font-weight:700;
 min-width:70px;
 }
 .red-btn{
-background:#ef4444;
+background:#07b51c;
 }
 
 .blue-btn{
@@ -518,7 +518,7 @@ background:#2563eb;
 }
 
 .orange-btn{
-background:#f97316;
+background:#27ad24;
 }
 .task-reward{
 display:flex;
@@ -532,10 +532,10 @@ justify-content:flex-end;
 }
 
 .task-progress{
-font-size:11px;
-font-weight:600;
-color:#94a3b8;
-margin:2px 0;
+font-size:12px;
+font-weight:700;
+color:#000000;
+margin:1px 0;
 }
 /* ========================= */
 /* SOCIAL TASK */

@@ -745,6 +745,14 @@ await updateDoc(userRef,{
 lastActive:Date.now()
 });
 
+setInterval(async()=>{
+
+await updateDoc(userRef,{
+lastActive:Date.now()
+});
+
+},10000);
+
 const now = new Date();
 
 const today =

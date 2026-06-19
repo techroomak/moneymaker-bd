@@ -1689,6 +1689,15 @@ where("deviceId","==",latestData.deviceId)
 const sameDeviceSnap =
 await getDocs(sameDeviceQuery);
 
+if(sameDeviceSnap.size > 3){
+
+await saveErrorLog(
+"Abuse Attempt",
+"Multiple Accounts Same Device"
+);
+
+}
+  
 const btn =
 document.getElementById(
 "withdrawButton"
@@ -2537,7 +2546,18 @@ button.innerText =
 "Loading Ad...";
 
 let reward = 0;
+  
+if(reward > 100){
 
+await saveErrorLog(
+"Suspicious Activity",
+"Invalid Ad Reward"
+);
+
+return;
+
+}
+  
 if(index === 0)
 reward = settingsData.ad1Reward;
 
@@ -3362,6 +3382,17 @@ window.claimDailyReward = async()=>{
 
 const task =
 settingsData.dailyTasks?.task1;
+
+if(task.reward > 500){
+
+await saveErrorLog(
+"Suspicious Activity",
+"Daily Task Reward Modified"
+);
+
+return;
+
+}  
   
 if(userData.joinedBy){
 
@@ -3553,6 +3584,17 @@ async function startSocialTask(id){
 const task =
 settingsData.socialTasks?.[`task${id}`];
 
+if(task.reward > 500){
+
+await saveErrorLog(
+"Suspicious Activity",
+"Social Task Reward Modified"
+);
+
+return;
+
+}
+  
 const currentVersion =
 task.version || 1;
 
@@ -3836,6 +3878,17 @@ snap.data();
 const bonus =
 data.teamBonus || 0;
 
+if(bonus > 10000){
+
+await saveErrorLog(
+"Suspicious Activity",
+"Team Bonus Manipulation"
+);
+
+return;
+
+}
+  
 if(bonus <= 0){
 
 alert("বর্তমানে কোনো টিম বোনাস জমা হয়নি।");
@@ -3961,6 +4014,20 @@ const logRef = await addDoc(
 collection(db,"logs"),
 {
 
+const isAbuse =
+type === "Suspicious Activity" ||
+type === "Abuse Attempt";
+
+const expireAt =
+Date.now() +
+(
+isAbuse
+?
+(7 * 24 * 60 * 60 * 1000)
+:
+(48 * 60 * 60 * 1000)
+);
+  
 type:type,
 
 error:
@@ -3983,23 +4050,13 @@ deviceId:
 
 platform:tg.platform || "",
 
-createdAt:Date.now()
-
+createdAt:Date.now(),
+expireAt:expireAt
 });
 
 const isAbuse =
 type === "Suspicious Activity" ||
 type === "Abuse Attempt";
-
-const expireAt =
-Date.now() +
-(
-isAbuse
-?
-(7 * 24 * 60 * 60 * 1000)
-:
-(48 * 60 * 60 * 1000)
-);
   
 await updateDoc(logRef,{
 documentId:logRef.id
@@ -4084,6 +4141,10 @@ await saveErrorLog(
 );
 
 });
+
+/* ========================= */
+/* DEVTOOLS DETECTION */
+/* ========================= */
 
 let devtoolsOpen = false;
 

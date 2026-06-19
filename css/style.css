@@ -533,9 +533,9 @@ justify-content:flex-end;
 
 .task-progress{
 font-size:12px;
-font-weight:700;
+font-weight:600;
 color:#000000;
-margin:1px 0;
+margin:0 0;
 }
 /* ========================= */
 /* SOCIAL TASK */

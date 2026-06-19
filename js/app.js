@@ -288,6 +288,9 @@ refSnap.data();
 
 
 // UPDATE REFERRER for banned
+await updateDoc(refUserRef,{
+  refer: increment(1)
+});
 
 await addDoc(
 collection(db,"referralEvents"),
@@ -1946,7 +1949,7 @@ const crown =
 index===1
 ? "👑"
 : index===0
-? "👒"
+? "♛"
 : "♔";
 
 const rankNo =

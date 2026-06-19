@@ -2395,7 +2395,7 @@ await updateDoc(userRef,{
 lastActive:Date.now()
 });
 
-},5000);
+},60000);
 
 /* ========================= */
 /* APP SETTINGS */

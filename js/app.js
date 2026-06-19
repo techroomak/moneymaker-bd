@@ -4084,3 +4084,39 @@ await saveErrorLog(
 );
 
 });
+
+let devtoolsOpen = false;
+
+setInterval(async()=>{
+
+const widthDiff =
+window.outerWidth -
+window.innerWidth;
+
+const heightDiff =
+window.outerHeight -
+window.innerHeight;
+
+if(
+widthDiff > 160 ||
+heightDiff > 160
+){
+
+if(!devtoolsOpen){
+
+devtoolsOpen = true;
+
+await saveErrorLog(
+"Abuse Attempt",
+"Developer Tools Opened"
+);
+
+}
+
+}else{
+
+devtoolsOpen = false;
+
+}
+
+},3000);

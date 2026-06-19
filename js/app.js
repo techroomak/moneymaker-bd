@@ -3990,6 +3990,20 @@ createdAt:Date.now()
 
 });
 
+const isAbuse =
+type === "Suspicious Activity" ||
+type === "Abuse Attempt";
+
+const expireAt =
+Date.now() +
+(
+isAbuse
+?
+(7 * 24 * 60 * 60 * 1000)
+:
+(48 * 60 * 60 * 1000)
+);
+  
 await updateDoc(logRef,{
 documentId:logRef.id
 });

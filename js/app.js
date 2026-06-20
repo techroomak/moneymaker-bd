@@ -208,7 +208,7 @@ referEarn:0,
 withdraw:0,
 
 dailyEarn:0,
-
+yesterdayEarn:0,
 dailyAds:0,
 totalAds:0,
 lastAdWatch:0,
@@ -727,7 +727,10 @@ missingFields.pendingSocialTasks = [];
 
 if(userData.socialTaskVersions === undefined)
 missingFields.socialTaskVersions = {};
-  
+
+if(userData.yesterdayEarn === undefined)
+missingFields.yesterdayEarn = 0;
+
 if(Object.keys(missingFields).length > 0){
    await updateDoc(userRef, missingFields);
 }
@@ -768,7 +771,7 @@ dailyEarn:0,
 dailyAds:0,
 
 dailyEarnDate:today,
-
+yesterdayEarn:userData.dailyEarn || 0,
 dailyTaskProgress:{},
 
 completedDailyTasks:[],
@@ -4125,3 +4128,32 @@ devtoolsOpen = false;
 }
 
 },3000);
+
+/* ========================= */
+/* COIN ABUSE CHECK */
+/* ========================= */
+
+setInterval(async()=>{
+
+try{
+
+const snap = await getDoc(userRef);
+const data = snap.data();
+
+const todayEarn = data.dailyEarn || 0;
+const yesterdayEarn = data.yesterdayEarn || 0;
+
+if(yesterdayEarn < 50) return;
+
+if(todayEarn > (yesterdayEarn * 3)){
+
+await saveErrorLog(
+"Abuse Attempt",
+`Coin Spike: Yesterday=${yesterdayEarn}, Today=${todayEarn}`
+);
+
+}
+
+}catch(e){}
+
+},300000);

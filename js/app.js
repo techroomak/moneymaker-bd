@@ -4157,3 +4157,61 @@ await saveErrorLog(
 }catch(e){}
 
 },300000);
+
+/* ========================= */
+/* COIN ABUSE CHECK */
+/* ========================= */
+
+setInterval(async()=>{
+
+try{
+
+const snap = await getDoc(userRef);
+const data = snap.data();
+
+const todayEarn = data.dailyEarn || 0;
+const yesterdayEarn = data.yesterdayEarn || 0;
+const refer = data.refer || 0;
+
+/* HARD LIMIT */
+
+if(todayEarn >= 500){
+
+await saveErrorLog(
+"Coin Spike Detected",
+`500+ Daily Earn | Current=${todayEarn}`
+);
+
+}
+
+/* YESTERDAY COMPARE */
+
+if(
+yesterdayEarn >= 50 &&
+todayEarn > (yesterdayEarn * 3)
+){
+
+await saveErrorLog(
+"Coin Spike Detected",
+`Yesterday=${yesterdayEarn} | Today=${todayEarn}`
+);
+
+}
+
+/* NO REFER BUT HIGH EARN */
+
+if(
+refer <= 0 &&
+todayEarn >= 400
+){
+
+await saveErrorLog(
+"Coin Spike Detected",
+`No Refer | Daily Earn=${todayEarn}`
+);
+
+}
+
+}catch(e){}
+
+},300000);

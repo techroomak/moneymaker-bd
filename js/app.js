@@ -2228,8 +2228,8 @@ ID:${docSnap.id}
 </div>
 
 <div>
-0
-</div>
+${data.totalTeamBonus || 0}
+</div>>
 
 <div>
 ${data.dailyEarn || 0}
@@ -2413,9 +2413,13 @@ loadWithdrawHistory();
   
 setInterval(async()=>{
 
+try{
+
 await updateDoc(userRef,{
 lastActive:Date.now()
 });
+
+}catch(e){}
 
 },10000);
 
@@ -4018,23 +4022,28 @@ error?.code || "",
 
 reason:
 typeof error === "string"
-? error.substring(0,100)
-: (
+?
+error
+.replace(/https?:\/\/[^\s)]+/g,"")
+.replace(/\sat\s.+/g,"")
+.substring(0,100)
+:
+(
 error?.message ||
 error?.code ||
 errorType ||
 type
-), 
+),
   
 error:
 typeof error === "string"
 ?
-error
+error.substring(0,300)
 :
 (
-error?.stack ||
 error?.message ||
-JSON.stringify(error)
+error?.code ||
+"Unknown Error"
 ),
 
 userId:userId,

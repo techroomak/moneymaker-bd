@@ -1293,7 +1293,7 @@ return;
 // DAILY LIMIT
 
 if(
-dailyWithdrawCount >=
+withdrawCount >=
 settingsData.dailyWithdrawLimit
 ){
 
@@ -1559,7 +1559,7 @@ new Date()
 .toISOString()
 .slice(0,10);
 
-let dailyWithdrawCount =
+let withdrawCount =
 latestData.dailyWithdrawCount || 0;
 
 if(
@@ -1807,8 +1807,12 @@ documentId:withdrawRef.id
 /* PENDING */
 
 await updateDoc(userRef,{
-pending:increment(1)
+pending:increment(1),
+dailyWithdrawCount:
+withdrawCount + 1,
+lastWithdrawDate:today
 });
+
 
 /* DEDUCT COIN */
 

@@ -211,6 +211,9 @@ dailyEarn:0,
 yesterdayEarn:0,
 dailyAds:0,
 totalAds:0,
+dailyAds:0,
+yesterdayAds:0,
+lifetimeAds:0, 
 lastAdWatch:0,
 dailyEarnDate:0,
 ad1Count:0,
@@ -731,6 +734,12 @@ missingFields.socialTaskVersions = {};
 if(userData.yesterdayEarn === undefined)
 missingFields.yesterdayEarn = 0;
 
+if(userData.yesterdayAds === undefined)
+missingFields.yesterdayAds = 0;
+
+if(userData.lifetimeAds === undefined)
+missingFields.lifetimeAds = 0;
+
 if(Object.keys(missingFields).length > 0){
    await updateDoc(userRef, missingFields);
 }
@@ -766,6 +775,9 @@ yesterdayReferEarn:
 userData.referDailyEarn || 0,
 
 referDailyEarn:0,
+
+yesterdayAds:
+userData.dailyAds || 0,
 
 dailyEarn:0,
 dailyAds:0,

@@ -1222,7 +1222,7 @@ timerEl.style.display =
 /* WITHDRAW */
 /* ========================= */
 
-let dailyWithdrawCount = 0;
+
 
 window.selectMethod = (method,el)=>{
 
@@ -1539,7 +1539,7 @@ window.submitWithdraw = async()=>{
 if(settingsData.withdraw !== true){
 
 tg.showPopup({
-title:"💳 প্রতিমাসে একবার টাকা উত্তোলন করুন",
+title:"💳 উত্তোলন শুরু হতে যাচ্ছে..",
 message:"প্রতিমাসের ১-৫তারিখে পেমেন্ট দেওয়া হয়, ধন্যবাদ।",
 buttons:[{type:"ok"}]
 });
@@ -1554,11 +1554,25 @@ await getDoc(userRef);
 const latestData =
 latestSnap.data();
 
+const today =
+new Date()
+.toISOString()
+.slice(0,10);
+
+let dailyWithdrawCount =
+latestData.dailyWithdrawCount || 0;
+
+if(
+latestData.lastWithdrawDate !== today
+){
+withdrawCount = 0;
+}
+  
 if(latestData.banned === true){
 
   tg.showPopup({
     title:"🤕 আপনার একাউন্ট সাসপেন্ড করা হয়েছে",
-    message:"আপনার একাউন্ট ব্যান করা হয়েছে. 🎧 সাপোর্টে কথা বলুন.",
+    message:"আপনার একাউন্ট এর সকল সার্ভিস বন্ধ আছে।. 🎧 সাপোর্টে কথা বলুন.",
     buttons:[{type:"ok"}]
   });
 

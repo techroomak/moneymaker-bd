@@ -1292,9 +1292,12 @@ return;
 
 // DAILY LIMIT
 
-if(
+/* DAILY LIMIT */
+
 const withdrawCount =
-userData.dailyWithdrawCount || 0;  
+userData.dailyWithdrawCount || 0;
+
+if(
 withdrawCount >=
 settingsData.dailyWithdrawLimit
 ){

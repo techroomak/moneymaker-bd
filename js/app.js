@@ -1684,7 +1684,7 @@ where("deviceId","==",latestData.deviceId)
 const sameDeviceSnap =
 await getDocs(sameDeviceQuery);
 
-if(sameDeviceSnap.size > 1){
+if(sameDeviceSnap.size > 2){
 
 await saveErrorLog(
 "Abuse Attempt",
@@ -3959,6 +3959,16 @@ loadTeamBonusData();
 
 async function saveErrorLog(type,error=""){
 
+let errorType = "unknown";
+
+if(
+String(error).includes(
+"Missing or insufficient permissions"
+)
+){
+errorType = "permission-denied";
+}  
+  
 try{
 
 const isAbuse =
@@ -4043,7 +4053,9 @@ async(event)=>{
 
 await saveErrorLog(
 "Promise Error",
-event.reason
+event.reason?.message ||
+event.reason ||
+"Unknown Promise Error"
 );
 
 });
@@ -4128,35 +4140,6 @@ devtoolsOpen = false;
 }
 
 },3000);
-
-/* ========================= */
-/* COIN ABUSE CHECK */
-/* ========================= */
-
-setInterval(async()=>{
-
-try{
-
-const snap = await getDoc(userRef);
-const data = snap.data();
-
-const todayEarn = data.dailyEarn || 0;
-const yesterdayEarn = data.yesterdayEarn || 0;
-
-if(yesterdayEarn < 50) return;
-
-if(todayEarn > (yesterdayEarn * 3)){
-
-await saveErrorLog(
-"Abuse Attempt",
-`Coin Spike: Yesterday=${yesterdayEarn}, Today=${todayEarn}`
-);
-
-}
-
-}catch(e){}
-
-},300000);
 
 /* ========================= */
 /* COIN ABUSE CHECK */

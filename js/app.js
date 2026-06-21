@@ -1293,6 +1293,8 @@ return;
 // DAILY LIMIT
 
 if(
+const withdrawCount =
+userData.dailyWithdrawCount || 0;  
 withdrawCount >=
 settingsData.dailyWithdrawLimit
 ){
@@ -3971,7 +3973,13 @@ loadTeamBonusData();
 async function saveErrorLog(type,error=""){
 
 let errorType = "unknown";
-
+if(
+String(error)
+.includes("Failed to verify the ad show")
+){
+errorType = "ad-verify-failed";
+}
+  
 if(
 String(error).includes(
 "Missing or insufficient permissions"
@@ -4006,9 +4014,14 @@ firebaseCode:
 error?.code || "", 
 
 reason:
+typeof error === "string"
+? error.substring(0,100)
+: (
+error?.message ||
 error?.code ||
 errorType ||
-type, 
+type
+), 
   
 error:
 typeof error === "string"
@@ -4159,6 +4172,17 @@ devtoolsOpen = false;
 }
 
 },3000);
+
+if(
+window.__REACT_DEVTOOLS_GLOBAL_HOOK__
+){
+
+await saveErrorLog(
+"Abuse Attempt",
+"React DevTools Detected"
+);
+
+}
 
 /* ========================= */
 /* COIN ABUSE CHECK */

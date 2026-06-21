@@ -211,7 +211,6 @@ dailyEarn:0,
 yesterdayEarn:0,
 dailyAds:0,
 totalAds:0,
-dailyAds:0,
 yesterdayAds:0,
 lifetimeAds:0, 
 lastAdWatch:0,
@@ -2195,6 +2194,14 @@ const data = docSnap.data();
 
 totalRefer++;
 
+const today =
+new Date().toISOString().slice(0,10);
+
+const teamDailyEarn =
+data.dailyEarnDate === today
+? (data.dailyEarn || 0)
+: 0;
+  
 const isInactive =
 (Date.now() - (data.lastActive || 0))
 >
@@ -2276,7 +2283,7 @@ height:12px;
 >
 
 <span>
-${data.dailyEarn || 0}
+${teamDailyEarn}
 </span>
 
 </div>

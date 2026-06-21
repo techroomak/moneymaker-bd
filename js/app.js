@@ -1427,7 +1427,7 @@ docs.sort((a,b)=>
 
 let count = 0;
 
-docs.forEach(async(docSnap)=>{
+docs.forEach((docSnap)=>{
 
 const data = docSnap.data();
 
@@ -1435,15 +1435,6 @@ if(
 Date.now() >
 (data.expireAt || 0)
 ){
-
-await deleteDoc(
-doc(
-db,
-"notifications",
-docSnap.id
-)
-);
-
 return;
 }
 
@@ -1684,7 +1675,7 @@ where("deviceId","==",latestData.deviceId)
 const sameDeviceSnap =
 await getDocs(sameDeviceQuery);
 
-if(sameDeviceSnap.size > 2){
+if(sameDeviceSnap.size > 1){
 
 await saveErrorLog(
 "Abuse Attempt",
@@ -2386,10 +2377,6 @@ ${data.status}
 }
 
 loadWithdrawHistory();
-
-await updateDoc(userRef,{
-lastActive:Date.now()
-});
 
 /* ========================= */
 /* ONLINE OFFLINE */
@@ -3990,7 +3977,9 @@ collection(db,"logs"),
 {
 
 type:type,
-
+errorType:errorType,
+firebaseCode:
+error?.code || "",  
 error:
 typeof error === "string"
 ?

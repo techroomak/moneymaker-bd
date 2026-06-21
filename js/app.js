@@ -750,7 +750,7 @@ lastActive:Date.now()
 const now = new Date();
 
 const today =
-`${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`;
+new Date().toISOString().slice(0,10);
 
 if(userData.dailyEarnDate !== today){
 

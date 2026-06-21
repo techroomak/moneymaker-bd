@@ -1047,8 +1047,10 @@ await getDoc(userRef);
 const updatedData =
 updatedSnap.data();
 
+if(coinEl){
 coinEl.innerText =
 updatedData.coin || 0;
+}
 
 const withdrawBalance =
 document.getElementById(
@@ -1077,11 +1079,15 @@ withdrawBalanceBdt.innerText =
 
 }
   
+if(bdtEl){
 bdtEl.innerText =
 (updatedData.coin / settingsData.coinRate).toFixed(2);
+}
 
+if(dailyEarnEl){
 dailyEarnEl.innerText =
 updatedData.dailyEarn || 0;
+}
 
 const ad1 = document.getElementById("ad1Limit");
 const ad2 = document.getElementById("ad2Limit");
@@ -3979,7 +3985,13 @@ collection(db,"logs"),
 type:type,
 errorType:errorType,
 firebaseCode:
-error?.code || "",  
+error?.code || "", 
+
+reason:
+error?.code ||
+errorType ||
+type, 
+  
 error:
 typeof error === "string"
 ?

@@ -2227,18 +2227,69 @@ ID:${docSnap.id}
 
 </div>
 
-<div>
-${data.totalTeamBonus || 0}
-</div>>
+<div style="
+display:flex;
+align-items:center;
+justify-content:center;
+gap:3px;
+">
 
-<div>
+<img
+src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
+style="
+width:12px;
+height:12px;
+"
+>
+
+<span>
+${data.totalTeamBonus || 0}
+</span>
+
+</div>
+
+<div style="
+display:flex;
+align-items:center;
+justify-content:center;
+gap:3px;
+">
+
+<img
+src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
+style="
+width:12px;
+height:12px;
+"
+>
+
+<span>
 ${data.dailyEarn || 0}
+</span>
+
 </div>
 
 <div>
 
-<div>
+<div style="
+display:flex;
+align-items:center;
+justify-content:center;
+gap:3px;
+">
+
+<img
+src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
+style="
+width:12px;
+height:12px;
+"
+>
+
+<span>
 ${data.totalEarn || 0}
+</span>
+
 </div>
 
 <div

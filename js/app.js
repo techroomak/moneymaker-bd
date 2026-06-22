@@ -352,10 +352,6 @@ if(!settingsSnap.exists()){
 
     minWithdrawCoin:1000,
     minReferForWithdraw:5,
-
-    minWithdraw:500,
-    maxWithdraw:1000,
-
     rechargeMin:20,
     rechargeMax:100,
 
@@ -363,7 +359,8 @@ if(!settingsSnap.exists()){
     cashoutMax:1000,
     coinRate:10,
     dailyWithdrawLimit:3,
-
+    yesterdayAds:0,
+    lastAdsResetDate:"",
 dailyTasks:{
  task1:{
   name:"Website Visit",
@@ -751,6 +748,12 @@ const now = new Date();
 
 const today =
 new Date().toISOString().slice(0,10);
+
+const appSettingsSnap =
+await getDoc(settingsRef);
+
+const appSettings =
+appSettingsSnap.data() || {};
 
 if(userData.dailyEarnDate !== today){
 

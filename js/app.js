@@ -157,7 +157,12 @@ while (!auth.currentUser) {
   );
 
 }
-
+/* removal */
+console.log(
+"AUTH UID:",
+auth.currentUser?.uid
+);
+/* removal */
 console.log(
   "AUTH UID:",
   auth.currentUser.uid

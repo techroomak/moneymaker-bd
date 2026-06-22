@@ -757,21 +757,9 @@ appSettingsSnap.data() || {};
 
 if(appSettings.lastAdsResetDate !== today){
 
-const usersSnap =
-await getDocs(collection(db,"users"));
-
-let totalDailyAds = 0;
-
-usersSnap.forEach((docSnap)=>{
-
-const u = docSnap.data();
-
-totalDailyAds += u.dailyAds || 0;
-
-});
-
 await updateDoc(settingsRef,{
-yesterdayAds: totalDailyAds,
+yesterdayAds:
+appSettings.yesterdayAdsCurrent || 0,
 lastAdsResetDate: today
 });
 

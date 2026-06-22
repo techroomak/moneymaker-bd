@@ -559,6 +559,16 @@ if(Object.keys(missingSettings).length > 0){
 const userData =
 (await getDoc(userRef)).data();
 
+if(!userData){
+
+alert("User Data Missing");
+
+throw new Error(
+"User document not found"
+);
+
+}
+
 if(!userData.authUid){
 
 await updateDoc(userRef,{
@@ -2609,8 +2619,13 @@ noticeEl.innerText =
 settings.notice || "";
 
 }
+try{
 renderDailyTasks();
+}catch(e){}
+
+try{
 renderSocialTasks();
+}catch(e){}
 });
 
 /* ========================= */

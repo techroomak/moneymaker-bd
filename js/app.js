@@ -1584,7 +1584,11 @@ await getDoc(userRef);
 
 const latestData =
 latestSnap.data();
-
+/*removal*/
+console.log("USER REF ID:", userRef.id);
+console.log("AUTH UID:", auth.currentUser?.uid);
+console.log("USER DOC AUTH:", latestData.authUid);
+  
 const today =
 new Date()
 .toISOString()

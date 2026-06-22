@@ -862,10 +862,12 @@ withdrawBalanceBdt.innerText =
 
 }
 
-if(bdtEl){
+if(bdtEl && settingsData){
 
 bdtEl.innerText =
-(userData.coin / settingsData.coinRate).toFixed(2);
+((userData.coin || 0) /
+(settingsData.coinRate || 10))
+.toFixed(2);
 
 }
 

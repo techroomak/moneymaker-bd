@@ -764,16 +764,6 @@ await getDoc(settingsRef);
 
 const appSettings =
 appSettingsSnap.data() || {};
-
-if(appSettings.lastAdsResetDate !== today){
-
-await updateDoc(settingsRef,{
-yesterdayAds:
-appSettings.yesterdayAdsCurrent || 0,
-lastAdsResetDate: today
-});
-
-}
   
 if(userData.dailyEarnDate !== today){
 

@@ -1557,11 +1557,6 @@ count > 0
 });
 
 /* ========================= */
-/* WITHDRAW SYSTEM */
-/* ========================= */
-
-
-/* ========================= */
 /* SUBMIT WITHDRAW */
 /* ========================= */
 
@@ -1584,10 +1579,6 @@ await getDoc(userRef);
 
 const latestData =
 latestSnap.data();
-/*removal*/
-console.log("USER REF ID:", userRef.id);
-console.log("AUTH UID:", auth.currentUser?.uid);
-console.log("USER DOC AUTH:", latestData.authUid);
   
 const today =
 new Date()
@@ -1768,7 +1759,7 @@ new Date()
 await updateDoc(withdrawRef,{
 documentId:withdrawRef.id
 });
-console.log("STEP 1");
+
 /* PENDING */
 
 await updateDoc(userRef,{
@@ -1777,13 +1768,13 @@ dailyWithdrawCount:
 withdrawCount + 1,
 lastWithdrawDate:today
 });
-console.log("STEP 2");
+
 /* DEDUCT COIN */
 
 await updateDoc(userRef,{
 coin:increment(-needCoin)
 });
-console.log("STEP 3");  
+
 /* SUCCESS */
 
 btn.innerText =

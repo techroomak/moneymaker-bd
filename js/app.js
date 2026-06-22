@@ -1566,7 +1566,7 @@ count > 0
 /* ========================= */
 
 window.submitWithdraw = async()=>{
-
+try{
 if(settingsData.withdraw !== true){
 
 tg.showPopup({
@@ -1898,6 +1898,28 @@ btn.innerText =
 "Withdraw";
 
 },2000);
+
+}catch(err){
+
+console.error(err);
+
+alert(
+err.code || err.message || err
+);
+
+const btn =
+document.getElementById(
+"withdrawButton"
+);
+
+if(btn){
+
+btn.disabled = false;
+btn.innerText = "Withdraw";
+
+}
+
+}
 
 };
 

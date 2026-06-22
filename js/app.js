@@ -2845,11 +2845,6 @@ originalText;
 
 .catch(async(error)=>{
 
-await saveErrorLog(
-"Monetag Ad Failed",
-error
-);
-
 button.disabled = false;
 
 button.innerHTML =
@@ -2944,11 +2939,6 @@ originalText;
 })
 
 .catch(async(error)=>{
-
-await saveErrorLog(
-"Monetag Ad Failed",
-error
-);
 
 button.disabled = false;
 
@@ -3048,11 +3038,6 @@ originalText;
 
 .catch(async(error)=>{
 
-await saveErrorLog(
-"Monetag Ad Failed",
-error
-);
-
 button.disabled = false;
 
 button.innerHTML =
@@ -3148,11 +3133,6 @@ originalText;
 })
 
 .catch(async(error)=>{
-
-await saveErrorLog(
-"Monetag Ad Failed",
-error
-);
 
 button.disabled = false;
 

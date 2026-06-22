@@ -4353,3 +4353,7 @@ await saveErrorLog(
 }catch(e){}
 
 },300000);
+
+window.onerror = function(msg,url,line){
+ alert(msg + " LINE:" + line);
+};

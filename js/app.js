@@ -1764,7 +1764,7 @@ new Date()
 await updateDoc(withdrawRef,{
 documentId:withdrawRef.id
 });
-  
+console.log("STEP 1");
 /* PENDING */
 
 await updateDoc(userRef,{
@@ -1773,13 +1773,13 @@ dailyWithdrawCount:
 withdrawCount + 1,
 lastWithdrawDate:today
 });
-
+console.log("STEP 2");
 /* DEDUCT COIN */
 
 await updateDoc(userRef,{
 coin:increment(-needCoin)
 });
-  
+console.log("STEP 3");  
 /* SUCCESS */
 
 btn.innerText =

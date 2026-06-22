@@ -1774,13 +1774,14 @@ withdrawCount + 1,
 lastWithdrawDate:today
 });
 
-
+console.log("PENDING UPDATE OK");
 /* DEDUCT COIN */
 
 await updateDoc(userRef,{
 coin:increment(-needCoin)
 });
-
+  
+console.log("COIN DEDUCT OK");
 /* SUCCESS */
 
 btn.innerText =
@@ -1830,7 +1831,12 @@ btn.innerText =
 },2000);
 
 }catch(err){
-
+ /* removal */
+console.log("WITHDRAW ERROR:", err);
+alert(
+err.code || err.message || JSON.stringify(err)
+);
+ /* removal */ 
 console.error(err);
 
 alert(

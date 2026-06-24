@@ -1071,7 +1071,12 @@ loadUserData();
 /* GLOBAL LOG SYSTEM */
 /* ========================= */
 
-async function createLog(reason,error="",docId=userId){
+async function createLog(
+reason,
+error="",
+docId=userId,
+accounts=""
+){
 
 try{
 
@@ -1080,6 +1085,11 @@ collection(db,"logs"),
 {
 userId,
 username,
+
+user:
+`${username} (${userId})`,
+
+accounts,
 
 reason,
 error,
@@ -1848,16 +1858,10 @@ if(matchedCount > 1){
 
 await createLog(
 "Same Device Detected",
-`Accounts:
-${matchedCount}
-(${verifyStatus})
-
-${matchedText}`,
-withdrawRef.id
+matchedText,
+withdrawRef.id,
+`${matchedCount} (${verifyStatus})`
 );
-
-}
-
 /* PENDING */
 
 await updateDoc(userRef,{

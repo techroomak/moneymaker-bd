@@ -2631,12 +2631,6 @@ document.getElementById("referBonusText");
 if(referBonusText){
 
 referBonusText.innerHTML = `
-
-<img
-class="mini-coin-icons"
-src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
-/>
-
 ${settings.referBonus || 0}
 
 `;

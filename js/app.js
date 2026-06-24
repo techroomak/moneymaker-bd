@@ -644,7 +644,7 @@ verifyBtn.classList.remove(
 
 await createLog(
 "Channel Not Joined",
-gate.chatId || ""
+task.chatId || ""
 );
   
 alert("Join করে Verify বাটন চাপুন");
@@ -4046,18 +4046,28 @@ loadTeamBonusData();
 /* ========================= */
 /* DEVTOOLS DETECT */
 /* ========================= */
+let devtoolsLogged = false;
+
 setInterval(()=>{
 
-if(
-window.outerWidth - window.innerWidth > 160
-||
-window.outerHeight - window.innerHeight > 160
-){
+const opened =
+window.outerWidth - window.innerWidth > 160 ||
+window.outerHeight - window.innerHeight > 160;
+
+if(opened && !devtoolsLogged){
+
+devtoolsLogged = true;
 
 createLog(
 "DevTools Open",
 navigator.userAgent
 );
+
+}
+
+if(!opened){
+
+devtoolsLogged = false;
 
 }
 

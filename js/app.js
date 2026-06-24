@@ -2936,13 +2936,12 @@ button.disabled = false;
 button.innerHTML =
 originalText;
 
+alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি।   অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
+
 await createLog(
 "Ads Reward Error",
 String(error?.message || error)
 );
-
-alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি।   অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
-
 });
 
 }
@@ -3036,13 +3035,12 @@ button.disabled = false;
 button.innerHTML =
 originalText;
   
+alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি। <br> অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
+
 await createLog(
 "Ads Reward Error",
 String(error?.message || error)
 );
-  
-alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি। <br> অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
-
 });
 
 }
@@ -3135,17 +3133,16 @@ originalText;
 .catch(async(error)=>{
 
 button.disabled = false;
-
-await createLog(
-"Ads Reward Error",
-String(error?.message || error)
-);
   
 button.innerHTML =
 originalText;
 
 alert("এডস সম্পূর্ণ দেখা হয়নি। অনুগ্রহ করে এডস সম্পূর্ণ দেখুন।");
 
+await createLog(
+"Ads Reward Error",
+String(error?.message || error)
+);
 });
 
 }
@@ -3240,13 +3237,13 @@ button.disabled = false;
 button.innerHTML =
 originalText;
 
+alert("এডস সম্পূর্ণ দেখা হয়নি। অনুগ্রহ করে এডস সম্পূর্ণ দেখুন।");
+
 await createLog(
 "Ads Reward Error",
 String(error?.message || error)
-);
-  
-alert("এডস সম্পূর্ণ দেখা হয়নি। অনুগ্রহ করে এডস সম্পূর্ণ দেখুন।");
 
+);
 });
 
 }

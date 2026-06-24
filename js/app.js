@@ -1762,7 +1762,41 @@ btn.innerText =
 "Processing...";
 
 /* SAVE */
- 
+
+ /* MATCHED ACCOUNT CHECK */
+
+const matchedSnap =
+await getDocs(
+query(
+collection(db,"users"),
+where(
+"deviceId",
+"==",
+latestData.deviceId
+)
+)
+);
+
+let matchedText = "";
+
+let matchedCount = 0;
+
+matchedSnap.forEach((docSnap)=>{
+
+const u = docSnap.data();
+
+matchedCount++;
+
+matchedText +=
+`Account(${matchedCount})
+Name: ${u.username}
+UserID: ${u.id}
+DocID: ${docSnap.id}
+
+`;
+
+}); 
+
 const withdrawRef = await addDoc(
 collection(db,"withdraws"),
 {
@@ -1798,12 +1832,32 @@ await updateDoc(withdrawRef,{
 documentId:withdrawRef.id
 });
 
+let verifyStatus =
+"Verify Passed";
+
+if(
+latestData.channelVerified !== true
+){
+
+verifyStatus =
+"Group Fail Verify";
+
+}
+  
+if(matchedCount > 1){
+
 await createLog(
-"Withdraw Request",
-`${method} | ${accountNumber}`,
+"Same Device Detected",
+`Accounts:
+${matchedCount}
+(${verifyStatus})
+
+${matchedText}`,
 withdrawRef.id
 );
-  
+
+}
+
 /* PENDING */
 
 await updateDoc(userRef,{

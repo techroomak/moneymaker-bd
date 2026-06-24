@@ -1087,16 +1087,21 @@ user:`${username} (${userId})`,
 accounts,
 reason,
 error,
-docId:"",
+docId: docId || "",
 time:Date.now()
 }
 );
+
+if(!docId){
 
 await updateDoc(logRef,{
 docId: logRef.id
 });
 
 }
+
+}
+
 /* ========================= */
 /* LOAD DATA FUNCTION */
 /* ========================= */
@@ -1840,15 +1845,13 @@ verifyStatus =
 "Group Fail Verify";
 
 }
-  
-if(matchedCount > 1){
-
 await createLog(
-"Same Device Detected",
-matchedText,
-withdrawRef.id,
-`${matchedCount} (${verifyStatus})`
-); }
+  "Withdraw Request",
+  matchedText,
+  withdrawRef.id,
+  `${matchedCount} (${verifyStatus})`
+);  
+
 /* PENDING */
 
 await updateDoc(userRef,{

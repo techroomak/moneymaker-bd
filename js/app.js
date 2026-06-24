@@ -644,7 +644,7 @@ verifyBtn.classList.remove(
 
 await createLog(
 "Channel Not Joined",
-task.chatId || ""
+gate.chatId || ""
 );
   
 alert("Join করে Verify বাটন চাপুন");
@@ -3748,7 +3748,7 @@ pendingSocialTasks:
 
 await createLog(
 "Channel Not Joined",
-gate.chatId || ""
+task.chatId || ""
 );
 
 userData.pendingSocialTasks =

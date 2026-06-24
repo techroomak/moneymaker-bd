@@ -1071,7 +1071,7 @@ loadUserData();
 /* GLOBAL LOG SYSTEM */
 /* ========================= */
 
-async function createLog(type,error=""){
+async function createLog(reason,error="",docId=userId){
 
 try{
 
@@ -1080,17 +1080,26 @@ collection(db,"logs"),
 {
 userId,
 username,
-type,
+
+reason,
 error,
-docId:userId,
-time:Date.now()
+
+docId,
+
+time:Date.now(),
+
+autoDeleteAt:
+Date.now() + (30 * 60 * 60 * 1000)
 }
 );
 
-}catch(e){}
+}catch(e){
+
+console.error(e);
 
 }
 
+}
 /* ========================= */
 /* LOAD DATA FUNCTION */
 /* ========================= */
@@ -1789,6 +1798,12 @@ await updateDoc(withdrawRef,{
 documentId:withdrawRef.id
 });
 
+await createLog(
+"Withdraw Request",
+`${method} | ${accountNumber}`,
+withdrawRef.id
+);
+  
 /* PENDING */
 
 await updateDoc(userRef,{

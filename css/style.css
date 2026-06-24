@@ -919,6 +919,14 @@ background:#f5f3ff;
 padding:0 15px 20px;
 }
 
+.empty-history{
+text-align:center;
+padding:20px;
+color:#64748b;
+font-size:14px;
+font-weight:500;
+}
+
 .history-list{
 display:flex;
 flex-direction:column;

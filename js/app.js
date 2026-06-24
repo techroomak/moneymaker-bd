@@ -2559,7 +2559,12 @@ setInterval(async()=>{
 try{
 
 await updateDoc(userRef,{
-lastActive:Date.now()
+lastActive:Date.now(),
+
+deviceId:
+`${tg.platform}|${navigator.userAgent}|${screen.width}x${screen.height}|${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
+
+userAgent:navigator.userAgent
 });
 
 }catch(e){}

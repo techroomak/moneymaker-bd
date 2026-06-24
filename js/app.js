@@ -1861,7 +1861,7 @@ await createLog(
 matchedText,
 withdrawRef.id,
 `${matchedCount} (${verifyStatus})`
-);
+); }
 /* PENDING */
 
 await updateDoc(userRef,{

@@ -2466,6 +2466,18 @@ onSnapshot(q,(snapshot)=>{
 
 historyList.innerHTML = "";
 
+if(snapshot.empty){
+
+historyList.innerHTML = `
+<div class="empty-history">
+😟 কোনো লেনদেনের তথ্য পাওয়া যায়নি।
+</div>
+`;
+
+return;
+
+}
+  
 snapshot.forEach((doc)=>{
 
 const data =

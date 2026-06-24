@@ -1074,7 +1074,7 @@ loadUserData();
 async function createLog(
 reason,
 error="",
-docId=userId,
+docId="",
 accounts=""
 ){
 

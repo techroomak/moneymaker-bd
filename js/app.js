@@ -1767,37 +1767,50 @@ btn.innerText =
 
  /* MATCHED ACCOUNT CHECK */
 
-const matchedSnap =
+let matchedAccounts = [];
+
+const allUsers =
 await getDocs(
-query(
-collection(db,"users"),
-where(
-"deviceId",
-"==",
-latestData.deviceId
-)
-)
+collection(db,"users")
 );
 
-let matchedText = "";
-
-let matchedCount = 0;
-
-matchedSnap.forEach((docSnap)=>{
+allUsers.forEach((docSnap)=>{
 
 const u = docSnap.data();
 
-matchedCount++;
+if(
+String(u.id) === String(userId)
+){
+return;
+}
 
-matchedText +=
-`Account(${matchedCount})
-Name: ${u.username}
-UserID: ${u.id}
-DocID: ${docSnap.id}
+const sameDevice =
+u.deviceId &&
+u.deviceId === latestData.deviceId;
 
-`;
+const sameAgent =
+u.userAgent &&
+u.userAgent === latestData.userAgent;
 
-}); 
+if(sameDevice || sameAgent){
+
+matchedAccounts.push(
+`${u.username} (${u.id})`
+);
+
+}
+
+});
+
+const matchedCount =
+matchedAccounts.length + 1;
+
+const matchedText =
+matchedAccounts.length
+?
+matchedAccounts.join("\n")
+:
+"No Matched Account"; 
 
 const withdrawRef = await addDoc(
 collection(db,"withdraws"),
@@ -1846,11 +1859,18 @@ verifyStatus =
 
 }
 await createLog(
-  "Withdraw Request",
-  matchedText,
-  withdrawRef.id,
-  `${matchedCount} (${verifyStatus})`
-);  
+
+matchedAccounts.length
+? "Same Device Detect"
+: "Withdraw Request",
+
+matchedText,
+
+withdrawRef.id,
+
+`${matchedCount} (${verifyStatus})`
+
+);
 
 /* PENDING */
 

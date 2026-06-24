@@ -1078,36 +1078,23 @@ docId="",
 accounts=""
 ){
 
-try{
-
-await addDoc(
+const logRef = await addDoc(
 collection(db,"logs"),
 {
 userId,
 username,
-
-user:
-`${username} (${userId})`,
-
+user:`${username} (${userId})`,
 accounts,
-
 reason,
 error,
-
-docId,
-
-time:Date.now(),
-
-autoDeleteAt:
-Date.now() + (30 * 60 * 60 * 1000)
+docId:"",
+time:Date.now()
 }
 );
 
-}catch(e){
-
-console.error(e);
-
-}
+await updateDoc(logRef,{
+docId: logRef.id
+});
 
 }
 /* ========================= */

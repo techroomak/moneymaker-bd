@@ -641,6 +641,11 @@ verifyBtn.innerText =
 verifyBtn.classList.remove(
 "loading"
 );
+
+await createLog(
+"Channel Not Joined",
+gate.chatId || ""
+);
   
 alert("Join করে Verify বাটন চাপুন");
 
@@ -1060,6 +1065,31 @@ dailyEarn:increment(amount)
 loadUserData();
 
 };
+
+
+/* ========================= */
+/* GLOBAL LOG SYSTEM */
+/* ========================= */
+
+async function createLog(type,error=""){
+
+try{
+
+await addDoc(
+collection(db,"logs"),
+{
+userId,
+username,
+type,
+error,
+docId:userId,
+time:Date.now()
+}
+);
+
+}catch(e){}
+
+}
 
 /* ========================= */
 /* LOAD DATA FUNCTION */
@@ -1669,6 +1699,18 @@ return;
 
 }
 
+/* COIN CHECK */
+
+const needCoin =
+amount * settingsData.coinRate;
+
+if((latestData.coin || 0) < needCoin){
+
+alert("Not Enough Coin");
+
+return;
+
+}
 
 /* MIN COIN CHECK */
 
@@ -1696,19 +1738,6 @@ alert(
 `সর্বনিম্ন ${settingsData.minReferForWithdraw} 👥 রেফার থাকতে হবে`
 );
 return;
-}
-
-/* COIN CHECK */
-
-const needCoin =
-amount * settingsData.coinRate;
-
-if((latestData.coin || 0) < needCoin){
-
-alert("Not Enough Coin");
-
-return;
-
 }
 
 /* BUTTON */
@@ -2844,6 +2873,11 @@ button.disabled = false;
 button.innerHTML =
 originalText;
 
+await createLog(
+"Ads Reward Error",
+String(error?.message || error)
+);
+
 alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি।   অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
 
 });
@@ -2938,7 +2972,12 @@ button.disabled = false;
 
 button.innerHTML =
 originalText;
-
+  
+await createLog(
+"Ads Reward Error",
+String(error?.message || error)
+);
+  
 alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি। <br> অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
 
 });
@@ -3034,6 +3073,11 @@ originalText;
 
 button.disabled = false;
 
+await createLog(
+"Ads Reward Error",
+String(error?.message || error)
+);
+  
 button.innerHTML =
 originalText;
 
@@ -3133,6 +3177,11 @@ button.disabled = false;
 button.innerHTML =
 originalText;
 
+await createLog(
+"Ads Reward Error",
+String(error?.message || error)
+);
+  
 alert("এডস সম্পূর্ণ দেখা হয়নি। অনুগ্রহ করে এডস সম্পূর্ণ দেখুন।");
 
 });
@@ -3697,6 +3746,11 @@ pendingSocialTasks:
 .filter(x => x !== `task${id}`)
 });
 
+await createLog(
+"Channel Not Joined",
+gate.chatId || ""
+);
+
 userData.pendingSocialTasks =
 (userData.pendingSocialTasks || [])
 .filter(x => x !== `task${id}`);
@@ -3990,5 +4044,21 @@ loadTeamBonusData();
 
 
 /* ========================= */
-/* USER ERROR LOGS */
+/* DEVTOOLS DETECT */
 /* ========================= */
+setInterval(()=>{
+
+if(
+window.outerWidth - window.innerWidth > 160
+||
+window.outerHeight - window.innerHeight > 160
+){
+
+createLog(
+"DevTools Open",
+navigator.userAgent
+);
+
+}
+
+},5000);

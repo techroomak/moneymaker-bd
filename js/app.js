@@ -2275,6 +2275,9 @@ data.dailyEarnDate === today
 ? (data.dailyEarn || 0)
 : 0;
   
+const teamBonusToday =
+Math.floor((data.referDailyEarn || 0) * 0.10);
+
 const isInactive =
 (Date.now() - (data.lastActive || 0))
 >
@@ -2335,7 +2338,7 @@ height:12px;
 >
 
 <span>
-${data.totalTeamBonus || 0}
+${teamBonusToday || 0}
 </span>
 
 </div>

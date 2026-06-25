@@ -2896,7 +2896,7 @@ String(userData.joinedBy)
 
 await updateDoc(refRef,{
 referDailyEarn:increment(reward),
-referEarn:increment(reward)
+
 });
 }
   
@@ -2998,7 +2998,7 @@ String(userData.joinedBy)
 
 await updateDoc(refRef,{
 referDailyEarn:increment(reward),
-referEarn:increment(reward)
+
 });
 }
   
@@ -3097,7 +3097,7 @@ String(userData.joinedBy)
 
 await updateDoc(refRef,{
 referDailyEarn:increment(reward),
-referEarn:increment(reward)
+
 });
 
 }
@@ -3199,7 +3199,7 @@ String(userData.joinedBy)
 
 await updateDoc(refRef,{
 referDailyEarn:increment(reward),
-referEarn:increment(reward)
+
 });
 
 }

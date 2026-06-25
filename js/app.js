@@ -2270,18 +2270,18 @@ totalRefer++;
 const today =
 new Date().toISOString().slice(0,10);
 
-const teamDailyEarn =
-data.dailyEarnDate === today
-? (data.dailyEarn || 0)
-: 0;
-  
-const teamBonusToday =
-Math.floor((teamDailyEarn || 0) * 0.10);
-
 const isInactive =
 (Date.now() - (data.lastActive || 0))
 >
 (30 * 60 * 60 * 1000);
+
+const teamDailyEarn =
+isInactive
+? 0
+: (data.dailyEarn || 0);
+  
+const teamBonusToday =
+Math.floor((teamDailyEarn || 0) * 0.10);
 
 if(!isInactive){
 activeRefer++;

@@ -2276,7 +2276,7 @@ data.dailyEarnDate === today
 : 0;
   
 const teamBonusToday =
-Math.floor((data.referDailyEarn || 0) * 0.10);
+Math.floor((teamDailyEarn || 0) * 0.10);
 
 const isInactive =
 (Date.now() - (data.lastActive || 0))

@@ -2294,7 +2294,6 @@ return (b.data.lastActive||0)-
 });
 
 members.forEach(({docSnap,data})=>{
-const data = docSnap.data();
 
 totalRefer++;
 

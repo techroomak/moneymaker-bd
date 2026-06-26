@@ -2260,9 +2260,40 @@ return;
 }
 
 teamList.innerHTML = "";
-  
+
+const members = [];
+
 snap.forEach((docSnap)=>{
 
+members.push({
+docSnap,
+data: docSnap.data()
+});
+
+});
+
+members.sort((a,b)=>{
+
+const aInactive =
+(Date.now()-(a.data.lastActive||0))
+>
+(30*60*60*1000);
+
+const bInactive =
+(Date.now()-(b.data.lastActive||0))
+>
+(30*60*60*1000);
+
+if(aInactive!==bInactive){
+return aInactive-bInactive;
+}
+
+return (b.data.lastActive||0)-
+(a.data.lastActive||0);
+
+});
+
+members.forEach(({docSnap,data})=>{
 const data = docSnap.data();
 
 totalRefer++;

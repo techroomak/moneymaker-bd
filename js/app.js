@@ -3115,7 +3115,7 @@ String(error?.message || error)
 
 else if(index === 2){
 
-show_11035690('pop')
+show_11035690()
 
 .then(async()=>{
 
@@ -3217,7 +3217,7 @@ String(error?.message || error)
 
 else if(index === 3){
 
-show_11035690('pop')
+show_11035690()
 
 .then(async()=>{
 

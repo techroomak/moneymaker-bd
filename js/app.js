@@ -2315,7 +2315,7 @@ teamList.innerHTML += `
 ${data.username || data.first_name || "No Name"}
 </div>
 <div class="team-user-id">
-ID:${docSnap.id}
+ID:${data.docId}
 </div>
 
 </div>

@@ -2720,6 +2720,10 @@ renderSocialTasks();
 }catch(e){}
 });
 
+try{
+loadPlayTask();
+}catch(e){}
+
 /* ========================= */
 /* ADS BUTTON SYSTEM */
 /* ========================= */
@@ -3755,6 +3759,23 @@ visibleCount > 0
 "none";
 
 }
+
+}
+
+/* game TASK */
+function loadPlayTask(){
+
+const btn =
+document.getElementById("playTaskBtn");
+
+if(!btn) return;
+
+btn.onclick=()=>{
+
+window.location.href=
+"play.html?type=game";
+
+};
 
 }
 

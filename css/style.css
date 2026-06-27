@@ -2360,25 +2360,6 @@ font-size:9px;
     line-height:1.45;
 }
 
-
-
-/* Bottom Nav */
-
-.bottom-nav{
-    padding:8px 0;
-}
-
-.nav-item img{
-    width:19px;
-    height:19px;
-}
-
-.nav-item span{
-    font-size:8px;
-}
-
-
-
 /* Smooth */
 
 .play-game-card,

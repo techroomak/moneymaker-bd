@@ -18,245 +18,433 @@
 
 <div class="app-container">
 
-<header class="header-section withdraw-header">
+    <!-- ========================= -->
+    <!-- HEADER -->
+    <!-- ========================= -->
 
-<div class="header-top">
-  
-<div class="play-header-top">
+    <header class="play-header">
+
+        <div class="play-header-top">
 
             <button
                 class="play-back-btn"
                 onclick="history.back()">
 
-                ←
+                <img style="width: 30px;height: 30px;" 
+                src="https://cdn-icons-png.flaticon.com/128/93/93634.png" alt="back">
 
             </button>
-  
-<div class="profile-box">
 
-<h2 class="profile-name">
-🎮 Play & Earn
-</h2>
+            <div class="play-header-title">
 
-</div>
+                <h2>
+                    🎮 Play & Earn
+                </h2>
 
-</div>
+                <span>
+                    Play games & earn rewards
+                </span>
 
-</header>
+            </div>
 
-<!-- ========================= -->
-<!-- FEATURED GAME -->
-<!-- ========================= -->
+            <div class="play-balance-card">
 
-<section class="play-featured-section">
+                <img
+                    src="https://cdn-icons-png.flaticon.com/128/272/272525.png"
+                    class="play-balance-icon">
 
-<div id="featuredGameCard" class="featured-card">
+                <div>
 
-<div class="featured-content">
+                    <b id="playCoinBalance">
+                        0
+                    </b>
 
-<div class="featured-badge">
+                </div>
 
-🔥 Featured Game
+            </div>
 
-</div>
+        </div>
 
-<h2 id="featuredGameTitle">
+    </header>
 
-Space Shooter
 
-</h2>
+    <!-- ========================= -->
+    <!-- FEATURED GAME -->
+    <!-- ========================= -->
 
-<p id="featuredGameDescription">
+    <section class="featured-section">
 
-Fight enemies and earn exciting rewards.
+        <div
+        id="featuredGameCard"
+        class="featured-play-game-card"
 
-</p>
+        style="
+        background-image:url('https://play-lh.googleusercontent.com/uBsjDIq2ocEFlROO9Mff6LNJwhzWqj_to525YBlCW8I-DBmzQnjyxmx7qXyUqohNVAsRiDdniIb2lah6TVKd=w526-h296-rw');
+        ">
 
-<div class="featured-bottom">
+            <div class="featured-left">
 
-<div class="featured-reward">
+                <div class="featured-badge">
 
-<img
-class="mini-coin-icon"
-src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
-/>
+                    ⭐ FEATURED GAME
 
-<span id="featuredGameReward">
+                </div>
 
-500 Coin
+                <h2
+                    id="featuredGameTitle">
 
-</span>
+                    Space Shooter
 
-</div>
+                </h2>
 
-<button
-id="featuredPlayBtn"
-class="featured-play-btn"
->
+                <p
+                    id="featuredGameDescription">
 
-Play Now
+                    Defeat enemies and complete missions to earn amazing rewards.
 
-</button>
+                </p>
 
-</div>
+                <div class="featured-reward-row">
 
-</div>
+                    <div
+                        id="featuredReward"
+                        class="reward-chip">
 
-<div class="featured-image">
+                        <img
+                            class="play-mini-coin-icon"
+                            src="https://cdn-icons-png.flaticon.com/128/272/272525.png">
 
-<img
-id="featuredGameLogo"
-src="https://cdn-icons-png.flaticon.com/512/686/686589.png"
->
+                        Up to 500 Coin
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
-</section>
+                <button
+                    id="featuredPlayBtn"
+                    class="featured-btn">
 
-<!-- ========================= -->
-<!-- GAME STATISTICS -->
-<!-- ========================= -->
+                    ▶ Play Now
 
-<section class="play-stats-section">
+                </button>
 
-<div class="play-stats-card">
+            </div>
 
-<div class="play-stat-box">
+            <div
+            id="featuredBanner"
+            class="featured-banner">
+            </div>
 
-<div class="play-stat-title">
-Completed
-</div>
+        </div>
 
-<div
-id="totalCompletedGames"
-class="play-stat-value"
->
-0
-</div>
+    </section>
 
-</div>
 
-<div class="play-stat-divider"></div>
+    <!-- ========================= -->
+    <!-- DAILY LIMIT -->
+    <!-- ========================= -->
 
-<div class="play-stat-box">
+    <section class="play-limit-section">
 
-<div class="play-stat-title">
-Reward
-</div>
+        <div class="play-limit-card">
 
-<div
-id="totalGameReward"
-class="play-stat-value"
->
-0
-</div>
+            <div class="limit-left">
 
-</div>
+                <div class="limit-icon">
 
-<div class="play-stat-divider"></div>
+                    🛡️
 
-<div class="play-stat-box">
+                </div>
 
-<div class="play-stat-title">
-Today
-</div>
+                <div>
 
-<div
-id="todayCompletedGames"
-class="play-stat-value"
->
-0/10
-</div>
+                    <h3>
 
-</div>
+                        Daily Game Limit
 
-</div>
+                    </h3>
 
-</section>
+                    <p>
 
-<!-- ========================= -->
-<!-- GAME LIST -->
-<!-- ========================= -->
+                        Complete up to 10 games every day.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="limit-right">
+
+                <div
+                    id="todayGameLimit"
+                    class="limit-count">
+
+                    0 / 10
+
+                </div>
+
+                <div
+                    id="gameResetTimer"
+                    class="limit-reset">
+
+                    Reset in 23:59:59
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
 
 <section class="play-games-section">
 
-<div class="section-title">
+    <div class="play-section-title">
+        🎮 Instant Games
+    </div>
 
-🎮 Instant Games
+    <div id="gameList">
 
-</div>
+        <!-- GAME CARD -->
 
-<div id="gameList">
+        <div class="play-game-card">
 
-<div class="game-card">
+            <div class="play-game-left">
 
-<div class="game-left">
+                <img
+                    class="play-game-logo"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd3lioSpNNwjADkVQCItmsfHxijppty5dWGw&s">
 
-<img
-class="game-logo"
-src="https://cdn-icons-png.flaticon.com/512/686/686589.png"
->
+                <div class="play-game-info">
 
-<div class="game-info">
+                    <div class="play-game-reward">
 
-<div class="game-title-row">
+                        <img
+                            class="play-mini-coin-icon"
+                            src="https://cdn-icons-png.flaticon.com/128/272/272525.png">
 
-<h3 class="game-title">
+                        Up to 500 Coin
 
-Puzzle Master
+                    </div>
 
-</h3>
+                    <h3 class="play-game-title">
 
-<span class="game-status">
+                        Puzzle Master
 
-Available
+                    </h3>
 
-</span>
+                    <p class="play-game-description">
 
-</div>
+                        Match blocks and complete all puzzle levels.
 
-<p class="game-description">
+                    </p>
 
-Complete puzzle levels and earn exciting rewards.
+                </div>
 
-</p>
+            </div>
 
-<div class="game-meta">
+            <div class="play-game-right">
 
-<div class="game-reward">
+                <button
+                     class="play-game-btn"">
 
-<img
-class="mini-coin-icon"
-src="https://cdn-icons-png.flaticon.com/128/11280/11280638.png"
->
+                    ▶ Play
 
-500 Coin
+                </button>
 
-</div>
+                <div class="play-game-complete">
 
-<div class="game-complete">
+                    👥 2,543 Played
 
-🏆 2,543 Players
+                </div>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-</div>
 
-</div>
 
-<button class="game-play-btn">
+        <div class="play-game-card">
 
-Play
+            <div class="play-game-left">
 
-</button>
+                <img
+                    class="play-game-logo"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd3lioSpNNwjADkVQCItmsfHxijppty5dWGw&s">
 
-</div>
+                <div class="play-game-info">
 
-</div>
+                    <div class="play-game-reward">
+
+                        <img
+                            class="play-mini-coin-icon"
+                            src="https://cdn-icons-png.flaticon.com/128/272/272525.png">
+
+                        Up to 350 Coin
+
+                    </div>
+
+                    <h3 class="play-game-title">
+
+                        Bubble Shooter
+
+                    </h3>
+
+                    <p class="play-game-description">
+
+                        Clear all bubbles to receive rewards.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="play-game-right">
+
+                <button
+                    class="play-game-btn">
+
+                    ▶ Play
+
+                </button>
+
+                <div class="play-game-complete">
+
+                    👥 1,921 Completed
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="play-game-card">
+
+            <div class="play-game-left">
+
+                <img
+                    class="play-game-logo"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd3lioSpNNwjADkVQCItmsfHxijppty5dWGw&s">
+
+                <div class="play-game-info">
+
+                    <div class="play-game-reward">
+
+                        <img
+                            class="play-mini-coin-icon"
+                            src="https://cdn-icons-png.flaticon.com/128/272/272525.png">
+
+                        Up to 700 Coin
+
+                    </div>
+
+                    <h3 class="play-game-title">
+
+                        Car Racing
+
+                    </h3>
+
+                    <p class="play-game-description">
+
+                        Finish races and earn extra coins.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="play-game-right">
+
+                <button
+                    class="play-game-btn">
+
+                    ▶ Play
+
+                </button>
+
+                <div class="play-game-complete">
+
+                    👥 6,742 Completed
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- OFFERWALL -->
+<!-- ========================= -->
+
+<section class="play-offer-section">
+
+    <div class="play-offer-card">
+
+        <div class="play-offer-left">
+
+            <img
+                class="play-game-logo"
+                src="https://cdn-icons-png.flaticon.com/128/8146/8146553.png">
+
+            <div>
+
+                <div class="play-game-reward">
+
+                    <img
+                        class="play-mini-coin-icon"
+                        src="https://cdn-icons-png.flaticon.com/128/272/272525.png">
+
+                    Multiple Rewards
+
+                </div>
+
+                <h3 class="play-game-title">
+
+                    OfferWall
+
+                </h3>
+
+                <p class="play-game-description">
+
+                    Complete Offer and earn high reward
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="play-game-right">
+
+            <button
+                class="play-game-btn">
+
+                🔒 Coming soon
+
+            </button>
+
+            <div class="play-game-complete">
+
+                0 Play
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
@@ -266,59 +454,239 @@ Play
 
 <section class="play-rules-section">
 
-<div class="play-rules-card">
+    <div class="play-section-title">
 
-<h3>
+        📋 How To Play
 
-📋 Rules
+    </div>
 
-</h3>
+    <div class="play-rules-main-card">
 
-<ul id="playRules">
+        <div class="play-rule-item">
 
-<li>Loading...</li>
+            <div class="play-rule-icon">✅</div>
 
-</ul>
+            <div class="play-rule-text">
 
-</div>
+                Complete the game successfully to receive rewards.
+
+            </div>
+
+        </div>
+
+        <div class="play-rule-item">
+
+            <div class="play-rule-icon">🪙</div>
+
+            <div class="play-rule-text">
+
+                Rewards are added automatically after verification.
+
+            </div>
+
+        </div>
+
+        <div class="play-rule-item">
+
+            <div class="play-rule-icon">🎮</div>
+
+            <div class="play-rule-text">
+
+                Each game can be rewarded only once unless allowed again.
+
+            </div>
+
+        </div>
+
+        <div class="play-rule-item">
+
+            <div class="play-rule-icon">🛡️</div>
+
+            <div class="play-rule-text">
+
+                Using VPN, bots or multiple accounts may permanently suspend rewards.
+
+            </div>
+
+        </div>
+
+        <div class="play-rule-item">
+
+            <div class="play-rule-icon">⏰</div>
+
+            <div class="play-rule-text">
+
+                Maximum 10 game rewards can be claimed each day.
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
+
 <!-- ========================= -->
-<!-- OFFERWALL -->
+<!-- HIDDEN LOADING -->
 <!-- ========================= -->
 
-<section class="play-offer-section">
+<div
+    id="gameLoading"
+    style="display:none">
 
-<div class="play-offer-card">
-
-<div class="play-offer-icon">
-
-🎁
+    Loading...
 
 </div>
 
-<div>
 
-<h3>
+<!-- ========================= -->
+<!-- EMPTY GAME -->
+<!-- ========================= -->
 
-Offerwall
+<div
+    id="gameEmpty"
+    style="display:none">
 
-</h3>
-
-<p>
-
-Coming Soon
-
-</p>
+    No games available.
 
 </div>
 
+
+<!-- ========================= -->
+<!-- GAME TEMPLATE -->
+<!-- ========================= -->
+
+<template id="gameCardTemplate">
+
+    <div class="play-game-card">
+
+        <div class="play-game-left">
+
+            <img
+                class="play-game-logo"
+                src="">
+
+            <div class="play-game-info">
+
+                <div class="play-game-reward">
+
+                    <img
+                        class="play-mini-coin-icon"
+                        src="https://cdn-icons-png.flaticon.com/128/272/272525.png">
+
+                    <span class="rewardText">
+
+                    </span>
+
+                </div>
+
+                <h3 class="play-game-title">
+
+                </h3>
+
+                <p class="play-game-description">
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="play-game-right">
+
+            <button
+                class="play-game-btn">
+
+                ▶ Play
+
+            </button>
+
+            <div class="play-game-complete">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</template>
+
+
+<!-- ========================= -->
+<!-- BOTTOM NAV -->
+<!-- ========================= -->
+
+<nav class="bottom-nav">
+
+    <button
+        class="nav-item"
+        onclick="location.href='index.html'">
+
+        <img
+            class="nav-icon"
+            src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png"/>
+
+        <span>
+
+            Home
+
+        </span>
+
+    </button>
+
+    <button
+        class="nav-item"
+        onclick="window.location.href='team.html'">
+
+        <img
+         class="nav-icon"
+         src="https://cdn-icons-png.flaticon.com/128/681/681494.png"/>
+
+        <span class="nav-text">
+            My Team
+        </span>
+
+</button>
+
+    <button
+        class="nav-item"
+        onclick="location.href='leaderboard.html'">
+
+        <img
+            class="nav-icon"
+            src="https://cdn-icons-png.flaticon.com/128/3713/3713857.png"/>
+
+        <span>
+
+            Leaderboard
+
+        </span>
+
+    </button>
+
+    <button
+        class="nav-item"
+        onclick="location.href='withdraw.html'">
+
+        <img
+            class="nav-icon"
+            src="https://cdn-icons-png.flaticon.com/128/7710/7710772.png"/>
+
+        <span>
+
+            Withdraw
+
+        </span>
+
+    </button>
+
+</nav>
+
 </div>
 
-</section>
+<script type="module" src="js/play.js"></script>
 
-</div>
 
 </body>
 

@@ -1746,540 +1746,837 @@ align-items:center;
 gap:8px;
 }
 
-/* ========================= */
-/* PLAY & EARN */
-/* ========================= */
+/*==================================================
+        PLAY & EARN - PART 1
+==================================================*/
 
-.play-featured-section,
-.play-stats-section,
-.play-games-section,
-.play-rules-section,
-.play-offer-section{
-margin:15px;
+.play-header{
+    background:linear-gradient(180deg,#0b1436 0%,#15214d 100%);
+    padding:14px 18px 18px;
+    border-radius:0 0 22px 22px;
+    box-shadow:0 4px 15px rgba(0,0,0,.12);
 }
 
-.play-stats-card{
+.play-header-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+}
 
-display:flex;
-align-items:center;
-justify-content:space-between;
+.play-back-btn{
+    width:42px;
+    height:42px;
+    border:none;
+    background:rgba(255,255,255,.08);
+    color:#fff;
+    border-radius:14px;
+    font-size:24px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.25s;
+}
 
-background:#fff;
+.play-back-btn:hover{
+    background:rgba(255,255,255,.15);
+}
 
-border-radius:18px;
+.play-header-title{
+    flex:1;
+    text-align:center;
+}
+
+.play-header-title h2{
+    margin:0;
+    color:#fff;
+    font-size:28px;
+    font-weight:700;
+    line-height:1.1;
+}
+
+.play-header-title span{
+    display:block;
+    margin-top:4px;
+    color:#cfd7ff;
+    font-size:13px;
+    line-height:1.4;
+}
+
+.play-balance-card{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 14px;
+    border-radius:30px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.play-balance-icon{
+    width:22px;
+    height:22px;
+}
+
+.play-balance-card b{
+    display:block;
+    color:#fff;
+    font-size:17px;
+    line-height:1;
+}
+
+.play-balance-card small{
+    color:#bfc8ef;
+    font-size:11px;
+}
+
+/*================ FEATURED ================*/
+
+/*==========================
+      FEATURED BANNER
+==========================*/
+
+.featured-section{
 
 padding:16px;
 
-box-shadow:0 4px 15px rgba(0,0,0,.06);
-
 }
 
-.play-stat-box{
+.featured-play-game-card{
 
-flex:1;
+position:relative;
 
-text-align:center;
+height:175px;
 
-}
+border-radius:22px;
 
-.play-stat-title{
+overflow:hidden;
 
-font-size:12px;
-
-font-weight:600;
-
-color:#64748b;
-
-margin-bottom:6px;
-
-}
-
-.play-stat-value{
-
-font-size:19px;
-
-font-weight:700;
-
-color:#2563eb;
-
-}
-
-.play-stat-divider{
-
-width:1px;
-
-height:45px;
-
-background:#e5e7eb;
-
-}
-
-.play-games-section .section-title{
-
-font-size:18px;
-
-font-weight:700;
-
-margin-bottom:14px;
-
-color:#111827;
-
-}
-
-#gameList{
+padding:20px;
 
 display:flex;
 
 flex-direction:column;
 
-gap:12px;
+justify-content:flex-start;
+
+background-size:cover;
+
+background-position:center;
+
+background-repeat:no-repeat;
+
+box-shadow:0 10px 28px rgba(0,0,0,.12);
 
 }
 
-/* Featured */
+.featured-play-game-card::before{
 
-#featuredGameCard{
+content:"";
 
-background:linear-gradient(135deg,#5b5cf0,#7c3aed);
+position:absolute;
 
-border-radius:22px;
+inset:0;
 
-padding:20px;
+background:
 
-color:#fff;
+linear-gradient(
 
-min-height:180px;
+90deg,
 
-display:flex;
+rgba(10,16,52,.88) 0%,
 
-align-items:flex-end;
+rgba(16,23,70,.60) 40%,
 
-box-shadow:0 8px 25px rgba(91,92,240,.25);
+rgba(16,23,70,.08) 100%
 
-}
-
-/* Rules */
-
-.play-rules-card{
-
-background:#fff;
-
-border-radius:18px;
-
-padding:18px;
-
-box-shadow:0 4px 15px rgba(0,0,0,.06);
+);
 
 }
 
-.play-rules-card h3{
+.featured-left{
 
-margin:0 0 12px;
+position:relative;
 
-font-size:17px;
+z-index:5;
 
-}
-
-.play-rules-card ul{
-
-margin:0;
-
-padding-left:18px;
-
-}
-
-.play-rules-card li{
-
-margin:8px 0;
-
-font-size:14px;
-
-color:#475569;
-
-line-height:1.6;
-
-}
-
-/* Offerwall */
-
-.play-offer-card{
-
-display:flex;
-
-align-items:center;
-
-gap:15px;
-
-background:#fff;
-
-padding:18px;
-
-border-radius:18px;
-
-box-shadow:0 4px 15px rgba(0,0,0,.06);
-
-}
-
-.play-offer-icon{
-
-width:58px;
-
-height:58px;
-
-border-radius:16px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-font-size:28px;
-
-background:#fff3cd;
-
-}
-
-.play-offer-card h3{
-
-margin:0;
-
-font-size:17px;
-
-}
-
-.play-offer-card p{
-
-margin-top:5px;
-
-font-size:13px;
-
-color:#64748b;
-
-}
-
-/* ========================= */
-/* FEATURED GAME */
-/* ========================= */
-
-.featured-card{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-background:linear-gradient(135deg,#5b5cf0,#7c3aed);
-
-border-radius:22px;
-
-padding:22px;
-
-color:#fff;
-
-overflow:hidden;
-
-min-height:185px;
-
-box-shadow:0 12px 30px rgba(91,92,240,.30);
-
-}
-
-.featured-content{
-
-flex:1;
+width:58%;
 
 }
 
 .featured-badge{
 
-display:inline-block;
-
-background:rgba(255,255,255,.18);
-
-padding:6px 12px;
-
-border-radius:50px;
-
-font-size:12px;
-
-font-weight:600;
-
-margin-bottom:12px;
-
-}
-
-.featured-card h2{
-
-margin:0;
-
-font-size:26px;
-
-font-weight:700;
-
-}
-
-.featured-card p{
-
-margin:10px 0 18px;
-
-font-size:14px;
-
-line-height:1.6;
-
-color:#ececec;
-
-}
-
-.featured-bottom{
-
-display:flex;
+display:inline-flex;
 
 align-items:center;
 
-justify-content:space-between;
+padding:5px 12px;
 
-gap:12px;
+border-radius:999px;
+
+background:rgba(255,255,255,.18);
+
+color:#fff;
+
+font-size:11px;
+
+font-weight:700;
+
+margin-bottom:12px;
+
+backdrop-filter:blur(8px);
 
 }
 
-.featured-reward{
+.featured-left h2{
 
-display:flex;
+margin:0;
+
+font-size:20px;
+
+line-height:1.05;
+
+font-weight:800;
+
+color:#fff;
+
+}
+
+.featured-left p{
+
+margin:8px 0 12px;
+
+font-size:12px;
+
+line-height:1.45;
+
+color:#eef2ff;
+
+}
+
+.reward-chip{
+
+display:inline-flex;
 
 align-items:center;
 
 gap:6px;
 
-font-weight:700;
+padding:7px 12px;
 
-font-size:15px;
+border-radius:999px;
 
-}
+background:rgba(255,255,255,.18);
 
-.featured-play-btn{
-
-border:none;
-
-background:#fff;
-
-color:#5b5cf0;
-
-padding:11px 22px;
-
-border-radius:12px;
-
-font-size:14px;
-
-font-weight:700;
-
-cursor:pointer;
-
-transition:.25s;
-
-}
-
-.featured-play-btn:hover{
-
-transform:translateY(-2px);
-
-}
-
-.featured-image{
-
-margin-left:18px;
-
-}
-
-.featured-image img{
-
-width:105px;
-
-height:105px;
-
-object-fit:contain;
-
-filter:drop-shadow(0 6px 18px rgba(0,0,0,.25));
-
-}
-
-/* ========================= */
-/* GAME CARD */
-/* ========================= */
-
-.game-card{
-
-background:#fff;
-
-border-radius:20px;
-
-padding:14px;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-box-shadow:0 4px 12px rgba(0,0,0,.06);
-
-}
-
-.game-left{
-
-display:flex;
-
-align-items:center;
-
-gap:12px;
-
-flex:1;
-
-}
-
-.game-logo{
-
-width:52px;
-
-height:52px;
-
-border-radius:14px;
-
-background:#eef2ff;
-
-padding:8px;
-
-flex-shrink:0;
-
-}
-
-.game-info{
-
-flex:1;
-
-}
-
-.game-title-row{
-
-display:flex;
-
-align-items:center;
-
-gap:8px;
-
-margin-bottom:4px;
-
-flex-wrap:wrap;
-
-}
-
-.game-title{
-
-margin:0;
-
-font-size:16px;
-
-font-weight:700;
-
-color:#111827;
-
-}
-
-.game-status{
-
-font-size:10px;
-
-padding:3px 8px;
-
-border-radius:20px;
-
-background:#dcfce7;
-
-color:#15803d;
-
-font-weight:700;
-
-}
-
-.game-description{
-
-margin:0;
+color:#fff;
 
 font-size:12px;
 
-color:#6b7280;
-
-line-height:1.5;
+font-weight:700;
 
 }
 
-.game-meta{
+.reward-chip img{
 
-display:flex;
+width:15px;
 
-align-items:center;
-
-gap:14px;
-
-margin-top:8px;
-
-flex-wrap:wrap;
+height:15px;
 
 }
 
-.game-reward{
+.featured-btn{
 
-display:flex;
+margin-top:14px;
 
-align-items:center;
+height:38px;
 
-gap:4px;
+padding:0 18px;
+
+border:none;
+
+border-radius:12px;
+
+background:#fff;
+
+color:#2727a4;
 
 font-size:13px;
 
 font-weight:700;
 
-color:#16a34a;
+cursor:pointer;
 
 }
 
-.game-complete{
+.featured-banner{
 
-font-size:12px;
+display:none;
 
-font-weight:600;
+}
 
-color:#64748b;
+/*================ LIMIT CARD ================*/
+
+.play-limit-section{
+
+    padding:18px 16px 0;
+
+}
+
+.play-limit-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    background:#f4fff6;
+
+    border:1px solid #d9f2de;
+
+    border-radius:22px;
+
+    padding:18px 20px;
+
+}
+
+.limit-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+}
+
+.limit-icon{
+
+    width:54px;
+
+    height:54px;
+
+    border-radius:16px;
+
+    background:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:28px;
+
+    color:#1db954;
+
+    box-shadow:0 3px 12px rgba(0,0,0,.05);
+
+}
+
+.limit-left h3{
+
+    margin:0;
+
+    font-size:18px;
+
+    color:#17203d;
+
+    font-weight:700;
+
+}
+
+.limit-left p{
+
+    margin:6px 0 0;
+
+    color:#64748b;
+
+    font-size:13px;
+
+    line-height:1.5;
+
+}
+
+.limit-right{
+
+    text-align:right;
+
+}
+
+.limit-count{
+
+    display:inline-block;
+
+    background:#e4f9e7;
+
+    color:#19a64a;
+
+    padding:10px 20px;
+
+    border-radius:30px;
+
+    font-size:22px;
+
+    font-weight:800;
+
+}
+
+.limit-reset{
+
+    margin-top:8px;
+
+    font-size:13px;
+
+    color:#64748b;
+
+}
+
+/*======================
+      SECTION TITLE
+=======================*/
+
+.play-games-section,
+.play-offer-section{
+    padding:22px 16px 0;
+}
+
+.section-title{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:14px;
+
+    font-size:21px;
+
+    font-weight:700;
+
+    color:#1b2552;
+
+    line-height:1.2;
+
+}
+
+/*======================
+      GAME LIST
+=======================*/
+
+#gameList{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+/*==============================
+        GAME CARD
+===============================*/
+
+.play-games-section{
+
+    margin-top:20px;
+
+}
+
+.play-section-title{
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:#182243;
+
+    margin:0 16px 14px;
+
+}
+
+#gameList{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+}
+
+.play-game-card{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    padding:14px 16px;
+
+    border-bottom:1px solid #eceff6;
+
+}
+
+.play-game-card:last-child{
+
+    border-bottom:none;
+
+}
+
+.play-game-left{
+
+    display:flex;
+
+    align-items:center;
+
+    flex:1;
+
+}
+
+.play-game-logo{
+
+    width:56px;
+
+    height:56px;
+
+    border-radius:14px;
+
+    object-fit:cover;
+
+    margin-right:12px;
+
+    flex-shrink:0;
+
+}
+
+.play-game-info{
+
+    flex:1;
+
+}
+
+.play-game-title{
+
+    margin:3px 0;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#111827;
+
+    line-height:1.2;
+
+}
+
+.play-game-description{
+
+    margin-top:3px;
+
+    font-size:12px;
+
+    color:#6b7280;
+
+    line-height:1.45;
+
+}
+
+.play-game-reward{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    font-size:11px;
+
+    color:#f59e0b;
+
+    font-weight:700;
+
+}
+
+.play-mini-coin-icon{
+
+    width:14px;
+
+    height:14px;
+
+}
+
+.play-game-right{
+
+    width:92px;
+
+    text-align:center;
+
+}
+
+.play-game-btn{
+
+    width:78px;
+
+    height:34px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#5b4cf0;
+
+    color:#fff;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.play-game-btn:hover{
+
+    background:#4738d8;
+
+}
+
+.play-game-complete{
+
+    margin-top:6px;
+
+    font-size:10px;
+
+    color:#9ca3af;
+
+    line-height:1.3;
+
+}
+
+
+
+/*======================
+      RIGHT SIDE
+=======================*/
+
+.game-right{
+
+    width:105px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
 
 }
 
 .game-play-btn{
 
-border:none;
+    width:100%;
 
-background:linear-gradient(to right,#2563eb,#7c3aed);
+    height:42px;
 
-color:#fff;
+    border:none;
 
-padding:10px 18px;
+    border-radius:14px;
 
-border-radius:12px;
+    background:
+    linear-gradient(135deg,#6c4dff,#5b2cff);
 
-font-size:13px;
+    color:#fff;
 
-font-weight:700;
+    font-size:15px;
 
-cursor:pointer;
+    font-weight:700;
 
-transition:.2s;
+    cursor:pointer;
 
-margin-left:12px;
+    transition:.25s;
 
 }
 
-.game-play-btn:active{
+.game-play-btn:hover{
 
-transform:scale(.96);
+    transform:translateY(-2px);
+
+}
+
+.game-complete{
+
+    margin-top:8px;
+
+    font-size:11px;
+
+    color:#64748b;
+
+    font-weight:600;
+
+    line-height:1.3;
+
+    text-align:center;
+
+}
+
+/*======================
+      OFFERWALL
+=======================*/
+
+.play-offer-card{
+
+    margin:0 16px;
+
+    padding:15px;
+
+    border-radius:18px;
+
+    background:#fff;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.04);
+
+}
+
+.play-offer-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+/*==================================
+          PLAY RULES
+===================================*/
+
+.play-rules-section{
+
+    margin:22px 0 90px;
+
+}
+
+.play-rules-main-card{
+
+    margin:0 16px;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+
+}
+
+.play-rule-item{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+    padding:14px 16px;
+
+    border-bottom:1px solid #edf2f7;
+
+}
+
+.play-rule-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.play-rule-icon{
+
+    width:34px;
+
+    height:34px;
+
+    min-width:34px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:10px;
+
+    background:#eef4ff;
+
+    font-size:17px;
+
+}
+
+.play-rule-text{
+
+    flex:1;
+
+    color:#475569;
+
+    font-size:13px;
+
+    line-height:1.55;
+
+    font-weight:500;
+
+}
+
+.play-rule-text b{
+
+    color:#0f172a;
+
+}
+
+/*==============================
+        MOBILE
+===============================*/
+
+@media (max-width:480px){
+
+.play-rule-item{
+
+    padding:12px 14px;
+
+}
+
+.play-rule-icon{
+
+    width:30px;
+
+    height:30px;
+
+    min-width:30px;
+
+    font-size:15px;
+
+}
+
+.play-rule-text{
+
+    font-size:12px;
+
+}
 
 }

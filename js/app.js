@@ -2737,8 +2737,8 @@ button.onclick = async()=>{
 if(settingsData.ads !== true){
 
 tg.showPopup({
-title:"😥 দুঃখিত কোনো Ads পাওয়া যায়নি",
-message:"সার্ভার সমস্যার কারণে এডস শো করানো যাচ্ছে না। আবার চেষ্টা করুন। ধন্যবাদ",
+title:"😥 Ah! No Ads Found",
+message:"সার্ভার সমস্যার কারণে এডস দেখা যায়নি। আবার চেষ্টা করুন। ধন্যবাদ",
 buttons:[{type:"ok"}]
 });
 

@@ -26,8 +26,7 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 /* TELEGRAM */
 /* ========================= */
 
-const tg =
-window.Telegram.WebApp;
+const tg = window.Telegram.WebApp;
 
 tg.ready();
 
@@ -97,6 +96,66 @@ document.getElementById("totalWithdraw");
 
 const inviteLinkEl =
 document.getElementById("inviteLink");
+
+
+/* ========================= */
+/* PLAY & EARN */
+/* ========================= */
+
+const playCoinBalance =
+document.getElementById("playCoinBalance");
+
+const featuredPlayBtn =
+document.getElementById("featuredPlayBtn");
+
+const gameList =
+document.getElementById("gameList");
+
+const gameCardTemplate =
+document.getElementById("gameCardTemplate");
+
+const todayGameLimit =
+document.getElementById("todayGameLimit");
+
+const gameResetTimer =
+document.getElementById("gameResetTimer");
+
+if(featuredPlayBtn){
+
+featuredPlayBtn.onclick = ()=>{
+
+const play =
+canPlayGame();
+
+if(play.ok){
+
+alert(
+"Game Start..."
+);
+
+return;
+
+}
+
+if(play.reason === "unlock"){
+
+openGameUnlockPopup();
+
+return;
+
+}
+
+if(play.reason === "limit"){
+
+alert(
+"Today's Game Limit Reached"
+);
+
+}
+
+};
+
+}
 
 /* ========================= */
 /* UI UPDATE */
@@ -268,7 +327,15 @@ teamClaimable:0,
 lastTeamClaim:"",
 referDailyEarn:0,
 yesterdayReferEarn:0,
-teamCommissionEarned:0
+teamCommissionEarned:0,
+
+gamesUnlocked:false,
+gamesUnlockedAt:0,
+todayGamePlayed:0,
+totalGamePlayed:0,
+gameReward:0,
+lastGameDate:"",
+gameRewards:{}
 });
 
 /* ========================= */
@@ -346,7 +413,8 @@ if(!settingsSnap.exists()){
     ad2Zone:"",
     ad3Zone:"",
     ad4Zone:"",
-
+    gameEnabled:true,
+    gameLoading:true,
     referBonus:10,
     registrationBonus:5,
 
@@ -370,7 +438,10 @@ dailyTasks:{
   links:[]
  }
 },
-socialTasks:{}
+socialTasks:{},
+
+gameUnlockCoin:3000,
+dailyGameLimit:20
   });
 
 }
@@ -460,6 +531,17 @@ missingSettings.dailyWithdrawLimit = 3;
 
 if(settingsData.joinGateEnabled === undefined)
 missingSettings.joinGateEnabled = true;
+
+if(settingsData.gameUnlockCoin === undefined)
+missingSettings.gameUnlockCoin = 3000;
+
+if(settingsData.dailyGameLimit === undefined)
+missingSettings.dailyGameLimit = 20;
+if(settingsData.gameEnabled === undefined)
+missingSettings.gameEnabled = true;
+
+if(settingsData.gameLoading === undefined)
+missingSettings.gameLoading = true;
 
 if(settingsData.joinGate === undefined)
 missingSettings.joinGate = {
@@ -686,6 +768,28 @@ console.error(e);
 };
 }
 const missingFields = {};
+
+if(userData.gamesUnlocked === undefined)
+missingFields.gamesUnlocked = false;
+
+if(userData.gamesUnlockedAt === undefined)
+missingFields.gamesUnlockedAt = 0;
+
+if(userData.todayGamePlayed === undefined)
+missingFields.todayGamePlayed = 0;
+
+if(userData.totalGamePlayed === undefined)
+missingFields.totalGamePlayed = 0;
+
+if(userData.gameReward === undefined)
+missingFields.gameReward = 0;
+
+if(userData.lastGameDate === undefined)
+missingFields.lastGameDate = "";
+
+if(userData.gameRewards === undefined)
+missingFields.gameRewards = {};
+
 if(userData.pending === undefined)
 missingFields.pending = 0;
 
@@ -792,7 +896,8 @@ yesterdayReferEarn:
 userData.referDailyEarn || 0,
 
 referDailyEarn:0,
-
+todayGamePlayed:0,
+gameRewards:{},
 yesterdayAds:
 userData.dailyAds || 0,
 
@@ -809,7 +914,7 @@ claimedDailyTasks:[]
 
 userData.dailyEarn = 0;
 userData.dailyAds = 0;
-
+userData.todayGamePlayed = 0;
 }
 
 if(userData.adLimitDate !== today){
@@ -1066,6 +1171,769 @@ loadUserData();
 
 };
 
+/* ========================= */
+/* PLAY CACHE */
+/* ========================= */
+
+let pendingGameCoin = 0;
+
+let pendingGamePlayed = 0;
+
+let pendingGameReward = 0;
+
+let pendingGameRewards = {};
+
+let gameSyncing = false;
+
+async function syncPendingGameReward(){
+
+if(gameSyncing) return;
+
+if(
+pendingGameCoin <= 0 &&
+pendingGamePlayed <= 0
+){
+return;
+}
+
+gameSyncing = true;
+
+const updateData = {
+
+coin: increment(pendingGameCoin),
+
+dailyEarn: increment(pendingGameCoin),
+
+totalEarn: increment(pendingGameCoin),
+
+gameReward: increment(pendingGameReward),
+
+todayGamePlayed: increment(pendingGamePlayed),
+
+totalGamePlayed: increment(pendingGamePlayed),
+
+lastGameDate: new Date().toISOString().slice(0,10)
+
+};
+
+for(const gameId in pendingGameRewards){
+
+updateData[`gameRewards.${gameId}`] =
+increment(pendingGameRewards[gameId]);
+
+}
+
+try{
+
+    await updateDoc(userRef, updateData);
+
+    if(userData.joinedBy){
+
+        const refRef = doc(
+            db,
+            "users",
+            String(userData.joinedBy)
+        );
+
+        await updateDoc(refRef,{
+            referDailyEarn: increment(pendingGameCoin)
+        });
+
+    }
+
+    // Local Cache Update
+
+    userData.coin =
+    (userData.coin || 0) + pendingGameCoin;
+
+    userData.dailyEarn =
+    (userData.dailyEarn || 0) + pendingGameCoin;
+
+    userData.totalEarn =
+    (userData.totalEarn || 0) + pendingGameCoin;
+
+    userData.gameReward =
+    (userData.gameReward || 0) + pendingGameReward;
+
+    userData.todayGamePlayed =
+    (userData.todayGamePlayed || 0) + pendingGamePlayed;
+
+    userData.totalGamePlayed =
+    (userData.totalGamePlayed || 0) + pendingGamePlayed;
+
+    for(const gameId in pendingGameRewards){
+
+        userData.gameRewards =
+        userData.gameRewards || {};
+
+        userData.gameRewards[gameId] =
+        (userData.gameRewards[gameId] || 0)
+        + pendingGameRewards[gameId];
+
+    }
+
+    // Reset Cache (Success হলে তবেই)
+
+    pendingGameCoin = 0;
+    pendingGamePlayed = 0;
+    pendingGameReward = 0;
+    pendingGameRewards = {};
+
+    updatePlayBalance();
+
+    await reloadPlayUser();
+
+}catch(e){
+
+    console.error("Game Sync Failed:", e);
+
+}finally{
+
+    gameSyncing = false;
+
+}
+}
+/* ========================= */
+/* PLAY SYSTEM */
+/* ========================= */
+
+function updatePlayBalance(){
+
+if(playCoinBalance){
+
+playCoinBalance.innerText =
+userData.coin || 0;
+
+}
+
+if(todayGameLimit){
+
+todayGameLimit.innerText =
+`${userData.todayGamePlayed || 0}/${settingsData.dailyGameLimit || 20}`;
+
+}
+
+if(playCoinBalance){
+
+playCoinBalance.innerText =
+(userData.coin || 0) +
+pendingGameCoin;
+
+}
+
+}
+
+async function reloadPlayUser(){
+
+const snap =
+await getDoc(userRef);
+
+Object.assign(
+userData,
+snap.data()
+);
+
+updatePlayBalance();
+
+pendingGameCoin = 0;
+
+pendingGamePlayed = 0;
+
+pendingGameReward = 0;
+
+pendingGameRewards = {};
+
+}
+
+function canPlayGame(){
+
+if(!userData.gamesUnlocked){
+
+return{
+ok:false,
+reason:"unlock"
+};
+
+}
+
+if(
+(userData.todayGamePlayed || 0)
+>=
+(settingsData.dailyGameLimit || 20)
+){
+
+return{
+ok:false,
+reason:"limit"
+};
+
+}
+
+return{
+ok:true
+};
+
+}
+
+async function unlockGameSystem(){
+
+const needCoin =
+settingsData.gameUnlockCoin || 3000;
+
+if((userData.coin || 0) < needCoin){
+
+tg.showPopup({
+title:"Insufficient Coin",
+message:`You need ${needCoin} coins to unlock Game Mode.`,
+buttons:[{type:"ok"}]
+});
+
+return false;
+
+}
+
+await updateDoc(userRef,{
+
+coin:increment(-needCoin),
+
+gamesUnlocked:true,
+
+gamesUnlockedAt:Date.now()
+
+});
+
+userData.coin -= needCoin;
+
+userData.gamesUnlocked = true;
+
+userData.gamesUnlockedAt = Date.now();
+
+updatePlayBalance();
+
+return true;
+
+}
+
+/* ========================= */
+/* PLAY GAME FUNCTIONS */
+/* ========================= */
+
+function formatPlayedCount(count){
+
+count = Number(count) || 0;
+
+if(count < 1000){
+
+return count.toString();
+
+}
+
+if(count < 1000000){
+
+return (
+count / 1000
+).toFixed(
+count >= 10000 ? 0 : 1
+).replace(".0","") + "K";
+
+}
+
+return (
+count / 1000000
+).toFixed(1)
+.replace(".0","") + "M";
+
+}
+
+async function loadGames(){
+
+  try{
+
+const q = query(
+collection(db,"games"),
+where("enabled","==",true),
+orderBy("sort","asc")
+);
+
+if(settingsData.gameEnabled !== true){
+
+tg.showPopup({
+    title: "🎮 Game Mode",
+    message: "Game সিস্টেম বর্তমানে বন্ধ আছে। পরে আবার চেষ্টা করুন।",
+    buttons: [{ type: "ok" }]
+}, () => {
+    if (history.length > 1) {
+        history.back();
+    } else {
+        window.location.href = "index.html";
+    }
+});
+
+return;
+
+}
+
+const snap = await getDocs(q);
+
+if(snap.empty){
+
+await addDefaultGames();
+
+return;
+
+}
+
+if(gameList){
+
+gameList.innerHTML = "";
+
+}
+
+let featuredGame = null;
+
+snap.forEach(docSnap=>{
+
+const game = {
+
+id:docSnap.id,
+
+...docSnap.data()
+
+};
+
+if(game.featured){
+
+featuredGame = game;
+
+}
+
+renderGameCard(game);
+
+});
+
+
+
+if(featuredGame){
+
+renderFeaturedGame(featuredGame);
+
+}
+
+}catch(e){
+
+console.error(e);
+
+tg.showPopup({
+title:"Game Error",
+message:"Failed to load games.",
+buttons:[{type:"ok"}]
+});
+
+}finally{
+
+document
+.getElementById("playLoading")
+?.classList.add("hide");
+
+}
+
+}
+
+async function addDefaultGames(){
+
+const games=[
+
+{
+title:"No Game found",
+description:"The server is under maintenance",
+reward:120,
+rewardLimit:3,
+played:0,
+enabled:true,
+featured:true,
+sort:1,
+logo:"",
+banner:"",
+link:"",
+category:"",
+package:"",
+version:"1.0",
+createdAt:Date.now(),
+updatedAt:Date.now()
+},
+
+{
+title:"No Game found",
+description:"The server is under maintenance",
+reward:120,
+rewardLimit:3,
+played:0,
+enabled:true,
+featured:true,
+sort:1,
+logo:"",
+banner:"",
+link:"",
+category:"",
+package:"",
+version:"1.0",
+createdAt:Date.now(),
+updatedAt:Date.now()
+}
+];
+
+for(const game of games){
+
+await addDoc(
+collection(db,"games"),
+game
+);
+
+}
+
+loadGames();
+
+}
+
+function renderFeaturedGame(game){
+
+const title =
+document.getElementById("featuredGameTitle");
+
+const description =
+document.getElementById("featuredGameDescription");
+
+const reward =
+document.getElementById("featuredReward");
+
+const banner =
+document.getElementById("featuredBanner");
+
+if(title){
+
+title.innerText =
+game.title;
+
+}
+
+if(description){
+
+description.innerText =
+game.description;
+
+}
+
+if(reward){
+
+reward.innerHTML = `
+
+<img
+class="play-mini-coin-icon"
+src="https://cdn-icons-png.flaticon.com/128/272/272525.png">
+
+Up to ${game.reward}
+
+`;
+
+}
+
+if(banner){
+
+banner.style.backgroundImage =
+`url('${game.banner}')`;
+
+}
+
+featuredPlayBtn.onclick = ()=>{
+
+playGame(game);
+
+};
+
+}
+
+function renderGameCard(game){
+
+if(!gameCardTemplate || !gameList){
+return;
+}
+
+const card =
+gameCardTemplate.content
+.cloneNode(true);
+
+const image =
+card.querySelector(".play-game-logo");
+
+const title =
+card.querySelector(".play-game-title");
+
+const description =
+card.querySelector(".play-game-description");
+
+const reward =
+card.querySelector(".rewardText");
+
+const played =
+card.querySelector(".play-game-complete");
+
+const playBtn =
+card.querySelector(".play-game-btn");
+
+const rewardCount =
+userData.gameRewards?.[game.id] || 0;
+
+const rewardLimit =
+game.rewardLimit || 1;
+
+if(image){
+image.src = game.logo || game.banner;
+image.alt = game.title;
+}
+
+if(title){
+title.innerText = game.title || "Game";
+}
+
+if(description){
+description.innerText =
+game.description || "";
+}
+
+if(reward){
+reward.innerText =
+`Up to ${game.reward || 0}`;
+}
+
+
+
+if(played){
+played.innerHTML =
+`👥 ${formatPlayedCount(game.played || 0)} Played`;
+}
+
+if(playBtn){
+
+playBtn.dataset.id = game.id;
+
+playBtn.onclick = ()=>{
+
+playGame(game);
+
+};
+
+}
+
+gameList.appendChild(card);
+
+}
+
+async function playGame(game){
+
+const play = canPlayGame();
+
+if(game.playing){
+
+return;
+
+}
+
+game.playing = true;
+
+if(!play.ok){
+
+if(play.reason === "unlock"){
+openGameUnlockPopup();
+return;
+}
+
+if(play.reason === "limit"){
+tg.showPopup({
+title:"Daily Limit",
+message:"Today's game reward limit has been reached.",
+buttons:[{type:"ok"}]
+});
+return;
+}
+
+}
+
+const rewardCount =
+userData.gameRewards?.[game.id] || 0;
+
+const rewardLimit =
+game.rewardLimit || 1;
+
+if(rewardCount >= rewardLimit){
+    tg.showPopup({
+title:"Reward Limit",
+message:"You have reached the maximum reward limit for this game.",
+buttons:[{type:"ok"}]
+});
+    return;
+}
+
+window.open(game.link,"_blank");
+
+await updateDoc(
+doc(db,"games",game.id),
+{
+played:increment(1)
+});
+
+const playedEl =
+document.querySelector(
+`.play-game-btn[data-id="${game.id}"]`
+)
+?.closest(".play-game-card")
+?.querySelector(".play-game-complete");
+
+if(playedEl){
+
+game.played =
+(game.played || 0)+1;
+
+playedEl.innerHTML =
+`👥 ${formatPlayedCount(game.played)} Played`;
+
+}
+// Reward Verification
+
+const reward = Number(game.reward || 0);
+
+// Demo Verification
+// পরে এখানে AdGate / Playtime / API Verification বসবে
+
+await new Promise(resolve => setTimeout(resolve, 1000));
+
+// Pending Cache
+
+pendingGameCoin += reward;
+
+pendingGamePlayed++;
+
+pendingGameReward += reward;
+
+pendingGameRewards[game.id] =
+(pendingGameRewards[game.id] || 0) + 1;
+
+// Local UI
+
+userData.todayGamePlayed =
+(userData.todayGamePlayed || 0) + 1;
+
+userData.gameRewards =
+userData.gameRewards || {};
+
+userData.gameRewards[game.id] =
+(userData.gameRewards[game.id] || 0) + 1;
+
+updatePlayBalance();
+
+tg.showPopup({
+title:"🎉Game Reward Added",
+message:`${reward} Coin has been added successfully.`,
+buttons:[{type:"ok"}]
+});
+game.playing = false;
+}
+
+/* ========================= */
+/* PLAY POPUP */
+/* ========================= */
+
+const gameUnlockPopup =
+document.getElementById("gameUnlockPopup");
+
+const unlockGameBtn =
+document.getElementById("unlockGameBtn");
+
+const closeUnlockPopup =
+document.getElementById("closeUnlockPopup");
+
+const unlockGameCoin =
+document.getElementById("unlockGameCoin");
+
+if(unlockGameCoin){
+
+unlockGameCoin.innerText =
+settingsData.gameUnlockCoin || 3000;
+
+}
+
+function openGameUnlockPopup(){
+
+if(gameUnlockPopup){
+
+gameUnlockPopup.style.display =
+"flex";
+
+}
+
+}
+
+function closeGameUnlock(){
+
+if(gameUnlockPopup){
+
+gameUnlockPopup.style.display =
+"none";
+
+}
+
+}
+
+if(closeUnlockPopup){
+
+closeUnlockPopup.onclick =
+closeGameUnlock;
+
+}
+
+if(gameUnlockPopup){
+
+gameUnlockPopup.onclick = (e)=>{
+
+if(e.target === gameUnlockPopup){
+
+closeGameUnlock();
+
+}
+
+};
+
+}
+
+if(unlockGameBtn){
+
+unlockGameBtn.onclick = async()=>{
+
+unlockGameBtn.disabled = true;
+
+unlockGameBtn.innerText =
+"Unlocking...";
+
+const ok =
+await unlockGameSystem();
+
+unlockGameBtn.disabled = false;
+
+unlockGameBtn.innerHTML =
+"🔓 Unlock Now";
+
+if(ok){
+
+closeGameUnlock();
+
+alert(
+"🎉 Game Mode Unlocked Successfully!"
+);
+
+}
+
+};
+
+}
 
 /* ========================= */
 /* GLOBAL LOG SYSTEM */
@@ -1172,7 +2040,7 @@ if(ad3) ad3.innerText =
 
 if(ad4) ad4.innerText =
 `${updatedData.ad4Count || 0}/${settingsData.ad4Limit}`;
-
+updatePlayBalance();
 }
 /* ========================= */
 /* DAILY TIMER */
@@ -2690,7 +3558,7 @@ font-weight:700;
 ">
 
 ${settings.maintenanceMessage ||
-"🚧 App আপডেট করা হয়েছে, একবার রিলোড দিন।"}
+"🚧 App টেকনিক্যাল উন্নয়ন করা হচ্ছে, এটি করতে আমাদের ৩০ মিনিট থেকে কয়েকঘন্টা সময় লাগতে পারে, অনুগ্রহ করে আবার চেষ্টা করুন, অথবা এপ আবার ওপেন করুন।"}
 
 </div>
 
@@ -2722,7 +3590,45 @@ renderSocialTasks();
 
 try{
 loadPlayTask();
-}catch(e){}
+}
+catch(e){}
+
+window.addEventListener(
+"beforeunload",
+syncPendingGameReward
+);
+
+document.addEventListener(
+"visibilitychange",
+()=>{
+
+if(document.visibilityState==="hidden"){
+
+syncPendingGameReward();
+
+}else{
+
+reloadPlayUser();
+
+}
+
+});
+
+window.addEventListener(
+"focus",
+reloadPlayUser
+);
+
+window.addEventListener(
+"online",
+syncPendingGameReward
+);
+
+setInterval(
+syncPendingGameReward,
+30000
+);
+
 
 /* ========================= */
 /* ADS BUTTON SYSTEM */
@@ -2737,8 +3643,8 @@ button.onclick = async()=>{
 if(settingsData.ads !== true){
 
 tg.showPopup({
-title:"😥 Ah! No Ads Found",
-message:"সার্ভার সমস্যার কারণে এডস দেখা যায়নি। আবার চেষ্টা করুন। ধন্যবাদ",
+title:"🛠️ Ads বন্ধ বন্ধ",
+message:"Ads সিস্টেম আপডেট চলছে, কিছুক্ষন পর আবার চেষ্টা করুন।",
 buttons:[{type:"ok"}]
 });
 
@@ -4185,6 +5091,23 @@ loadTeamData();
 loadTeamBonusData();
 }
 
+/* sync Pending Game reward */
+
+document.addEventListener("visibilitychange",()=>{
+
+if(document.hidden){
+
+syncPendingGameReward();
+
+}
+
+});
+
+window.addEventListener("pagehide",()=>{
+
+syncPendingGameReward();
+
+});
 
 /* ========================= */
 /* DEVTOOLS DETECT */

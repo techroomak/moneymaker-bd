@@ -5150,3 +5150,6 @@ devtoolsLogged = false;
 if (window.location.pathname.includes("play.html")) {
     loadGames();
 }
+if(document.getElementById("gameList")){
+    loadGames();
+}

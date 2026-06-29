@@ -39,6 +39,9 @@ tg.expand();
 const user =
 tg.initDataUnsafe.user;
 
+console.log("INIT DATA:", tg.initDataUnsafe);
+console.log("USER:", tg.initDataUnsafe.user);
+
 // TELEGRAM ONLY
 
 if(!user){

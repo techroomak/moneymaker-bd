@@ -1450,6 +1450,8 @@ count / 1000000
 
 async function loadGames(){
 
+console.log("loadGames START");
+
   try{
 
 const q = query(
@@ -1478,6 +1480,8 @@ return;
 
 const snap = await getDocs(q);
 
+console.log("Games Found:", snap.size);
+  
 if(snap.empty){
 
 await addDefaultGames();
@@ -1531,7 +1535,7 @@ title:"Game Error",
 message:"Failed to load games.",
 buttons:[{type:"ok"}]
 });
-
+console.log("loadGames END");
 }finally{
 
 document

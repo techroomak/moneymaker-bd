@@ -5145,3 +5145,8 @@ devtoolsLogged = false;
 }
 
 },5000);
+
+
+if (window.location.pathname.includes("play.html")) {
+    loadGames();
+}

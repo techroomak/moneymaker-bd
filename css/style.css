@@ -2671,3 +2671,7 @@ margin:auto auto 15px;
 transform:rotate(360deg);
 }
 }
+
+.play-loading.hide{
+    display:none !important;
+}

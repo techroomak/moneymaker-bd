@@ -1959,6 +1959,182 @@ btn.innerText = "Withdraw";
 
 };
 
+
+/* =====================================================
+                PLAY SYSTEM V2
+===================================================== */
+
+const playLoading = document.getElementById("playLoading");
+const playCoinBalance = document.getElementById("playCoinBalance");
+const todayGameLimit = document.getElementById("todayGameLimit");
+
+const gameList = document.getElementById("gameList");
+
+const featuredCard = document.getElementById("featuredGameCard");
+const featuredTitle = document.getElementById("featuredGameTitle");
+const featuredDescription = document.getElementById("featuredGameDescription");
+const featuredReward = document.getElementById("featuredReward");
+const featuredBanner = document.getElementById("featuredBanner");
+const featuredPlayBtn = document.getElementById("featuredPlayBtn");
+
+let playUser = null;
+let playGames = [];
+
+function showPlayLoading(){
+
+    if(playLoading)
+        playLoading.style.display="flex";
+
+}
+
+function hidePlayLoading(){
+
+    if(playLoading)
+        playLoading.style.display="none";
+
+}
+
+async function loadPlayUser(){
+
+    const snap = await getDoc(userRef);
+
+    playUser = snap.data();
+
+    if(!playUser) return;
+
+    const today =
+    new Date().toISOString().slice(0,10);
+
+    if(playUser.gameDate !== today){
+
+        await updateDoc(userRef,{
+
+            gameDate:today,
+
+            gameDailyCount:0,
+
+            gameRewarded:{}
+
+        });
+
+        playUser.gameDate=today;
+        playUser.gameDailyCount=0;
+        playUser.gameRewarded={};
+
+    }
+
+    if(playCoinBalance){
+
+        playCoinBalance.innerText =
+        playUser.coin || 0;
+
+    }
+
+    if(todayGameLimit){
+
+        todayGameLimit.innerText =
+        `${playUser.gameDailyCount || 0} / 50`;
+
+    }
+
+}
+
+async function loadGames(){
+
+    console.log("loadGames START");
+
+    showPlayLoading();
+
+    gameList.innerHTML="";
+
+    playGames=[];
+
+    try{
+
+        const q = query(
+
+            collection(db,"games"),
+
+            where("enabled","==",true),
+
+            orderBy("sort")
+
+        );
+
+        const snap = await getDocs(q);
+
+        snap.forEach(doc=>{
+
+            playGames.push({
+
+                id:doc.id,
+
+                ...doc.data()
+
+            });
+
+        });
+
+        renderFeatured();
+
+        renderGameList();
+
+    }
+
+    catch(err){
+
+        console.error(err);
+
+        tg.showPopup({
+
+            title:"Game Error",
+
+            message:"Game load failed",
+
+            buttons:[{
+
+                type:"ok"
+
+            }]
+
+        });
+
+    }
+
+    hidePlayLoading();
+
+    console.log("loadGames END");
+
+}
+
+function renderFeatured(){
+
+    if(!playGames.length) return;
+
+    const game =
+
+    playGames.find(x=>x.featured) ||
+
+    playGames[0];
+
+    featuredTitle.innerText=
+    game.name;
+
+    featuredDescription.innerText=
+    game.description;
+
+    featuredReward.innerHTML=
+
+    `<img class="play-mini-coin-icon"
+    src="https://cdn-icons-png.flaticon.com/128/272/272525.png">
+
+    ${game.reward} Coin`;
+
+    featuredBanner.style.backgroundImage=
+    `url(${game.banner})`;
+
+}
+
 /* ========================= */
 /* LEADERBOARD */
 /* ========================= */
@@ -4186,9 +4362,6 @@ loadTeamBonusData();
 }
 
 
-if(document.getElementById("gameList")){
-    loadGames();
-}
 /* ========================= */
 /* DEVTOOLS DETECT */
 /* ========================= */

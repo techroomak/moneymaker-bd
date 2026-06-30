@@ -4186,6 +4186,9 @@ loadTeamBonusData();
 }
 
 
+if(document.getElementById("gameList")){
+    loadGames();
+}
 /* ========================= */
 /* DEVTOOLS DETECT */
 /* ========================= */

@@ -293,6 +293,11 @@ lastDailyTaskDate:"",
 claimedDailyTasks:[],
 socialTaskVersions:{},
 
+playCoin: 0,
+pendingGameCoin: 0,
+pendingGamePlayed: 0,
+pendingGameRewards: {},
+  
 joinedBy:referrerId || "",
 referrerName:"",
 referrerPhoto:"",
@@ -793,6 +798,18 @@ missingFields.lastGameDate = "";
 if(userData.gameRewards === undefined)
 missingFields.gameRewards = {};
 
+if(userData.playCoin === undefined)
+missingFields.playCoin = 0;
+
+if(userData.pendingGameCoin === undefined)
+missingFields.pendingGameCoin = 0;
+
+if(userData.pendingGamePlayed === undefined)
+missingFields.pendingGamePlayed = 0;
+
+if(userData.pendingGameRewards === undefined)
+missingFields.pendingGameRewards = {};
+
 if(userData.pending === undefined)
 missingFields.pending = 0;
 
@@ -899,6 +916,9 @@ yesterdayReferEarn:
 userData.referDailyEarn || 0,
 
 referDailyEarn:0,
+pendingGameCoin:0,
+pendingGamePlayed:0,
+pendingGameRewards:{},
 todayGamePlayed:0,
 gameRewards:{},
 yesterdayAds:
@@ -1203,11 +1223,11 @@ gameSyncing = true;
 
 const updateData = {
 
-coin: increment(pendingGameCoin),
+playCoin: increment(pendingGameCoin),
 
-dailyEarn: increment(pendingGameCoin),
-
-totalEarn: increment(pendingGameCoin),
+pendingGameCoin: increment(pendingGameCoin),
+  
+pendingGamePlayed: increment(pendingGamePlayed),
 
 gameReward: increment(pendingGameReward),
 
@@ -1215,7 +1235,7 @@ todayGamePlayed: increment(pendingGamePlayed),
 
 totalGamePlayed: increment(pendingGamePlayed),
 
-lastGameDate: new Date().toISOString().slice(0,10)
+lastGameDate: new Date().toISOString().slice(0,10),
 
 };
 
@@ -1246,14 +1266,9 @@ try{
 
     // Local Cache Update
 
-    userData.coin =
-    (userData.coin || 0) + pendingGameCoin;
-
-    userData.dailyEarn =
-    (userData.dailyEarn || 0) + pendingGameCoin;
-
-    userData.totalEarn =
-    (userData.totalEarn || 0) + pendingGameCoin;
+    userData.playCoin =
+    (userData.playCoin || 0)
+    + pendingGameCoin;
 
     userData.gameReward =
     (userData.gameReward || 0) + pendingGameReward;
@@ -1305,7 +1320,8 @@ function updatePlayBalance(){
 if(playCoinBalance){
 
 playCoinBalance.innerText =
-userData.coin || 0;
+(userData.playCoin || 0) +
+pendingGameCoin;
 
 }
 
@@ -1313,14 +1329,6 @@ if(todayGameLimit){
 
 todayGameLimit.innerText =
 `${userData.todayGamePlayed || 0}/${settingsData.dailyGameLimit || 20}`;
-
-}
-
-if(playCoinBalance){
-
-playCoinBalance.innerText =
-(userData.coin || 0) +
-pendingGameCoin;
 
 }
 
@@ -1537,6 +1545,10 @@ buttons:[{type:"ok"}]
 });
 console.log("loadGames END");
 }finally{
+
+await reloadPlayUser();
+
+updatePlayBalance();
 
 document
 .getElementById("playLoading")
@@ -1772,12 +1784,19 @@ const rewardLimit =
 game.rewardLimit || 1;
 
 if(rewardCount >= rewardLimit){
-    tg.showPopup({
-title:"Reward Limit",
-message:"You have reached the maximum reward limit for this game.",
+
+tg.showPopup({
+title:"🎮 রিওয়ার্ড শেষ",
+message:"আপনি আজকে এই গেম থেকে আর রিওয়ার্ড পাবেন না।\n\nতবে চাইলে গেমটি খেলতে পারবেন অথবা অন্য গেম খেলুন।",
 buttons:[{type:"ok"}]
 });
-    return;
+
+window.open(game.link,"_blank");
+
+game.playing=false;
+
+return;
+
 }
 
 window.open(game.link,"_blank");
@@ -1837,12 +1856,35 @@ userData.gameRewards[game.id] =
 
 updatePlayBalance();
 
+if(reward>0){
 tg.showPopup({
 title:"🎉Game Reward Added",
 message:`${reward} Coin has been added successfully.`,
 buttons:[{type:"ok"}]
 });
 game.playing = false;
+}}
+
+async function claimPendingGameReward(){
+
+const snap = await getDoc(userRef);
+const data = snap.data();
+
+const reward =
+data.pendingGameCoin || 0;
+
+if(reward <= 0) return;
+
+await updateDoc(userRef,{
+coin:increment(reward),
+dailyEarn:increment(reward),
+totalEarn:increment(reward),
+
+pendingGameCoin:0,
+pendingGamePlayed:0,
+pendingGameRewards:{}
+});
+
 }
 
 /* ========================= */
@@ -3600,18 +3642,18 @@ loadPlayTask();
 }
 catch(e){}
 
-window.addEventListener(
-"beforeunload",
-syncPendingGameReward
-);
+window.addEventListener("beforeunload",async()=>{
+await syncPendingGameReward();
+await claimPendingGameReward();
+});
 
 document.addEventListener(
 "visibilitychange",
-()=>{
+async ()=>{
 
 if(document.visibilityState==="hidden"){
 
-syncPendingGameReward();
+await syncPendingGameReward();
 
 }else{
 
@@ -3623,13 +3665,18 @@ reloadPlayUser();
 
 window.addEventListener(
 "focus",
-reloadPlayUser
-);
+async()=>{
+
+await reloadPlayUser();
+
+});
+
 
 window.addEventListener(
 "online",
 syncPendingGameReward
 );
+
 
 setInterval(
 syncPendingGameReward,
@@ -5116,6 +5163,9 @@ syncPendingGameReward();
 
 });
 
+if(document.getElementById("gameList")){
+    loadGames();
+}
 /* ========================= */
 /* DEVTOOLS DETECT */
 /* ========================= */
@@ -5146,6 +5196,25 @@ devtoolsLogged = false;
 
 },5000);
 
-if(document.getElementById("gameList")){
-    loadGames();
-}
+/* Game coin auto Claim Button */
+document.querySelectorAll(".nav-item").forEach(btn=>{
+
+btn.addEventListener("click",async()=>{
+
+await syncPendingGameReward();
+
+await claimPendingGameReward();
+
+});
+
+});
+
+window.goBackFromGame=async()=>{
+
+await syncPendingGameReward();
+
+await claimPendingGameReward();
+
+history.back();
+
+};

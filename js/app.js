@@ -2156,9 +2156,106 @@ function renderFeatured(){
     featuredBanner.style.backgroundImage=
     `url(${game.banner})`;
 
+
+    featuredPlayBtn.onclick = () => {
+
+    comingSoon(game);
+
+};
 }
 
+function renderGameList(){
 
+    if(!gameList) return;
+
+    gameList.innerHTML="";
+
+    playGames.forEach(game=>{
+
+        const card=document.createElement("div");
+
+        card.className="play-card";
+
+        card.innerHTML=`
+
+        <img
+        class="play-logo"
+        src="${game.logo}">
+
+        <div class="play-info">
+
+            <div class="play-title">
+
+                ${game.name}
+
+            </div>
+
+            <div class="play-desc">
+
+                ${game.description}
+
+            </div>
+
+            <div class="play-bottom">
+
+                <span class="play-reward">
+
+                    🪙 ${game.reward}
+
+                </span>
+
+                <button
+                class="play-btn">
+
+                    Play
+
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+        card
+        .querySelector(".play-btn")
+        .onclick=()=>{
+
+            comingSoon(game);
+
+        };
+
+        gameList.appendChild(card);
+
+    });
+
+}
+
+function comingSoon(game){
+
+    tg.showPopup({
+
+        title:"🎮 Game is coming soon...",
+
+        message:
+
+`${game.name}
+
+গেইম সার্ভার আপডেট চলছে, খুব শীঘ্রই যুক্ত হবে।`,
+
+        buttons:[
+
+            {
+
+                type:"ok"
+
+            }
+
+        ]
+
+    });
+
+}
 
 if(document.getElementById("gameList")){
 

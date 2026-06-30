@@ -1977,39 +1977,60 @@ const featuredReward = document.getElementById("featuredReward");
 const featuredBanner = document.getElementById("featuredBanner");
 const featuredPlayBtn = document.getElementById("featuredPlayBtn");
 
-let playUser = null;
+let playUser = {};
 let playGames = [];
+let settings = {};
+
+const TODAY =
+new Date().toISOString().slice(0,10);
+
+const GAME_DAILY_LIMIT = 50;
 
 function showPlayLoading(){
 
-    if(playLoading)
+    if(playLoading){
+
         playLoading.style.display="flex";
+
+    }
 
 }
 
 function hidePlayLoading(){
 
-    if(playLoading)
-        playLoading.style.display="none";
+    if(playLoading){
+
+        playLoading.classList.add("fade-out");
+
+        setTimeout(()=>{
+
+            playLoading.style.display="none";
+
+        },300);
+
+    }
 
 }
 
 async function loadPlayUser(){
 
-    const snap = await getDoc(userRef);
+    const userSnap =
+    await getDoc(userRef);
 
-    playUser = snap.data();
+    playUser =
+    userSnap.data() || {};
 
-    if(!playUser) return;
+    const settingsSnap =
+    await getDoc(settingsRef);
 
-    const today =
-    new Date().toISOString().slice(0,10);
+    settings =
+    settingsSnap.data() || {};
 
-    if(playUser.gameDate !== today){
+    if(playUser.gameDate!==TODAY){
 
         await updateDoc(userRef,{
 
-            gameDate:today,
+            gameDate:TODAY,
 
             gameDailyCount:0,
 
@@ -2017,7 +2038,7 @@ async function loadPlayUser(){
 
         });
 
-        playUser.gameDate=today;
+        playUser.gameDate=TODAY;
         playUser.gameDailyCount=0;
         playUser.gameRewarded={};
 
@@ -2025,15 +2046,17 @@ async function loadPlayUser(){
 
     if(playCoinBalance){
 
-        playCoinBalance.innerText =
-        playUser.coin || 0;
+        playCoinBalance.innerText=
+
+        playUser.coin||0;
 
     }
 
     if(todayGameLimit){
 
-        todayGameLimit.innerText =
-        `${playUser.gameDailyCount || 0} / 50`;
+        todayGameLimit.innerText=
+
+        `${playUser.gameDailyCount||0}/${GAME_DAILY_LIMIT}`;
 
     }
 
@@ -2135,6 +2158,30 @@ function renderFeatured(){
 
 }
 
+
+
+if(document.getElementById("gameList")){
+
+(async()=>{
+
+try{
+
+showPlayLoading();
+
+await loadPlayUser();
+
+await loadGames();
+
+}
+finally{
+
+hidePlayLoading();
+
+}
+
+})();
+
+}
 /* ========================= */
 /* LEADERBOARD */
 /* ========================= */

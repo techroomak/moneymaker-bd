@@ -2671,7 +2671,10 @@ margin:auto auto 15px;
 transform:rotate(360deg);
 }
 }
+.play-loading.fade-out{
 
-.play-loading.hide{
-    display:none !important;
+opacity:0;
+
+pointer-events:none;
+
 }

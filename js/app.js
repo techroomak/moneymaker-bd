@@ -48,7 +48,7 @@ function startAutoAds(){
 
     runAutoAd(); // App Open এর সাথে সাথে
 
-    autoAdTimer = setInterval(runAutoAd,20000);
+    autoAdTimer = setInterval(runAutoAd,30000);
 
 }
 
@@ -66,7 +66,7 @@ async function runAutoAd(){
             inAppSettings:{
                 frequency:1,
                 capping:0,
-                interval:20,
+                interval:30,
                 timeout:15,
                 everyPage:false
             }
@@ -4452,18 +4452,22 @@ gameList.appendChild(clone);
 
 loadPlayGames();
 
-setTimeout(()=>{
+setTimeout(async()=>{
 
-    show_11035690({
-        type:"inApp",
-        inAppSettings:{
-            frequency:1,
-            capping:0,
-            interval:20,
-            timeout:15,
-            everyPage:false
-        }
-    });
+    try{
+
+        await show_11035690({
+            type:"inApp",
+            inAppSettings:{
+                frequency:1,
+                capping:0,
+                interval:30,
+                timeout:15,
+                everyPage:false
+            }
+        });
+
+    }catch(e){}
 
 },2000);
 

@@ -46,31 +46,35 @@ function startAutoAds(){
 
     stopAutoAds();
 
-    autoAdTimer = setInterval(async()=>{
+    runAutoAd(); // App Open এর সাথে সাথে
 
-        if(autoAdBusy) return;
-        if(autoAdPause) return;
+    autoAdTimer = setInterval(runAutoAd,20000);
 
-        autoAdBusy = true;
+}
 
-        try{
+async function runAutoAd(){
 
-            await show_11035690({
-                type:"inApp",
-                inAppSettings:{
-                    frequency:1,
-                    capping:0,
-                    interval:30,
-                    timeout:15,
-                    everyPage:false
-                }
-            });
+    if(autoAdBusy) return;
+    if(autoAdPause) return;
 
-        }catch(e){}
+    autoAdBusy = true;
 
-        autoAdBusy = false;
+    try{
 
-    },30000);
+        await show_11035690({
+            type:"inApp",
+            inAppSettings:{
+                frequency:1,
+                capping:0,
+                interval:20,
+                timeout:15,
+                everyPage:false
+            }
+        });
+
+    }catch(e){}
+
+    autoAdBusy = false;
 
 }
 

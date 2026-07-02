@@ -59,9 +59,10 @@ function startAutoAds(){
 }
 
 async function runAutoAd(){
-    
+
     if(autoAdBusy) return;
     if(autoAdPause) return;
+    if(window.adsgramShowing) return;
 
     autoAdBusy = true;
 
@@ -87,7 +88,7 @@ if(!autoAdPause){
     autoAdTimer = setTimeout(() => {
 
         runAutoAd();
-
+if(window.adsgramShowing) return;
     },40000);
 
 }
@@ -3127,7 +3128,7 @@ stopAutoAds();
 autoAdPause = true;
   
 try{
-
+window.adsgramShowing = true;
     await adsgram2.show();
 
     if(userData.joinedBy){
@@ -3186,9 +3187,15 @@ try{
         }
 
     },1000);
-
+    
 }catch(error){
 
+finally{
+
+    window.adsgramShowing = false;
+
+}
+    
     button.disabled=false;
 
     button.innerHTML=originalText;
@@ -3329,7 +3336,7 @@ stopAutoAds();
 autoAdPause = true;
   
 try{
-
+window.adsgramShowing = true;
     await adsgram4.show();
 
     if(userData.joinedBy){
@@ -3391,6 +3398,12 @@ try{
     },1000);
 
 }catch(error){
+
+finally{
+
+    window.adsgramShowing = false;
+
+}
 
     button.disabled=false;
 

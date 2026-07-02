@@ -34,6 +34,14 @@ tg.ready();
 
 tg.expand();
 
+
+const adsgram2 = window.Adsgram?.init({
+    blockId: "36847"
+});
+
+const adsgram4 = window.Adsgram?.init({
+    blockId: "36859"
+});
 /* =========================
    AUTO ADS MANAGER
 ========================= */
@@ -46,9 +54,7 @@ function startAutoAds(){
 
     stopAutoAds();
 
-    runAutoAd(); // App Open এর সাথে সাথে
-
-    autoAdTimer = setInterval(runAutoAd,40000);
+    runAutoAd();
 
 }
 
@@ -75,14 +81,24 @@ async function runAutoAd(){
     }catch(e){}
 
     autoAdBusy = false;
+   
+if(!autoAdPause){
 
+    autoAdTimer = setTimeout(() => {
+
+        runAutoAd();
+
+    },40000);
+
+}
+   
 }
 
 function stopAutoAds(){
 
     if(autoAdTimer){
 
-        clearInterval(autoAdTimer);
+        clearTimeout(autoAdTimer);
 
         autoAdTimer = null;
 
@@ -3090,102 +3106,85 @@ else if(index === 1){
 stopAutoAds();
 autoAdPause = true;
   
-show_11035690()
+try{
 
-.then(async()=>{
+    await adsgram2.show();
 
-if(userData.joinedBy){
+    if(userData.joinedBy){
 
-const refRef =
-doc(
-db,
-"users",
-String(userData.joinedBy)
-);
+        const refRef =
+        doc(db,"users",String(userData.joinedBy));
 
-await updateDoc(refRef,{
-referDailyEarn:increment(reward),
+        await updateDoc(refRef,{
+            referDailyEarn:increment(reward)
+        });
 
-});
+    }
+
+    await updateDoc(userRef,{
+
+        coin:increment(reward),
+        dailyEarn:increment(reward),
+        totalEarn:increment(reward),
+        dailyAds:increment(1),
+        totalAds:increment(1),
+        ad2Count:increment(1),
+        ad2Last:Date.now(),
+        lastAdWatch:Date.now()
+
+    });
+
+    await loadUserData();
+
+    tg.showPopup({
+        title:"Ads Reward Added ✅",
+        message:`${reward} Coin Added Successfully`,
+        buttons:[{type:"ok"}]
+    });
+
+    button.innerHTML="✅ Claimed";
+
+    autoAdPause=false;
+    startAutoAds();
+
+    let sec=cooldown;
+
+    const timer=setInterval(()=>{
+
+        button.innerText=`Wait ${sec}s`;
+
+        sec--;
+
+        if(sec<0){
+
+            clearInterval(timer);
+
+            button.disabled=false;
+
+            button.innerHTML=originalText;
+
+        }
+
+    },1000);
+
+}catch(error){
+
+    button.disabled=false;
+
+    button.innerHTML=originalText;
+
+    autoAdPause=false;
+
+    startAutoAds();
+
+    alert("Ad was not completed.");
+
+    await createLog(
+        "AdsGram Reward Error",
+        String(error?.message || error)
+    );
+
 }
-  
-await updateDoc(userRef,{
-  
-coin:increment(reward),
-dailyEarn:increment(reward),
-totalEarn:increment(reward),
-dailyAds:increment(1),
-totalAds:increment(1),
-ad2Count:increment(1),
-ad2Last:Date.now(),
-lastAdWatch:Date.now()
-
-});
-  
-await loadUserData();
-
-tg.showPopup({
-
-title:"Ads Reward Added ✅ ",
-
-message:`${reward} Coin Added Successfully`,
-
-buttons:[
-{
-type:"ok"
-}
-]
-
-});
-
-button.innerHTML =
-"✅ Claimed";
-
-autoAdPause = false;
-startAutoAds();
-  
-let sec = cooldown;
-
-const timer =
-setInterval(()=>{
-
-button.innerText =
-`Wait ${sec}s`;
-
-sec--;
-
-if(sec < 0){
-
-clearInterval(timer);
-
-button.disabled = false;
-
-button.innerHTML =
-originalText;
-
-}
-
-},1000);
-
-})
-
-.catch(async(error)=>{
-
-button.disabled = false;
-
-button.innerHTML =
-originalText;
-  
-alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি। <br> অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
-  
-autoAdPause = false;
-startAutoAds();
-  
-await createLog(
-"Ads Reward Error",
-String(error?.message || error)
-);
-});
 
 }
 
@@ -3198,7 +3197,7 @@ else if(index === 2){
 stopAutoAds();
 autoAdPause = true;
   
-show_11035690('pop')
+
 
 .then(async()=>{
   
@@ -3309,104 +3308,86 @@ else if(index === 3){
 stopAutoAds();
 autoAdPause = true;
   
-show_11035690('pop')
-  
-.then(async()=>{
+try{
 
-if(userData.joinedBy){
+    await adsgram4.show();
 
-const refRef =
-doc(
-db,
-"users",
-String(userData.joinedBy)
-);
+    if(userData.joinedBy){
 
-await updateDoc(refRef,{
-referDailyEarn:increment(reward),
+        const refRef =
+        doc(db,"users",String(userData.joinedBy));
 
-});
+        await updateDoc(refRef,{
+            referDailyEarn:increment(reward)
+        });
+
+    }
+
+    await updateDoc(userRef,{
+
+        coin:increment(reward),
+        dailyEarn:increment(reward),
+        totalEarn:increment(reward),
+        dailyAds:increment(1),
+        totalAds:increment(1),
+        ad4Count:increment(1),
+        ad4Last:Date.now(),
+        lastAdWatch:Date.now()
+
+    });
+
+    await loadUserData();
+
+    tg.showPopup({
+        title:"Ads Reward Added ✅",
+        message:`${reward} Coin Added Successfully`,
+        buttons:[{type:"ok"}]
+    });
+
+    button.innerHTML="✅ Claimed";
+
+    autoAdPause=false;
+
+    startAutoAds();
+
+    let sec=cooldown;
+
+    const timer=setInterval(()=>{
+
+        button.innerText=`Wait ${sec}s`;
+
+        sec--;
+
+        if(sec<0){
+
+            clearInterval(timer);
+
+            button.disabled=false;
+
+            button.innerHTML=originalText;
+
+        }
+
+    },1000);
+
+}catch(error){
+
+    button.disabled=false;
+
+    button.innerHTML=originalText;
+
+    autoAdPause=false;
+
+    startAutoAds();
+
+    alert("Ad was not completed.");
+
+    await createLog(
+        "AdsGram Reward Error",
+        String(error?.message || error)
+    );
 
 }
-  
-await updateDoc(userRef,{
-  
-coin:increment(reward),
-dailyEarn:increment(reward),
-totalEarn:increment(reward),
-dailyAds:increment(1),
-totalAds:increment(1),
-ad4Count:increment(1),
-ad4Last:Date.now(),
-lastAdWatch:Date.now()
-
-});
-  
-await loadUserData();
-
-tg.showPopup({
-
-title:"Ads Reward Added ✅",
-
-message:`${reward} Coin Added Successfully`,
-
-buttons:[
-{
-type:"ok"
-}
-]
-
-});
-
-button.innerHTML =
-"✅ Claimed";
-
-autoAdPause = false;
-startAutoAds();
-  
-let sec = cooldown;
-
-const timer =
-setInterval(()=>{
-
-button.innerText =
-`Wait ${sec}s`;
-
-sec--;
-
-if(sec < 0){
-
-clearInterval(timer);
-
-button.disabled = false;
-
-button.innerHTML =
-originalText;
-
-}
-
-},1000);
-
-})
-
-.catch(async(error)=>{
-
-button.disabled = false;
-
-button.innerHTML =
-originalText;
-
-alert("এডস সম্পূর্ণ দেখা হয়নি। অনুগ্রহ করে 15s এডস দেখুন।");
-
-autoAdPause = false;
-startAutoAds();
-  
-await createLog(
-"Ads Reward Error",
-String(error?.message || error)
-
-);
-});
 
 }
 

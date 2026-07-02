@@ -18,6 +18,7 @@ where,
 getDocs,
 onSnapshot,
 orderBy,
+runTransaction,
 deleteDoc
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -750,6 +751,27 @@ missingFields.yesterdayAds = 0;
 
 if(userData.lifetimeAds === undefined)
 missingFields.lifetimeAds = 0;
+
+if(userData.gameCoin===undefined)
+missingFields.gameCoin=0;
+
+if(userData.gameUnlocked===undefined)
+missingFields.gameUnlocked=false;
+
+if(userData.gamePlayed===undefined)
+missingFields.gamePlayed=0;
+
+if(userData.gameRewarded===undefined)
+missingFields.gameRewarded=0;
+
+if(userData.gameDailyCount===undefined)
+missingFields.gameDailyCount={};
+
+if(userData.gamePopup===undefined)
+missingFields.gamePopup={};
+
+if(userData.gameDate===undefined)
+missingFields.gameDate="";
 
 if(Object.keys(missingFields).length > 0){
    await updateDoc(userRef, missingFields);
@@ -1959,326 +1981,6 @@ btn.innerText = "Withdraw";
 
 };
 
-
-/* =====================================================
-                PLAY SYSTEM V2
-===================================================== */
-
-const playLoading = document.getElementById("playLoading");
-const playCoinBalance = document.getElementById("playCoinBalance");
-const todayGameLimit = document.getElementById("todayGameLimit");
-
-const gameList = document.getElementById("gameList");
-
-const featuredCard = document.getElementById("featuredGameCard");
-const featuredTitle = document.getElementById("featuredGameTitle");
-const featuredDescription = document.getElementById("featuredGameDescription");
-const featuredReward = document.getElementById("featuredReward");
-const featuredBanner = document.getElementById("featuredBanner");
-const featuredPlayBtn = document.getElementById("featuredPlayBtn");
-
-let playUser = {};
-let playGames = [];
-let settings = {};
-
-const TODAY =
-new Date().toISOString().slice(0,10);
-
-const GAME_DAILY_LIMIT = 50;
-
-function showPlayLoading(){
-
-    if(playLoading){
-
-        playLoading.style.display="flex";
-
-    }
-
-}
-
-function hidePlayLoading(){
-
-    if(playLoading){
-
-        playLoading.classList.add("fade-out");
-
-        setTimeout(()=>{
-
-            playLoading.style.display="none";
-
-        },300);
-
-    }
-
-}
-
-async function loadPlayUser(){
-
-    const userSnap =
-    await getDoc(userRef);
-
-    playUser =
-    userSnap.data() || {};
-
-    const settingsSnap =
-    await getDoc(settingsRef);
-
-    settings =
-    settingsSnap.data() || {};
-
-    if(playUser.gameDate!==TODAY){
-
-        await updateDoc(userRef,{
-
-            gameDate:TODAY,
-
-            gameDailyCount:0,
-
-            gameRewarded:{}
-
-        });
-
-        playUser.gameDate=TODAY;
-        playUser.gameDailyCount=0;
-        playUser.gameRewarded={};
-
-    }
-
-    if(playCoinBalance){
-
-        playCoinBalance.innerText=
-
-        playUser.coin||0;
-
-    }
-
-    if(todayGameLimit){
-
-        todayGameLimit.innerText=
-
-        `${playUser.gameDailyCount||0}/${GAME_DAILY_LIMIT}`;
-
-    }
-
-}
-
-async function loadGames(){
-
-    console.log("loadGames START");
-
-    showPlayLoading();
-
-    gameList.innerHTML="";
-
-    playGames=[];
-
-    try{
-
-        const q = query(
-
-            collection(db,"games"),
-
-            where("enabled","==",true),
-
-            orderBy("sort")
-
-        );
-
-        const snap = await getDocs(q);
-
-        snap.forEach(doc=>{
-
-            playGames.push({
-
-                id:doc.id,
-
-                ...doc.data()
-
-            });
-
-        });
-
-        renderFeatured();
-
-        renderGameList();
-
-    }
-
-    catch(err){
-
-        console.error(err);
-
-        tg.showPopup({
-
-            title:"Game Error",
-
-            message:"Game load failed",
-
-            buttons:[{
-
-                type:"ok"
-
-            }]
-
-        });
-
-    }
-
-    hidePlayLoading();
-
-    console.log("loadGames END");
-
-}
-
-function renderFeatured(){
-
-    if(!playGames.length) return;
-
-    const game =
-
-    playGames.find(x=>x.featured) ||
-
-    playGames[0];
-
-    featuredTitle.innerText=
-    game.name;
-
-    featuredDescription.innerText=
-    game.description;
-
-    featuredReward.innerHTML=
-
-    `<img class="play-mini-coin-icon"
-    src="https://cdn-icons-png.flaticon.com/128/272/272525.png">
-
-    ${game.reward} Coin`;
-
-    featuredBanner.style.backgroundImage=
-    `url(${game.banner})`;
-
-
-    featuredPlayBtn.onclick = () => {
-
-    comingSoon(game);
-
-};
-}
-
-function renderGameList(){
-
-    if(!gameList) return;
-
-    gameList.innerHTML="";
-
-    playGames.forEach(game=>{
-
-        const card=document.createElement("div");
-
-        card.className="play-card";
-
-        card.innerHTML=`
-
-        <img
-        class="play-logo"
-        src="${game.logo}">
-
-        <div class="play-info">
-
-            <div class="play-title">
-
-                ${game.name}
-
-            </div>
-
-            <div class="play-desc">
-
-                ${game.description}
-
-            </div>
-
-            <div class="play-bottom">
-
-                <span class="play-reward">
-
-                    🪙 ${game.reward}
-
-                </span>
-
-                <button
-                class="play-btn">
-
-                    Play
-
-                </button>
-
-            </div>
-
-        </div>
-
-        `;
-
-        card
-        .querySelector(".play-btn")
-        .onclick=()=>{
-
-            comingSoon(game);
-
-        };
-
-        gameList.appendChild(card);
-
-    });
-
-}
-
-function comingSoon(game){
-
-    tg.showPopup({
-
-        title:"🎮 Game is coming soon...",
-
-        message:
-
-`${game.name}
-
-গেইম সার্ভার আপডেট চলছে, খুব শীঘ্রই যুক্ত হবে।`,
-
-        buttons:[
-
-            {
-
-                type:"ok"
-
-            }
-
-        ]
-
-    });
-
-}
-
-if(document.getElementById("gameList")){
-
-(async()=>{
-
-try{
-
-showPlayLoading();
-
-await loadPlayUser();
-
-await loadGames();
-
-}
-finally{
-
-hidePlayLoading();
-
-}
-
-})();
-
-}
 /* ========================= */
 /* LEADERBOARD */
 /* ========================= */

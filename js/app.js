@@ -48,7 +48,7 @@ function startAutoAds(){
 
     runAutoAd(); // App Open এর সাথে সাথে
 
-    autoAdTimer = setInterval(runAutoAd,30000);
+    autoAdTimer = setInterval(runAutoAd,40000);
 
 }
 
@@ -66,7 +66,7 @@ async function runAutoAd(){
             inAppSettings:{
                 frequency:1,
                 capping:0,
-                interval:30,
+                interval:40,
                 timeout:15,
                 everyPage:false
             }

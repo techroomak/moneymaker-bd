@@ -3204,14 +3204,12 @@ window.adsgramShowing = true;
         "AdsGram Reward Error",
         String(error?.message || error)
     );
+}
 finally{
 
     window.adsgramShowing = false;
 
 }
-    
-}
-
 }
 
 /* ========================= */
@@ -3412,14 +3410,14 @@ window.adsgramShowing = true;
         "AdsGram Reward Error",
         String(error?.message || error)
     );
+}
 
 finally{
 
 window.adsgramShowing = false;
 
 }
-}
-
+    
 }
 
 };

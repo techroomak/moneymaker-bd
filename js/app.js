@@ -752,27 +752,6 @@ missingFields.yesterdayAds = 0;
 if(userData.lifetimeAds === undefined)
 missingFields.lifetimeAds = 0;
 
-if(userData.gameCoin===undefined)
-missingFields.gameCoin=0;
-
-if(userData.gameUnlocked===undefined)
-missingFields.gameUnlocked=false;
-
-if(userData.gamePlayed===undefined)
-missingFields.gamePlayed=0;
-
-if(userData.gameRewarded===undefined)
-missingFields.gameRewarded=0;
-
-if(userData.gameDailyCount===undefined)
-missingFields.gameDailyCount={};
-
-if(userData.gamePopup===undefined)
-missingFields.gamePopup={};
-
-if(userData.gameDate===undefined)
-missingFields.gameDate="";
-
 if(Object.keys(missingFields).length > 0){
    await updateDoc(userRef, missingFields);
 }

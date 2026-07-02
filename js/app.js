@@ -59,7 +59,7 @@ function startAutoAds(){
 }
 
 async function runAutoAd(){
-
+    
     if(autoAdBusy) return;
     if(autoAdPause) return;
 
@@ -105,6 +105,26 @@ function stopAutoAds(){
     }
 
 }
+
+document.addEventListener("visibilitychange",()=>{
+
+    if(document.hidden){
+
+        stopAutoAds();
+
+        return;
+
+    }
+
+    autoAdBusy = false;
+
+    if(!autoAdPause){
+
+        startAutoAds();
+
+    }
+
+});
 
 /* ========================= */
 /* USER */
@@ -4337,6 +4357,14 @@ renderPlayGames();
 
 playLoading.style.display="none";
 
+autoAdBusy = false;
+
+if(!autoAdPause){
+
+    startAutoAds();
+
+}
+    
 });
 
 }
@@ -4432,25 +4460,6 @@ gameList.appendChild(clone);
 /* ==========load play game=============== */
 
 loadPlayGames();
-
-setTimeout(async()=>{
-
-    try{
-
-        await show_11035690({
-            type:"inApp",
-            inAppSettings:{
-                frequency:1,
-                capping:0,
-                interval:30,
-                timeout:15,
-                everyPage:false
-            }
-        });
-
-    }catch(e){}
-
-},1000);
 
 /* ===================================================
    PLAY V1.2A
@@ -4689,6 +4698,8 @@ async function onGameReturn(
 sdk=false
 
 ){
+
+autoAdBusy = false;
 
 autoAdPause = false;
 

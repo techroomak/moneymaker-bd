@@ -3190,12 +3190,6 @@ window.adsgramShowing = true;
     
 }catch(error){
 
-finally{
-
-    window.adsgramShowing = false;
-
-}
-    
     button.disabled=false;
 
     button.innerHTML=originalText;
@@ -3210,7 +3204,12 @@ finally{
         "AdsGram Reward Error",
         String(error?.message || error)
     );
+finally{
 
+    window.adsgramShowing = false;
+
+}
+    
 }
 
 }
@@ -3399,12 +3398,6 @@ window.adsgramShowing = true;
 
 }catch(error){
 
-finally{
-
-    window.adsgramShowing = false;
-
-}
-
     button.disabled=false;
 
     button.innerHTML=originalText;
@@ -3420,6 +3413,11 @@ finally{
         String(error?.message || error)
     );
 
+finally{
+
+window.adsgramShowing = false;
+
+}
 }
 
 }

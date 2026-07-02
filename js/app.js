@@ -3198,7 +3198,7 @@ stopAutoAds();
 autoAdPause = true;
   
 
-
+show_11035690('pop')
 .then(async()=>{
   
 if(userData.joinedBy){

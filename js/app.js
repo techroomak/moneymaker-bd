@@ -3123,12 +3123,6 @@ else if(index === 2){
 show_11035690('pop')
 
 .then(async()=>{
-
-button.innerText = "Please Wait 30s";
-
-await new Promise(resolve =>
-setTimeout(resolve,30000)
-);
   
 if(userData.joinedBy){
 
@@ -3229,12 +3223,6 @@ String(error?.message || error)
 else if(index === 3){
 
 show_11035690('pop')
-
-button.innerText = "Please Wait 30s";
-
-await new Promise(resolve =>
-setTimeout(resolve,30000)
-);
   
 .then(async()=>{
 

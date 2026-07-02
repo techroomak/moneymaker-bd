@@ -34,6 +34,58 @@ tg.ready();
 
 tg.expand();
 
+/* =========================
+   AUTO ADS MANAGER
+========================= */
+
+let autoAdTimer = null;
+let autoAdBusy = false;
+let autoAdPause = false;
+
+function startAutoAds(){
+
+    stopAutoAds();
+
+    autoAdTimer = setInterval(async()=>{
+
+        if(autoAdBusy) return;
+        if(autoAdPause) return;
+
+        autoAdBusy = true;
+
+        try{
+
+            await show_11035690({
+                type:"inApp",
+                inAppSettings:{
+                    frequency:1,
+                    capping:0,
+                    interval:30,
+                    timeout:15,
+                    everyPage:false
+                }
+            });
+
+        }catch(e){}
+
+        autoAdBusy = false;
+
+    },30000);
+
+}
+
+function stopAutoAds(){
+
+    if(autoAdTimer){
+
+        clearInterval(autoAdTimer);
+
+        autoAdTimer = null;
+
+    }
+
+}
+
 /* ========================= */
 /* USER */
 /* ========================= */
@@ -2725,6 +2777,7 @@ try{
 loadPlayTask();
 }catch(e){}
 
+startAutoAds();
 /* ========================= */
 /* ADS BUTTON SYSTEM */
 /* ========================= */
@@ -2783,7 +2836,7 @@ if(userData.banned === true){
 
   tg.showPopup({
     title:"আপনার একাউন্ট ব্যান করা হয়েছে",
-    message:"আপনি এই মুহুর্তে কোনো রিওয়ার্ড পাবেন না। /n/n/ একাউন্ট সচল করতে সাপোর্টে কথা বলুন ",
+    message:"আপনি এই মুহুর্তে কোনো রিওয়ার্ড পাবেন না।    একাউন্ট সচল করতে সাপোর্টে কথা বলুন ",
     buttons:[{type:"ok"}]
   });
 
@@ -2919,6 +2972,9 @@ return;
 
 if(index === 0){
 
+stopAutoAds();
+autoAdPause = true;
+  
 show_11035690()
 
 .then(async()=>{
@@ -2973,6 +3029,9 @@ type:"ok"
 button.innerHTML =
 "✅ Claimed";
 
+autoAdPause = false;
+startAutoAds();
+  
 let sec = cooldown;
 
 const timer =
@@ -3007,6 +3066,9 @@ originalText;
 
 alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি।   অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
 
+autoAdPause = false;
+startAutoAds();
+  
 await createLog(
 "Ads Reward Error",
 String(error?.message || error)
@@ -3021,6 +3083,9 @@ String(error?.message || error)
 
 else if(index === 1){
 
+stopAutoAds();
+autoAdPause = true;
+  
 show_11035690()
 
 .then(async()=>{
@@ -3072,6 +3137,9 @@ type:"ok"
 button.innerHTML =
 "✅ Claimed";
 
+autoAdPause = false;
+startAutoAds();
+  
 let sec = cooldown;
 
 const timer =
@@ -3105,7 +3173,10 @@ button.innerHTML =
 originalText;
   
 alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি। <br> অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
-
+  
+autoAdPause = false;
+startAutoAds();
+  
 await createLog(
 "Ads Reward Error",
 String(error?.message || error)
@@ -3120,6 +3191,9 @@ String(error?.message || error)
 
 else if(index === 2){
 
+stopAutoAds();
+autoAdPause = true;
+  
 show_11035690('pop')
 
 .then(async()=>{
@@ -3174,6 +3248,9 @@ type:"ok"
 button.innerHTML =
 "✅ Claimed";
 
+autoAdPause = false;
+startAutoAds();
+  
 let sec = cooldown;
 
 const timer =
@@ -3206,8 +3283,11 @@ button.disabled = false;
 button.innerHTML =
 originalText;
 
-alert("এডস সম্পূর্ণ দেখা হয়নি। অনুগ্রহ করে এডস সম্পূর্ণ দেখুন।");
+alert("এডস সম্পূর্ণ দেখা হয়নি। অনুগ্রহ করে 15s এডস দেখুন।");
 
+autoAdPause = false;
+startAutoAds();
+  
 await createLog(
 "Ads Reward Error",
 String(error?.message || error)
@@ -3222,6 +3302,9 @@ String(error?.message || error)
 
 else if(index === 3){
 
+stopAutoAds();
+autoAdPause = true;
+  
 show_11035690('pop')
   
 .then(async()=>{
@@ -3274,6 +3357,9 @@ type:"ok"
 button.innerHTML =
 "✅ Claimed";
 
+autoAdPause = false;
+startAutoAds();
+  
 let sec = cooldown;
 
 const timer =
@@ -3306,8 +3392,11 @@ button.disabled = false;
 button.innerHTML =
 originalText;
 
-alert("এডস সম্পূর্ণ দেখা হয়নি। অনুগ্রহ করে এডস সম্পূর্ণ দেখুন।");
+alert("এডস সম্পূর্ণ দেখা হয়নি। অনুগ্রহ করে 15s এডস দেখুন।");
 
+autoAdPause = false;
+startAutoAds();
+  
 await createLog(
 "Ads Reward Error",
 String(error?.message || error)
@@ -4574,7 +4663,10 @@ featuredPlayBtn.disabled = true;
 
 playLoading.style.display = "flex";
 
+stopAutoAds();
 
+autoAdPause = true;
+  
 /* Open Game */
 
 openGameFrame(game);
@@ -4593,6 +4685,10 @@ async function onGameReturn(
 sdk=false
 
 ){
+
+autoAdPause = false;
+
+startAutoAds();
 
 rewardWaiting=false;
 

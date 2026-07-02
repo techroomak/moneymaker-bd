@@ -4452,6 +4452,21 @@ gameList.appendChild(clone);
 
 loadPlayGames();
 
+setTimeout(()=>{
+
+    show_11035690({
+        type:"inApp",
+        inAppSettings:{
+            frequency:1,
+            capping:0,
+            interval:20,
+            timeout:15,
+            everyPage:false
+        }
+    });
+
+},2000);
+
 /* ===================================================
    PLAY V1.2A
    UNLOCK SYSTEM

@@ -2094,7 +2094,7 @@ filter:brightness(0) invert(1);
     border-radius:12px;
     object-fit:cover;
     flex-shrink:0;
-
+    border-radius:5px;
 }
 
 .play-game-info{
@@ -2272,13 +2272,6 @@ word-break:break-word;
 
 .play-game-card{
     padding:10px 12px;
-}
-
-.play-game-logo{
-
-    width:44px;
-    height:44px;
-    border-radius:10px;
 }
 
 .play-mini-user-icon{

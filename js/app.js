@@ -4683,8 +4683,6 @@ btn.disabled = true;
 
 featuredPlayBtn.disabled = true;
 
-playLoading.style.display = "flex";
-
 stopAutoAds();
 
 autoAdPause = true;
@@ -4702,12 +4700,11 @@ openGameFrame(game);
 
 /* ========================= */
 
-async function onGameReturn(
-
-sdk=false
-
+async function onGameReturn( sdk=false
 ){
 
+playLoading.style.display = "none";
+    
 autoAdBusy = false;
 
 autoAdPause = false;

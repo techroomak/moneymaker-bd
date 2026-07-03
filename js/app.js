@@ -699,6 +699,9 @@ const missingFields = {};
 if(userData.pending === undefined)
 missingFields.pending = 0;
 
+if(userData.gamesUnlockedAt === undefined)
+missingFields.gamesUnlockedAt = 0;
+
 if(userData.channelVerified === undefined)
 missingFields.channelVerified = false;
 
@@ -3094,7 +3097,7 @@ window.adsgramShowing = true;
 
     button.innerHTML=originalText;
 
-    alert("Ad পাওয়া যায়নি, আবার চেষ্টা করুন।");
+    alert("Ad পাওয়া যায়নি, App রিলোড দিন অথবা কিছুক্ষণ পর আবার চেষ্টা করুন।");
 
     await createLog(
         "AdsGram Reward Error",
@@ -4323,6 +4326,9 @@ game.description||"";
 
 clone.querySelector(".play-game-btn").onclick=()=>{
 
+clone.querySelector(".play-player-count").innerText =
+game.players || 0;
+
 playGame(game.id);
 
 };
@@ -4460,7 +4466,8 @@ await updateDoc(userRef,{
 
 coin:increment(-unlockCost),
 
-gameUnlocked:true
+gameUnlocked:true,
+gamesUnlockedAt: Date.now()
 
 });
 
@@ -4529,7 +4536,10 @@ currentGame = gameId;
 const latest =
 (await getDoc(userRef)).data();
 
-if(latest.gameUnlocked !== true){
+if(
+    latest.gameUnlocked !== true &&
+    !latest.gamesUnlockedAt
+){
 
 openUnlockPopup();
 
@@ -4656,7 +4666,7 @@ tg.showPopup({
 title:"🎮 আজকের রিওয়ার্ড শেষ",
 
 message:
-"আপনি আজ এই গেমের সব রিওয়ার্ড সংগ্রহ করেছেন। চাইলে গেমটি খেলতে পারবেন। নতুন রিওয়ার্ডের জন্য আগামীকাল আবার চেষ্টা করুন।",
+"আপনি আজ এই গেমের সব রিওয়ার্ড সংগ্রহ করেছেন। চাইলে গেমটি খেলতে পারবেন। নতুন রিওয়ার্ডের জন্য অন্য গেম খেলুন।",
 
 buttons:[
 {type:"ok"}
@@ -4672,8 +4682,8 @@ await updateDoc(userRef,{
 
 }
 
-currentPlayGame = null;
-
+currentPlayGame = game;
+openGameFrame(game);
 return;
 
 }
@@ -4967,6 +4977,15 @@ window.gameCloseCallback = function(){
 
 };
 
+document
+.querySelectorAll(".play-game-btn")
+.forEach(btn=>{
+
+    btn.disabled = false;
+
+});
+
+featuredPlayBtn.disabled = false;
 /* ========================= */
 /* PAGE LOAD */
 /* ========================= */

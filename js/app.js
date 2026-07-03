@@ -4925,7 +4925,7 @@ function setGameFrame(frame){
 
 }
 
-function openGameFrame(game){
+async function openGameFrame(game){
 
   if(!gameFrame){
 

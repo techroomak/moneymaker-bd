@@ -4323,13 +4323,20 @@ clone.querySelector(".rewardText").innerText=
 clone.querySelector(".play-game-description").innerText=
 
 game.description||"";
+    
+const playerCount =
+clone.querySelector(".play-player-count");
+
+if(playerCount){
+
+    playerCount.innerText =
+    game.players || 0;
+
+}
 
 clone.querySelector(".play-game-btn").onclick=()=>{
 
-clone.querySelector(".play-player-count").innerText =
-game.players || 0;
-
-playGame(game.id);
+    playGame(game.id);
 
 };
 

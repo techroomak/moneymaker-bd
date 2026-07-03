@@ -42,90 +42,6 @@ const adsgram2 = window.Adsgram?.init({
 const adsgram4 = window.Adsgram?.init({
     blockId: "36859"
 });
-/* =========================
-   AUTO ADS MANAGER
-========================= */
-
-let autoAdTimer = null;
-let autoAdBusy = false;
-let autoAdPause = false;
-
-function startAutoAds(){
-
-    stopAutoAds();
-
-    runAutoAd();
-
-}
-
-async function runAutoAd(){
-
-    if(autoAdBusy) return;
-    if(autoAdPause) return;
-    if(window.adsgramShowing) return;
-
-    autoAdBusy = true;
-
-    try{
-
-        await show_11035690({
-            type:"inApp",
-            inAppSettings:{
-                frequency:1,
-                capping:0,
-                interval:40,
-                timeout:15,
-                everyPage:false
-            }
-        });
-
-    }catch(e){}
-
-    autoAdBusy = false;
-   
-if(!autoAdPause){
-
-    autoAdTimer = setTimeout(() => {
-
-        runAutoAd();
-if(window.adsgramShowing) return;
-    },40000);
-
-}
-   
-}
-
-function stopAutoAds(){
-
-    if(autoAdTimer){
-
-        clearTimeout(autoAdTimer);
-
-        autoAdTimer = null;
-
-    }
-
-}
-
-document.addEventListener("visibilitychange",()=>{
-
-    if(document.hidden){
-
-        stopAutoAds();
-
-        return;
-
-    }
-
-    autoAdBusy = false;
-
-    if(!autoAdPause){
-
-        startAutoAds();
-
-    }
-
-});
 
 /* ========================= */
 /* USER */
@@ -2818,7 +2734,6 @@ try{
 loadPlayTask();
 }catch(e){}
 
-startAutoAds();
 /* ========================= */
 /* ADS BUTTON SYSTEM */
 /* ========================= */
@@ -3012,9 +2927,6 @@ return;
 /* ========================= */
 
 if(index === 0){
-
-stopAutoAds();
-autoAdPause = true;
   
 show_11035690()
 
@@ -3069,9 +2981,6 @@ type:"ok"
 
 button.innerHTML =
 "✅ Claimed";
-
-autoAdPause = false;
-startAutoAds();
   
 let sec = cooldown;
 
@@ -3106,9 +3015,6 @@ button.innerHTML =
 originalText;
 
 alert("বিজ্ঞাপন সম্পূর্ণ দেখা হয়নি।   অনুগ্রহ করে বিজ্ঞাপনটি সম্পূর্ণ দেখুন।");
-
-autoAdPause = false;
-startAutoAds();
   
 await createLog(
 "Ads Reward Error",
@@ -3123,9 +3029,6 @@ String(error?.message || error)
 /* ========================= */
 
 else if(index === 1){
-
-stopAutoAds();
-autoAdPause = true;
   
 try{
 window.adsgramShowing = true;
@@ -3165,9 +3068,6 @@ window.adsgramShowing = true;
 
     button.innerHTML="✅ Claimed";
 
-    autoAdPause=false;
-    startAutoAds();
-
     let sec=cooldown;
 
     const timer=setInterval(()=>{
@@ -3194,11 +3094,7 @@ window.adsgramShowing = true;
 
     button.innerHTML=originalText;
 
-    autoAdPause=false;
-
-    startAutoAds();
-
-    alert("Ad was not completed.");
+    alert("Ad পাওয়া যায়নি, আবার চেষ্টা করুন।");
 
     await createLog(
         "AdsGram Reward Error",
@@ -3217,10 +3113,6 @@ finally{
 /* ========================= */
 
 else if(index === 2){
-
-stopAutoAds();
-autoAdPause = true;
-  
 
 show_11035690('pop')
 .then(async()=>{
@@ -3275,9 +3167,6 @@ type:"ok"
 button.innerHTML =
 "✅ Claimed";
 
-autoAdPause = false;
-startAutoAds();
-  
 let sec = cooldown;
 
 const timer =
@@ -3311,9 +3200,6 @@ button.innerHTML =
 originalText;
 
 alert("এডস সম্পূর্ণ দেখা হয়নি। অনুগ্রহ করে 15s এডস দেখুন।");
-
-autoAdPause = false;
-startAutoAds();
   
 await createLog(
 "Ads Reward Error",
@@ -3328,9 +3214,6 @@ String(error?.message || error)
 /* ========================= */
 
 else if(index === 3){
-
-stopAutoAds();
-autoAdPause = true;
   
 try{
 window.adsgramShowing = true;
@@ -3370,10 +3253,6 @@ window.adsgramShowing = true;
 
     button.innerHTML="✅ Claimed";
 
-    autoAdPause=false;
-
-    startAutoAds();
-
     let sec=cooldown;
 
     const timer=setInterval(()=>{
@@ -3400,11 +3279,7 @@ window.adsgramShowing = true;
 
     button.innerHTML=originalText;
 
-    autoAdPause=false;
-
-    startAutoAds();
-
-    alert("Ad was not completed.");
+    alert("Ad পাওয়া যায়নি, আবার চেষ্টা করুন।");
 
     await createLog(
         "AdsGram Reward Error",
@@ -4326,7 +4201,7 @@ document.getElementById("featuredPlayBtn");
 
 let playGames=[];
 
-/* ========================= */
+/* ==========Load Play Game=============== */
 
 function loadPlayGames(){
 
@@ -4365,20 +4240,12 @@ playGames.push(game);
 renderPlayGames();
 
 playLoading.style.display="none";
-
-autoAdBusy = false;
-
-if(!autoAdPause){
-
-    startAutoAds();
-
-}
     
 });
 
 }
 
-/* ========================= */
+/* ==========Render Play Game=============== */
 
 function renderPlayGames(){
 
@@ -4682,10 +4549,6 @@ btn.disabled = true;
 });
 
 featuredPlayBtn.disabled = true;
-
-stopAutoAds();
-
-autoAdPause = true;
   
 /* Open Game */
 
@@ -4704,12 +4567,6 @@ async function onGameReturn( sdk=false
 ){
 
 playLoading.style.display = "none";
-    
-autoAdBusy = false;
-
-autoAdPause = false;
-
-startAutoAds();
 
 rewardWaiting=false;
 

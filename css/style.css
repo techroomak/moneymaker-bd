@@ -2178,10 +2178,15 @@ word-break:break-word;
 
 .play-game-complete{
     margin-top:5px;
-    font-size:9px;
-    color:#94a3b8;
+    font-size:10px;
+    color:#2e2f31;
     text-align:center;
     line-height:1.25;
+}
+.play-player-icon{
+    width: 9px;
+    height: 9px;
+    margin-right: 3px;
 }
 
 

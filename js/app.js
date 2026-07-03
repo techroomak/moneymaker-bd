@@ -764,6 +764,25 @@ missingFields.yesterdayAds = 0;
 if(userData.lifetimeAds === undefined)
 missingFields.lifetimeAds = 0;
 
+if(userData.gamePlayed === undefined)
+missingFields.gamePlayed = 0;
+
+if(userData.gameRewarded === undefined)
+missingFields.gameRewarded = 0;
+
+if(userData.gameDailyCount === undefined)
+missingFields.gameDailyCount = {};
+
+if(userData.gamePopup === undefined)
+missingFields.gamePopup = {};
+
+if(userData.gameDate === undefined)
+missingFields.gameDate = "";
+
+if(userData.gameCoin === undefined)
+missingFields.gameCoin = 0;
+
+    
 if(Object.keys(missingFields).length > 0){
    await updateDoc(userRef, missingFields);
 }
@@ -4929,6 +4948,13 @@ function openGameFrame(game){
 
     playStartedAt = Date.now();
 
+    await updateDoc(
+    doc(db, "games", game.id),
+    {
+        players: increment(1)
+    }
+    );
+    
     gameFrame.src = game.url;
 
 gameFrame.style.cssText = `
@@ -4966,6 +4992,21 @@ function closeGameFrame(){
 
     rewardWaiting=false;
     currentPlayGame=null;
+}
+
+playStartedAt = 0;
+
+document
+.querySelectorAll(".play-game-btn")
+.forEach(btn=>{
+
+btn.disabled = false;
+
+});
+
+if(typeof featuredPlayBtn !== "undefined" && featuredPlayBtn){
+
+featuredPlayBtn.disabled = false;
 
 }
 
@@ -5107,9 +5148,8 @@ document.getElementById(
 
 if(!box) return;
 
-const count=
-
-playUser.gameRewarded || 0;
+const count =
+Number(playUser.gameRewarded || 0);
 
 const limit=
 

@@ -4682,8 +4682,7 @@ await updateDoc(userRef,{
 
 }
 
-currentPlayGame = game;
-openGameFrame(game);
+currentPlayGame = null;
 return;
 
 }

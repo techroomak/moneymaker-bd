@@ -4164,9 +4164,9 @@ loadTeamData();
 loadTeamBonusData();
 }
 
+
 /* ===================================================
-   PLAY V1
-   GAME LOADER
+   PLAY V1 GAME LOADER
 =================================================== */
 
 const playLoading =
@@ -4891,6 +4891,13 @@ function setGameFrame(frame){
 }
 
 function openGameFrame(game){
+
+  if(!gameFrame){
+
+    gameFrame =
+    document.getElementById("gameFrame");
+
+}
 
     if(!gameFrame){
 

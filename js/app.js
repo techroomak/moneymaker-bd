@@ -5052,32 +5052,19 @@ function openGameFrame(game){
 
     playStartedAt = Date.now();
 
-    playLoading.style.display = "flex";
-
     gameFrame.src = game.url;
 
-    gameFrame.style.cssText = `
-    display:block;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    border:0;
-    z-index:999999;
-    background:#000;
-    `;
-
-    setTimeout(()=>{
-
-    playLoading.style.display = "none";
-
-    document.querySelectorAll(".play-game-btn")
-        .forEach(btn=>btn.disabled=false);
-
-    featuredPlayBtn.disabled=false;
-
-    },600);
+gameFrame.style.cssText = `
+display:block;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+border:0;
+z-index:999999;
+background:#000;
+`;
 
 showGameBackButton();
 }

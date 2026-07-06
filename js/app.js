@@ -4221,7 +4221,25 @@ document.getElementById("featuredBanner");
 const featuredPlayBtn =
 document.getElementById("featuredPlayBtn");
 
+const rewardOverlay =
+document.getElementById("gameRewardOverlay");
+
+const rewardTimer =
+document.getElementById("rewardTimer");
+
+let rewardInterval = null;
+
+let rewardReady = false;
+
 let playGames=[];
+
+let rewardClaimed = false;
+
+let rewardSaving = false;
+
+let currentGame = null;
+
+let playStartedAt = 0;
 
 /* ==========Load Play Game=============== */
 
@@ -4399,7 +4417,7 @@ playUser=snap.data() || {};
 if(document.getElementById("playCoinBalance")){
 
 document.getElementById("playCoinBalance").innerText=
-playUser.coin || 0;
+playUser.gameCoin || 0;
 
 }
 
@@ -4863,7 +4881,7 @@ const latest =
 (await getDoc(userRef)).data();
 
 document.getElementById("playCoinBalance").innerText =
-latest.coin || 0;
+latest.gameCoin || 0;
 
 }
 
@@ -4956,6 +4974,20 @@ async function openGameFrame(game){
     );
     
     gameFrame.src = game.url;
+
+currentGame = game;
+
+playStartedAt = Date.now();
+
+rewardReady = false;
+
+rewardClaimed = false;
+
+rewardSaving = false;
+
+startRewardCountdown(
+game.rewardTime || 60
+);
 
 gameFrame.style.cssText = `
 display:block;
@@ -5209,12 +5241,172 @@ function showGameBackButton(){
     });
 
 }
+
+/* Start Game Count Down */
+
+function startRewardCountdown(seconds){
+
+rewardReady = false;
+
+rewardClaimed = false;
+
+rewardSaving = false;
+
+clearInterval(rewardInterval);
+
+rewardOverlay.style.display = "flex";
+
+let time = seconds;
+
+rewardTimer.innerText = time;
+
+rewardInterval = setInterval(()=>{
+
+time--;
+
+if(time >= 0){
+
+rewardTimer.innerText = time;
+
+}
+
+if(time <= 0){
+
+clearInterval(rewardInterval);
+
+rewardReady = true;
+
+rewardTimer.innerHTML = "✓";
+
+rewardTimer.classList.add("reward-complete");
+
+}
+
+},1000);
+
+}
+
+/* Give Game Reward */
+
+async function giveGameReward(game){
+
+if(!rewardReady) return;
+
+if(rewardClaimed) return;
+
+if(rewardSaving) return;
+
+rewardSaving = true;
+
+rewardClaimed = true;
+
+try{
+
+await runTransaction(db,async(transaction)=>{
+
+const snap =
+await transaction.get(userRef);
+
+const user =
+snap.data();
+
+const today =
+new Date().toISOString().slice(0,10);
+
+const reward =
+Number(game.reward || 0);
+
+const limit =
+Number(game.dailyLimit || 20);
+
+let gameDailyCount =
+user.gameDailyCount || {};
+
+if(user.gameDate !== today){
+
+gameDailyCount = {};
+
+}
+
+const played =
+gameDailyCount[game.id] || 0;
+
+if(played >= limit){
+
+rewardSaving = false;
+
+return;
+
+}
+
+gameDailyCount[game.id] = played + 1;
+
+transaction.update(userRef,{
+
+coin:increment(reward),
+
+dailyEarn:increment(reward),
+
+totalEarn:increment(reward),
+
+gameCoin:increment(reward),
+
+gameDate:today,
+
+gameDailyCount
+
+});
+
+});
+
+await loadUserData();
+
+}
+catch(err){
+
+console.error(err);
+
+rewardClaimed = false;
+
+}
+finally{
+
+rewardSaving = false;
+
+}
+
+}
+
 /* Go back button */
-function goBackFromGame(){
+async function goBackFromGame(){
+
+  clearInterval(rewardInterval);
+
+rewardOverlay.style.display = "none";
+
+if(currentGame){
+
+await giveGameReward(currentGame);
+
+}
+
+rewardReady = false;
+
+rewardClaimed = false;
+
+rewardSaving = false;
+
+currentGame = null;
+
+rewardTimer.classList.remove("reward-complete");
+
+rewardTimer.innerHTML = "00";
 
     window.history.back();
 
 }
+
+
 
 /* ========================= */
 /* DEVTOOLS DETECT */

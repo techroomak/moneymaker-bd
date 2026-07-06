@@ -5219,7 +5219,9 @@ function showGameBackButton(){
 
             title:"Exit Game?",
 
-            message:"আপনি কি গেম থেকে বের হতে চান? গেম কমপ্লিট না হলে রিওয়ার্ড দেওয়া হবে না।",
+            message: rewardReady
+            ? "আপনি কি গেম থেকে বের হতে চান?    আপনার রিওয়ার্ড দেওয়া হয়েছে"
+            : "আপনি কি গেম থেকে বের হতে চান?   গেম কমপ্লিট না হলে রিওয়ার্ড দেওয়া হবে না。",
 
             buttons:[
                 {id:"continue",type:"default",text:"Continue"},

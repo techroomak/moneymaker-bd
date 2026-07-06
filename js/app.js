@@ -2309,12 +2309,12 @@ members.sort((a,b)=>{
 const aInactive =
 (Date.now()-(a.data.lastActive||0))
 >
-(34*60*60*1000);
+(30*60*60*1000);
 
 const bInactive =
 (Date.now()-(b.data.lastActive||0))
 >
-(34*60*60*1000);
+(30*60*60*1000);
 
 if(aInactive!==bInactive){
 return aInactive-bInactive;
@@ -2335,7 +2335,7 @@ new Date().toISOString().slice(0,10);
 const isInactive =
 (Date.now() - (data.lastActive || 0))
 >
-(34 * 60 * 60 * 1000);
+(30 * 60 * 60 * 1000);
 
 const teamDailyEarn =
 isInactive
@@ -4702,7 +4702,7 @@ if(!popupShown){
 
 tg.showPopup({
 
-title:"🎮 আজকের রিওয়ার্ড শেষ",
+title:"🎮 রিওয়ার্ড লিমিট শেষ",
 
 message:
 "আপনি আজ এই গেমের সব রিওয়ার্ড সংগ্রহ করেছেন। চাইলে গেমটি খেলতে পারবেন। নতুন রিওয়ার্ডের জন্য অন্য গেম খেলুন।",
@@ -5068,6 +5068,7 @@ document
 });
 
 featuredPlayBtn.disabled = false;
+loadUserData();
 /* ========================= */
 /* PAGE LOAD */
 /* ========================= */
@@ -5314,9 +5315,25 @@ rewardTimer.classList.remove("reward-complete");
 
 rewardTimer.innerHTML = "00";
 
-    window.history.back();
+    closeGameFrame();
+
+    loadPlayGames();
 
 }
+
+window.goBackFromGamePage = async()=>{
+
+    if(gameFrame.style.display !== "none"){
+
+        await goBackFromGame();
+
+    }else{
+
+        window.location.href="index.html";
+
+    }
+
+};
 
 /* ========================= */
 /* DEVTOOLS DETECT */

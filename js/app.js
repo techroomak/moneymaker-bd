@@ -2309,12 +2309,12 @@ members.sort((a,b)=>{
 const aInactive =
 (Date.now()-(a.data.lastActive||0))
 >
-(48*60*60*1000);
+(30*60*60*1000);
 
 const bInactive =
 (Date.now()-(b.data.lastActive||0))
 >
-(48*60*60*1000);
+(30*60*60*1000);
 
 if(aInactive!==bInactive){
 return aInactive-bInactive;
@@ -2335,7 +2335,7 @@ new Date().toISOString().slice(0,10);
 const isInactive =
 (Date.now() - (data.lastActive || 0))
 >
-(48 * 60 * 60 * 1000);
+(30 * 60 * 60 * 1000);
 
 const teamDailyEarn =
 isInactive
@@ -3116,7 +3116,7 @@ window.adsgramShowing = true;
 
     button.innerHTML=originalText;
 
-    alert("Ad পাওয়া যায়নি, App রিলোড দিন অথবা কিছুক্ষণ পর আবার চেষ্টা করুন।");
+    alert("Ad পাওয়া যায়নি,      App রিলোড দিন অথবা কিছুক্ষণ পর আবার চেষ্টা করুন।");
 
     await createLog(
         "AdsGram Reward Error",
@@ -3221,7 +3221,7 @@ button.disabled = false;
 button.innerHTML =
 originalText;
 
-alert("এডস সম্পূর্ণ দেখা হয়নি। অনুগ্রহ করে 15s এডস দেখুন।");
+alert("এডস সম্পূর্ণ দেখা হয়নি। অনুগ্রহ করে 10s এডস দেখুন।");
   
 await createLog(
 "Ads Reward Error",
@@ -3301,7 +3301,7 @@ window.adsgramShowing = true;
 
     button.innerHTML=originalText;
 
-    alert("Ad পাওয়া যায়নি, আবার চেষ্টা করুন।");
+    alert("Ad পাওয়া যায়নি,     App রিলোড দিন অথবা কিছুক্ষণ পর আবার চেষ্টা করুন।");
 
     await createLog(
         "AdsGram Reward Error",
@@ -4721,7 +4721,9 @@ await updateDoc(userRef,{
 
 }
 
+
 currentPlayGame = null;
+
 return;
 
 }
@@ -4742,10 +4744,11 @@ return;
 
 /* next */
 
-await rewardGame(game);
-
+rewardReady = true;
+/*
 currentPlayGame = null;
-
+রিওয়ার্ড একটিভ অফ 
+*/
 }
 
 /* ===================================================
@@ -5019,6 +5022,11 @@ function closeGameFrame(){
 
     rewardWaiting=false;
     currentPlayGame=null;
+
+    clearInterval(rewardInterval);
+    rewardOverlay.style.display = "none";
+    rewardTimer.classList.remove("reward-complete");
+    rewardTimer.innerHTML = "00";
 }
 
 playStartedAt = 0;
@@ -5218,18 +5226,15 @@ function showGameBackButton(){
                 {id:"exit",type:"destructive",text:"Exit"}
             ]
 
-        },(id)=>{
+        }, async(id)=>{
 
-            if(id==="exit"){
+            if(id !== "exit") return;
 
-                closeGameFrame();
+            await goBackFromGame();
 
-                currentPlayGame=null;
-                rewardWaiting=false;
+            rewardWaiting = false;
 
-                tg.BackButton.hide();
-
-            }
+            tg.BackButton.hide();
 
         });
 
@@ -5281,96 +5286,6 @@ rewardTimer.classList.add("reward-complete");
 
 }
 
-/* Give Game Reward */
-
-async function giveGameReward(game){
-
-if(!rewardReady) return;
-
-if(rewardClaimed) return;
-
-if(rewardSaving) return;
-
-rewardSaving = true;
-
-rewardClaimed = true;
-
-try{
-
-await runTransaction(db,async(transaction)=>{
-
-const snap =
-await transaction.get(userRef);
-
-const user =
-snap.data();
-
-const today =
-new Date().toISOString().slice(0,10);
-
-const reward =
-Number(game.reward || 0);
-
-const limit =
-Number(game.dailyLimit || 20);
-
-let gameDailyCount =
-user.gameDailyCount || {};
-
-if(user.gameDate !== today){
-
-gameDailyCount = {};
-
-}
-
-const played =
-gameDailyCount[game.id] || 0;
-
-if(played >= limit){
-
-rewardSaving = false;
-
-return;
-
-}
-
-gameDailyCount[game.id] = played + 1;
-
-transaction.update(userRef,{
-
-coin:increment(reward),
-
-dailyEarn:increment(reward),
-
-totalEarn:increment(reward),
-
-gameCoin:increment(reward),
-
-gameDate:today,
-
-gameDailyCount
-
-});
-
-});
-
-await loadUserData();
-
-}
-catch(err){
-
-console.error(err);
-
-rewardClaimed = false;
-
-}
-finally{
-
-rewardSaving = false;
-
-}
-
-}
 
 /* Go back button */
 async function goBackFromGame(){
@@ -5379,9 +5294,9 @@ async function goBackFromGame(){
 
 rewardOverlay.style.display = "none";
 
-if(currentGame){
+if(currentPlayGame && rewardReady){
 
-await giveGameReward(currentGame);
+await rewardGame(currentPlayGame);
 
 }
 
@@ -5400,8 +5315,6 @@ rewardTimer.innerHTML = "00";
     window.history.back();
 
 }
-
-
 
 /* ========================= */
 /* DEVTOOLS DETECT */

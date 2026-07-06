@@ -2309,12 +2309,12 @@ members.sort((a,b)=>{
 const aInactive =
 (Date.now()-(a.data.lastActive||0))
 >
-(30*60*60*1000);
+(48*60*60*1000);
 
 const bInactive =
 (Date.now()-(b.data.lastActive||0))
 >
-(30*60*60*1000);
+(48*60*60*1000);
 
 if(aInactive!==bInactive){
 return aInactive-bInactive;
@@ -2335,7 +2335,7 @@ new Date().toISOString().slice(0,10);
 const isInactive =
 (Date.now() - (data.lastActive || 0))
 >
-(30 * 60 * 60 * 1000);
+(48 * 60 * 60 * 1000);
 
 const teamDailyEarn =
 isInactive

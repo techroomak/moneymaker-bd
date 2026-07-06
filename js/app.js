@@ -4388,8 +4388,7 @@ gameList.appendChild(clone);
 loadPlayGames();
 
 /* ===================================================
-   PLAY V1.2A
-   UNLOCK SYSTEM
+   PLAY V1.2A UNLOCK SYSTEM
 =================================================== */
 
 const unlockPopup =
@@ -4403,8 +4402,6 @@ document.getElementById("closeUnlockPopup");
 
 const unlockCoinText =
 document.getElementById("unlockGameCoin");
-
-let currentGame=null;
 
 let playUser={};
 
@@ -4544,12 +4541,10 @@ closeUnlockPopup();
 });
 
 /* ===================================================
-   PLAY V1.2B
-   PLAY ENGINE
+   PLAY V1.2B PLAY ENGINE
 =================================================== */
 
 let currentPlayGame = null;
-let playStartedAt = 0;
 let rewardWaiting = false;
 
 /* ========================= */

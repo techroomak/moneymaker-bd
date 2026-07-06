@@ -22,10 +22,7 @@
 
 <body>
 
-
-
-
-<div id="playLoading" class="play-loading">
+<div id="playLoading" class="play-loading" style="display: none;">
 
 <div class="play-loading-box">
 
@@ -402,15 +399,20 @@
 <iframe
 id="gameFrame"
 allowfullscreen
-style="display:none;width:100%;height:100%;border:0;">
+style="display:none;width:100%;height:100%;border:2px;">
 </iframe>
 
- <iframe id="gameFrame" ...></iframe>
+<div id="gameRewardOverlay" class="game-reward-overlay" style="display:none;">
 
-<!-- এখানেই Overlay -->
-<div id="gameRewardOverlay">
-    ...
-</div>   
+    <div class="reward-circle">
+
+        <span id="rewardTimer" class="reward-timer">
+            00
+        </span>
+
+    </div>
+
+</div>
 <!-- ========================= -->
 <!-- RULES -->
 <!-- ========================= -->

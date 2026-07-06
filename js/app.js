@@ -5068,7 +5068,7 @@ document
 });
 
 featuredPlayBtn.disabled = false;
-loadUserData();
+
 /* ========================= */
 /* PAGE LOAD */
 /* ========================= */

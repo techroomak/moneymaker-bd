@@ -2309,12 +2309,12 @@ members.sort((a,b)=>{
 const aInactive =
 (Date.now()-(a.data.lastActive||0))
 >
-(30*60*60*1000);
+(34*60*60*1000);
 
 const bInactive =
 (Date.now()-(b.data.lastActive||0))
 >
-(30*60*60*1000);
+(34*60*60*1000);
 
 if(aInactive!==bInactive){
 return aInactive-bInactive;
@@ -2335,7 +2335,7 @@ new Date().toISOString().slice(0,10);
 const isInactive =
 (Date.now() - (data.lastActive || 0))
 >
-(30 * 60 * 60 * 1000);
+(34 * 60 * 60 * 1000);
 
 const teamDailyEarn =
 isInactive
@@ -4683,6 +4683,31 @@ user.gamePopup = {};
 
 }
 
+
+
+/* Global Daily Limit */
+
+const globalLimit =
+Number(settingsData.dailyGameLimit || 20);
+
+if((user.gameRewarded || 0) >= globalLimit){
+
+    tg.showPopup({
+
+        title:"🎮 Daily Reward Limit Reached",
+
+        message:`আজকের ${globalLimit} টি গেম রিওয়ার্ড শেষ হয়েছে। আগামীকাল আবার চেষ্টা করুন।`,
+
+        buttons:[{type:"ok"}]
+
+    });
+
+    currentPlayGame = null;
+
+    return;
+
+}
+
 /* reward limit */
 
 const todayCount =
@@ -4815,6 +4840,17 @@ gamePopup = {};
 
 }
 
+/* Global Daily Limit Settings */
+
+const globalLimit =
+Number(settingsData.dailyGameLimit || 20);
+
+if(gameRewarded >= globalLimit){
+
+    throw "GLOBAL_LIMIT_REACHED";
+
+}
+
 /* Limit */
 
 const currentCount =
@@ -4906,9 +4942,25 @@ return;
 
 }
 
+if(error==="GLOBAL_LIMIT_REACHED"){
+
+    tg.showPopup({
+
+        title:"🎮 Daily Reward Limit Reached",
+
+        message:`আজকের ${settingsData.dailyGameLimit || 20} খেলে রিওয়ার্ড লিমিট শেষ।    রিওয়ার্ড পেতে আগামীকাল আবার গেম খেলুন ।`,
+
+        buttons:[{type:"ok"}]
+
+    });
+
+    return;
+
+}
+
 tg.showPopup({
 
-title:"Reward Failed",
+title:"⚠️ Reward Failed",
 
 message:
 "Unable to verify reward. Please try again.",
@@ -4984,7 +5036,7 @@ rewardClaimed = false;
 rewardSaving = false;
 
 startRewardCountdown(
-game.rewardTime || 60
+game.rewardTime || 90
 );
 
 gameFrame.style.cssText = `
@@ -5068,6 +5120,8 @@ document
 });
 
 featuredPlayBtn.disabled = false;
+
+loadUserData();
 
 /* ========================= */
 /* PAGE LOAD */

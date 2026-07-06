@@ -22,7 +22,7 @@
 
 <body>
 
-<div id="playLoading" class="play-loading">
+<div id="playLoading" class="play-loading" style="display: none;">
 
 <div class="play-loading-box">
 
@@ -46,7 +46,7 @@
 
             <button
                 class="play-back-btn"
-                onclick="goBackFromGamePage()">
+                onclick="goBackFromGamepage()">
 
                 <img style="width: 30px;height: 30px;" 
                 src="https://cdn-icons-png.flaticon.com/128/93/93634.png" alt="back">
@@ -184,7 +184,7 @@
 
                     <p>
 
-                        Complete up to 50 games every day.
+                        Complete up to <span id="todayGameLimit">00</span> games every day.
 
                     </p>
 
@@ -198,7 +198,7 @@
                     id="todayGameLimit"
                     class="limit-count">
 
-                    0 / 50
+                    0 / 00
 
                 </div>
 
@@ -481,7 +481,7 @@ style="display:none;width:100%;height:100%;border:2px;">
 
             <div class="play-rule-text">
 
-                Maximum 20 game rewards can be claimed each day.
+                Maximum <span id="todayGameLimit">00</span> game rewards can be claimed each day.
 
             </div>
 

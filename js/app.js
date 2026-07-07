@@ -615,11 +615,7 @@ window.showStartupLoading = async()=>{
     const loading =
     document.getElementById("appLoading");
 
-    if(!loading) return;
-
     await new Promise(r=>setTimeout(r,900));
-
-    await showPageAd();
 
     loading.style.display="none";
 

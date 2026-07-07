@@ -22,6 +22,20 @@
 
 <body>
 
+ <div id="appLoading" class="play-loading">
+
+<div class="play-loading-box">
+
+<div class="play-spinner"></div>
+
+<p>Please wait a moment</p>
+
+<h4>Money Maker BD</h4>
+
+</div>
+
+</div>
+
 <!-- ========================= -->
 <!-- APP CONTAINER -->
 <!-- ========================= -->
@@ -678,7 +692,7 @@ class="social-list"
 
 <button
 class="nav-item active-nav"
-onclick="window.location.href='index.html'"
+onclick="openPage('index.html')"
 >
 
 <img
@@ -696,7 +710,7 @@ Home
 
 <button
 class="nav-item"
-onclick="window.location.href='team.html'"
+onclick="openPage('team.html')"
 >
 
 <img
@@ -714,7 +728,7 @@ My Team
 
 <button
 class="nav-item"
-onclick="window.location.href='leaderboard.html'"
+onclick="openPage('leaderboard.html')"
 >
 
 <img
@@ -732,7 +746,7 @@ Leaderboard
 
 <button
 class="nav-item"
-onclick="window.location.href='withdraw.html'"
+onclick="openPage('withdraw.html')"
 >
 
 <img
@@ -874,10 +888,22 @@ Your withdraw request is currently processing.
 </div>
 
 <script src='//libtl.com/sdk.js' data-zone='11035690' data-sdk='show_11035690'></script>
+
 <script async src="https://sad.adsgram.ai/js/sad.min.js"></script>
+
 <script type="module" src="js/firebase.js"></script>
 
 <script type="module" src="js/app.js"></script>
+
+<script>
+
+window.addEventListener("load",()=>{
+
+    showStartupLoading();
+
+});
+
+</script>
 
 </body>
 </html>

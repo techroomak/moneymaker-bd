@@ -5447,6 +5447,36 @@ window.goBackFromGamePage = async()=>{
 };
 
 /* ========================= */
+/* PLAY PAGE BACK BUTTON */
+/* ========================= */
+
+window.goBackFromGamepage = () => {
+
+    if (window.Telegram?.WebApp?.BackButton) {
+        Telegram.WebApp.BackButton.hide();
+    }
+
+    window.location.href = "index.html";
+
+};
+
+/* ========================= */
+/* PHONE BACK BUTTON */
+/* ========================= */
+
+if (location.pathname.includes("play.html")) {
+
+    history.pushState(null, "", location.href);
+
+    window.addEventListener("popstate", () => {
+
+        window.location.href = "index.html";
+
+    });
+
+}
+
+/* ========================= */
 /* DEVTOOLS DETECT */
 /* ========================= */
 let devtoolsLogged = false;

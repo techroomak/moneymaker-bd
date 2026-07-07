@@ -2815,18 +2815,21 @@ loadPlayTask();
 
 const appLoading = document.getElementById("appLoading");
 
-appLoading.remove();
+if(appLoading){
 
-setTimeout(async()=>{
+    appLoading.remove();
 
-    try{
+    setTimeout(async()=>{
 
-        await showPageAd();
+        try{
 
-    }catch(e){}
+            await showPageAd();
 
-},550);
-    
+        }catch(e){}
+
+    },550);
+
+}
 /* ========================= */
 /* ADS BUTTON SYSTEM */
 /* ========================= */

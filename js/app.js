@@ -574,11 +574,23 @@ window.openPage = async(url)=>{
 
     pageChanging = true;
 
+    // Home এ গেলে Ad দেখাবে না
+    if(url === "index.html"){
+
+        location.href = url;
+        return;
+
+    }
+
     try{
 
         await showPageAd();
 
-    }catch(e){}
+    }catch(e){
+
+        console.log(e);
+
+    }
 
     location.href = url;
 

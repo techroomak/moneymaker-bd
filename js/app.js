@@ -36,11 +36,11 @@ tg.expand();
 
 
 const adsgram2 = window.Adsgram?.init({
-    blockId: "36847"
+    blockId: "37558"
 });
 
 const adsgram4 = window.Adsgram?.init({
-    blockId: "36859"
+    blockId: "37559"
 });
 
 /* ========================= */

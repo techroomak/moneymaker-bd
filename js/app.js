@@ -34,16 +34,13 @@ tg.ready();
 
 tg.expand();
 
-/* ========================= */
-/* Adsgram SDK */
-/* ========================= */
 
 const adsgram2 = window.Adsgram?.init({
-    blockId: "36859"
+    blockId: "36847"
 });
 
 const adsgram4 = window.Adsgram?.init({
-    blockId: "36847"
+    blockId: "36859"
 });
 
 /* ========================= */
@@ -564,6 +561,69 @@ if(Object.keys(missingSettings).length > 0){
   );
 
 }
+
+/* ========================= */
+/* PAGE NAVIGATION */
+/* ========================= */
+
+window.openPage = async(url)=>{
+
+    await showPageAd();
+
+    window.location.href = url;
+
+};
+
+/* ========================= */
+/* GLOBAL ADS */
+/* ========================= */
+
+window.showPageAd = async()=>{
+
+    if(!settingsData.ads) return;
+
+    try{
+
+        await show_11035690({
+
+            type:"inApp",
+
+            inAppSettings:{
+                frequency:1,
+                capping:0,
+                interval:0,
+                timeout:5,
+                everyPage:false
+            }
+
+        });
+
+    }catch(e){
+
+        console.log("Page Ad Skipped");
+
+    }
+
+};
+
+/* ========================= */
+/* STARTUP LOADING */
+/* ========================= */
+
+window.showStartupLoading = async()=>{
+
+    const loading =
+    document.getElementById("appLoading");
+
+    if(!loading) return;
+
+    await new Promise(r=>setTimeout(r,900));
+
+    await showPageAd();
+
+    loading.style.display="none";
+
+};
 
 /* ========================= */
 /* LOAD USER */
@@ -1101,51 +1161,6 @@ loadUserData();
 
 };
 
-/* ========================= */
-/* GLOBAL ADS */
-/* ========================= */
-
-let appOpened = false;
-
-window.showPageAd = async()=>{
-
-    if(!settingsData.ads) return;
-
-    try{
-
-        await show_11035690({
-
-            type:"inApp",
-
-            inAppSettings:{
-                frequency:1,
-                capping:0,
-                interval:0,
-                timeout:5,
-                everyPage:false
-            }
-
-        });
-
-    }catch(e){
-
-        console.log("Page Ad Skipped");
-
-    }
-
-};
-
-window.onPageReady = async()=>{
-
-    if(!appOpened){
-
-        appOpened = true;
-
-        await showPageAd();
-
-    }
-
-};
 
 /* ========================= */
 /* GLOBAL LOG SYSTEM */
@@ -3164,7 +3179,7 @@ window.adsgramShowing = true;
 
     button.innerHTML=originalText;
 
-    alert("Ad পাওয়া যায়নি, App রিলোড দিন অথবা কিছুক্ষণ পর আবার চেষ্টা করুন।");
+    alert("Ad পাওয়া যায়নি,      App রিলোড দিন অথবা কিছুক্ষণ পর আবার চেষ্টা করুন।");
 
     await createLog(
         "AdsGram Reward Error",
@@ -3349,7 +3364,7 @@ window.adsgramShowing = true;
 
     button.innerHTML=originalText;
 
-    alert("Ad পাওয়া যায়নি, App রিলোড দিন অথবা কিছুক্ষণ পর আবার চেষ্টা করুন।");
+    alert("Ad পাওয়া যায়নি,     App রিলোড দিন অথবা কিছুক্ষণ পর আবার চেষ্টা করুন।");
 
     await createLog(
         "AdsGram Reward Error",
@@ -4328,6 +4343,8 @@ playGames.push(game);
 renderPlayGames();
 
 playLoading.style.display="none";
+
+await showPageAd();
     
 });
 
@@ -4744,7 +4761,7 @@ if((user.gameRewarded || 0) >= globalLimit){
 
         title:"🎮 Daily Reward Limit Reached",
 
-        message:`আজকের ${globalLimit} টি গেম রিওয়ার্ড শেষ হয়েছে। আগামীকাল আবার চেষ্টা করুন।`,
+        message:`আজকের ${globalLimit} টি গেম রিওয়ার্ড শেষ হয়েছে। রিওয়ার্ড পেতে আগামীকাল আবার চেষ্টা করুন।`,
 
         buttons:[{type:"ok"}]
 
@@ -5084,7 +5101,7 @@ rewardClaimed = false;
 rewardSaving = false;
 
 startRewardCountdown(
-game.rewardTime || 90
+game.rewardTime || 60
 );
 
 gameFrame.style.cssText = `

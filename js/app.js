@@ -607,23 +607,6 @@ window.showPageAd = async()=>{
 };
 
 /* ========================= */
-/* STARTUP LOADING */
-/* ========================= */
-
-window.showStartupLoading = async()=>{
-
-    const loading =
-    document.getElementById("appLoading");
-
-    if(!loading) return;
-
-    await new Promise(r=>setTimeout(r,900));
-
-    loading.style.display="none";
-
-};
-
-/* ========================= */
 /* LOAD USER */
 /* ========================= */
 

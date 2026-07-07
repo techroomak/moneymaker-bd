@@ -4308,7 +4308,11 @@ let playStartedAt = 0;
 
 function loadPlayGames(){
 
-playLoading.style.display="flex";
+if(playLoading){
+
+    playLoading.style.display = "flex";
+
+}
 
 const q=query(
 
@@ -4342,7 +4346,11 @@ playGames.push(game);
 
 renderPlayGames();
 
-playLoading.style.display="none";
+if(playLoading){
+
+    playLoading.style.display = "none";
+
+}
 
 await showPageAd();
     

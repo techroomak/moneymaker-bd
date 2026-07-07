@@ -578,9 +578,17 @@ window.openPage = async(url)=>{
 /* GLOBAL ADS */
 /* ========================= */
 
+let pageAdShowing = false;
+
 window.showPageAd = async()=>{
 
     if(!settingsData.ads) return;
+
+    if(pageAdShowing) return;
+
+    if(window.adsgramShowing) return;
+
+    pageAdShowing = true;
 
     try{
 
@@ -594,13 +602,18 @@ window.showPageAd = async()=>{
                 interval:0,
                 timeout:5,
                 everyPage:false
+
             }
 
         });
 
     }catch(e){
 
-        console.log("Page Ad Skipped");
+        console.log("Page Ad Skip");
+
+    }finally{
+
+        pageAdShowing = false;
 
     }
 
@@ -2801,6 +2814,25 @@ loadPlayTask();
 }catch(e){}
 
 /* ========================= */
+/* APP LOADING */
+/* ========================= */
+
+const appLoading =
+document.getElementById("appLoading");
+
+if(appLoading){
+
+    appLoading.style.opacity = "0";
+
+    setTimeout(()=>{
+
+        appLoading.remove();
+
+    },300);
+
+}
+    
+/* ========================= */
 /* ADS BUTTON SYSTEM */
 /* ========================= */
 
@@ -4324,8 +4356,6 @@ playGames.push(game);
 renderPlayGames();
 
     playLoading.style.display = "none";
-
-await showPageAd();
     
 });
 

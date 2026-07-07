@@ -568,28 +568,7 @@ if(Object.keys(missingSettings).length > 0){
 
 window.openPage = (url)=>{
 
-    // Home এ ফিরলে Navigation Ad দেখাবে না
-    if(url==="index.html"){
-
-        sessionStorage.setItem("fromNavigation","1");
-
-        window.location.href=url;
-
-        return;
-
-    }
-
-    setTimeout(async()=>{
-
-        try{
-
-            await showPageAd();
-
-        }catch(e){}
-
-        window.location.href=url;
-
-    },500);
+    window.location.href = url;
 
 };
 
@@ -2825,19 +2804,15 @@ loadPlayTask();
 
 appLoading.remove();
 
-if(!sessionStorage.getItem("fromNavigation")){
+setTimeout(async()=>{
 
-    setTimeout(()=>{
+    try{
 
-        showPageAd().catch(console.error);
+        await showPageAd();
 
-    },550);
+    }catch(e){}
 
-}else{
-
-    sessionStorage.removeItem("fromNavigation");
-
-}
+},550);
     
 /* ========================= */
 /* ADS BUTTON SYSTEM */

@@ -566,19 +566,23 @@ if(Object.keys(missingSettings).length > 0){
 /* PAGE NAVIGATION */
 /* ========================= */
 
-window.openPage = async(url)=>{
+window.openPage = (url)=>{
 
-    try{
+    setTimeout(async()=>{
 
-        await showPageAd();
+        try{
 
-    }catch(e){
+            await showPageAd();
 
-        console.log(e);
+        }catch(e){
 
-    }
+            console.log(e);
 
-    window.location.href = url;
+        }
+
+        window.location.href = url;
+
+    },500);
 
 };
 

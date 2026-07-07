@@ -566,12 +566,23 @@ if(Object.keys(missingSettings).length > 0){
 /* PAGE NAVIGATION */
 /* ========================= */
 
-window.openPage = (url)=>{
+let pageChanging = false;
 
-    window.location.href = url;
+window.openPage = async(url)=>{
+
+    if(pageChanging) return;
+
+    pageChanging = true;
+
+    try{
+
+        await showPageAd();
+
+    }catch(e){}
+
+    location.href = url;
 
 };
-
 /* ========================= */
 /* GLOBAL ADS */
 /* ========================= */
@@ -2801,6 +2812,8 @@ loadPlayTask();
 /* ========================= */
 /* APP LOADING */
 /* ========================= */
+
+const appLoading = document.getElementById("appLoading");
 
 appLoading.remove();
 

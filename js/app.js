@@ -615,9 +615,13 @@ window.showStartupLoading = async()=>{
     const loading =
     document.getElementById("appLoading");
 
+    if(!loading) return;
+
     await new Promise(r=>setTimeout(r,900));
 
     loading.style.display="none";
+
+    showPageAd();
 
 };
 
@@ -4314,7 +4318,7 @@ orderBy("sort","asc")
 
 );
 
-onSnapshot(q,(snapshot)=>{
+onSnapshot(q, async(snapshot)=>{
 
 playGames=[];
 

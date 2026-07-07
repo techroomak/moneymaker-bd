@@ -563,6 +563,26 @@ if(Object.keys(missingSettings).length > 0){
 }
 
 /* ========================= */
+/* PAGE NAVIGATION */
+/* ========================= */
+
+window.openPage = async(url)=>{
+
+    try{
+
+        await showPageAd();
+
+    }catch(e){
+
+        console.log(e);
+
+    }
+
+    window.location.href = url;
+
+};
+
+/* ========================= */
 /* GLOBAL ADS */
 /* ========================= */
 

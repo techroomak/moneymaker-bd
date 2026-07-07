@@ -568,19 +568,26 @@ if(Object.keys(missingSettings).length > 0){
 
 window.openPage = (url)=>{
 
+    // Home এ ফিরলে Navigation Ad দেখাবে না
+    if(url==="index.html"){
+
+        sessionStorage.setItem("fromNavigation","1");
+
+        window.location.href=url;
+
+        return;
+
+    }
+
     setTimeout(async()=>{
 
         try{
 
             await showPageAd();
 
-        }catch(e){
+        }catch(e){}
 
-            console.log(e);
-
-        }
-
-        window.location.href = url;
+        window.location.href=url;
 
     },500);
 
@@ -2816,24 +2823,19 @@ loadPlayTask();
 /* APP LOADING */
 /* ========================= */
 
-const appLoading =
-document.getElementById("appLoading");
+appLoading.remove();
 
-if(appLoading){
-
-    appLoading.style.opacity = "0";
+if(!sessionStorage.getItem("fromNavigation")){
 
     setTimeout(()=>{
 
-        appLoading.remove();
+        showPageAd().catch(console.error);
 
-      setTimeout(()=>{
+    },550);
 
-    showPageAd().catch(console.error);
+}else{
 
-  },550);
-
-    },350);
+    sessionStorage.removeItem("fromNavigation");
 
 }
     

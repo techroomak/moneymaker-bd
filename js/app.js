@@ -621,8 +621,6 @@ window.showStartupLoading = async()=>{
 
     loading.style.display="none";
 
-    showPageAd();
-
 };
 
 /* ========================= */

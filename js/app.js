@@ -563,30 +563,6 @@ if(Object.keys(missingSettings).length > 0){
 }
 
 /* ========================= */
-/* PAGE NAVIGATION */
-/* ========================= */
-
-window.openPage = async(url)=>{
-
-    try{
-
-        await showPageAd();
-
-    }catch(e){
-
-        console.log(e);
-
-    }
-
-    setTimeout(()=>{
-
-        window.location.href = url;
-
-    },300);
-
-};
-
-/* ========================= */
 /* GLOBAL ADS */
 /* ========================= */
 
@@ -2827,7 +2803,13 @@ if(appLoading){
 
         appLoading.remove();
 
-    },300);
+      setTimeout(()=>{
+
+    showPageAd().catch(console.error);
+
+  },550);
+
+    },350);
 
 }
     
@@ -3846,10 +3828,9 @@ document.getElementById("playTaskBtn");
 
 if(!btn) return;
 
-btn.onclick=()=>{
+btn.onclick = ()=>{
 
-window.location.href=
-"play.html?type=game";
+openPage("play.html?type=game");
 
 };
 

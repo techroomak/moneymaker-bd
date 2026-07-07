@@ -568,9 +568,21 @@ if(Object.keys(missingSettings).length > 0){
 
 window.openPage = async(url)=>{
 
-    await showPageAd();
+    try{
 
-    window.location.href = url;
+        await showPageAd();
+
+    }catch(e){
+
+        console.log(e);
+
+    }
+
+    setTimeout(()=>{
+
+        window.location.href = url;
+
+    },300);
 
 };
 
@@ -590,28 +602,15 @@ window.showPageAd = async()=>{
 
     pageAdShowing = true;
 
-    try{
+       try{
 
-        await show_11035690({
+    await show_11035690();
 
-            type:"inApp",
+}catch(e){
 
-            inAppSettings:{
-                frequency:1,
-                capping:0,
-                interval:0,
-                timeout:5,
-                everyPage:false
+    console.log("Page Ad Error",e);
 
-            }
-
-        });
-
-    }catch(e){
-
-        console.log("Page Ad Skip");
-
-    }finally{
+}finally{
 
         pageAdShowing = false;
 

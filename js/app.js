@@ -34,13 +34,16 @@ tg.ready();
 
 tg.expand();
 
+/* ========================= */
+/* Adsgram SDK */
+/* ========================= */
 
 const adsgram2 = window.Adsgram?.init({
-    blockId: "37558"
+    blockId: "36859"
 });
 
 const adsgram4 = window.Adsgram?.init({
-    blockId: "37559"
+    blockId: "36847"
 });
 
 /* ========================= */
@@ -3116,7 +3119,7 @@ window.adsgramShowing = true;
 
     button.innerHTML=originalText;
 
-    alert("Ad পাওয়া যায়নি,      App রিলোড দিন অথবা কিছুক্ষণ পর আবার চেষ্টা করুন।");
+    alert("Ad পাওয়া যায়নি, App রিলোড দিন অথবা কিছুক্ষণ পর আবার চেষ্টা করুন।");
 
     await createLog(
         "AdsGram Reward Error",
@@ -3301,7 +3304,7 @@ window.adsgramShowing = true;
 
     button.innerHTML=originalText;
 
-    alert("Ad পাওয়া যায়নি,     App রিলোড দিন অথবা কিছুক্ষণ পর আবার চেষ্টা করুন।");
+    alert("Ad পাওয়া যায়নি, App রিলোড দিন অথবা কিছুক্ষণ পর আবার চেষ্টা করুন।");
 
     await createLog(
         "AdsGram Reward Error",

@@ -676,12 +676,14 @@ color:#2563eb;
 .nav-item img{
 width:24px;
 height:24px;
+transition:transform .22s ease
 }
 
 .nav-item span{
 font-size:11px;
 font-weight:700;
 color:#666;
+transition:color .22s ease;
 }
 
 .active-nav span{

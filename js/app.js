@@ -1101,6 +1101,51 @@ loadUserData();
 
 };
 
+/* ========================= */
+/* GLOBAL ADS */
+/* ========================= */
+
+let appOpened = false;
+
+window.showPageAd = async()=>{
+
+    if(!settingsData.ads) return;
+
+    try{
+
+        await show_11035690({
+
+            type:"inApp",
+
+            inAppSettings:{
+                frequency:1,
+                capping:0,
+                interval:0,
+                timeout:5,
+                everyPage:false
+            }
+
+        });
+
+    }catch(e){
+
+        console.log("Page Ad Skipped");
+
+    }
+
+};
+
+window.onPageReady = async()=>{
+
+    if(!appOpened){
+
+        appOpened = true;
+
+        await showPageAd();
+
+    }
+
+};
 
 /* ========================= */
 /* GLOBAL LOG SYSTEM */

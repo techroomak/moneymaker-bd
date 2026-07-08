@@ -4645,7 +4645,7 @@ if(!game){
 
 tg.showPopup({
 title:"Game Not Found",
-message:"এই গেমটি বর্তমানে উপলব্ধ নেই।",
+message:"এই গেমটি পাওয়া যায়নি অন্য গুলো চেষ্টা করুন।",
 buttons:[{type:"ok"}]
 });
 
@@ -4791,9 +4791,9 @@ if((user.gameRewarded || 0) >= globalLimit){
 
     tg.showPopup({
 
-        title:"🎮 Daily Reward Limit Reached",
+        title:"⚠️ Daily Reward Limit Reached",
 
-        message:`আজকের ${globalLimit} টি গেম রিওয়ার্ড শেষ হয়েছে। রিওয়ার্ড পেতে আগামীকাল আবার চেষ্টা করুন।`,
+        message:`আজকের ${globalLimit} টি গেম লিমিট শেষ হয়েছে। রিওয়ার্ড পেতে আগামীকাল আবার চেষ্টা করুন।`,
 
         buttons:[{type:"ok"}]
 
@@ -4824,7 +4824,7 @@ if(!popupShown){
 
 tg.showPopup({
 
-title:"🎮 রিওয়ার্ড লিমিট শেষ",
+title:"⚠️ রিওয়ার্ড লিমিট শেষ",
 
 message:
 "আপনি আজ এই গেমের সব রিওয়ার্ড সংগ্রহ করেছেন। চাইলে গেমটি খেলতে পারবেন। নতুন রিওয়ার্ডের জন্য অন্য গেম খেলুন।",
@@ -5035,7 +5035,17 @@ console.log(error);
 
 if(error==="LIMIT_REACHED"){
 
-return;
+    tg.showPopup({
+
+        title:"˚.🎁⋆ Reward Limit Reached",
+
+        message:"⚠️ আজ এই গেমের রিওয়ার্ড শেষ হয়েছে। অন্য গেম খেলুন অথবা আগামীকাল আবার চেষ্টা করুন।",
+
+        buttons:[{type:"ok"}]
+
+    });
+
+    return;
 
 }
 
@@ -5043,7 +5053,7 @@ if(error==="GLOBAL_LIMIT_REACHED"){
 
     tg.showPopup({
 
-        title:"🎮 Daily Reward Limit Reached",
+        title:"⚠️ Daily Reward Limit Reached",
 
         message:`আজকের ${settingsData.dailyGameLimit || 20} খেলে রিওয়ার্ড লিমিট শেষ।    রিওয়ার্ড পেতে আগামীকাল আবার গেম খেলুন ।`,
 
@@ -5323,36 +5333,60 @@ updateGameResetTimer();
 
 /* daily limit ui */
 
-function updateDailyLimit(){
+async function updateDailyLimit(){
 
-const box=
+const box =
 
-document.getElementById(
-
-"todayGameLimit"
-
-);
+document.getElementById("todayGameLimit");
 
 if(!box) return;
+
+const today =
+new Date().toISOString().slice(0,10);
+
+if(playUser.gameDate !== today){
+
+    await updateDoc(userRef,{
+
+        gameDate:today,
+
+        gamePlayed:0,
+
+        gameRewarded:0,
+
+        gameDailyCount:{},
+
+        gamePopup:{}
+
+    });
+
+    playUser.gameDate = today;
+
+    playUser.gamePlayed = 0;
+
+    playUser.gameRewarded = 0;
+
+    playUser.gameDailyCount = {};
+
+    playUser.gamePopup = {};
+
+}
 
 const count =
 Number(playUser.gameRewarded || 0);
 
-const limit=
+const limit =
+settingsData.dailyGameLimit || 20;
 
-settingsData.dailyGameLimit || 50;
-
-box.innerText=
-
-`${count} / ${limit}`;
+box.innerText = `${count} / ${limit}`;
 
 }
 
-onSnapshot(userRef,(snap)=>{
+onSnapshot(userRef,async(snap)=>{
 
-playUser=snap.data()||{};
+playUser=snap.data() || {};
 
-updateDailyLimit();
+await updateDailyLimit();
 
 });
 
@@ -5372,8 +5406,8 @@ function showGameBackButton(){
             title:"Exit Game?",
 
             message: rewardReady
-            ? "আপনি কি গেম থেকে বের হতে চান?    আপনার রিওয়ার্ড দেওয়া হয়েছে"
-            : "আপনি কি গেম থেকে বের হতে চান?   গেম কমপ্লিট না হলে রিওয়ার্ড দেওয়া হবে না。",
+            ? "✅ আপনার রিওয়ার্ড দেওয়া হয়েছে। আপনি কি গেম থেকে বের হতে চান? "
+            : "⚠️ গেম কমপ্লিট না হলে রিওয়ার্ড দেওয়া হবে না। আপনি কি গেম থেকে বের হতে চান? ",
 
             buttons:[
                 {id:"continue",type:"default",text:"Continue"},
@@ -5482,19 +5516,6 @@ rewardTimer.innerHTML = "00";
 
 }
 
-window.goBackFromGamePage = async()=>{
-
-    if(gameFrame.style.display !== "none"){
-
-        await goBackFromGame();
-
-    }else{
-
-        window.location.href="index.html";
-
-    }
-
-};
 
 /* ========================= */
 /* PLAY PAGE BACK BUTTON */

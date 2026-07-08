@@ -4683,7 +4683,19 @@ btn.disabled = true;
 });
 
 featuredPlayBtn.disabled = true;
-  
+
+/* Page Ad */
+
+try{
+
+    await showPageAd();
+
+}catch(e){
+
+    console.log(e);
+
+}
+
 /* Open Game */
 
 openGameFrame(game);
@@ -5370,13 +5382,23 @@ function showGameBackButton(){
 
         }, async(id)=>{
 
-            if(id !== "exit") return;
+           if(id !== "exit") return;
 
-            await goBackFromGame();
+        try{
 
-            rewardWaiting = false;
+        await showPageAd();
 
-            tg.BackButton.hide();
+    }catch(e){
+
+        console.log(e);
+
+    }
+
+    await goBackFromGame();
+
+    rewardWaiting = false;
+
+    tg.BackButton.hide();
 
         });
 

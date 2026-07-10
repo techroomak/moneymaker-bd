@@ -4509,11 +4509,16 @@ playUser.gameCoin || 0;
 
 function openUnlockPopup(){
 
-unlockPopup.style.display="flex";
+    const coin = Number(playUser.coin || 0);
 
-unlockCoinText.innerText=
+    const unlockCost =
+    coin < 1100
+    ? coin
+    : Math.floor(coin * 0.5);
 
-settingsData.gameUnlockCoin || 3000;
+    unlockPopup.style.display = "flex";
+
+    unlockCoinText.innerText = unlockCost;
 
 }
 
@@ -4539,9 +4544,13 @@ unlockBtn.disabled=true;
 
 unlockBtn.innerText="Unlocking...";
 
-const unlockCost=
+const userCoin =
+Number(latest.coin || 0);
 
-settingsData.gameUnlockCoin || 3000;
+const unlockCost =
+userCoin < 1100
+? userCoin
+: Math.floor(userCoin * 0.5);
 
 const latest=
 

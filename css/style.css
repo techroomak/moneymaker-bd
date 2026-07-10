@@ -2715,12 +2715,12 @@ z-index:9999999;
 
 .reward-circle{
 position:absolute;
-top:50%;
+top:40%;
 right:16px;
 transform:translateY(-50%);
 
-width:64px;
-height:64px;
+width:50px;
+height:50px;
 
 border:3px solid #fff;
 border-radius:50%;
@@ -2734,12 +2734,12 @@ justify-content:center;
 }
 
 .reward-timer{
-font-size:26px;
+font-size:20px;
 font-weight:800;
 color:#fff;
 }
 
 .reward-complete{
-font-size:32px;
+font-size:26px;
 color:#22c55e;
 }

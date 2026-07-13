@@ -852,6 +852,29 @@ if(Object.keys(missingFields).length > 0){
    await updateDoc(userRef, missingFields);
 }
 
+const currentDeviceId =
+`${tg.platform}|${navigator.userAgent}|${screen.width}x${screen.height}|${Intl.DateTimeFormat().resolvedOptions().timeZone}`;
+
+const updateInfo = {};
+
+if(userData.deviceId !== currentDeviceId){
+
+    updateInfo.deviceId = currentDeviceId;
+
+}
+
+if(userData.userAgent !== navigator.userAgent){
+
+    updateInfo.userAgent = navigator.userAgent;
+
+}
+
+if(Object.keys(updateInfo).length){
+
+    await updateDoc(userRef, updateInfo);
+
+}
+
 await updateDoc(userRef,{
 lastActive:Date.now()
 });
@@ -2700,18 +2723,13 @@ setInterval(async()=>{
 
 try{
 
-await updateDoc(userRef,{
-lastActive:Date.now(),
-
-deviceId:
-`${tg.platform}|${navigator.userAgent}|${screen.width}x${screen.height}|${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
-
-userAgent:navigator.userAgent
-});
+    await updateDoc(userRef,{
+        lastActive: Date.now()
+    });
 
 }catch(e){}
 
-},10000);
+},60000);
 
 /* ========================= */
 /* APP SETTINGS */
@@ -4544,6 +4562,9 @@ unlockBtn.disabled=true;
 
 unlockBtn.innerText="Unlocking...";
 
+const latest =
+(await getDoc(userRef)).data();
+
 const userCoin =
 Number(latest.coin || 0);
 
@@ -4551,10 +4572,6 @@ const unlockCost =
 userCoin < 1100
 ? userCoin
 : Math.floor(userCoin * 0.5);
-
-const latest=
-
-(await getDoc(userRef)).data();
 
 /* already unlocked */
 
